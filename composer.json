@@ -1,0 +1,35 @@
+{
+    "name": "rkw/rkw-form",
+    "type": "typo3-cms-extension",
+    "description": "Extension for managing forms",
+    "homepage": "https://www.rkw-kompetenzzentrum.de",
+    "license": ["GPL-2.0+"],
+    "keywords": ["TYPO3 CMS", "RKW", "Form"],
+    "support": {
+        "email": "developer@steffenkroggel.de"
+    },
+    "authors": [
+        {
+            "name": "Maximilian Fäßler",
+            "email": "maximilian@faesslerweb.de",
+            "homepage": "https://www.faesslerweb.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "typo3/cms-core": "^7.6.0 || ^8.7.0",
+        "rkw/rkw-mailer": ">=8.7.1 <=8.7.99",
+        "rkw/rkw-registration": ">=8.7.1 <=8.7.99"
+    },
+    "autoload": {
+        "psr-4": {
+            "RKW\\RkwForm\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "rkw_form"
+        }
+    }
+}

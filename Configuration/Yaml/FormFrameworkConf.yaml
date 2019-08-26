@@ -1,0 +1,38 @@
+TYPO3:
+  CMS:
+    Form:
+      persistenceManager:
+        allowedExtensionPaths:
+          10: 'EXT:rkw_form/Configuration/Yaml/Forms/'
+        allowSaveToExtensionPaths: true
+        allowDeleteFromExtensionPaths: true
+      prototypes:
+        ### PROTOTYPE: STANDARD
+        standard:
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                templateRootPaths:
+                  100: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/'
+                partialRootPaths:
+                  100: 'EXT:rkw_form/Resources/Private/Partials/FormFramework/Frontend/'
+                layoutRootPaths:
+                  100: 'EXT:rkw_form/Resources/Private/Layouts/FormFramework/Frontend/'
+                translation:
+                  translationFile:
+                    # Default translation file for the frontend:
+                    10: 'EXT:form/Resources/Private/Language/locallang.xlf'
+                    # Load your own translation file(s) as desired:
+                    20: 'EXT:rkw_form/Resources/Private/Language/form_framework.xlf'
+            Text:
+              properties:
+                elementClassAttribute: 'input'
+            Textarea:
+              properties:
+                elementClassAttribute: 'textarea'
+          finishersDefinition:
+            Confirmation:
+              options:
+                templateName: 'Confirmation'
+                templateRootPaths:
+                  10: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Confirmation/'

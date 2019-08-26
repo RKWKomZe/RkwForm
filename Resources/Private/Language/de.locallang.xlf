@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
+		<header/>
+		<body>
+			<trans-unit id="tx_rkw_form_domain_model_standard">
+                <source>Standard Form</source>
+                <target>Standard Formular</target>
+            </trans-unit>
+            <trans-unit id="tx_rkw_form_domain_model_standard.description">
+                <source>Provides forms. With FormFramework support from Typo3 version 8.7.</source>
+                <target>Stellt standard-Formulare zur Verfügung. Ab Typo3 version 8.7 mit FormFramework-Support.</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard">
+                <source>Standard</source>
+                <target>Standard</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.salutation">
+                <source>Salutation</source>
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.99" approved="yes">
+                <source>-- Please select --</source>
+                <target>-- Bitte wählen --</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.0" approved="yes">
+                <source>Mr.</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.1" approved="yes">
+                <source>Mrs.</source>
+                <target>Frau</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.first_name">
+                <source>First Name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.last_name">
+                <source>Last Name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.company">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standard.text">
+                <source>Text</source>
+                <target>Textfeld</target>
+            </trans-unit>
+
+
+
+            <!-- TEMPLATES -->
+
+            <trans-unit id="templates_standard_new.button">
+                <source>Send</source>
+                <target>Jetzt absenden</target>
+            </trans-unit>
+
+            <trans-unit id="templates_standard_create.header">
+                <source>Thank you :)</source>
+                <target>Vielen Dank! :)</target>
+            </trans-unit>
+            <trans-unit id="templates_standard_create.text">
+                <source>We'll reply as soon as possible.</source>
+                <target>Wir werden Ihre Anfrage zeitnah beantworten.</target>
+            </trans-unit>
+
+
+
+            <!-- PARTIALS -->
+
+            <trans-unit id="tx_rkwform_domain_model_standard.labelOptional">
+                <source>(Optional)</source>
+                <target>(Optional)</target>
+            </trans-unit>
+
+            <!-- PARTIAL: Form errors -->
+
+            <trans-unit id="form.error.1221560718">
+                <source>Please fill out the field '%s'.</source>
+                <target>Bitte füllen Sie das Feld '%s' aus.</target>
+            </trans-unit>
+            <trans-unit id="form.error.1221560910">
+                <source>Please fill out the field '%s'.</source>
+                <target>Bitte füllen Sie das Feld '%s' aus.</target>
+            </trans-unit>
+
+            <trans-unit id="form.error.notFilled">
+                <source>Please fill out the field '%s'.</source>
+                <target>Da fehlt noch was. Bitte füllen Sie das Feld '%s' aus.</target>
+            </trans-unit>
+
+            <trans-unit id="form.error.newFormRequest.salutation">
+                <source>Salutation</source>
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.firstName">
+                <source>First name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.lastName">
+                <source>Last name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.company">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.email">
+                <source>E-Mail</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.text">
+                <source>Text</source>
+                <target>Freitext</target>
+            </trans-unit>
+
+
+			<!-- EMAIL -->
+
+            <!-- Templates/Email/ConfirmationUser.html -->
+            <trans-unit id="templates_email_confirmationUser.headline">
+                <source>Hello %s %s,</source>
+                <target>Hallo %s %s,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_confirmationUser.text1">
+                <source>thank you for your support request.</source>
+                <target>vielen Dank für Ihren Antrag auf ein Förderprogramm des RKW Kompetenzzentrums.</target>
+            </trans-unit>
+            <trans-unit id="templates_email_confirmationUser.text2">
+                <source>You will get an answer to your support request shortly.</source>
+                <target>Untenstehend finden Sie die Details Ihres Antrags. Wir melden uns baldmöglichst wieder bei Ihnen.</target>
+            </trans-unit>
+
+            <trans-unit id="templates_email_confirmationUser.formData">
+                <source>Received form data</source>
+                <target>Ihre Angaben</target>
+            </trans-unit>
+
+            <trans-unit id="rkwMailService.confirmationUser.subject">
+                <source>Thanks for your request</source>
+                <target>RKW: Ihr Anfrage</target>
+            </trans-unit>
+            <trans-unit id="rkwMailService.notifyAdmin.subject">
+                <source>A new request has arrived</source>
+                <target>RKW: Eine neue Anfrage wurde gestellt</target>
+            </trans-unit>
+
+
+            <!-- Templates/Email/NotifyAdmin.html -->
+            <trans-unit id="templates_email_notifyAdmin.headline">
+                <source>Hello %s,</source>
+                <target>Hallo %s,</target>
+            </trans-unit>
+            <trans-unit id="templates_email_notifyAdmin.text1">
+                <source>a new support request arrived. Please show below for details.</source>
+                <target>über die Website wurde ein Förderantrag gestellt. Bitte prüfen Sie den untenstehende Antrag. Sie können bei etwaigen Rückfragen direkt auf diese E-Mail antworten.</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>
