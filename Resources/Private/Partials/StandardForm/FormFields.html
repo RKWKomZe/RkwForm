@@ -5,7 +5,7 @@
         <label class="form-label" for="salutation">
             <f:translate key="tx_rkwform_domain_model_standardform.salutation" />
             <f:if condition="<rkwForm:isMandatoryField fieldName='salutation' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="partials_standard_formFields.labelOptional" /></span>
+                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
             </f:if>
         </label>
         <f:form.select id="salutation" property="salutation" value="{standard.salutation}" options="{99: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.99\")}', 0: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.0\")}', 1: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.1\")}'}" optionValueField="uid" optionLabelField="name" />
