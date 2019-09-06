@@ -7,13 +7,13 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.RkwForm',
-            'Standard',
+            'StandardForm',
             [
-                'Standard' => 'new, create'
+                'StandardForm' => 'new, create'
             ],
             // non-cacheable actions
             [
-                'Standard' => 'new, create'
+                'StandardForm' => 'new, create'
             ]
         );
 
@@ -23,15 +23,15 @@ call_user_func(
         $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\StandardController',
-            \RKW\RkwForm\Controller\StandardController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Controller\\StandardFormController',
+            \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
             'RKW\\RkwForm\\Service\\RkwMailService',
             'userMail'
         );
 
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\StandardController',
-            \RKW\RkwForm\Controller\StandardController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Controller\\StandardFormController',
+            \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             'RKW\\RkwForm\\Service\\RkwMailService',
             'adminMail'
         );

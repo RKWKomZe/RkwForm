@@ -3,65 +3,70 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
 		<header/>
 		<body>
-			<trans-unit id="tx_rkw_form_domain_model_standard">
+			<trans-unit id="tx_rkwform_domain_model_standardform">
 				<source>Standard Form</source>
 				<target>Standard Formular</target>
 			</trans-unit>
-			<trans-unit id="tx_rkw_form_domain_model_standard.description">
+			<trans-unit id="tx_rkwform_domain_model_standardform.description">
 				<source>Provides forms. With FormFramework support from Typo3 version 8.7.</source>
 				<target>Stellt standard-Formulare zur Verfügung. Ab Typo3 version 8.7 mit FormFramework-Support.</target>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard">
-				<source>Standard</source>
-				<target>Standard</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.salutation">
-				<source>Salutation</source>
-				<target>Anrede</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.salutation.I.99" approved="yes">
+
+
+			<trans-unit id="tx_rkwform_domain_model_standardform">
+                <source>Standard</source>
+                <target>Standard</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation">
+                <source>Salutation</source>
+                <target>Anrede</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.99" approved="yes">
                 <source>-- Please select --</source>
+                <target>-- Bitte wählen --</target>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.0" approved="yes">
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.0" approved="yes">
                 <source>Mr.</source>
+                <target>Herr</target>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.1" approved="yes">
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.1" approved="yes">
                 <source>Mrs.</source>
+                <target>Frau</target>
             </trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.first_name">
-				<source>First Name</source>
-				<target>Vorname</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.last_name">
-				<source>Last Name</source>
-				<target>Nachname</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.company">
-				<source>Company</source>
-				<target>Firma</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.email">
-				<source>Email</source>
-				<target>E-Mail</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.phone">
-				<source>Phone</source>
-				<target>Telefon</target>
-			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.text">
-				<source>Text</source>
-				<target>Textfeld</target>
-			</trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.first_name">
+                <source>First Name</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.last_name">
+                <source>Last Name</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.company">
+                <source>Company</source>
+                <target>Firma</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.phone">
+                <source>Phone</source>
+                <target>Telefon</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.text">
+                <source>Text</source>
+                <target>Textfeld</target>
+            </trans-unit>
+
 
 			<!-- flexform -->
-
             <trans-unit id="flexform.standard.sheetTitle">
                 <source>BackendUser</source>
                 <target>BackendUser</target>
             </trans-unit>
             <trans-unit id="flexform.standard.beuser">
-                <source>Backend User to mail (only shown if email is set)</source>
-                <target>Backend User für Antrag-Email</target>
+                <source>Backend User for E-mails</source>
+                <target>Backend User für E-Mails</target>
             </trans-unit>
 		</body>
 	</file>

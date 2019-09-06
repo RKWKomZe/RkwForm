@@ -7,14 +7,14 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'RKW.RkwForm',
-            'Standard',
+            'StandardForm',
             'RKW Form: Standard Formular'
         );
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($extKey, 'Configuration/TypoScript', 'RKW Form');
 
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rkwform_domain_model_standard', 'EXT:rkw_form/Resources/Private/Language/locallang_csh_tx_rkwform_domain_model_standard.xlf');
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rkwform_domain_model_standard');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_rkwform_domain_model_standardform', 'EXT:rkw_form/Resources/Private/Language/locallang_csh_tx_rkwform_domain_model_standardform.xlf');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_rkwform_domain_model_standardform');
 
     },
     $_EXTKEY
@@ -24,7 +24,7 @@ call_user_func(
 // Add Flexform
 //=================================================================
 $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY));
-$pluginName = strtolower('Standard');
+$pluginName = strtolower('StandardForm');
 $pluginSignature = $extensionName.'_'.$pluginName;
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';

@@ -1,25 +1,33 @@
 <?php
 namespace RKW\RkwForm\Controller;
-use \RKW\RkwForm\Domain\Model\Standard;
+
+use \RKW\RkwForm\Domain\Model\StandardForm;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-/***
+/*
+ * This file is part of the TYPO3 CMS project.
  *
- * This file is part of the "RkwForm" Extension for TYPO3 CMS.
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
- *
- ***/
+ * The TYPO3 project - inspiring people to share!
+ */
 
 /**
- * StandardController
+ * Class StandardFormController
+ *
+ * @author Maximilian Fäßler <maximilian@faesslerweb.de>
+ * @copyright Rkw Kompetenzzentrum
+ * @package RKW_RkwForm
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+
+class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * Signal name for use in ext_localconf.php
@@ -36,12 +44,12 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     const SIGNAL_AFTER_REQUEST_CREATED_ADMIN = 'afterRequestCreatedAdmin';
 
     /**
-     * standardRepository
+     * standardFormRepository
      *
-     * @var \RKW\RkwForm\Domain\Repository\StandardRepository
+     * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository
      * @inject
      */
-    protected $standardRepository = null;
+    protected $standardFormRepository = null;
 
     /**
      * FrontendUserRepository
@@ -59,14 +67,16 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     protected $backendUserRepository;
 
+
+
     /**
      * action new
-     * @param \RKW\RkwForm\Domain\Model\Standard $newStandard
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
      * @return void
      */
-    public function newAction(Standard $newStandard = null)
+    public function newAction(StandardForm $standardForm = null)
     {
-        $this->view->assign('newStandard', $newStandard);
+        $this->view->assign('standardForm', $standardForm);
     }
 
 
@@ -74,12 +84,16 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * action create
      *
-     * @param \RKW\RkwForm\Domain\Model\Standard $newStandard
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
      * @param int $privacy
-     * @validate $newStandard \RKW\RkwForm\Validation\Validator\StandardValidator
+     * @validate $standardForm \RKW\RkwForm\Validation\Validator\StandardFormValidator
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
-    public function createAction(Standard $newStandard, $privacy = 0)
+    public function createAction(StandardForm $standardForm, $privacy = 0)
     {
         if (!$privacy) {
             $this->addFlashMessage(
@@ -89,14 +103,14 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 '',
                 AbstractMessage::ERROR
             );
-            $this->forward('new', null, null, array('newStandard' => $newStandard));
+            $this->forward('new', null, null, array('standardForm' => $standardForm));
             //===
         }
 
         // give form to mailHandling function
-        $this->mailHandling($newStandard);
+        $this->mailHandling($standardForm);
 
-        $this->standardRepository->add($newStandard);
+        $this->standardFormRepository->add($standardForm);
 
         // Final: Show create page with text
     }
@@ -105,7 +119,8 @@ class StandardController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     /**
      * mail handling
      * @param mixed $formRequest
-     *
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
     private function mailHandling($formRequest)
     {
