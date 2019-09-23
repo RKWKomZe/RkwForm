@@ -61,6 +61,10 @@ plugin.tx_rkwform {
         mandatoryFields {
             standard = {$plugin.tx_rkwform.settings.mandatoryFields.standard}
         }
+
+        mail {
+            fallbackBackendUser = {$plugin.tx_rkwform.settings.mail.fallbackBackendUser}
+        }
     }
 }
 

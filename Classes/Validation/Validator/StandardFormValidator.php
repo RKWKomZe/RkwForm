@@ -19,24 +19,24 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 
 /**
- * Class StandardValidator
+ * Class StandardFormValidator
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class StandardValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+class StandardFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
 
     /**
      * validation
      *
-     * @var \RKW\RkwForm\Domain\Model\Standard $newStandard
+     * @var \RKW\RkwForm\Domain\Model\StandardForm $standardForm
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($newStandard)
+    public function isValid($standardForm)
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
@@ -52,17 +52,17 @@ class StandardValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstract
             foreach ($mandatoryFieldsStandard as $field) {
 
                 $getter = 'get' . ucfirst($field);
-                if (method_exists($newStandard, $getter)) {
+                if (method_exists($standardForm, $getter)) {
 
                     if (
                         (
                             ($field == 'salutation')
-                            && (trim($newStandard->$getter()) == 99)
+                            && (trim($standardForm->$getter()) == 99)
                         )
                         ||
                         (
                             ($field != 'salutation')
-                            && (!trim($newStandard->$getter()))
+                            && (!trim($standardForm->$getter()))
                         )
                     ) {
 
@@ -96,6 +96,7 @@ class StandardValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstract
      *
      * @param string $which Which type of settings will be loaded
      * @return array
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
     protected static function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {

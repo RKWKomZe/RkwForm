@@ -1,33 +1,88 @@
-{namespace vh=RKW\RkwMailer\ViewHelpers}
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
 <f:layout name="Email/{mailType}" />
 
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-=============================================================
-<vh:frontend.translate key="templates_email_confirmationUser.formData" languageKey="{language}" extensionName="rkwForm"/>
-=============================================================
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation" languageKey="{language}" extensionName="rkwForm"/>: <f:if condition="{formRequest.title}"><f:then><vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation.I.1" languageKey="{language}" extensionName="rkwForm"/></f:then><f:else><vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation.I.0" languageKey="{language}" extensionName="rkwForm"/></f:else></f:if>
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.first_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.firstName}
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.last_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.lastName}
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.email" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.email}
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
-<vh:frontend.translate key="tx_rkwform_domain_model_standard.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation" languageKey="{language}" extensionName="rkwForm"/>: <f:if condition="{formRequest.salutation} < 99"><rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation.I.{formRequest.salutation}" languageKey="{language}" extensionName="rkwForm"/></f:if>
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.title" languageKey="{language}" extensionName="rkwForm"/>:  <f:if condition="{formRequest.title}">{formRequest.title.name}</f:if>
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.first_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.firstName}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.last_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.lastName}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.email" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.email}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
+    {formRequest.text}
 </f:section>
 
 <!-- HTML -->
 <f:section name="Html">
-	<h2><vh:frontend.translate key="templates_email_confirmationUser.formData" languageKey="{language}" extensionName="rkwForm"/></h2>
-	<p>
-        <vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation" languageKey="{language}" extensionName="rkwForm"/>: <f:if condition="{formRequest.title}"><f:then><vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation.I.1" languageKey="{language}" extensionName="rkwForm"/></f:then><f:else><vh:frontend.translate key="tx_rkwform_domain_model_standard.salutation.I.0" languageKey="{language}" extensionName="rkwForm"/></f:else></f:if>
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.first_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.firstName}
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.last_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.lastName}
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.email" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.email}
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
-        <br/><vh:frontend.translate key="tx_rkwform_domain_model_standard.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
-    </p>
+	<table class="colored-table" >
+        <tr>
+            <th style="width:100px" class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                <f:if condition="{formRequest.salutation} < 99"><rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation.I.{formRequest.salutation}" languageKey="{language}" extensionName="rkwForm"/></f:if>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.title" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                <f:if condition="{formRequest.title}">{formRequest.title.name}</f:if>
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.first_name" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.firstName}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.last_name" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.lastName}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.company" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.company}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.email" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.email}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.phone" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.phone}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                <f:format.nl2br>{formRequest.text}</f:format.nl2br>
+            </td>
+        </tr>
+    </table>
 
 
 </f:section>

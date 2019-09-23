@@ -4,7 +4,6 @@ namespace RKW\RkwForm\Service;
 
 use \RKW\RkwBasics\Helper\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -33,7 +32,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * Sends an E-Mail to a Frontend-User
      *
      * @param \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser
-     * @param mixed $formRequest
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      *
      * @throws \RKW\RkwMailer\Service\MailException
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -43,7 +42,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    public function userMail(\RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser, $formRequest)
+    public function userMail(\RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -91,7 +90,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * Sends an E-Mail to an Admin
      *
      * @param \RKW\RkwOrder\Domain\Model\BackendUser|array $backendUser
-     * @param mixed $formRequest
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      *
      * @throws \RKW\RkwMailer\Service\MailException
      * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
@@ -101,7 +100,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
      */
-    public function adminMail($backendUser, $formRequest)
+    public function adminMail($backendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
     {
         // get settings
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);

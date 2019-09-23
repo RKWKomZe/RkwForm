@@ -1,15 +1,15 @@
 <T3DataStructure>
     <sheets>
-        <sDEF>
+        <admin>
             <ROOT>
                 <TCEforms>
-                    <sheetTitle>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.sheetTitle</sheetTitle>
+                    <sheetTitle>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.admin</sheetTitle>
                 </TCEforms>
                 <type>array</type>
                 <el>
                     <settings.mail.backendUser>
                         <TCEforms>
-                            <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.beuser</label>
+                            <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.admin.beuser</label>
                             <config>
                                 <type>select</type>
                                 <size>10</size>
@@ -23,6 +23,33 @@
                     </settings.mail.backendUser>
                 </el>
             </ROOT>
-        </sDEF>
+        </admin>
+
+        <confirmtext>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.confirmtext</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.confirmtext.headline>
+                        <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.confirmtext.headline</label>
+                        <config>
+                            <type>text</type>
+                            <cols>24</cols>
+                            <rows>3</rows>
+                        </config>
+                    </settings.confirmtext.headline>
+                    <settings.confirmtext.description>
+                        <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.confirmtext.description</label>
+                        <config>
+                            <type>text</type>
+                            <cols>24</cols>
+                            <rows>3</rows>
+                        </config>
+                    </settings.confirmtext.description>
+                </el>
+            </ROOT>
+        </confirmtext>
     </sheets>
 </T3DataStructure>
