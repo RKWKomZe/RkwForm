@@ -13,7 +13,6 @@ namespace RKW\RkwForm\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use Konafets\Typo3Debugbar\Overrides\DebuggerUtility;
 
 /**
  * Class IsMandatoryFieldViewHelper

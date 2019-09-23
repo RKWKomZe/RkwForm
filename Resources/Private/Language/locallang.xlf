@@ -3,78 +3,86 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
 		<header/>
 		<body>
-			<trans-unit id="tx_rkw_form_domain_model_standard">
+			<trans-unit id="tx_rkw_form_domain_model_standardform">
 				<source>Standard Form</source>
 			</trans-unit>
-			<trans-unit id="tx_rkw_form_domain_model_standard.description">
+			<trans-unit id="tx_rkw_form_domain_model_standardform.description">
 				<source>Provides forms. With FormFramework support from Typo3 version 8.7.</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard">
+
+
+			<trans-unit id="tx_rkwform_domain_model_standardform">
 				<source>Standard</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.salutation">
+			<trans-unit id="tx_rkwform_domain_model_standardform.salutation">
 				<source>Salutation</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.salutation.I.99" approved="yes">
+            <trans-unit id="tx_rkwform_domain_model_standardform.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.title.I.pleaseSelect">
                 <source>-- Please select --</source>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.0" approved="yes">
+			<trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.99" approved="yes">
+                <source>-- Please select --</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.0" approved="yes">
                 <source>Mr.</source>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standard.salutation.I.1" approved="yes">
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.1" approved="yes">
                 <source>Mrs.</source>
             </trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.first_name">
+			<trans-unit id="tx_rkwform_domain_model_standardform.first_name">
 				<source>First Name</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.last_name">
+			<trans-unit id="tx_rkwform_domain_model_standardform.last_name">
 				<source>Last Name</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.company">
+			<trans-unit id="tx_rkwform_domain_model_standardform.company">
 				<source>Company</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.email">
+			<trans-unit id="tx_rkwform_domain_model_standardform.email">
 				<source>Email</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.phone">
+			<trans-unit id="tx_rkwform_domain_model_standardform.phone">
 				<source>Phone</source>
 			</trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standard.text">
-				<source>Text</source>
+			<trans-unit id="tx_rkwform_domain_model_standardform.text">
+				<source>Message</source>
 			</trans-unit>
 
-			 <!-- TEMPLATES -->
 
+            <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">
                 <source>Send</source>
-                <target>Jetzt absenden</target>
+            </trans-unit>
+
+            <trans-unit id="templates_standard_create.header">
+                <source>Thank you for your message!</source>
+            </trans-unit>
+            <trans-unit id="templates_standard_create.text">
+                <source>We will get in touch with you as soon as possible.</source>
             </trans-unit>
 
 
 
             <!-- PARTIALS -->
-
-            <trans-unit id="tx_rkwform_domain_model_standard.labelOptional">
+            <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
                 <source>(Optional)</source>
-                <target>(Optional)</target>
             </trans-unit>
 
 
-			<!-- PARTIAL: Form errors -->
-
-            <trans-unit id="form.error.1221560718">
-                <source>Please fill out the field '%s'.</source>
-            </trans-unit>
-            <trans-unit id="form.error.1221560910">
-                <source>Please fill out the field '%s'.</source>
-            </trans-unit>
-
+            <!-- PARTIAL: Form errors -->
             <trans-unit id="form.error.notFilled">
-                <source>Please fill out the field '%s'.</source>
+                <source>Something's missing. Please fill in the field "%s".</source>
             </trans-unit>
+
 
             <trans-unit id="form.error.newFormRequest.salutation">
                 <source>Salutation</source>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.title">
+                <source>Title</source>
             </trans-unit>
             <trans-unit id="form.error.newFormRequest.firstName">
                 <source>First name</source>
@@ -92,32 +100,30 @@
                 <source>Phone</source>
             </trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
-                <source>Text</source>
+                <source>Message</source>
             </trans-unit>
+
 
 			<!-- EMAIL -->
-
-            <!-- Templates/Email/ConfirmationUser.html -->
-            <trans-unit id="templates_email_confirmationUser.headline">
-                <source>Hello %s %s,</source>
-            </trans-unit>
-            <trans-unit id="templates_email_confirmationUser.text1">
-                <source>thank you for your form request.</source>
-            </trans-unit>
-            <trans-unit id="templates_email_confirmationUser.text2">
-                <source>You will get an answer to your form request shortly.</source>
-            </trans-unit>
-
-            <trans-unit id="templates_email_confirmationUser.formData">
-                <source>Received form data</source>
-            </trans-unit>
-
             <trans-unit id="rkwMailService.confirmationUser.subject">
                 <source>Thanks for your request</source>
             </trans-unit>
             <trans-unit id="rkwMailService.notifyAdmin.subject">
-                <source>A new form request has arrived</source>
+                <source>Request via contact form</source>
             </trans-unit>
+
+
+			<!-- Templates/Email/ConfirmationUser.html -->
+            <trans-unit id="templates_email_confirmationUser.headline">
+                <source>Hello %s %s,</source>
+            </trans-unit>
+            <trans-unit id="templates_email_confirmationUser.text1">
+                <source>thank you very much for your message.</source>
+            </trans-unit>
+            <trans-unit id="templates_email_confirmationUser.text2">
+                <source>Below we have summarized the details of your inquiry once again for you. We will get in touch with you as soon as possible.</source>
+            </trans-unit>
+
 
 
             <!-- Templates/Email/NotifyAdmin.html -->
@@ -125,7 +131,7 @@
                 <source>Hello %s,</source>
             </trans-unit>
             <trans-unit id="templates_email_notifyAdmin.text1">
-                <source>a new form request arrived. Please show below for details.</source>
+                <source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
             </trans-unit>
 		</body>
 	</file>
