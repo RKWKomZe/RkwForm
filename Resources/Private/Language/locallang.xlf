@@ -17,6 +17,12 @@
 			<trans-unit id="tx_rkwform_domain_model_standardform.salutation">
 				<source>Salutation</source>
 			</trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.title.I.pleaseSelect">
+                <source>-- Please select --</source>
+            </trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.99" approved="yes">
                 <source>-- Please select --</source>
             </trans-unit>
@@ -42,7 +48,7 @@
 				<source>Phone</source>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.text">
-				<source>Text</source>
+				<source>Message</source>
 			</trans-unit>
 
 
@@ -75,6 +81,9 @@
             <trans-unit id="form.error.newFormRequest.salutation">
                 <source>Salutation</source>
             </trans-unit>
+            <trans-unit id="form.error.newFormRequest.title">
+                <source>Title</source>
+            </trans-unit>
             <trans-unit id="form.error.newFormRequest.firstName">
                 <source>First name</source>
             </trans-unit>
@@ -91,7 +100,7 @@
                 <source>Phone</source>
             </trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
-                <source>Text</source>
+                <source>Message</source>
             </trans-unit>
 
 

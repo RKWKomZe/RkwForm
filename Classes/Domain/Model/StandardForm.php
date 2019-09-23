@@ -32,6 +32,13 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $salutation = 99;
 
     /**
+     * title
+     *
+     * @var \RKW\RkwRegistration\Domain\Model\Title
+     */
+    protected $title = null;
+
+    /**
      * firstName
      *
      * @var string
@@ -94,6 +101,30 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->salutation = $salutation;
     }
 
+
+    /**
+     * Returns the title
+     *
+     * @return \RKW\RkwRegistration\Domain\Model\Title $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Sets the title
+     *
+     * Hint: default "null" is needed to make value in forms optional
+     *
+     * @param \RKW\RkwRegistration\Domain\Model\Title $title
+     * @return void
+     */
+    public function setTitle(\RKW\RkwRegistration\Domain\Model\Title $title = null)
+    {
+        $this->title = $title;
+    }
+    
     /**
      * Returns the firstName
      *

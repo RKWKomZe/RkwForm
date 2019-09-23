@@ -60,14 +60,27 @@
 
 
 			<!-- flexform -->
-            <trans-unit id="flexform.standard.sheetTitle">
-                <source>BackendUser</source>
-                <target>BackendUser</target>
+            <trans-unit id="flexform.standard.admin">
+                <source>E-Mail</source>
+                <target>E-Mail</target>
             </trans-unit>
-            <trans-unit id="flexform.standard.beuser">
+            <trans-unit id="flexform.standard.admin.beuser">
                 <source>Backend User for E-mails</source>
                 <target>Backend User für E-Mails</target>
             </trans-unit>
+            <trans-unit id="flexform.standard.confirmtext">
+                <source>Confirmation Text</source>
+                <target>Bestätigungstext</target>
+            </trans-unit>
+            <trans-unit id="flexform.standard.confirmtext.headline">
+                <source>Headline</source>
+                <target>Überschrift</target>
+            </trans-unit>
+            <trans-unit id="flexform.standard.confirmtext.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

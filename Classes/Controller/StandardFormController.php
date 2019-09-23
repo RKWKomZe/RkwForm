@@ -95,6 +95,7 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function createAction(StandardForm $standardForm, $privacy = 0)
     {
+
         if (!$privacy) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -109,10 +110,20 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
         // give form to mailHandling function
         $this->mailHandling($standardForm);
-
         $this->standardFormRepository->add($standardForm);
 
-        // Final: Show create page with text
+    }
+
+
+    /**
+     * Remove ErrorFlashMessage
+     *
+     * @see \TYPO3\CMS\Extbase\Mvc\Controller\ActionController::getErrorFlashMessage()
+     */
+    protected function getErrorFlashMessage()
+    {
+        return false;
+        //===
     }
 
 
@@ -124,11 +135,13 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     private function mailHandling($formRequest)
     {
+
         /** @var \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser */
         $frontendUser = GeneralUtility::makeInstance('RKW\\RkwRegistration\\Domain\\Model\\FrontendUser');
         $frontendUser->setEmail($formRequest->getEmail());
         $frontendUser->setFirstName($formRequest->getFirstName());
         $frontendUser->setLastName($formRequest->getLastName());
+        $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'de');
 
         /*
         // currently we do not use real privacy-entries
@@ -156,7 +169,7 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         // fallback-handling
         if (
             (count($backendUsers) < 1)
-            && ($backendUserFallback = intval($this->settings['backendUserIdForMails']))
+            && ($backendUserFallback = intval($this->settings['mail']['fallbackBackendUser']))
         ) {
             $admin = $this->backendUserRepository->findByUid($backendUserFallback);
             if (

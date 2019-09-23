@@ -15,8 +15,8 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-    <f:flashMessages />
 
+    <f:render partial="FlashMessages"  />
     <f:render partial="FormErrors" arguments="{object:Standard}" />
 
     <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" class="form-fields">
