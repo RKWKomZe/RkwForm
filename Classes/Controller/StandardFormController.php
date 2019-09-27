@@ -129,7 +129,7 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
     /**
      * mail handling
-     * @param mixed $formRequest
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
@@ -141,6 +141,13 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $frontendUser->setEmail($formRequest->getEmail());
         $frontendUser->setFirstName($formRequest->getFirstName());
         $frontendUser->setLastName($formRequest->getLastName());
+        if (
+            ($formRequest->getTitle()->getIsIncludedInSalutation())
+            && (! $formRequest->getTitle()->getIsTitleAfter())
+        ) {
+            $frontendUser->setTitle($formRequest->getTitle()->getName());
+        }
+
         $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'de');
 
         /*

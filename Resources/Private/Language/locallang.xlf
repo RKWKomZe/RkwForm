@@ -115,7 +115,7 @@
 
 			<!-- Templates/Email/ConfirmationUser.html -->
             <trans-unit id="templates_email_confirmationUser.headline">
-                <source>Hello %s %s,</source>
+                <source>Hello</source>
             </trans-unit>
             <trans-unit id="templates_email_confirmationUser.text1">
                 <source>thank you very much for your message.</source>
