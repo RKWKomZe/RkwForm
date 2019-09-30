@@ -89,7 +89,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * Sends an E-Mail to an Admin
      *
-     * @param \RKW\RkwOrder\Domain\Model\BackendUser|array $backendUser
+     * @param \RKW\RkwForm\Domain\Model\BackendUser|array $backendUser
      * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      *
      * @throws \RKW\RkwMailer\Service\MailException
@@ -123,6 +123,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     ($recipient instanceof \RKW\RkwForm\Domain\Model\BackendUser)
                     && ($recipient->getEmail())
                 ) {
+
                     // send new user an email with token
                     $mailService->setTo($recipient, array(
                         'marker'  => array(
@@ -149,7 +150,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
             $mailService->getQueueMail()->setSubject(
                 \RKW\RkwMailer\Helper\FrontendLocalization::translate(
-                    'rkwMailService.NotifyAdmin.subject',
+                    'rkwMailService.notifyAdmin.subject',
                     'rkw_form',
                     null,
                     'de'

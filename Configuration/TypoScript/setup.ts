@@ -19,7 +19,7 @@ config.tx_extbase.persistence {
 
         #===============================================
 
-        TYPO3\CMS\Extbase\Domain\Model\BackendUser {
+        RKW\RkwRegistration\Domain\Model\BackendUser {
             subclasses {
                 Tx_RkwForm_BackendUser = RKW\RkwForm\Domain\Model\BackendUser
             }
@@ -29,9 +29,7 @@ config.tx_extbase.persistence {
         RKW\RkwForm\Domain\Model\BackendUser {
             mapping {
                 tableName = be_users
-                columns {
-                    usergroup.mapOnProperty = backendUserGroups
-                }
+                recordType =
             }
         }
     }
