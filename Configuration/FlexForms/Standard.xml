@@ -35,7 +35,7 @@
                     <settings.confirmtext.headline>
                         <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.confirmtext.headline</label>
                         <config>
-                            <type>text</type>
+                            <type>input</type>
                             <cols>24</cols>
                             <rows>3</rows>
                         </config>
