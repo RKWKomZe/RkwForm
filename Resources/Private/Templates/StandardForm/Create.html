@@ -14,7 +14,7 @@
         <p>
             <f:if condition="{settings.confirmtext.description}">
                 <f:then>
-                    {settings.confirmtext.description}
+                    <f:format.nl2br>{settings.confirmtext.description}</f:format.nl2br>
                 </f:then>
                 <f:else>
                     <f:translate key="templates_standard_create.text" />

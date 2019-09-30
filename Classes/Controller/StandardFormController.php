@@ -142,7 +142,8 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $frontendUser->setFirstName($formRequest->getFirstName());
         $frontendUser->setLastName($formRequest->getLastName());
         if (
-            ($formRequest->getTitle()->getIsIncludedInSalutation())
+            ($formRequest->getTitle())
+            && ($formRequest->getTitle()->getIsIncludedInSalutation())
             && (! $formRequest->getTitle()->getIsTitleAfter())
         ) {
             $frontendUser->setTitle($formRequest->getTitle()->getName());
