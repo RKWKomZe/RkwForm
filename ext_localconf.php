@@ -5,6 +5,9 @@ call_user_func(
     function($extKey)
 	{
 
+        //=================================================================
+        // Configure Plugin
+        //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.RkwForm',
             'StandardForm',
@@ -17,6 +20,9 @@ call_user_func(
             ]
         );
 
+        //=================================================================
+        // Register SignalSlots
+        //=================================================================
         /**
          * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
          */
