@@ -4,19 +4,13 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_rkwform_domain_model_standardform">
-				<source>Standard Form</source>
-				<target>Standard Formular</target>
+				<source>RKW Form: Standard Form</source>
+				<target>RKW Form: Standard Formular</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.description">
 				<source>Provides forms. With FormFramework support from Typo3 version 8.7.</source>
 				<target>Stellt standard-Formulare zur Verfügung. Ab Typo3 version 8.7 mit FormFramework-Support.</target>
 			</trans-unit>
-
-
-			<trans-unit id="tx_rkwform_domain_model_standardform">
-                <source>Standard</source>
-                <target>Standard</target>
-            </trans-unit>
             <trans-unit id="tx_rkwform_domain_model_standardform.salutation">
                 <source>Salutation</source>
                 <target>Anrede</target>

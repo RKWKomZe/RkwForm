@@ -26,6 +26,7 @@ return [
 	        'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation',
 	        'config' => [
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'items' => array(
                     array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.99', 99),
                     array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.0', 0),
