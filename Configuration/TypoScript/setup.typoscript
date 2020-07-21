@@ -68,6 +68,6 @@ plugin.tx_rkwform {
 
 # FormFramework conf (tx_form)
 [userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('form')]
-    plugin.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFramework/FormFrameworkConf.yaml
-    module.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFramework/FormFrameworkConf.yaml
+    plugin.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
+    module.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
 [global]
