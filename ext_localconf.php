@@ -20,6 +20,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwForm',
+            'BstForm',
+            [
+                'BstForm' => 'new, create'
+            ],
+            // non-cacheable actions
+            [
+                'BstForm' => 'new, create'
+            ]
+        );
+
         //=================================================================
         // Register SignalSlots
         //=================================================================

@@ -3,6 +3,17 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
 		<header/>
 		<body>
+
+		    <!-- CONTROLLER -->
+
+		    <trans-unit id="bstFormController.error.accept_agree">
+                <source>Please confirm you participation</source>
+                <target>Bitte bestätigen Sie Ihre Teilnahme am Frankfurter Bausachverständigentag</target>
+            </trans-unit>
+
+
+
+		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
                 <source>Standard Form</source>
                 <target>Standard Formular</target>
@@ -85,11 +96,21 @@
             </trans-unit>
 
 
+            <trans-unit id="templates_bstForm_new.bst_agree">
+                <source>Yes, I've participate to all contents of the "55. Frankfurter Bausachverständigentag" and had the possibility to ask questions</source>
+                <target>Ja, ich habe alle Inhalte des 55. Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt Fragen zu stellen</target>
+            </trans-unit>
+
+
 
             <!-- PARTIALS -->
             <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
                 <source>(Optional)</source>
                 <target>(Optional)</target>
+            </trans-unit>
+            <trans-unit id="partials_bstForm_formFields.numberCombination">
+                <source>Your personal number combination</source>
+                <target>Ihre persönliche Zahlenkombination</target>
             </trans-unit>
 
 
@@ -129,6 +150,24 @@
                 <target>Telefon</target>
             </trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+
+
+            <trans-unit id="form.error.newFormRequest.bstNumber1">
+                <source>Number combination 1</source>
+                <target>Zahlenkombination Feld 1</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstNumber2">
+                <source>Number combination 2</source>
+                <target>Zahlenkombination Feld 2</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstNumber3">
+                <source>Number combination 3</source>
+                <target>Zahlenkombination Feld 3</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstAgree">
                 <source>Message</source>
                 <target>Nachricht</target>
             </trans-unit>

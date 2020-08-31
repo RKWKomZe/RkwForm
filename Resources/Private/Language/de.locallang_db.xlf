@@ -53,6 +53,27 @@
             </trans-unit>
 
 
+
+            <!-- bst extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
+                <source>Number 1</source>
+                <target>Pers. Zahlenkomb. 1</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number2">
+                <source>Number 2</source>
+                <target>Pers. Zahlenkomb. 2</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number3">
+                <source>Number 3</source>
+                <target>Pers. Zahlenkomb. 3</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_agree">
+                <source>Agree</source>
+                <target>Zustimmung (Ja, ich habe alle Inhalte des 55. Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt Fragen zu stellen)</target>
+            </trans-unit>
+
+
+
 			<!-- flexform -->
             <trans-unit id="flexform.standard.admin">
                 <source>E-Mail</source>
@@ -74,6 +95,19 @@
                 <source>Description</source>
                 <target>Beschreibung</target>
             </trans-unit>
+
+
+            <!-- bst extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
+                <source>BST</source>
+                <target>BST</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.palettes.bst">
+                <source>BST</source>
+                <target>BST</target>
+            </trans-unit>
+
+
 
 		</body>
 	</file>

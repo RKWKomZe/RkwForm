@@ -1,0 +1,57 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+    <f:render partial="FlashMessages"  />
+    <f:render partial="FormErrors" arguments="{object:Standard}" />
+
+    <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" class="form-fields">
+
+        <f:render partial="BstForm/FormFields" />
+
+        <p class="v320-1">
+            <span class="checkbox">
+                <label>
+                    <f:form.checkbox property="bstAgree" value="1" />
+                    <span class="text-smaller">
+                        <f:translate key="templates_bstForm_new.bst_agree" />
+                    </span>
+                </label>
+            </span>
+        </p>
+
+        <p class="v320-1">
+            <span class="checkbox">
+                <label>
+                    <f:form.checkbox name="privacy" value="1" />
+                    <rkwRegistration:privacyText textVersion="form" />
+                </label>
+            </span>
+        </p>
+
+        <p class="v320-1">
+            <button type="submit" class="button">
+                <span>
+                    <f:translate key="templates_standard_new.button" />
+                </span>
+            </button>
+        </p>
+    </f:form>
+</f:section>
+</html>

@@ -1,9 +1,12 @@
 <?php
 namespace RKW\RkwForm\Controller;
 
-use \RKW\RkwForm\Domain\Model\StandardForm;
+use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Messaging\AbstractMessage;
+use \RKW\RkwBasics\Helper\Common;
+use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -19,9 +22,7 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  */
 
 /**
- * Class StandardFormController
- *
- * @toDo: Should / could extend AbstractFormController (currently identical to this one, except the expected objects)
+ * Class AbstractFormController
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright Rkw Kompetenzzentrum
@@ -29,7 +30,7 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
      * Signal name for use in ext_localconf.php
@@ -72,11 +73,26 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
 
     /**
-     * action new
-     * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
+     * action initialize
      * @return void
      */
-    public function newAction(StandardForm $standardForm = null)
+    public function initializeAction()
+    {
+        // workaround for a specific settings problem: Extbase does not longer distinguish between different plugin configurations
+        // Second problem: If we would overwrite the whole settings array itself, the flexform settings would fly away. So let's merge
+        // Hint: If a plugin has no specific settings, nothing further will happen. The standard settings would be used then
+        $pluginSpecificSettings = $this->getPluginSettings();
+        array_merge($this->settings, $pluginSpecificSettings);
+    }
+
+
+
+    /**
+     * action new
+     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
+     * @return void
+     */
+    public function newAction(AbstractEntity $standardForm = null)
     {
         $this->view->assign('standardForm', $standardForm);
     }
@@ -85,17 +101,17 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
     /**
      * action createAbstract
+     * (do not call this function directly. Add an "createAction" instead with specific Model param and specific validator)
      *
-     * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
+     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
      * @param int $privacy
-     * @validate $standardForm \RKW\RkwForm\Validation\Validator\StandardFormValidator
      * @return void
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
-    public function createAction(StandardForm $standardForm, $privacy = 0)
+    public function createAbstractAction(AbstractEntity $standardForm, $privacy = 0)
     {
 
         if (!$privacy) {
@@ -131,13 +147,12 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
     /**
      * mail handling
-     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
+     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $formRequest
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
-    protected function mailHandling($formRequest)
+    protected function mailHandling(AbstractEntity $formRequest)
     {
-
         /** @var \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser */
         $frontendUser = GeneralUtility::makeInstance('RKW\\RkwRegistration\\Domain\\Model\\FrontendUser');
         $frontendUser->setEmail($formRequest->getEmail());
@@ -192,5 +207,22 @@ class StandardFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
 
         $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_ADMIN, array($backendUsers, $formRequest));
+    }
+
+
+
+    /**
+     * Returns plugin specific settings
+     *
+     * @param string $which Which type of settings will be loaded
+     * @return array
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     */
+    protected function getPluginSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    {
+        $pluginName = $this->request->getPluginName();
+
+        return Common::getTyposcriptConfiguration('Rkwform_'.$pluginName, $which);
+        //===
     }
 }
