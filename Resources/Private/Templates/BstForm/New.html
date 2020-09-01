@@ -36,22 +36,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
             </span>
         </p>
 
-        <p class="v320-1">
-            <span class="checkbox">
-                <label>
-                    <f:form.checkbox name="privacy" value="1" />
-                    <rkwRegistration:privacyText textVersion="form" />
-                </label>
-            </span>
-        </p>
+        <f:render partial="FormFields/Privacy" />
 
-        <p class="v320-1">
-            <button type="submit" class="button">
-                <span>
-                    <f:translate key="templates_standard_new.button" />
-                </span>
-            </button>
-        </p>
+        <f:render partial="FormFields/Submit" />
+
     </f:form>
 </f:section>
 </html>
