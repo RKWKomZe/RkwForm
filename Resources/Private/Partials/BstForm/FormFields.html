@@ -1,0 +1,67 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <div class="v320-1-of-2">
+
+        <f:render partial="FormFields/FirstName" />
+
+        <f:render partial="FormFields/LastName" />
+
+        <f:render partial="FormFields/Company" />
+
+        <div class="v320-1">
+
+            <label class="form-label" for="tx-rkwform-bstNumber1" style="width: 100%;">
+                <f:translate key="partials_bstForm_formFields.numberCombination" />
+                <f:if condition="<rkwForm:isMandatoryField fieldName='bstNumber1' mandatoryFields='{settings.mandatoryFields.standard}' />">
+                    <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
+                </f:if>
+            </label>
+            <div style="width: 25%; float: left; margin-right: 12.5%">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber1"
+                    property="bstNumber1"
+                    value="{standard.bstNumber1}"
+                    maxlength="2"
+                />
+            </div>
+
+            <div style="width: 25%; float: left; margin-right: 12.5%">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber2"
+                    property="bstNumber2"
+                    value="{standard.bstNumber2}"
+                    maxlength="2"
+                />
+            </div>
+
+            <div style="width: 25%; float: left;">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber3"
+                    property="bstNumber3"
+                    value="{standard.bstNumber3}"
+                    maxlength="2"
+                />
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="v320-2-of-2">
+
+        <f:render partial="FormFields/Email" />
+
+        <f:render partial="FormFields/Phone" />
+
+        <f:render partial="FormFields/Text" arguments="{rows: 4}" />
+
+    </div>
+
+
+
+</html>

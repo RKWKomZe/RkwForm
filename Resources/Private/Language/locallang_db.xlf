@@ -41,6 +41,22 @@
             </trans-unit>
 
 
+            <!-- bst extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
+                <source>Number 1</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number2">
+                <source>Number 2</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number3">
+                <source>Number 3</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_agree">
+                <source>Agree</source>
+            </trans-unit>
+
+
+
 			<!-- flexform -->
             <trans-unit id="flexform.standard.admin">
                 <source>E-Mail</source>
@@ -57,6 +73,19 @@
             <trans-unit id="flexform.standard.confirmtext.description">
                 <source>Description</source>
             </trans-unit>
+
+
+
+            <!-- bst extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
+                <source>BST</source>
+                <target>BST</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.palettes.bst">
+                <source>BST</source>
+                <target>BST</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

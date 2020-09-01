@@ -19,22 +19,20 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 
 /**
- * Class StandardFormValidator
+ * Class AbstractFormValidator
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class StandardFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
+class AbstractFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
 
     /**
      * validation
      *
-     * @deprecated Use "AbstractFormValidator" instead
-     *
-     * @var \RKW\RkwForm\Domain\Model\StandardForm $standardForm
+     * @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
