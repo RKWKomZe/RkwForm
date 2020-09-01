@@ -22,3 +22,15 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
+
+
+
+#
+# extend for bst2020Form (bausachverstaendigentag.de)
+#
+CREATE TABLE tx_rkwform_domain_model_standardform (
+  bst_number1 int(11) DEFAULT '0' NOT NULL,
+  bst_number2 int(11) DEFAULT '0' NOT NULL,
+  bst_number3 int(11) DEFAULT '0' NOT NULL,
+  bst_agree tinyint(4) unsigned DEFAULT '0' NOT NULL,
+);
