@@ -13,6 +13,7 @@
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
     {formRequest.text}
+<f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Plaintext" arguments="{_all}"/></f:if>
 </f:section>
 
 <!-- HTML -->
@@ -82,6 +83,7 @@
                 <f:format.nl2br>{formRequest.text}</f:format.nl2br>
             </td>
         </tr>
+        <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/></f:if>
     </table>
 
 

@@ -40,6 +40,7 @@ call_user_func(
          */
         $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
 
+        // @deprecated start
         $signalSlotDispatcher->connect(
             'RKW\\RkwForm\\Controller\\StandardFormController',
             \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
@@ -50,6 +51,21 @@ call_user_func(
         $signalSlotDispatcher->connect(
             'RKW\\RkwForm\\Controller\\StandardFormController',
             \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'adminMail'
+        );
+        // @deprecated end
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\AbstractFormController',
+            \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'userMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\AbstractFormController',
+            \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             'RKW\\RkwForm\\Service\\RkwMailService',
             'adminMail'
         );
