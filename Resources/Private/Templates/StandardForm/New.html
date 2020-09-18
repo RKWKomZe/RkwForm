@@ -20,18 +20,22 @@
         <f:render partial="FlashMessages"  />
         <f:render partial="FormErrors" arguments="{object:Standard}" />
 
-        <div class="flex-container">
-            <div class="flex-basis-8 full-width-medium">
-                <f:form class="break-after form flex space-between" action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" >
+        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" >
+            <div class="flex-container">
+                <div class="flex-basis-8 full-width-medium">
+                    <div class="form flex space-between">
 
-                    <f:render partial="StandardForm/FormFields" />
+                        <f:render partial="StandardForm/FormFields" />
 
-                    <f:render partial="FormFields/Privacy" />
+                        <f:render partial="FormFields/Privacy" />
 
-                    <f:render partial="FormFields/Submit" />
+                        <f:render partial="FormFields/Submit" />
 
-                </f:form>
-            </div>
-        </div>
+                        </div>
+                    </div>
+                </div>
+
+        </f:form>
+
     </f:section>
 </html>

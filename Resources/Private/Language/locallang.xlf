@@ -100,6 +100,9 @@
             <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
                 <source>(Optional)</source>
             </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.labelRequired">
+                <source>(Required)</source>
+            </trans-unit>
             <trans-unit id="partials_bstForm_formFields.numberCombination">
                 <source>Your personal number combination</source>
             </trans-unit>

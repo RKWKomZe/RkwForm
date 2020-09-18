@@ -13,9 +13,7 @@
     <div class="form__field {f:if(condition: '{width}', then: '{width}', else: 'width100')}">
         <label for="tx-rkwform-text">
             <f:translate key="tx_rkwform_domain_model_standardform.text" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='text' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional"><f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
+            <f:render partial="LabelSuffix" arguments="{field: 'text'}" />
         </label>
         <f:form.textarea
             id="tx-rkwform-text"

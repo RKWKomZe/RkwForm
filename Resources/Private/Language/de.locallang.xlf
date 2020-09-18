@@ -108,6 +108,10 @@
                 <source>(Optional)</source>
                 <target>(Optional)</target>
             </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.labelRequired">
+                <source>(Required)</source>
+                <target>(Pflichtfeld)</target>
+            </trans-unit>
             <trans-unit id="partials_bstForm_formFields.numberCombination">
                 <source>Your personal number combination</source>
                 <target>Ihre persönliche Zahlenkombination</target>
