@@ -3,23 +3,24 @@
     xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="v320-1-of-2">
+        <f:render partial="FormFields/FirstName" arguments="{width: 'width50'}" />
 
-        <f:render partial="FormFields/FirstName" />
+        <f:render partial="FormFields/LastName" arguments="{width: 'width50'}" />
 
-        <f:render partial="FormFields/LastName" />
+        <f:render partial="FormFields/Company" arguments="{width: 'width50'}" />
 
-        <f:render partial="FormFields/Company" />
+        <f:render partial="FormFields/Email" arguments="{width: 'width50'}" />
 
-        <div class="v320-1">
 
-            <label class="form-label" for="tx-rkwform-bstNumber1" style="width: 100%;">
+        <div class="form__field" style="width: 50%;">
+
+            <label for="tx-rkwform-bstNumber1" style="width: 100%;">
                 <f:translate key="partials_bstForm_formFields.numberCombination" />
                 <f:if condition="<rkwForm:isMandatoryField fieldName='bstNumber1' mandatoryFields='{settings.mandatoryFields.standard}' />">
                     <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
                 </f:if>
             </label>
-            <div style="width: 25%; float: left; margin-right: 12.5%">
+            <div style="width: 25%; float: left; margin-right: 8.5%">
                 <f:form.textfield
                     id="tx-rkwform-bstNumber1"
                     property="bstNumber1"
@@ -28,7 +29,7 @@
                 />
             </div>
 
-            <div style="width: 25%; float: left; margin-right: 12.5%">
+            <div style="width: 25%; float: left; margin-right: 8.5%">
                 <f:form.textfield
                     id="tx-rkwform-bstNumber2"
                     property="bstNumber2"
@@ -45,23 +46,12 @@
                     maxlength="2"
                 />
             </div>
-
         </div>
 
 
-    </div>
-
-
-    <div class="v320-2-of-2">
-
-        <f:render partial="FormFields/Email" />
-
-        <f:render partial="FormFields/Phone" />
+        <f:render partial="FormFields/Phone" arguments="{width: 'width50'}" />
 
         <f:render partial="FormFields/Text" arguments="{rows: 4}" />
-
-    </div>
-
 
 
 </html>

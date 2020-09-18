@@ -21,25 +21,29 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:render partial="FlashMessages"  />
     <f:render partial="FormErrors" arguments="{object:Standard}" />
 
-    <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" class="form-fields">
+    <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}">
 
-        <f:render partial="BstForm/FormFields" />
+        <div class="flex-container">
+            <div class="flex-basis-8 full-width-medium">
+                <div class="form flex space-between">
 
-        <p class="v320-1">
-            <span class="checkbox">
-                <label>
-                    <f:form.checkbox property="bstAgree" value="1" />
-                    <span class="text-smaller">
-                        <f:translate key="templates_bstForm_new.bst_agree" />
-                    </span>
-                </label>
-            </span>
-        </p>
+                    <f:render partial="BstForm/FormFields" />
 
-        <f:render partial="FormFields/Privacy" />
+                    <div class="form__field">
+                        <f:form.checkbox class="checkbox" id="bstAgree" property="bstAgree" value="1" />
+                        <label for="bstAgree" class="checkbox-label">
+                            <f:translate key="templates_bstForm_new.bst_agree" />
+                        </label>
+                    </div>
 
-        <f:render partial="FormFields/Submit" />
+                    <f:render partial="FormFields/Privacy" />
+
+                    <f:render partial="FormFields/Submit" />
+                </div>
+            </div>
+        </div>
 
     </f:form>
+
 </f:section>
 </html>
