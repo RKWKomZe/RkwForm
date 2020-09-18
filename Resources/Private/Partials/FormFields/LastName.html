@@ -1,13 +1,19 @@
+<f:comment>
+    <!--
+    @param $width The width of the field. Default is "width100", "width50" is also possible
+    @use arguments="{width: 'width50'}"
+    -->
+</f:comment>
 
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-lastName">
+    <div class="form__field {f:if(condition: '{width}', then: '{width}', else: 'width100')}">
+        <label for="tx-rkwform-lastName">
             <f:translate key="tx_rkwform_domain_model_standardform.last_name" />
             <f:if condition="<rkwForm:isMandatoryField fieldName='lastName' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
+                <span class="optional"><f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
             </f:if>
         </label>
         <f:form.textfield
