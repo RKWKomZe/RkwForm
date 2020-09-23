@@ -1,6 +1,8 @@
 <f:comment>
     <!--
     @param $rows How many rows the textarea should have. Default is "2"
+    @param $width The width of the field. Default is "width100"; use "width50" for half width
+    @use arguments="{width: 'width50'}"
     -->
 </f:comment>
 
@@ -8,12 +10,10 @@
     xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-text">
+    <div class="form__field {f:if(condition: '{width}', then: '{width}', else: 'width100')}">
+        <label for="tx-rkwform-text">
             <f:translate key="tx_rkwform_domain_model_standardform.text" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='text' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
+            <f:render partial="LabelSuffix" arguments="{field: 'text'}" />
         </label>
         <f:form.textarea
             id="tx-rkwform-text"

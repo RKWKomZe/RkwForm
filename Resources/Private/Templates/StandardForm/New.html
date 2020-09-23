@@ -20,26 +20,22 @@
         <f:render partial="FlashMessages"  />
         <f:render partial="FormErrors" arguments="{object:Standard}" />
 
-        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" class="form-fields">
+        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" >
+            <div class="flex-container">
+                <div class="flex-basis-8 full-width-medium">
+                    <div class="form flex space-between">
 
-            <f:render partial="StandardForm/FormFields" />
+                        <f:render partial="StandardForm/FormFields" />
 
-            <p class="v320-1">
-                <span class="checkbox">
-                    <label>
-                        <f:form.checkbox name="privacy" value="1" />
-                        <rkwRegistration:privacyText textVersion="form" />
-                    </label>
-                </span>
-            </p>
+                        <f:render partial="FormFields/Privacy" />
 
-            <p class="v320-1">
-                <button type="submit" class="button">
-                    <span>
-                        <f:translate key="templates_standard_new.button" />
-                    </span>
-                </button>
-            </p>
+                        <f:render partial="FormFields/Submit" />
+
+                        </div>
+                    </div>
+                </div>
+
         </f:form>
+
     </f:section>
 </html>
