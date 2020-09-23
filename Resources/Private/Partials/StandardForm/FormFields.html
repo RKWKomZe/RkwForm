@@ -1,86 +1,23 @@
-{namespace rkwForm=RKW\RkwForm\ViewHelpers}
-{namespace rkwRegistration=RKW\RkwRegistration\ViewHelpers}
 
-<div class="v320-1-of-2">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-salutation">
-            <f:translate key="tx_rkwform_domain_model_standardform.salutation" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='salutation' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.select id="tx-rkwform-salutation" property="salutation" options="{99: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.99\")}', 0: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.0\")}', 1: '{f:translate(key:\"tx_rkwform_domain_model_standardform.salutation.I.1\")}'}" optionValueField="uid" optionLabelField="name" />
-    </div>
+    <f:render partial="FormFields/Salutation" arguments="{cssClass: 'width50'}"/>
 
-    <!-- title -->
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-title" >
-            <f:translate key="tx_rkwform_domain_model_standardform.title" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='title' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.select id="tx-rkwform-title" property="title" options="<rkwRegistration:titleList />" optionValueField="uid" optionLabelField="name" prependOptionValue="0" prependOptionLabel="{f:translate(key:'tx_rkwform_domain_model_standardform.title.I.pleaseSelect')}" />
-    </div>
+    <f:render partial="FormFields/Title" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-firstName">
-            <f:translate key="tx_rkwform_domain_model_standardform.first_name" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='firstName' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textfield id="tx-rkwform-firstName" property="firstName" value="{standard.firstName}" additionalAttributes="{autocomplete:'fname'}" />
-    </div>
+    <f:render partial="FormFields/FirstName" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-lastName">
-            <f:translate key="tx_rkwform_domain_model_standardform.last_name" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='lastName' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textfield id="tx-rkwform-lastName" property="lastName" value="{standard.lastName}" additionalAttributes="{autocomplete:'lname'}" />
-    </div>
+    <f:render partial="FormFields/LastName" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-company">
-            <f:translate key="tx_rkwform_domain_model_standardform.company" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='company' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textfield id="tx-rkwform-company" property="company" value="{standard.company}" />
-    </div>
+    <f:render partial="FormFields/Company" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-email">
-            <f:translate key="tx_rkwform_domain_model_standardform.email" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='email' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textfield id="tx-rkwform-email" property="email" value="{standard.email}" additionalAttributes="{autocomplete:'email'}" type="email"/>
-    </div>
+    <f:render partial="FormFields/Email" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-phone">
-            <f:translate key="tx_rkwform_domain_model_standardform.phone" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='phone' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textfield id="tx-rkwform-phone" property="phone" value="{standard.phone}" />
-    </div>
+    <f:render partial="FormFields/Phone" arguments="{cssClass: 'width50'}"/>
 
-    <div class="v320-1">
-        <label class="form-label" for="tx-rkwform-text">
-            <f:translate key="tx_rkwform_domain_model_standardform.text" />
-            <f:if condition="<rkwForm:isMandatoryField fieldName='text' mandatoryFields='{settings.mandatoryFields.standard}' />">
-                <span class="optional">&nbsp;<f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
-            </f:if>
-        </label>
-        <f:form.textarea id="tx-rkwform-text" property="text" value="{standard.text}" />
-    </div>
-</div>
+    <f:render partial="FormFields/Text" arguments="{cssClass: 'width100'}"/>
+
+</html>

@@ -3,6 +3,15 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
 		<header/>
 		<body>
+
+		    <!-- CONTROLLER -->
+
+            <trans-unit id="bstFormController.error.accept_agree">
+                <source>Please confirm you participation</source>
+            </trans-unit>
+
+
+		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
 				<source>Standard Form</source>
 			</trans-unit>
@@ -52,6 +61,23 @@
 			</trans-unit>
 
 
+
+			<!-- bst extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
+                <source>Number 1</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number2">
+                <source>Number 2</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_number3">
+                <source>Number 3</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.bst_agree">
+                <source>Agree</source>
+            </trans-unit>
+
+
+
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">
                 <source>Send</source>
@@ -64,11 +90,21 @@
                 <source>We will get in touch with you as soon as possible.</source>
             </trans-unit>
 
+            <trans-unit id="templates_bstForm_new.bst_agree">
+                <source>Yes, I've participate to all contents of the current "Frankfurter Bausachverständigentag" and had the possibility to ask questions</source>
+            </trans-unit>
+
 
 
             <!-- PARTIALS -->
             <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
                 <source>(Optional)</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.labelRequired">
+                <source>(Required)</source>
+            </trans-unit>
+            <trans-unit id="partials_bstForm_formFields.numberCombination">
+                <source>Your personal number combination</source>
             </trans-unit>
 
 
@@ -100,6 +136,19 @@
                 <source>Phone</source>
             </trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
+                <source>Message</source>
+            </trans-unit>
+
+            <trans-unit id="form.error.newFormRequest.bstNumber1">
+                <source>Number combination 1</source>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstNumber2">
+                <source>Number combination 2</source>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstNumber3">
+                <source>Number combination 3</source>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.bstAgree">
                 <source>Message</source>
             </trans-unit>
 

@@ -1,0 +1,57 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+        <f:render partial="FormFields/FirstName" arguments="{width: 'width50'}" />
+
+        <f:render partial="FormFields/LastName" arguments="{width: 'width50'}" />
+
+        <f:render partial="FormFields/Company" arguments="{width: 'width50'}" />
+
+        <f:render partial="FormFields/Email" arguments="{width: 'width50'}" />
+
+        <div class="form__field flex width100">
+
+            <div class="form__field-label">
+                <label for="tx-rkwform-bstNumber1">
+                    <f:translate key="partials_bstForm_formFields.numberCombination" />
+                </label>
+            </div>
+
+            <div class="form__field-item">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber1"
+                    property="bstNumber1"
+                    value="{standard.bstNumber1}"
+                    maxlength="2"
+                />
+            </div>
+
+            <div class="form__field-item">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber2"
+                    property="bstNumber2"
+                    value="{standard.bstNumber2}"
+                    maxlength="2"
+                />
+            </div>
+
+            <div class="form__field-item">
+                <f:form.textfield
+                    id="tx-rkwform-bstNumber3"
+                    property="bstNumber3"
+                    value="{standard.bstNumber3}"
+                    maxlength="2"
+                />
+            </div>
+
+        </div>
+
+
+        <f:render partial="FormFields/Phone" arguments="{width: 'width50'}" />
+
+        <f:render partial="FormFields/Text" arguments="{rows: 4}" />
+
+
+</html>

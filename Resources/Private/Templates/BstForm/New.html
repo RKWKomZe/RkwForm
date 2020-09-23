@@ -1,27 +1,36 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
-    data-namespace-typo3-fluid="true">
+    data-namespace-typo3-fluid="true"
+>
 
     <f:layout name="Default" />
+
     <f:section name="main">
 
         <f:render partial="FlashMessages"  />
         <f:render partial="FormErrors" arguments="{object:Standard}" />
 
-        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}" >
+        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}">
+
             <div class="flex-container">
                 <div class="flex-basis-8 full-width-medium">
                     <div class="form flex space-between">
 
-                        <f:render partial="StandardForm/FormFields" />
+                        <f:render partial="BstForm/FormFields" />
+
+                        <div class="form__field">
+                            <f:form.checkbox class="checkbox" id="bstAgree" property="bstAgree" value="1" />
+                            <label for="bstAgree" class="checkbox-label">
+                                <f:translate key="templates_bstForm_new.bst_agree" />
+                            </label>
+                        </div>
 
                         <f:render partial="FormFields/Privacy" />
 
                         <f:render partial="FormFields/Submit" />
-
-                        </div>
                     </div>
                 </div>
+            </div>
         </f:form>
     </f:section>
 </html>

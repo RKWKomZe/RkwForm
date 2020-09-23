@@ -1,9 +1,12 @@
 <?php
 namespace RKW\RkwForm\Controller;
 
-use \RKW\RkwForm\Domain\Model\StandardForm;
+use \RKW\RkwForm\Domain\Model\BstForm;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Messaging\AbstractMessage;
+
+use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -19,7 +22,7 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  */
 
 /**
- * Class StandardFormController
+ * Class BstFormController
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright Rkw Kompetenzzentrum
@@ -27,18 +30,30 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
-class StandardFormController  extends \RKW\RkwForm\Controller\AbstractFormController
+class BstFormController extends \RKW\RkwForm\Controller\AbstractFormController
 {
     /**
      * action create
      *
-     * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
+     * @param \RKW\RkwForm\Domain\Model\BstForm $standardForm
      * @param int $privacy
      * @validate $standardForm \RKW\RkwForm\Validation\Validator\AbstractFormValidator
      * @return void
      */
-    public function createAction(StandardForm $standardForm, $privacy = 0)
+    public function createAction(BstForm $standardForm, $privacy = 0)
     {
+        if (!$standardForm->getBstAgree()) {
+            $this->addFlashMessage(
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    'bstFormController.error.accept_agree', 'rkw_form'
+                ),
+                '',
+                AbstractMessage::ERROR
+            );
+            $this->forward('new', null, null, array('standardForm' => $standardForm));
+            //===
+        }
+
         parent::createAbstractAction($standardForm, $privacy);
     }
 }
