@@ -8,7 +8,7 @@
 
 		    <trans-unit id="bstFormController.error.accept_agree">
                 <source>Please confirm you participation</source>
-                <target>Bitte bestätigen Sie Ihre Teilnahme am Frankfurter Bausachverständigentag</target>
+                <target>Bitte bestätigen Sie Ihre aktive Teilnahme am Frankfurter Bausachverständigentag.</target>
             </trans-unit>
 
 
@@ -97,8 +97,8 @@
 
 
             <trans-unit id="templates_bstForm_new.bst_agree">
-                <source>Yes, I've participate to all contents of the "55. Frankfurter Bausachverständigentag" and had the possibility to ask questions</source>
-                <target>Ja, ich habe alle Inhalte des 55. Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt, Fragen zu stellen</target>
+                <source>Yes, I've participate to all contents of the current "Frankfurter Bausachverständigentag" and had the possibility to ask questions.</source>
+                <target>Ja, ich habe alle Inhalte des diesjährigen Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt, Fragen zu stellen.</target>
             </trans-unit>
 
 

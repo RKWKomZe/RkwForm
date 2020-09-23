@@ -3,47 +3,34 @@
     data-namespace-typo3-fluid="true"
 >
 
-<f:layout name="Default" />
+    <f:layout name="Default" />
 
-This template displays a NEW form for the current domain object.
+    <f:section name="main">
 
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        New.html: keep
+        <f:render partial="FlashMessages"  />
+        <f:render partial="FormErrors" arguments="{object:Standard}" />
 
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}">
 
-<f:section name="main">
+            <div class="flex-container">
+                <div class="flex-basis-8 full-width-medium">
+                    <div class="form flex space-between">
 
-    <f:render partial="FlashMessages"  />
-    <f:render partial="FormErrors" arguments="{object:Standard}" />
+                        <f:render partial="BstForm/FormFields" />
 
-    <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}">
+                        <div class="form__field">
+                            <f:form.checkbox class="checkbox" id="bstAgree" property="bstAgree" value="1" />
+                            <label for="bstAgree" class="checkbox-label">
+                                <f:translate key="templates_bstForm_new.bst_agree" />
+                            </label>
+                        </div>
 
-        <div class="flex-container">
-            <div class="flex-basis-8 full-width-medium">
-                <div class="form flex space-between">
+                        <f:render partial="FormFields/Privacy" />
 
-                    <f:render partial="BstForm/FormFields" />
-
-                    <div class="form__field">
-                        <f:form.checkbox class="checkbox" id="bstAgree" property="bstAgree" value="1" />
-                        <label for="bstAgree" class="checkbox-label">
-                            <f:translate key="templates_bstForm_new.bst_agree" />
-                        </label>
+                        <f:render partial="FormFields/Submit" />
                     </div>
-
-                    <f:render partial="FormFields/Privacy" />
-
-                    <f:render partial="FormFields/Submit" />
                 </div>
             </div>
-        </div>
-
-    </f:form>
-
-</f:section>
+        </f:form>
+    </f:section>
 </html>
