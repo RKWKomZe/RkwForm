@@ -77,6 +77,7 @@ plugin.tx_rkwform {
 
         mandatoryFields {
             standard = {$plugin.tx_rkwform.settings.mandatoryFields.standard}
+            bst = {$plugin.tx_rkwform.settings.mandatoryFields.bst}
         }
 
         mail {
@@ -86,18 +87,6 @@ plugin.tx_rkwform {
 }
 
 
-
-// ####################
-// BstForm
-// ####################
-plugin.tx_rkwform_bstform < plugin.tx_rkwform
-plugin.tx_rkwform_bstform {
-    settings {
-        mandatoryFields {
-            standard = {$plugin.tx_rkwform_bstform.settings.mandatoryFields.standard}
-        }
-    }
-}
 
 # FormFramework conf (tx_form)
 [userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('form')]

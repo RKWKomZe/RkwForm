@@ -3,13 +3,13 @@
     xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-        <f:render partial="FormFields/FirstName" arguments="{width: 'width50'}" />
+        <f:render partial="FormFields/FirstName" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.bst}" />
 
-        <f:render partial="FormFields/LastName" arguments="{width: 'width50'}" />
+        <f:render partial="FormFields/LastName" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.bst}" />
 
-        <f:render partial="FormFields/Company" arguments="{width: 'width50'}" />
+        <f:render partial="FormFields/Company" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.bst}" />
 
-        <f:render partial="FormFields/Email" arguments="{width: 'width50'}" />
+        <f:render partial="FormFields/Email" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.bst}" />
 
         <div class="form__field flex width100">
 
@@ -49,9 +49,9 @@
         </div>
 
 
-        <f:render partial="FormFields/Phone" arguments="{width: 'width50'}" />
+        <f:render partial="FormFields/Phone" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.bst}" />
 
-        <f:render partial="FormFields/Text" arguments="{rows: 4}" />
+        <f:render partial="FormFields/Text" arguments="{rows: 4, cssClass: 'width100', mandatoryFields: settings.mandatoryFields.bst}" />
 
 
 </html>

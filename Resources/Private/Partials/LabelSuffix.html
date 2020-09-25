@@ -1,7 +1,7 @@
 <f:comment>
     <!--
     @param $field The field to check if is required or optional
-    @use arguments="{field: 'firstName'}"
+    @use arguments="{field: 'firstName', mandatoryFields: 'firstName, lastName'}"
     -->
 </f:comment>
 
@@ -9,7 +9,7 @@
     xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
     data-namespace-typo3-fluid="true">
 
-    <f:if condition="<rkwForm:isMandatoryField fieldName='{field}' mandatoryFields='{settings.mandatoryFields.standard}' />">
+    <f:if condition="<rkwForm:isMandatoryField fieldName='{field}' mandatoryFields='{mandatoryFields}' />">
         <f:then>
             <span class="is-optional"><f:translate key="tx_rkwform_domain_model_standardform.labelOptional" /></span>
         </f:then>

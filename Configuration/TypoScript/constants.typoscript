@@ -19,6 +19,10 @@ plugin.tx_rkwform {
         mandatoryFields {
             # cat=plugin.tx_rkwform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
             standard = firstName, lastName, email, salutation, text
+
+            # hint: The field "bstAgree" (checkbox) is always checked in BstFormController as mandatory field. Do not set it here again
+            # cat=plugin.tx_rkwform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
+            bst = firstName, lastName, email, bstNumber1, bstNumber2, bstNumber3
         }
 
         mail {
@@ -36,9 +40,7 @@ plugin.tx_rkwform {
 plugin.tx_rkwform_bstform {
     settings {
         mandatoryFields {
-            # cat=plugin.tx_tx_rkwform_bstform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
-            # hint: The field "bstAgree" (checkbox) is always checked in BstFormController as mandatory field. Do not set it here again
-            standard = firstName, lastName, company, bstNumber1, bstNumber2, bstNumber3
+
         }
     }
 }
