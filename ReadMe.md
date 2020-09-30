@@ -56,6 +56,7 @@ public function createAction(BstForm $standardForm, $privacy = 0)
 }
 ``` 
 * TypoScript: Define your plugins individual mandatory fields (in CONSTANTS & SETUP)
+* HINT: NOT LONGER THE RIGHT WAY! SK HAS CHANGED THE BASE LOGIC! Now you have to take care of the AbstractFormValidator Workaround 
 ```
 // ####################
 // ExampleForm

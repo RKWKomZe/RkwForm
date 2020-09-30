@@ -44,6 +44,13 @@ class AbstractFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abst
         // get mandatory fields
         $mandatoryFieldsStandard = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $settings['mandatoryFields']['standard']);
 
+        // Workaround: Because the SK hat getan some things with the Extension. So we need to make a workaround to get the right validation data
+        $bstFormData = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_rkwform_bstform');
+        // if bstFormData is not null: Overwrite the mandatoryField-Array
+        if ($bstFormData) {
+            $mandatoryFieldsStandard = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $settings['mandatoryFields']['bst']);
+        }
+
         $isValid = true;
 
         // 1. Check mandatory fields main person
