@@ -37,7 +37,7 @@ class BstFormController extends \RKW\RkwForm\Controller\AbstractFormController
      *
      * @param \RKW\RkwForm\Domain\Model\BstForm $standardForm
      * @param int $privacy
-     * @validate $standardForm \RKW\RkwForm\Validation\Validator\AbstractFormValidator
+     * @validate $standardForm \RKW\RkwForm\Validation\Validator\BstFormValidator
      * @return void
      */
     public function createAction(BstForm $standardForm, $privacy = 0)
