@@ -20,6 +20,8 @@ defined('TYPO3_MODE') || die('Access denied.');
 // Add Flexform
 //=================================================================
 
+$extKey = 'rkw_form';
+
 // add here all form plugins, which should use this standard flexform
 $pluginList = ['StandardForm', 'BstForm'];
 
