@@ -93,3 +93,8 @@ plugin.tx_rkwform {
     plugin.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
     module.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
 [global]
+
+
+#page.includeCSS.txRkwFormDatepicker = EXT:rkw_form/Resources/Public/Styles/datepicker.css
+#page.includeJSFooterlibs.txRkwFormDatepicker = https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js
+#page.includeCSS.txRkwFormDatepicker = https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css

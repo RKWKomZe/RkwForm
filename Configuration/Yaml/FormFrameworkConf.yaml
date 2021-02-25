@@ -2,6 +2,9 @@ TYPO3:
   CMS:
     Form:
       persistenceManager:
+        # override "allowedFileMounts" to disallow fileadmin/user_upload/
+        allowedFileMounts:
+          10: 'EXT:rkw_form/Configuration/Yaml/Forms/'
         allowedExtensionPaths:
           10: 'EXT:rkw_form/Configuration/Yaml/Forms/'
         allowSaveToExtensionPaths: true
@@ -30,6 +33,12 @@ TYPO3:
             Textarea:
               properties:
                 elementClassAttribute: 'textarea'
+            Checkbox:
+              properties:
+                containerClassAttribute: ''
+            DatePicker:
+              properties:
+                dateFormat: d.m.Y
           finishersDefinition:
             Confirmation:
               options:
