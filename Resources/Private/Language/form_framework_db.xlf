@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
+		<header/>
+		<body>
+
+            <trans-unit id="formEditor.elements.Form.editor.formClass.label" xml:space="preserve">
+                <source>Form width</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex6.label" xml:space="preserve">
+                <source>Flex 6 / 12</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex8.label" xml:space="preserve">
+                <source>Flex 8 / 12</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex12.label" xml:space="preserve">
+                <source>Flex 12 / 12</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.label" xml:space="preserve">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.default.label" xml:space="preserve">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.terms.label" xml:space="preserve">
+                <source>Terms</source>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

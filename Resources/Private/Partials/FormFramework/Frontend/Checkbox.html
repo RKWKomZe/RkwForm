@@ -1,4 +1,7 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 <formvh:renderRenderable renderable="{element}">
 	<f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
 		<div class="form__field form-check">
@@ -12,7 +15,14 @@
                 additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
             />
             <label class="checkbox-label {element.properties.elementClassAttribute} form-check-label" for="{element.uniqueIdentifier}">
-				<span>{formvh:translateElementProperty(element: element, property: 'label')}<f:if condition="{element.required}"><f:render partial="Field/Required" /></f:if></span>
+                <f:switch expression="{element.properties.type}">
+                    <f:case value="terms">
+                        <rkwRegistration:privacyText textVersion="xxx" />
+                    </f:case>
+                    <f:case default="1">
+                        <span>{formvh:translateElementProperty(element: element, property: 'label')}</span>
+                    </f:case>
+                </f:switch>
 			</label>
 		</div>
 	</f:render>

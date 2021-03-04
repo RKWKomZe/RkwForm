@@ -1,3 +1,12 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
-<span class="required">*</span>
+
+    <f:if condition="{required}">
+        <f:then>
+            <span class="is-required"><f:translate key="tx_rkwform_formframework_form.label_required" extensionName="RkwForm" /></span>
+        </f:then>
+        <f:else>
+            <span class="is-optional"><f:translate key="tx_rkwform_formframework_form.label_optional" extensionName="RkwForm" /></span>
+        </f:else>
+    </f:if>
+
 </html>

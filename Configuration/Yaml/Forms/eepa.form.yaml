@@ -1,6 +1,7 @@
 
 renderingOptions:
   submitButtonLabel: Absenden
+  width: flex-basis-8
 identifier: eepa
 label: EEPA
 type: Form
@@ -8,45 +9,62 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Your message: {subject}'
+      subject: 'Neue EEPA Teilnahme: {name}'
       recipientAddress: 'enterpriseaward@rkw.de '
       recipientName: 'Enterprise Award RKW'
-      senderAddress: '{email}'
-      senderName: '{name}'
-      replyToAddress: ''
+      senderAddress: '{text-7}'
+      senderName: '{text-3}'
+      replyToAddress: 'enterpriseaward@rkw.de '
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
       attachUploads: true
       translation:
         language: ''
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email'
+      partialRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
     identifier: EmailToReceiver
   -
     options:
-      subject: '{name}'
+      subject: 'Ihre EEPA Teilnahme: {name}'
       recipientAddress: '{text-7}'
-      recipientName: ''
+      recipientName: '{text-3}'
       senderAddress: 'enterpriseaward@rkw.de '
-      senderName: ''
-      replyToAddress: ''
+      senderName: 'Enterprise Award RKW'
+      replyToAddress: 'enterpriseaward@rkw.de '
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
       attachUploads: true
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email'
+      partialRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
     identifier: EmailToSender
-  -
-    identifier: DeleteUploads
   -
     options:
       message: 'Vielen Dank für Ihre Teilnahme am deutschen Vorentscheid zu den European Enterprise Promotion Awards 2021! Die Jurysitzung zur Auswahl der nationalen Gewinnerprojekte findet Mitte Juni statt. Wir werden Sie über die Ergebnisse unverzüglich informieren. Freundliche Grüße aus dem RKW Kompetenzzentrum von Juliane Kummer und Rabena Ahluwalia'
     identifier: Confirmation
+  -
+    options:
+      pageUid: '7543'
+      additionalParameters: ''
+    identifier: Redirect
 renderables:
   -
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
     identifier: page-1
-    label: 'EUROPÄISCHE UNTERNEHMENSFÖRDERPREISE 2021 '
+    label: ''
     type: Page
     renderables:
       -
@@ -77,34 +95,16 @@ renderables:
         identifier: subject
         label: 'Name der teilnehmenden Organisation'
         type: Text
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         type: Text
         identifier: text-1
         label: Postadresse
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         type: Text
         identifier: text-2
         label: Land
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         identifier: email
@@ -112,24 +112,17 @@ renderables:
         type: Text
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'Email address'
             required: required
         validators:
           -
-            identifier: NotEmpty
-          -
             identifier: EmailAddress
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
         type: Text
         identifier: text-5
         label: Website
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
       -
         type: GridRow
         identifier: gridrow-1
@@ -156,23 +149,11 @@ renderables:
             type: Text
             identifier: text-4
             label: Name
-            properties:
-              fluidAdditionalAttributes:
-                required: required
-            validators:
-              -
-                identifier: NotEmpty
       -
         defaultValue: ''
         type: Text
         identifier: text-6
         label: 'Telefonnummer der Kontaktperson'
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        validators:
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         type: Text
@@ -199,15 +180,10 @@ renderables:
             'Förderung der Internationalisierung der Wirtschaftstätigkeit ': '    4. Förderung der Internationalisierung der Wirtschaftstätigkeit '
             'Förderung der nachhaltigen Entwicklung ': '    5. Förderung der nachhaltigen Entwicklung '
             'Verantwortungsvolles und integrationsfreundliches Unternehmertum ': '    6. Verantwortungsvolles und integrationsfreundliches Unternehmertum '
-          elementDescription: ''
-          fluidAdditionalAttributes:
-            required: required
+          elementDescription: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
         type: RadioButton
         identifier: radiobutton-1
-        label: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
-        validators:
-          -
-            identifier: NotEmpty
+        label: Wettbewerbskategorie
   -
     renderingOptions:
       previousButtonLabel: Zurück
@@ -368,7 +344,7 @@ renderables:
         label: 'Falls es zur Initiative ein oder mehrere Video-Clips gibt, geben Sie hier bitte den oder die Link/s dazu an'
       -
         properties:
-          saveToFileMount: '1:/user_upload/'
+          saveToFileMount: '1:/user_upload/tx_rkwform/'
           allowedMimeTypes:
             - image/jpeg
             - image/png
@@ -402,11 +378,11 @@ renderables:
       -
         type: Checkbox
         identifier: checkbox-1
-        label: Checkbox
+        label: Datenschutzerklärung
         properties:
+          type: terms
           fluidAdditionalAttributes:
             required: required
-          elementDescription: Link
         validators:
           -
             identifier: NotEmpty
@@ -419,7 +395,7 @@ renderables:
   -
     renderingOptions:
       previousButtonLabel: Zurück
-      nextButtonLabel: Abschicken
+      nextButtonLabel: Senden
     identifier: summarypage
     label: Zusammenfassung
     type: SummaryPage
