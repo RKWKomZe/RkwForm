@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<formvh:renderRenderable renderable="{form}">
+
+    <f:comment>
+        <!-- to disable HTML5 validation with popups (is not a RKW style): additionalAttributes="{novalidate: ''}" -->
+    </f:comment>
+		<formvh:form
+            class=""
+            object="{form}"
+            action="{form.renderingOptions.controllerAction}"
+            method="{form.renderingOptions.httpMethod}"
+            id="{form.identifier}"
+            section="{form.identifier}"
+            enctype="{form.renderingOptions.httpEnctype}"
+            addQueryString="{form.renderingOptions.addQueryString}"
+            argumentsToBeExcludedFromQueryString="{form.renderingOptions.argumentsToBeExcludedFromQueryString}"
+            additionalParams="{form.renderingOptions.additionalParams}"
+            additionalAttributes="{novalidate: ''}"
+		>
+
+            <div class="flex-container">
+                <div class="form flex {form.renderingOptions.width} full-width-medium space-between">
+
+                    <f:form.validationResults>
+                        <f:if condition="{validationResults.flattenedErrors}">
+                            <div class="system-message system-message--scroll">
+                                <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath" iteration="iter">
+
+                                    <f:for each="{errors}" as="error">
+                                        <f:comment><!-- iterate every element to get the elements object for using their "translateElementError"-VH --></f:comment>
+                                        <f:for each="{form.currentPage.elements}" as="element">
+
+                                            <f:if condition="<rkwForm:compareFormPropertyPath propertyPath='{propertyPath}' elementIdentifier='{element.identifier}' />">
+                                                <div class="system-message__item system-message__item--alert-error">
+                                                    <f:translate key="tx_rkwform_formframework_form.not_filled" arguments="{0:'{element.label}'}" extensionName="RkwForm" />
+                                                </div>
+                                            </f:if>
+
+                                        </f:for>
+                                    </f:for>
+                                </f:for>
+                            </div>
+                        </f:if>
+                    </f:form.validationResults>
+
+                    <f:render partial="{form.currentPage.templateName}" arguments="{page: form.currentPage}" />
+                    <div class="width100 actions">
+                        <f:render partial="Form/Navigation" arguments="{form: form}" />
+                    </div>
+                </div>
+            </div>
+
+        </formvh:form>
+</formvh:renderRenderable>
+</html>
