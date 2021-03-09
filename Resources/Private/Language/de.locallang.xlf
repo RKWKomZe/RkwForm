@@ -229,6 +229,20 @@
                 <target>(Pflichtfeld)</target>
             </trans-unit>
 
+
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
+                <source>Hello</source>
+                <target>Hallo</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_receiver.new">
+                <source>a new contact form was send.</source>
+                <target>ein neues Formular ist eingetroffen.</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_sender.new">
+                <source>thank you.</source>
+                <target>vielen Dank, wir haben Ihre Nachricht erhalten.</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

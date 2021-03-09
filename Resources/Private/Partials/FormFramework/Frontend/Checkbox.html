@@ -17,7 +17,7 @@
             <label class="checkbox-label {element.properties.elementClassAttribute} form-check-label" for="{element.uniqueIdentifier}">
                 <f:switch expression="{element.properties.type}">
                     <f:case value="terms">
-                        <rkwRegistration:privacyText textVersion="xxx" />
+                        <rkwRegistration:privacyText textVersion="defaultAlternative" />
                     </f:case>
                     <f:case default="1">
                         <span>{formvh:translateElementProperty(element: element, property: 'label')}</span>

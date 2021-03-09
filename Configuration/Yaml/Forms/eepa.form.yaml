@@ -12,9 +12,9 @@ finishers:
       subject: 'Neue EEPA Teilnahme: {name}'
       recipientAddress: 'enterpriseaward@rkw.de '
       recipientName: 'Enterprise Award RKW'
-      senderAddress: '{text-7}'
-      senderName: '{text-3}'
-      replyToAddress: 'enterpriseaward@rkw.de '
+      senderAddress: 'enterpriseaward@rkw.de '
+      senderName: 'RKW EEPA'
+      replyToAddress: '{text-7}'
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -23,17 +23,20 @@ finishers:
         language: ''
       templateName: '{@format}.html'
       templateRootPaths:
-        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email'
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
       partialRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+      mailText: 'ein neues EEPA-Anmeldeformular wurde eingereicht.'
     identifier: EmailToReceiver
+    renderingOptions:
+      mailText: 'Test 123'
   -
     options:
       subject: 'Ihre EEPA Teilnahme: {name}'
       recipientAddress: '{text-7}'
-      recipientName: '{text-3}'
+      recipientName: '{text-4}'
       senderAddress: 'enterpriseaward@rkw.de '
       senderName: 'Enterprise Award RKW'
       replyToAddress: 'enterpriseaward@rkw.de '
@@ -43,16 +46,16 @@ finishers:
       attachUploads: true
       templateName: '{@format}.html'
       templateRootPaths:
-        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email'
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+      mailtext: 'Test Text 222'
+      mailText: 'wir haben Ihre Anmeldung erhalten. Untenstehend finden Sie eine Übersicht Ihrer Angaben.'
     identifier: EmailToSender
-  -
-    options:
-      message: 'Vielen Dank für Ihre Teilnahme am deutschen Vorentscheid zu den European Enterprise Promotion Awards 2021! Die Jurysitzung zur Auswahl der nationalen Gewinnerprojekte findet Mitte Juni statt. Wir werden Sie über die Ergebnisse unverzüglich informieren. Freundliche Grüße aus dem RKW Kompetenzzentrum von Juliane Kummer und Rabena Ahluwalia'
-    identifier: Confirmation
+    renderingOptions:
+      mailtext: Test.456
   -
     options:
       pageUid: '7543'
@@ -81,38 +84,61 @@ renderables:
         label: '(I) Allgemeine Informationen'
       -
         defaultValue: ''
-        identifier: name
-        label: 'Name der Initiative'
-        type: Text
         properties:
           fluidAdditionalAttributes:
             required: required
+          fieldClass: width50
+        identifier: name
+        label: 'Name der Initiative'
+        type: Text
         validators:
           -
             identifier: NotEmpty
       -
         defaultValue: ''
-        identifier: subject
-        label: 'Name der teilnehmenden Organisation'
-        type: Text
-      -
-        defaultValue: ''
-        type: Text
-        identifier: text-1
-        label: Postadresse
-      -
-        defaultValue: ''
-        type: Text
-        identifier: text-2
-        label: Land
-      -
-        defaultValue: ''
-        identifier: email
-        label: 'Email-Adresse der Organisation'
-        type: Text
         properties:
           fluidAdditionalAttributes:
             required: required
+          fieldClass: width50
+        identifier: subject
+        label: 'Name der teilnehmenden Organisation'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-1
+        label: Postadresse
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-2
+        label: Land
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        identifier: email
+        label: 'Email-Adresse der Organisation'
+        type: Text
         validators:
           -
             identifier: EmailAddress
@@ -120,9 +146,16 @@ renderables:
             identifier: NotEmpty
       -
         defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         type: Text
         identifier: text-5
         label: Website
+        validators:
+          -
+            identifier: NotEmpty
       -
         type: GridRow
         identifier: gridrow-1
@@ -130,9 +163,6 @@ renderables:
         renderables:
           -
             defaultValue: ''
-            type: Text
-            identifier: text-3
-            label: Titel
             properties:
               gridColumnClassAutoConfiguration:
                 viewPorts:
@@ -144,24 +174,43 @@ renderables:
                     numbersOfColumnsToUse: ''
                   lg:
                     numbersOfColumnsToUse: ''
+              fieldClass: width35
+            type: Text
+            identifier: text-3
+            label: Titel
           -
             defaultValue: ''
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+              fieldClass: width65
             type: Text
             identifier: text-4
             label: Name
+            validators:
+              -
+                identifier: NotEmpty
       -
         defaultValue: ''
-        type: Text
-        identifier: text-6
-        label: 'Telefonnummer der Kontaktperson'
-      -
-        defaultValue: ''
-        type: Text
-        identifier: text-7
-        label: 'Email-Adresse der Kontaktperson'
         properties:
           fluidAdditionalAttributes:
             required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-6
+        label: 'Telefonnummer der Kontaktperson'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-7
+        label: 'Email-Adresse der Kontaktperson'
         validators:
           -
             identifier: NotEmpty
@@ -181,9 +230,15 @@ renderables:
             'Förderung der nachhaltigen Entwicklung ': '    5. Förderung der nachhaltigen Entwicklung '
             'Verantwortungsvolles und integrationsfreundliches Unternehmertum ': '    6. Verantwortungsvolles und integrationsfreundliches Unternehmertum '
           elementDescription: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
         type: RadioButton
         identifier: radiobutton-1
         label: Wettbewerbskategorie
+        validators:
+          -
+            identifier: NotEmpty
   -
     renderingOptions:
       previousButtonLabel: Zurück
@@ -220,17 +275,29 @@ renderables:
               dateFormat: d.m.Y
               enableDatePicker: false
               displayTimeSelector: false
+              fluidAdditionalAttributes:
+                required: required
+                placeholder: tt.mm.yyyy
             type: DatePicker
             identifier: datepicker-1
             label: 'Startdatum der Initiative:'
+            validators:
+              -
+                identifier: NotEmpty
           -
             properties:
               dateFormat: d.m.Y
               enableDatePicker: false
               displayTimeSelector: false
+              fluidAdditionalAttributes:
+                required: required
+                placeholder: tt.mm.yyyy
             type: DatePicker
             identifier: datepicker-2
             label: 'Enddatum der Initiative:'
+            validators:
+              -
+                identifier: NotEmpty
       -
         properties:
           text: 'Im Falle eines Vertrags einer öffentlich-privaten Partnerschaft, handelt es sich um '
@@ -263,6 +330,8 @@ renderables:
         label: 'eine ausdrückliche Unterstützung'
       -
         defaultValue: ''
+        properties:
+          fieldClass: width100
         type: Textarea
         identifier: textarea-1
         label: 'Beschreiben Sie die Details des Vertrags der öffentlich-privaten Partnerschaft: '
@@ -274,16 +343,27 @@ renderables:
         label: ''
       -
         defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
         type: Text
         identifier: text-8
         label: 'In den letzten zwei Jahren'
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
+        properties:
+          elementDescription: '(Geben Sie bitte Personalinvestitionen gesondert an)'
+          fluidAdditionalAttributes:
+            required: required
         type: Text
         identifier: text-9
         label: Insgesamt
-        properties:
-          elementDescription: '(Geben Sie bitte Personalinvestitionen gesondert an)'
+        validators:
+          -
+            identifier: NotEmpty
       -
         properties:
           text: '2. Beschreibung, Ergebnisse und Erfolge '
@@ -292,40 +372,56 @@ renderables:
         label: ''
       -
         defaultValue: ''
-        type: Textarea
-        identifier: textarea-2
-        label: 'Kurzbeschreibung der Initiative'
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
             placeholder: 'Grundlegendendes Konzept, Ziele, Zielgruppe(n)'
+            required: required
+        type: Textarea
+        identifier: textarea-2
+        label: 'Kurzbeschreibung der Initiative'
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
-        type: Textarea
-        identifier: textarea-3
-        label: 'Ergebnisse/ Erfolge der Initiative'
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
             placeholder: 'Welche Auswirkungen hatte die Initiative auf die lokale Wirtschaft? In welchem Umfang sind bspw. Arbeitsplätze entstanden? In welcher Form wird die Initiative in Zukunft weitergeführt werden können? '
+            required: required
+        type: Textarea
+        identifier: textarea-3
+        label: 'Ergebnisse/ Erfolge der Initiative'
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
-        type: Textarea
-        identifier: textarea-4
-        label: Innovation
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
             placeholder: 'Bitte beschreiben Sie kurz, was an Ihrer Initiative innovativ ist. '
+            required: required
+        type: Textarea
+        identifier: textarea-4
+        label: Innovation
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
-        type: Textarea
-        identifier: textarea-5
-        label: 'Weitere positive Auswirkungen'
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
             placeholder: 'Hat eine/mehrere der nachfolgenden Interessensgruppen von der Umsetzung der Initiative profitiert: schwerbehinderte Menschen, geflüchtete Personen, Frauen, Kinder/Jugendliche, Ältere, sonstige benachteiligte Gruppen? Wodurch? '
+            required: required
+        type: Textarea
+        identifier: textarea-5
+        label: 'Weitere positive Auswirkungen'
+        validators:
+          -
+            identifier: NotEmpty
       -
         properties:
           text: '3. Öffentlichkeitsarbeit '
@@ -334,11 +430,20 @@ renderables:
         label: ''
       -
         defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
         type: Textarea
         identifier: textarea-6
         label: 'Bitte verfassen Sie einen Text für Medienzwecke, der die Initiative und ihre Ergebnisse in maximal 250 Wörtern beschreibt'
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
+        properties:
+          fieldClass: width100
         type: Textarea
         identifier: textarea-7
         label: 'Falls es zur Initiative ein oder mehrere Video-Clips gibt, geben Sie hier bitte den oder die Link/s dazu an'
@@ -348,6 +453,7 @@ renderables:
           allowedMimeTypes:
             - image/jpeg
             - image/png
+          fieldClass: width100
         type: ImageUpload
         identifier: imageupload-1
         label: 'Bitte fügen Sie Ihrer Bewerbung zu Zwecken der Öffentlichkeitsarbeit ein aussagekräftiges Foto Ihrer Initiative bei (vorzugsweise ein freundliches Motiv mit Menschen; mindestens 300 dpi). '
@@ -367,14 +473,38 @@ renderables:
         label: '(III) Teilnahmezustimmung '
       -
         defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
         type: Text
         identifier: text-10
         label: 'Name des rechtlichen Vertreters'
+        validators:
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
         type: Text
         identifier: text-11
         label: Titel/Funktion
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: checkbox-2
+        label: 'Mit „Bestätigung“ erkläre ich als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2021. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt.'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: ''
+          fieldClass: width100
+        validators:
+          -
+            identifier: NotEmpty
       -
         type: Checkbox
         identifier: checkbox-1
@@ -383,6 +513,7 @@ renderables:
           type: terms
           fluidAdditionalAttributes:
             required: required
+          fieldClass: width100
         validators:
           -
             identifier: NotEmpty

@@ -196,6 +196,17 @@
                 <source>(Required)</source>
             </trans-unit>
 
+
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
+                <source>Hello</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_receiver.new">
+                <source>a new contact form was send.</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_sender.new">
+                <source>thank you.</source>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

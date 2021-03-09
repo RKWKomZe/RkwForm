@@ -81,7 +81,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         //$message = $standaloneView->render();
 
 
-        // new RKW content START
+        // ######### new RKW content START #########
 
         // simulate frontend
         //FrontendSimulatorUtility::simulateFrontendEnvironment(1);
@@ -91,9 +91,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         // replace baseURLs in final email  - replacement with asign only works in template-files, not on layout-files
         $message = preg_replace('/###baseUrl###/', rtrim($settingsRkwMailer['baseUrl'], '/'), $standaloneView->render());
         $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathImages'], '/')), $message);
-        //$message = preg_replace('/###baseUrlImages###/', rtrim($settingsRkwMailer['baseUrl'] . 'typo3conf/ext/rkw_template/Themes/Kompetenzzentrum2020/Resources/Public/img/emails', '/'), $message);
         $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathLogo'], '/')), $message);
-        //$message = preg_replace('/###baseUrlLogo###/', rtrim($settingsRkwMailer['baseUrl'] . 'typo3conf/ext/rkw_template/Themes/Kompetenzzentrum2020/Resources/Public/img/global/logos/logo-emails.png', '/'), $message);
 
         /* @toDo: Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
         $replacePaths = [
@@ -109,9 +107,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         // reset frontend
         //FrontendSimulatorUtility::resetFrontendEnvironment();
 
-        // new RKW content END
-
-
+        // ######### new RKW content END #########
 
         if (!empty($languageBackup)) {
             $translationService->setLanguage($languageBackup);
@@ -138,6 +134,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
             throw new FinisherException('The option "senderAddress" must be set for the EmailFinisher.', 1327060210);
         }
 
+        /** @var \TYPO3\CMS\Core\Mail\MailMessage $mail */
         $mail = $this->objectManager->get(MailMessage::class);
 
         $mail->setFrom([$senderAddress => $senderName])

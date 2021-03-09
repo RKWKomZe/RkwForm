@@ -4,6 +4,19 @@
 <f:layout name="Email/Plaintext" />
 
 <f:section name="Plaintext">
+
+    <f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='senderName' />,
+    <f:spaceless>
+        <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />">
+            <f:then>
+                <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />
+            </f:then>
+            <f:else>
+                <f:translate key="tx_rkwform_formframework_form_finisher_email_receiver.new" extensionName="RkwForm" />
+            </f:else>
+        </f:if>
+    </f:spaceless>
+
     <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue"><f:spaceless>
         <f:if condition="{formValue.isMultiValue}">
             <f:then>
@@ -17,4 +30,5 @@
         </f:if>
     </f:spaceless>
     </formvh:renderAllFormValues>
-</f:section>>
+</f:section>
+
