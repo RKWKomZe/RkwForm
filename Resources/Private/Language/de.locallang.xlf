@@ -212,6 +212,37 @@
                 <source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
                 <target>über die Website wurde Ihnen eine Nachricht übermittelt. Sie können direkt auf diese E-Mail antworten.</target>
             </trans-unit>
+
+
+
+            <!-- FORM FRAMEWORK -->
+            <trans-unit id="tx_rkwform_formframework_form.not_filled">
+                <source>Please fill out the field '%s'.</source>
+                <target>Da fehlt noch was. Bitte füllen Sie das Feld '%s' aus.</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form.label_optional">
+                <source>(optional)</source>
+                <target>(optional)</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form.label_required">
+                <source>(Required)</source>
+                <target>(Pflichtfeld)</target>
+            </trans-unit>
+
+
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
+                <source>Hello</source>
+                <target>Hallo</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_receiver.new">
+                <source>a new contact form was send.</source>
+                <target>ein neues Formular ist eingetroffen.</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form_finisher_email_sender.new">
+                <source>thank you.</source>
+                <target>vielen Dank, wir haben Ihre Nachricht erhalten.</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

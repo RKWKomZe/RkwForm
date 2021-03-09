@@ -32,6 +32,13 @@ call_user_func(
             ]
         );
 
+
+        //=================================================================
+        // Register CommandController
+        //=================================================================
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'RKW\\RkwForm\\Controller\\CommandController';
+
+
         //=================================================================
         // Register SignalSlots
         //=================================================================
@@ -68,6 +75,23 @@ call_user_func(
             \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             'RKW\\RkwForm\\Service\\RkwMailService',
             'adminMail'
+        );
+
+
+        //=================================================================
+        // Register Logger
+        //=================================================================
+        $GLOBALS['TYPO3_CONF_VARS']['LOG']['RKW']['RkwForm']['writerConfiguration'] = array(
+
+            // configuration for WARNING severity, including all
+            // levels with higher severity (ERROR, CRITICAL, EMERGENCY)
+            \TYPO3\CMS\Core\Log\LogLevel::DEBUG => array(
+                // add a FileWriter
+                'TYPO3\\CMS\\Core\\Log\\Writer\\FileWriter' => array(
+                    // configuration for the writer
+                    'logFile' => 'typo3temp/var/logs/tx_rkwform.log'
+                )
+            ),
         );
 
     },

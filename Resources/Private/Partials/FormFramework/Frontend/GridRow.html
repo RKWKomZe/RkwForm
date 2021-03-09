@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<formvh:renderRenderable renderable="{element}">
+	<div class="form__field width50 flex {f:if(condition: element.properties.elementClassAttribute, then: '{element.properties.elementClassAttribute}')}">
+		<f:for each="{element.elements}" as="element">
+            <div
+                {formvh:gridColumnClassAutoConfiguration(element: element)}
+                {f:if(condition: '{element.properties.fieldClass} == "width20"', then: 'style="flex: 0 1 20%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width25"', then: 'style="flex: 0 1 25%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width35"', then: 'style="flex: 0 1 35%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width65"', then: 'style="flex: 0 1 65%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width75"', then: 'style="flex: 0 1 75% "')}
+                {f:if(condition: '{element.properties.fieldClass} == "width80"', then: 'style="flex: 0 1 80%"')}
+                class="form__field-item flex {f:if(condition: '{element.properties.fieldClass}', then: '{element.properties.fieldClass}', else: 'width50')}"
+            >
+				<f:render partial="{element.templateName}" arguments="{element: element}" />
+			</div>
+		</f:for>
+	</div>
+</formvh:renderRenderable>
+</html>
