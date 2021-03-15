@@ -377,6 +377,36 @@ TYPO3:
                         label: formEditor.elements.Form.editor.fieldClass.100.label
               properties:
                 saveToFileMount: '2:/user_upload/tx_rkwform/'
+            StaticText:
+              formEditor:
+                editors:
+                  100010:
+                    identifier: headerTag
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.headerTag.label'
+                    propertyPath: properties.headerTag
+                    selectOptions:
+                      10:
+                        value: 'h1'
+                        label: formEditor.elements.Form.editor.headerTag.h1.label
+                      20:
+                        value: 'h2'
+                        label: formEditor.elements.Form.editor.headerTag.h2.label
+                      30:
+                        value: 'h3'
+                        label: formEditor.elements.Form.editor.headerTag.h3.label
+                      40:
+                        value: 'h4'
+                        label: formEditor.elements.Form.editor.headerTag.h4.label
+                      50:
+                        value: 'h5'
+                        label: formEditor.elements.Form.editor.headerTag.h5.label
+                      60:
+                        value: 'h5'
+                        label: formEditor.elements.Form.editor.headerTag.h6.label
+                predefinedDefaults:
+                  properties:
+                    headerTag: 'h3'
             # Additional RKW fields start
             #GenderSelect:
             #  __inheritances:

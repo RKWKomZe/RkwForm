@@ -76,6 +76,35 @@
                 <target>Begrüßungstext in E-Mail</target>
             </trans-unit>
 
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.label" xml:space="preserve">
+                <source>Header tag</source>
+                <target>Header Tag</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h1.label" xml:space="preserve">
+                <source>h1</source>
+                <target>h1</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h2.label" xml:space="preserve">
+                <source>h2</source>
+                <target>h2</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h3.label" xml:space="preserve">
+                <source>h3</source>
+                <target>h3</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h4.label" xml:space="preserve">
+                <source>h4</source>
+                <target>h4</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h5.label" xml:space="preserve">
+                <source>h5</source>
+                <target>h5</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h6.label" xml:space="preserve">
+                <source>h6</source>
+                <target>h6</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

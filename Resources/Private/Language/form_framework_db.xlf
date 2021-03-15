@@ -55,6 +55,28 @@
             <trans-unit id="formEditor.elements.Form.finisher.editor.mailText.label" xml:space="preserve">
                 <source>Text email</source>
             </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.label" xml:space="preserve">
+                <source>Header tag</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h1.label" xml:space="preserve">
+                <source>h1</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h2.label" xml:space="preserve">
+                <source>h2</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h3.label" xml:space="preserve">
+                <source>h3</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h4.label" xml:space="preserve">
+                <source>h4</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h5.label" xml:space="preserve">
+                <source>h5</source>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h6.label" xml:space="preserve">
+                <source>h6</source>
+            </trans-unit>
+
 
 		</body>
 	</file>

@@ -52,7 +52,7 @@ finishers:
       layoutRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
-      mailText: 'wir haben Ihre Anmeldung erhalten. Untenstehend finden Sie eine Übersicht Ihrer Angaben.'
+      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2021! Die Auswahl der beiden deutschen Gewinner erfolgt Mitte Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
     identifier: EmailToSender
     renderingOptions:
       mailtext: Test.456
@@ -70,12 +70,6 @@ renderables:
     label: ''
     type: Page
     renderables:
-      -
-        properties:
-          text: 'Teilnahmeformular zum deutschen Vorentscheid'
-        type: StaticText
-        identifier: statictext-2
-        label: ''
       -
         properties:
           text: '1. Allgemeine Informationen zur Bewerbung'
@@ -157,39 +151,34 @@ renderables:
           -
             identifier: NotEmpty
       -
-        type: GridRow
-        identifier: gridrow-1
-        label: 'Grid: Row'
-        renderables:
+        defaultValue: ''
+        properties:
+          gridColumnClassAutoConfiguration:
+            viewPorts:
+              sm:
+                numbersOfColumnsToUse: ''
+              md:
+                numbersOfColumnsToUse: ''
+              xs:
+                numbersOfColumnsToUse: ''
+              lg:
+                numbersOfColumnsToUse: ''
+          fieldClass: width50
+        type: Text
+        identifier: text-3
+        label: Titel
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-4
+        label: Name
+        validators:
           -
-            defaultValue: ''
-            properties:
-              gridColumnClassAutoConfiguration:
-                viewPorts:
-                  sm:
-                    numbersOfColumnsToUse: ''
-                  md:
-                    numbersOfColumnsToUse: ''
-                  xs:
-                    numbersOfColumnsToUse: ''
-                  lg:
-                    numbersOfColumnsToUse: ''
-              fieldClass: width35
-            type: Text
-            identifier: text-3
-            label: Titel
-          -
-            defaultValue: ''
-            properties:
-              fluidAdditionalAttributes:
-                required: required
-              fieldClass: width65
-            type: Text
-            identifier: text-4
-            label: Name
-            validators:
-              -
-                identifier: NotEmpty
+            identifier: NotEmpty
       -
         defaultValue: ''
         properties:
@@ -224,11 +213,11 @@ renderables:
         properties:
           options:
             'Förderung des Unternehmergeistes ': '1. Förderung des Unternehmergeistes'
-            'Investition in Unternehmenskompetenzen ': '    2. Investition in Unternehmenskompetenzen '
-            'Verbesserung der Geschäftsumgebung und Förderung der Digitalisierung ': '    3. Verbesserung der Geschäftsumgebung und Förderung der Digitalisierung '
-            'Förderung der Internationalisierung der Wirtschaftstätigkeit ': '    4. Förderung der Internationalisierung der Wirtschaftstätigkeit '
-            'Förderung der nachhaltigen Entwicklung ': '    5. Förderung der nachhaltigen Entwicklung '
-            'Verantwortungsvolles und integrationsfreundliches Unternehmertum ': '    6. Verantwortungsvolles und integrationsfreundliches Unternehmertum '
+            'Investition in Unternehmenskompetenzen ': '2. Investition in Unternehmenskompetenzen '
+            'Verbesserung der Geschäftsumgebung und Förderung der Digitalisierung ': '3. Verbesserung der Geschäftsumgebung und Unterstützung des digitalen Wandels'
+            'Förderung der Internationalisierung der Wirtschaftstätigkeit ': '4. Förderung der Internationalisierung der Wirtschaftstätigkeit '
+            'Förde    5. Förderung der nachhaltigen Entwicklrung der nachhaltigen Entwicklung ': '5. Förderung des nachhaltigen Wandels'
+            'Verantwortungsvolles und integrationsfreundliches Unternehmertum ': '6. Verantwortungsvolles und integrationsfreundliches Unternehmertum '
           elementDescription: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
           fluidAdditionalAttributes:
             required: required
@@ -377,6 +366,7 @@ renderables:
           fluidAdditionalAttributes:
             placeholder: 'Grundlegendendes Konzept, Ziele, Zielgruppe(n)'
             required: required
+          fieldClass: width100
         type: Textarea
         identifier: textarea-2
         label: 'Kurzbeschreibung der Initiative'
@@ -390,6 +380,7 @@ renderables:
           fluidAdditionalAttributes:
             placeholder: 'Welche Auswirkungen hatte die Initiative auf die lokale Wirtschaft? In welchem Umfang sind bspw. Arbeitsplätze entstanden? In welcher Form wird die Initiative in Zukunft weitergeführt werden können? '
             required: required
+          fieldClass: width100
         type: Textarea
         identifier: textarea-3
         label: 'Ergebnisse/ Erfolge der Initiative'
@@ -403,6 +394,7 @@ renderables:
           fluidAdditionalAttributes:
             placeholder: 'Bitte beschreiben Sie kurz, was an Ihrer Initiative innovativ ist. '
             required: required
+          fieldClass: width100
         type: Textarea
         identifier: textarea-4
         label: Innovation
@@ -416,6 +408,7 @@ renderables:
           fluidAdditionalAttributes:
             placeholder: 'Hat eine/mehrere der nachfolgenden Interessensgruppen von der Umsetzung der Initiative profitiert: schwerbehinderte Menschen, geflüchtete Personen, Frauen, Kinder/Jugendliche, Ältere, sonstige benachteiligte Gruppen? Wodurch? '
             required: required
+          fieldClass: width100
         type: Textarea
         identifier: textarea-5
         label: 'Weitere positive Auswirkungen'
@@ -463,7 +456,7 @@ renderables:
       nextButtonLabel: Zusammenfassung
     type: Page
     identifier: page-3
-    label: Seite
+    label: ''
     renderables:
       -
         properties:
@@ -495,18 +488,6 @@ renderables:
             identifier: NotEmpty
       -
         type: Checkbox
-        identifier: checkbox-2
-        label: 'Mit „Bestätigung“ erkläre ich als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2021. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt.'
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          elementDescription: ''
-          fieldClass: width100
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        type: Checkbox
         identifier: checkbox-1
         label: Datenschutzerklärung
         properties:
@@ -520,6 +501,7 @@ renderables:
       -
         properties:
           text: "Juliane Kummer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
+          headerTag: h5
         type: StaticText
         identifier: statictext-12
         label: 'Bei Rückfragen zum Teilnahmeformular und zum Bewerbungsverfahren wenden Sie sich an: '
