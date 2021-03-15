@@ -4,7 +4,7 @@
 		<div id="{element.uniqueIdentifier}" class="inputs-list">
 			<div class="form-group">
 				<f:for each="{element.properties.options}" as="label" key="value" iteration="idIterator">
-					<div class="form__fieldform-check">
+					<div class="form__field form-check">
                         <f:form.radio
                             property="{element.identifier}"
                             id="{element.uniqueIdentifier}-{idIterator.index}"
