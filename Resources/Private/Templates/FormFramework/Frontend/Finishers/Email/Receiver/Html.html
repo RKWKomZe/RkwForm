@@ -5,7 +5,7 @@
 
 <f:section name="Html">
 <body>
-    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='senderName' />,</p>
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /><f:comment><rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='senderName' /></f:comment>,</p>
     <p>
         <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />">
             <f:then>
