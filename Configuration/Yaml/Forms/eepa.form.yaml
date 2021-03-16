@@ -203,6 +203,8 @@ renderables:
         validators:
           -
             identifier: NotEmpty
+          -
+            identifier: EmailAddress
       -
         properties:
           text: '2. Bitte markieren Sie die Wettbewerbskategorie, für die Sie berücksichtigt werden möchten. '
