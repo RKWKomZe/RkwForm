@@ -189,6 +189,9 @@
             <trans-unit id="tx_rkwform_formframework_form.not_filled">
                 <source>Please fill out the field '%s'.</source>
             </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form.not_selected">
+                <source>Please select something from the field '%s'.</source>
+            </trans-unit>
             <trans-unit id="tx_rkwform_formframework_form.label_optional">
                 <source>(optional)</source>
             </trans-unit>
