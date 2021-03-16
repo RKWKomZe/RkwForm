@@ -220,6 +220,10 @@
                 <source>Please fill out the field '%s'.</source>
                 <target>Da fehlt noch was. Bitte füllen Sie das Feld '%s' aus.</target>
             </trans-unit>
+            <trans-unit id="tx_rkwform_formframework_form.not_selected">
+                <source>Please select something from the field '%s'.</source>
+                <target>Da fehlt noch was. Bitte wählen Sie etwas bei '%s' aus.</target>
+            </trans-unit>
             <trans-unit id="tx_rkwform_formframework_form.label_optional">
                 <source>(optional)</source>
                 <target>(optional)</target>
