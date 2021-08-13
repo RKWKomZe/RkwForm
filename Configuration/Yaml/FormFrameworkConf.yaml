@@ -1,7 +1,12 @@
+# see for full configuration: https://docs.typo3.org/c/typo3/cms-form/master/en-us/I/Config/configuration/Index.html
 TYPO3:
   CMS:
     Form:
       persistenceManager:
+        # override "allowedFileMounts" to disallow fileadmin/user_upload/ for creating new forms
+        allowedFileMounts:
+          #10: 'EXT:rkw_form/Configuration/Yaml/Forms/'
+          20: '1:/user_upload/tx_rkwform/'
         allowedExtensionPaths:
           10: 'EXT:rkw_form/Configuration/Yaml/Forms/'
         allowSaveToExtensionPaths: true
@@ -9,15 +14,62 @@ TYPO3:
       prototypes:
         ### PROTOTYPE: STANDARD
         standard:
+          formEditor:
+            formEditorPartials:
+              FormElement-RkwFieldDefault: 'Stage/SimpleTemplate'
+            translationFile:
+              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+              # custom translation file
+              20: 'EXT:rkw_form/Resources/Private/Language/form_framework_db.xlf'
           formElementsDefinition:
             Form:
+              # additional RKW properties start
+              formEditor:
+                propertyCollections:
+                  finishers:
+                    10:
+                      editors:
+                        100010:
+                          identifier: mailText
+                          templateName: Inspector-TextareaEditor
+                          propertyPath: options.mailText
+                          label: 'formEditor.elements.Form.finisher.editor.mailText.label'
+                    20:
+                      editors:
+                        100010:
+                          identifier: mailText
+                          templateName: Inspector-TextareaEditor
+                          propertyPath: options.mailText
+                          label: 'formEditor.elements.Form.finisher.editor.mailText.label'
+                editors:
+                  310:
+                    identifier: formClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.formClass.label'
+                    propertyPath: renderingOptions.width
+                    selectOptions:
+                      10:
+                        value: 'flex-basis-6'
+                        label: formEditor.elements.Form.editor.formClass.flex6.label
+                      20:
+                        value: 'flex-basis-8'
+                        label: formEditor.elements.Form.editor.formClass.flex8.label
+                      30:
+                        value: 'flex-basis-12'
+                        label: formEditor.elements.Form.editor.formClass.flex12.label
+                    predefinedDefaults:
+                      defaultValue: 'flex-basis-8'
+              # additional RKW properties end
               renderingOptions:
                 templateRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/'
+                  110: 'EXT:rkw_mailer/Resources/Private/Templates/Email/'
                 partialRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Partials/FormFramework/Frontend/'
+                  110: 'EXT:rkw_mailer/Resources/Private/Partials/Email/'
                 layoutRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Layouts/FormFramework/Frontend/'
+                  110: 'EXT:rkw_mailer/Resources/Private/Layouts/Email/'
                 translation:
                   translationFile:
                     # Default translation file for the frontend:
@@ -25,11 +77,364 @@ TYPO3:
                     # Load your own translation file(s) as desired:
                     20: 'EXT:rkw_form/Resources/Private/Language/form_framework.xlf'
             Text:
+              #__inheritances:
+              #  10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.RkwFieldDefault'
               properties:
                 elementClassAttribute: 'input'
+                elementErrorClassAttribute: 'f3-form-error'
+              formEditor:
+                editors:
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+                predefinedDefaults:
+                  properties:
+                    fieldClass: 'width50'
             Textarea:
               properties:
                 elementClassAttribute: 'textarea'
+                elementErrorClassAttribute: 'f3-form-error'
+              formEditor:
+                editors:
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+                predefinedDefaults:
+                  properties:
+                    fieldClass: 'width100'
+            RadioButton:
+              properties:
+                elementErrorClassAttribute: 'f3-form-error'
+              formEditor:
+                editors:
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+                predefinedDefaults:
+                  properties:
+                    fieldClass: 'width100'
+            Checkbox:
+              properties:
+                containerClassAttribute: ''
+                elementErrorClassAttribute: 'f3-form-error'
+              formEditor:
+                editors:
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+                    predefinedDefaults:
+                      properties:
+                        fieldClass: 'width100'
+                  100020:
+                    identifier: type
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Checkbox.editor.type.label'
+                    propertyPath: properties.type
+                    selectOptions:
+                      10:
+                        value: 'default'
+                        label: formEditor.elements.Checkbox.editor.type.default.label
+                      20:
+                        value: 'terms'
+                        label: formEditor.elements.Checkbox.editor.type.terms.label
+                    predefinedDefaults:
+                      defaultValue: 'default'
+            DatePicker:
+              properties:
+                dateFormat: d.m.Y
+                elementErrorClassAttribute: 'f3-form-error'
+              formEditor:
+                editors:
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+                predefinedDefaults:
+                  properties:
+                    fieldClass: 'width50'
+            FileUpload:
+              formEditor:
+                predefinedDefaults:
+                  properties:
+                    saveToFileMount: '2:/user_upload/tx_rkwform/'
+                    fieldClass: 'width100'
+                editors:
+                  400:
+                    selectOptions:
+                      10:
+                        value: '2:/user_upload/tx_rkwform/'
+                        label: '2:/user_upload/tx_rkwform/'
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+              properties:
+                saveToFileMount: '2:/user_upload/tx_rkwform/'
+            ImageUpload:
+              formEditor:
+                predefinedDefaults:
+                  properties:
+                    saveToFileMount: '2:/user_upload/tx_rkwform/'
+                    allowedMimeTypes:
+                      - image/jpeg
+                      - image/png
+                    fieldClass: 'width100'
+                editors:
+                  400:
+                    selectOptions:
+                      10:
+                        value: '2:/user_upload/tx_rkwform/'
+                        label: '2:/user_upload/tx_rkwform/'
+                  100010:
+                    identifier: fieldClass
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.fieldClass.label'
+                    propertyPath: properties.fieldClass
+                    selectOptions:
+                      5:
+                        value: 'width20'
+                        label: formEditor.elements.Form.editor.fieldClass.20.label
+                      10:
+                        value: 'width25'
+                        label: formEditor.elements.Form.editor.fieldClass.25.label
+                      15:
+                        value: 'width35'
+                        label: formEditor.elements.Form.editor.fieldClass.35.label
+                      20:
+                        value: 'width50'
+                        label: formEditor.elements.Form.editor.fieldClass.50.label
+                      25:
+                        value: 'width65'
+                        label: formEditor.elements.Form.editor.fieldClass.65.label
+                      30:
+                        value: 'width75'
+                        label: formEditor.elements.Form.editor.fieldClass.75.label
+                      35:
+                        value: 'width80'
+                        label: formEditor.elements.Form.editor.fieldClass.80.label
+                      40:
+                        value: 'width100'
+                        label: formEditor.elements.Form.editor.fieldClass.100.label
+              properties:
+                saveToFileMount: '2:/user_upload/tx_rkwform/'
+            StaticText:
+              formEditor:
+                editors:
+                  100010:
+                    identifier: headerTag
+                    templateName: Inspector-SingleSelectEditor
+                    label: 'formEditor.elements.Form.editor.headerTag.label'
+                    propertyPath: properties.headerTag
+                    selectOptions:
+                      10:
+                        value: 'h1'
+                        label: formEditor.elements.Form.editor.headerTag.h1.label
+                      20:
+                        value: 'h2'
+                        label: formEditor.elements.Form.editor.headerTag.h2.label
+                      30:
+                        value: 'h3'
+                        label: formEditor.elements.Form.editor.headerTag.h3.label
+                      40:
+                        value: 'h4'
+                        label: formEditor.elements.Form.editor.headerTag.h4.label
+                      50:
+                        value: 'h5'
+                        label: formEditor.elements.Form.editor.headerTag.h5.label
+                      60:
+                        value: 'h5'
+                        label: formEditor.elements.Form.editor.headerTag.h6.label
+                predefinedDefaults:
+                  properties:
+                    headerTag: 'h3'
+            # Additional RKW fields start
+            #GenderSelect:
+            #  __inheritances:
+            #    10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.RadioButton'
+            #  renderingOptions:
+            #    templateName: 'RadioButton'
+            #  properties:
+            #    options:
+            #      f: 'Female'
+            #      m: 'Male'
+            #      u: 'Unicorn'
+            #      a: 'Alien'
+            #RkwFieldDefault:
+            #  properties:
+            #    width:
+            #      identifier: width
+            #      label: 'formEditor.elements.TextMixin.editor.width.label'
+            #      propertyPath: width
+            #      selectOptions:
+            #        10:
+            #          value: 'width50'
+            #          label: formEditor.elements.Form.editor.formClass.widthHalf.label
+            #        20:
+            #          value: 'width100'
+            #          label: formEditor.elements.Form.editor.formClass.widthFull.label
+            #  predefinedDefaults:
+            #    defaultValue: 'width50'
+            # Additional RKW fields end
           finishersDefinition:
             Confirmation:
               options:

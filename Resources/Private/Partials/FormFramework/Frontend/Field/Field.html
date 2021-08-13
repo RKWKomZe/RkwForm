@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:form.validationResults for="{element.rootForm.identifier}.{element.identifier}">
+    <f:if condition="{element.parentRenderable.type} == 'GridRow'">
+        <f:then>
+            <f:comment><!-- if the parent is a GridRow, the width is set in GridRow.html partial --></f:comment>
+            <div class="form__field form-group{f:if(condition: '{validationResults.errors.0}', then: ' has-error')}">
+        </f:then>
+        <f:else>
+            <div
+                {f:if(condition: '{element.properties.fieldClass} == "width20"', then: 'style="flex: 0 1 20%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width25"', then: 'style="flex: 0 1 25%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width35"', then: 'style="flex: 0 1 35%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width65"', then: 'style="flex: 0 1 65%"')}
+                {f:if(condition: '{element.properties.fieldClass} == "width75"', then: 'style="flex: 0 1 75% "')}
+                {f:if(condition: '{element.properties.fieldClass} == "width80"', then: 'style="flex: 0 1 80%"')}
+                class="form__field {f:if(condition: '{element.properties.fieldClass}', then: '{element.properties.fieldClass}', else: 'width50')} form-group{f:if(condition: '{validationResults.errors.0}', then: ' has-error')}"
+            >
+        </f:else>
+    </f:if>
+
+		<f:if condition="{doNotShowLabel} != 1">
+			<label class="control-label" for="{element.uniqueIdentifier}">{formvh:translateElementProperty(element: element, property: 'label')}<f:render partial="Field/Required" arguments="{required: element.required}" /></label>
+		</f:if>
+		<div class="{element.properties.containerClassAttribute}">
+			<f:format.raw>
+				{elementContent}
+                <f:comment>
+                    <!-- disable individual field error message -->
+                    <f:if condition="{validationResults.flattenedErrors}">
+                        <span class="error help-block" role="alert">
+                            <f:for each="{validationResults.errors}" as="error">
+                                <f:format.htmlspecialchars>{formvh:translateElementError(element: element, error: error)}</f:format.htmlspecialchars>
+                                <br />
+                            </f:for>
+                        </span>
+                    </f:if>
+                </f:comment>
+			</f:format.raw>
+            <br />
+			<f:if condition="{element.properties.elementDescription}">
+				<span class="help-block">{formvh:translateElementProperty(element: element, property: 'elementDescription')}</span>
+			</f:if>
+		</div>
+	</div>
+</f:form.validationResults>
+</html>

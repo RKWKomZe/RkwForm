@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-08-26T11:11:45Z" product-name="rkw_form">
+		<header/>
+		<body>
+
+            <trans-unit id="formEditor.elements.Form.editor.formClass.label" xml:space="preserve">
+                <source>Form width</source>
+                <target>Breite des Formulares</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex6.label" xml:space="preserve">
+                <source>Flex 6 / 12</source>
+                <target>Flex 6 / 12 (Hälfte)</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex8.label" xml:space="preserve">
+                <source>Flex 8 / 12</source>
+                <target>Flex 8 / 12 (Standard)</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.formClass.flex12.label" xml:space="preserve">
+                <source>Flex 12 / 12</source>
+                <target>Flex 12 / 12 (volle Breite)</target>
+            </trans-unit>
+
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.label" xml:space="preserve">
+                <source>Field width</source>
+                <target>Breite des Feldes</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.20.label" xml:space="preserve">
+                <source>20 / 100</source>
+                <target>20 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.25.label" xml:space="preserve">
+                <source>25 / 100</source>
+                <target>25 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.35.label" xml:space="preserve">
+                <source>35 / 100</source>
+                <target>35 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.50.label" xml:space="preserve">
+                <source>50 / 100</source>
+                <target>50 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.65.label" xml:space="preserve">
+                <source>65 / 100</source>
+                <target>65 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.75.label" xml:space="preserve">
+                <source>75 / 100</source>
+                <target>75 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.80.label" xml:space="preserve">
+                <source>80 / 100</source>
+                <target>80 / 100</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.fieldClass.100.label" xml:space="preserve">
+                <source>100 / 100</source>
+                <target>100 / 100</target>
+            </trans-unit>
+
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.label" xml:space="preserve">
+                <source>Type</source>
+                <target>Typ</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.default.label" xml:space="preserve">
+                <source>Default</source>
+                <target>Default</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Checkbox.editor.type.terms.label" xml:space="preserve">
+                <source>Terms</source>
+                <target>Terms</target>
+            </trans-unit>
+
+             <trans-unit id="formEditor.elements.Form.finisher.editor.mailText.label" xml:space="preserve">
+                <source>Text email</source>
+                <target>Begrüßungstext in E-Mail</target>
+            </trans-unit>
+
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.label" xml:space="preserve">
+                <source>Header tag</source>
+                <target>Header Tag</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h1.label" xml:space="preserve">
+                <source>h1</source>
+                <target>h1</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h2.label" xml:space="preserve">
+                <source>h2</source>
+                <target>h2</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h3.label" xml:space="preserve">
+                <source>h3</source>
+                <target>h3</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h4.label" xml:space="preserve">
+                <source>h4</source>
+                <target>h4</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h5.label" xml:space="preserve">
+                <source>h5</source>
+                <target>h5</target>
+            </trans-unit>
+            <trans-unit id="formEditor.elements.Form.editor.headerTag.h6.label" xml:space="preserve">
+                <source>h6</source>
+                <target>h6</target>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>
