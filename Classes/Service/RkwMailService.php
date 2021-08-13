@@ -66,7 +66,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 ));
 
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                         'rkwMailService.confirmationUser.subject',
                         'rkw_form',
                         null,
@@ -133,7 +133,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                             'pageUid'      => intval($GLOBALS['TSFE']->id),
                             'loginPid'     => intval($settingsDefault['loginPid']),
                         ),
-                        'subject' => \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                        'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.notifyAdmin.subject',
                             'rkw_form',
                             null,
@@ -150,7 +150,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             }
 
             $mailService->getQueueMail()->setSubject(
-                \RKW\RkwMailer\Helper\FrontendLocalization::translate(
+                \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                     'rkwMailService.notifyAdmin.subject',
                     'rkw_form',
                     null,
