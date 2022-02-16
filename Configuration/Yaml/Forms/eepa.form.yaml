@@ -52,7 +52,7 @@ finishers:
       layoutRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
-      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2021! Die Auswahl der beiden deutschen Gewinner erfolgt Mitte Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
+      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2022! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Anfang Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
     identifier: EmailToSender
     renderingOptions:
       mailtext: Test.456
@@ -127,17 +127,13 @@ renderables:
       -
         defaultValue: ''
         properties:
-          fluidAdditionalAttributes:
-            required: required
           fieldClass: width50
         identifier: email
-        label: 'Email-Adresse der Organisation'
+        label: 'E-Mail der Organisation'
         type: Text
         validators:
           -
             identifier: EmailAddress
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         properties:
@@ -199,7 +195,7 @@ renderables:
           fieldClass: width50
         type: Text
         identifier: text-7
-        label: 'Email-Adresse der Kontaktperson'
+        label: 'E-Mail der Kontaktperson'
         validators:
           -
             identifier: NotEmpty
@@ -281,14 +277,10 @@ renderables:
               enableDatePicker: false
               displayTimeSelector: false
               fluidAdditionalAttributes:
-                required: required
                 placeholder: tt.mm.yyyy
             type: DatePicker
             identifier: datepicker-2
             label: 'Enddatum der Initiative:'
-            validators:
-              -
-                identifier: NotEmpty
       -
         properties:
           text: 'Im Falle eines Vertrags einer öffentlich-privaten Partnerschaft, handelt es sich um '
@@ -346,7 +338,6 @@ renderables:
       -
         defaultValue: ''
         properties:
-          elementDescription: '(Geben Sie bitte Personalinvestitionen gesondert an)'
           fluidAdditionalAttributes:
             required: required
         type: Text
@@ -409,14 +400,10 @@ renderables:
           elementDescription: ''
           fluidAdditionalAttributes:
             placeholder: 'Hat eine/mehrere der nachfolgenden Interessensgruppen von der Umsetzung der Initiative profitiert: schwerbehinderte Menschen, geflüchtete Personen, Frauen, Kinder/Jugendliche, Ältere, sonstige benachteiligte Gruppen? Wodurch? '
-            required: required
           fieldClass: width100
         type: Textarea
         identifier: textarea-5
         label: 'Weitere positive Auswirkungen'
-        validators:
-          -
-            identifier: NotEmpty
       -
         properties:
           text: '3. Öffentlichkeitsarbeit '
