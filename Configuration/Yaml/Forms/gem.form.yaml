@@ -1,0 +1,232 @@
+
+renderingOptions:
+  submitButtonLabel: 'Jetzt anmelden'
+  width: flex-basis-8
+identifier: gem
+label: 'GEM-Befragung'
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Neue Anmeldung zur GEM-Befragung: {first-name} {last-name}'
+      recipientAddress: 'baharian@rkw.de'
+      recipientName: 'Armin Baharian'
+      senderAddress: 'service@rkw.de '
+      senderName: 'RKW Kompetenzzentrum'
+      replyToAddress: '{email}'
+      carbonCopyAddress: 'schauer@rkw.de'
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Receiver'
+      partialRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+      mailText: 'eine neue Anmeldung zur GEM-Befragung wurde eingereicht.'
+    identifier: EmailToReceiver
+    renderingOptions:
+      mailText: 'Test 123'
+  -
+    options:
+      subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung: {first-name} {last-name}'
+      recipientAddress: '{email}'
+      recipientName: '{first-name} {last-name}'
+      senderAddress: 'service@rkw.de '
+      senderName: 'RKW Kompetenzzentrum'
+      replyToAddress: 'baharian@rkw.de '
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Sender'
+      partialRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+      mailtext: 'Test Text 222'
+      mailText: 'vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Sie haben folgende Daten an uns übermittelt:'
+    identifier: EmailToSender
+    renderingOptions:
+      mailtext: Test.456
+  -
+    options:
+      pageUid: 5277
+      additionalParameters: ''
+    identifier: Redirect
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        properties:
+          text: ''
+        type: StaticText
+        identifier: statictext-1
+        label: 'Anmeldung'
+      -
+        defaultValue: ''
+        properties:
+          options:
+            '': '--Bitte wählen--'
+            'Frau': 'Frau'
+            'Herr': 'Herr'
+          fieldClass: 'width50'
+          elementClassAttribute: select-field
+        identifier: salutation
+        label: 'Anrede'
+        type: SingleSelect
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+        type: Text
+        identifier: title
+        label: 'Titel'
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: first-name
+        label: 'Vorname'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: last-name
+        label: 'Nachname'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+        type: Text
+        identifier: phone
+        label: 'Telefon'
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        identifier: email
+        label: 'E-Mail-Adresse'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+        identifier: company
+        label: 'Institution/Firma/Start-up'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: street
+        label: 'Straße und Hausnummer'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: postal
+        label: 'PLZ'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: city
+        label: 'Ort'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          options:
+            'Finanzierung': 'Finanzierung'
+            'Politische Rahmenbedingungen': 'Politische Rahmenbedingungen'
+            'Öffentliche Förderprogramme': 'Öffentliche Förderprogramme'
+            'Gründungsbezogene Aus- und Weiterbildung': 'Gründungsbezogene Aus- und Weiterbildung'
+            'Wissens- und Technologietransfer': 'Wissens- und Technologietransfer'
+            'Unternehmensbezogene Dienstleistungen': 'Unternehmensbezogene Dienstleistungen'
+            'Marktdynamik und Zugang': 'Marktdynamik und Zugang'
+            'Physische Infrastruktur': 'Physische Infrastruktur'
+            'Kulturelle und soziale Normen': 'Kulturelle und soziale Normen'
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: RadioButton
+        identifier: theme
+        label: 'Gründungsthemengebiet/Expertise im Thema'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: terms
+        label: 'Nutzungsbedingungen'
+        properties:
+          type: gem-terms
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: privacy
+        label: 'Datenschutzerklärung'
+        properties:
+          type: gem-privacy
+          additionalAttributes:
+            linkPageUid: 1921
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        validators:
+          -
+            identifier: NotEmpty
