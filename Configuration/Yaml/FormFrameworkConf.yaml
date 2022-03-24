@@ -198,6 +198,11 @@ TYPO3:
               properties:
                 containerClassAttribute: ''
                 elementErrorClassAttribute: 'f3-form-error'
+                # additional RKW properties start
+                additionalAttributes:
+                  labelExtended: ''
+                  linkPageUid: ''
+                # additional RKW properties end
               formEditor:
                 editors:
                   100010:
