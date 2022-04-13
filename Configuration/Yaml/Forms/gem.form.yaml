@@ -9,7 +9,7 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Neue Anmeldung zur GEM-Befragung: {first-name} {last-name}'
+      subject: 'Neue Anmeldung zur GEM-Befragung von {first-name} {last-name}'
       recipientAddress: 'baharian@rkw.de'
       recipientName: 'Armin Baharian'
       senderAddress: 'service@rkw.de '
@@ -34,7 +34,7 @@ finishers:
       mailText: 'Test 123'
   -
     options:
-      subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung: {first-name} {last-name}'
+      subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung'
       recipientAddress: '{email}'
       recipientName: '{first-name} {last-name}'
       senderAddress: 'service@rkw.de '
@@ -72,7 +72,7 @@ renderables:
           text: ''
         type: StaticText
         identifier: statictext-1
-        label: 'Anmeldung'
+        label: 'Anmeldung zur deutschen GEM-Community'
       -
         defaultValue: ''
         properties:
@@ -80,6 +80,7 @@ renderables:
             '': '--Bitte wählen--'
             'Frau': 'Frau'
             'Herr': 'Herr'
+            'divers': 'divers'
           fieldClass: 'width50'
           elementClassAttribute: select-field
         identifier: salutation
