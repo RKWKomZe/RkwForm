@@ -8,31 +8,40 @@ type: Form
 prototypeName: standard
 finishers:
   -
+    identifier: SaveToDatabase
     options:
-      subject: 'Neue Anmeldung zur GEM-Befragung von {first-name} {last-name}'
-      recipientAddress: 'baharian@rkw.de'
-      recipientName: 'Armin Baharian'
-      senderAddress: 'service@rkw.de '
-      senderName: 'RKW Kompetenzzentrum'
-      replyToAddress: '{email}'
-      carbonCopyAddress: 'schauer@rkw.de'
-      blindCarbonCopyAddress: ''
-      format: html
-      attachUploads: true
-      translation:
-        language: ''
-      templateName: '{@format}.html'
-      templateRootPaths:
-        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Receiver'
-      partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
-      layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
-      mailText: 'eine neue Anmeldung zur GEM-Befragung wurde eingereicht.'
-    identifier: EmailToReceiver
-    renderingOptions:
-      mailText: 'Test 123'
+      table: tx_rkwform_domain_model_standardform
+      mode: insert
+      databaseColumnMappings:
+        enabled:
+          value: '0'
+      elements:
+        salutation:
+          mapOnDatabaseColumn: salutation
+        title:
+          mapOnDatabaseColumn: title
+        first-name:
+          mapOnDatabaseColumn: first_name
+        last-name:
+          mapOnDatabaseColumn: last_name
+        company:
+          mapOnDatabaseColumn: company
+        phone:
+          mapOnDatabaseColumn: phone
+        email:
+          mapOnDatabaseColumn: email
+        street:
+          mapOnDatabaseColumn: street
+        postal:
+          mapOnDatabaseColumn: postal
+        city:
+          mapOnDatabaseColumn: city
+        theme:
+          mapOnDatabaseColumn: theme
+        uniquehash:
+          mapOnDatabaseColumn: uniquehash
   -
+    identifier: EmailToSender
     options:
       subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung'
       recipientAddress: '{email}'
@@ -53,14 +62,13 @@ finishers:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
       mailText: 'vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Sie haben folgende Daten an uns übermittelt:'
-    identifier: EmailToSender
     renderingOptions:
       mailtext: Test.456
   -
+    identifier: Redirect
     options:
       pageUid: 5277
       additionalParameters: ''
-    identifier: Redirect
 renderables:
   -
     identifier: page-1
@@ -138,6 +146,18 @@ renderables:
             identifier: NotEmpty
           -
             identifier: EmailAddress
+      -
+        identifier: uniquehash
+        defaultValue: ''
+        type: Hidden
+      -
+        identifier: confirmurl
+        defaultValue: ''
+        type: Hidden
+      -
+        identifier: verifypid
+        defaultValue: '9118'
+        type: Hidden
       -
         defaultValue: ''
         properties:

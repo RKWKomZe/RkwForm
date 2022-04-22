@@ -15,10 +15,12 @@ namespace RKW\RkwForm\Domain\Finishers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Doctrine\Common\Util\Debug;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
@@ -31,6 +33,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use RKW\RkwBasics\Helper\Common;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
+
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * This finisher sends an email to one recipient
@@ -60,6 +64,12 @@ use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
  */
 class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 {
+
+    /**
+     * @var \TYPO3\CMS\Core\Database\Connection
+     */
+    protected $databaseConnection = null;
+
     /**
      * Executes this finisher
      * @see AbstractFinisher::execute()
@@ -70,6 +80,82 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
     {
         $formRuntime = $this->finisherContext->getFormRuntime();
         $standaloneView = $this->initializeStandaloneView($formRuntime);
+
+        //  @todo: In einen dezidierten eigenen Finisher auslagern!!!
+
+        if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-confirm') {
+
+            $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_rkwform_domain_model_standardform');
+
+            // find go through all pages
+            /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
+            $queryBuilder = $this->databaseConnection->createQueryBuilder();
+            $statement = $queryBuilder->select('*')
+                ->from('tx_rkwform_domain_model_standardform')
+                ->where(
+                    $queryBuilder->expr()->eq('uniquehash',
+                        $queryBuilder->createNamedParameter($formRuntime['gethash'], \PDO::PARAM_STR)
+                    )
+                )
+                ->execute();
+
+            $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
+
+            $page = null;
+
+            foreach ($renderables as $renderable) {
+                if ($renderable instanceof Page) {
+                    $page = $renderable;
+                }
+            }
+
+            if ($page) {
+
+                foreach ($page->getRenderablesRecursively() as $renderable) {
+
+                    if ($renderable->getIdentifier() === 'gethash') {
+                        $page->removeElement($renderable);
+                    }
+
+                }
+
+                if ($statement) {
+
+                    $record = $statement->fetchAll()[0];
+
+                    //  @todo: Load definition from gem.form.yaml if possible?
+                    //  @todo: Alle notwendigen Werte befüllen.
+
+                    $fillableValues = [
+                        'salutation' => 'Anrede',
+                        'title' => 'Titel',
+                        'first_name' => 'Vorname',
+                        'last_name' => 'Nachname',
+                        'phone' => 'Telefon',
+                        'email' => 'E-Mail-Adresse',
+                        'company' => 'Institution/Firma/Start-up',
+                        'street' => 'Straße und Hausnummer',
+                        'postal' => 'PLZ',
+                        'city' => 'Ort',
+                        'theme' => 'Gründungsthemengebiet/Expertise im Thema',
+                    ];
+
+                    foreach ($fillableValues as $key => $value) {
+                        $fillable = $page->createElement($key, 'Text');
+                        $fillable->setLabel($value);
+                        $fillable->setDefaultValue($record[$key]);
+                    }
+
+                    //  @todo: Delete confirmed entry from database? There is no delete mode on SaveToDatabaseFinisher.
+
+                    //  @todo: Linkgültigkeit über 24 Stunden, automatisches Löschen nach Ablauf der 24 Stunden ohne Bestätigung.
+
+                }
+
+
+            }
+
+        }
 
         $translationService = TranslationService::getInstance();
         if (isset($this->options['translation']['language']) && !empty($this->options['translation']['language'])) {

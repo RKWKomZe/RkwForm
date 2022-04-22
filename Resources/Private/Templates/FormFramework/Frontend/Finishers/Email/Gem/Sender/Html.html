@@ -51,7 +51,12 @@
 				</td>
 			</tr>
 		</formvh:renderAllFormValues>
-	</table>
+        <tr>
+            <td>
+                Klicken Sie bitte auf den nachfolgenden Link, um die Anmeldung abzuschließen: <a href="{form.formstate.formValues.confirmurl}?uniquehash={form.formstate.formValues.uniquehash}">{form.formstate.formValues.confirmurl}{form.formstate.formValues.uniquehash}</a>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </f:section>

@@ -23,8 +23,6 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 	KEY parent (pid)
 );
 
-
-
 #
 # extend for bst2020Form (bausachverstaendigentag.de)
 #
@@ -34,3 +32,17 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
   bst_number3 int(11) DEFAULT '0' NOT NULL,
   bst_agree tinyint(4) unsigned DEFAULT '0' NOT NULL,
 );
+
+#
+# extend for gemCommunityForm
+#
+CREATE TABLE tx_rkwform_domain_model_standardform (
+	title varchar(255) DEFAULT '' NOT NULL,
+	street varchar(5) DEFAULT '' NOT NULL,
+	postal varchar(5) DEFAULT '' NOT NULL,
+	city varchar(255) DEFAULT '' NOT NULL,
+	theme varchar(255) DEFAULT '' NOT NULL,
+  uniquehash varchar(255) DEFAULT '' NOT NULL,
+  enabled tinyint(1) DEFAULT '0' NOT NULL,
+);
+
