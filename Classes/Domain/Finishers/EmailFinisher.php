@@ -93,8 +93,8 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
             $statement = $queryBuilder->select('*')
                 ->from('tx_rkwform_domain_model_standardform')
                 ->where(
-                    $queryBuilder->expr()->eq('uniquehash',
-                        $queryBuilder->createNamedParameter($formRuntime['gethash'], \PDO::PARAM_STR)
+                    $queryBuilder->expr()->eq('token',
+                        $queryBuilder->createNamedParameter($formRuntime['gettoken'], \PDO::PARAM_STR)
                     )
                 )
                 ->execute();
@@ -113,7 +113,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
                 foreach ($page->getRenderablesRecursively() as $renderable) {
 
-                    if ($renderable->getIdentifier() === 'gethash') {
+                    if ($renderable->getIdentifier() === 'gettoken') {
                         $page->removeElement($renderable);
                     }
 

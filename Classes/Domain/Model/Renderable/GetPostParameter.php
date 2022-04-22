@@ -44,9 +44,9 @@ class GetPostParameter
     public function afterBuildingFinished(\TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable)
     {
         $identifier = $renderable->getIdentifier();
-        $GPvariable = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('uniquehash');
+        $GPvariable = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('token');
 
-        if ($GPvariable && $identifier === 'gethash') {
+        if ($GPvariable && $identifier === 'gettoken') {
 
             $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_rkwform_domain_model_standardform');
 
@@ -56,7 +56,7 @@ class GetPostParameter
             $statement = $queryBuilder->select('*')
                 ->from('tx_rkwform_domain_model_standardform')
                 ->where(
-                    $queryBuilder->expr()->eq('uniquehash',
+                    $queryBuilder->expr()->eq('token',
                         $queryBuilder->createNamedParameter($GPvariable, \PDO::PARAM_STR)
                     )
                 )

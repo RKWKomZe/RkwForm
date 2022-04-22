@@ -20,9 +20,9 @@ finishers:
           mapOnDatabaseColumn: salutation
         title:
           mapOnDatabaseColumn: title
-        first-name:
+        first_name:
           mapOnDatabaseColumn: first_name
-        last-name:
+        last_name:
           mapOnDatabaseColumn: last_name
         company:
           mapOnDatabaseColumn: company
@@ -38,14 +38,16 @@ finishers:
           mapOnDatabaseColumn: city
         theme:
           mapOnDatabaseColumn: theme
-        uniquehash:
-          mapOnDatabaseColumn: uniquehash
+        token:
+          mapOnDatabaseColumn: token
+        valid_until:
+          mapOnDatabaseColumn: valid_until
   -
     identifier: EmailToSender
     options:
       subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung'
       recipientAddress: '{email}'
-      recipientName: '{first-name} {last-name}'
+      recipientName: '{first_name} {last_name}'
       senderAddress: 'service@rkw.de '
       senderName: 'RKW Kompetenzzentrum'
       replyToAddress: 'baharian@rkw.de '
@@ -108,7 +110,7 @@ renderables:
             required: required
           fieldClass: width50
         type: Text
-        identifier: first-name
+        identifier: first_name
         label: 'Vorname'
         validators:
           -
@@ -120,7 +122,7 @@ renderables:
             required: required
           fieldClass: width50
         type: Text
-        identifier: last-name
+        identifier: last_name
         label: 'Nachname'
         validators:
           -
@@ -147,7 +149,7 @@ renderables:
           -
             identifier: EmailAddress
       -
-        identifier: uniquehash
+        identifier: token
         defaultValue: ''
         type: Hidden
       -
@@ -157,6 +159,10 @@ renderables:
       -
         identifier: verifypid
         defaultValue: '9118'
+        type: Hidden
+      -
+        identifier: valid_until
+        defaultValue: ''
         type: Hidden
       -
         defaultValue: ''

@@ -13,7 +13,7 @@ finishers:
       table: tx_rkwform_domain_model_standardform
       mode: update
       whereClause:
-        uniquehash: '{gethash}'
+        token: '{gettoken}'
       databaseColumnMappings:
         enabled:
           value: '1'
@@ -54,7 +54,7 @@ renderables:
     type: Page
     renderables:
       -
-        identifier: gethash
+        identifier: gettoken
         defaultValue: ''
         type: Hidden
         label: ''

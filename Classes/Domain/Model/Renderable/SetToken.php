@@ -15,15 +15,28 @@ namespace RKW\RkwForm\Domain\Model\Renderable;
  */
 
 /**
- * Class SetUniqueHash
+ * Class SetToken
  *
  * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class SetUniqueHash
+class SetToken
 {
+
+    /**
+     * function generateRandomSha1
+     *
+     * @return string
+     */
+    public function generateRandomSha1()
+    {
+
+        return sha1(rand());
+        //====
+
+    }
 
     /**
      * @param \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime
@@ -36,9 +49,14 @@ class SetUniqueHash
     {
         $identifier = $renderable->getIdentifier();
 
-        if ($identifier === 'uniquehash') {
-            $token = bin2hex(random_bytes(16));
-            $elementValue = $token;
+        if ($identifier === 'token') {
+            $elementValue = $this->generateRandomSha1();
+        }
+
+        if ($identifier === 'valid_until') {
+            // token valid for seven days
+            $hoursForOptIn = 24;
+            $elementValue = strtotime("+" . $hoursForOptIn . " hour");
         }
 
         return $elementValue;

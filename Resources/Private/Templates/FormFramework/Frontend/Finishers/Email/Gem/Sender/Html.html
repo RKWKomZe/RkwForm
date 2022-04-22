@@ -6,7 +6,7 @@
 <f:section name="Html">
 <body>
 
-    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first-name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last-name" />,</p>
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first_name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last_name" />,</p>
     <p>
         <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText' />">
             <f:then>
@@ -53,7 +53,7 @@
 		</formvh:renderAllFormValues>
         <tr>
             <td>
-                Klicken Sie bitte auf den nachfolgenden Link, um die Anmeldung abzuschließen: <a href="{form.formstate.formValues.confirmurl}?uniquehash={form.formstate.formValues.uniquehash}">{form.formstate.formValues.confirmurl}{form.formstate.formValues.uniquehash}</a>
+                Klicken Sie bitte auf den nachfolgenden Link, um die Anmeldung abzuschließen: <a href="{form.formstate.formValues.confirmurl}?token={form.formstate.formValues.token}">{form.formstate.formValues.confirmurl}{form.formstate.formValues.token}</a>. Bitte beachten Sie, dass dieser Link nur 24 Stunden gültig ist.
             </td>
         </tr>
     </table>

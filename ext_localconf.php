@@ -80,8 +80,8 @@ call_user_func(
         //=================================================================
         // Hooks
         //=================================================================
-        //  set uniquehash
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['1'] = \RKW\RkwForm\Domain\Model\Renderable\SetUniqueHash::class;
+        //  set token
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['1'] = \RKW\RkwForm\Domain\Model\Renderable\SetToken::class;
         //  set current base url
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['2'] = \RKW\RkwForm\Domain\Model\Renderable\SetBaseUrl::class;
         //  get post parameter
