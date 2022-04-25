@@ -83,7 +83,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
         //  @todo: In einen dezidierten eigenen Finisher auslagern!!!
 
-        if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-confirm') {
+        if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-community-confirm') {
 
             $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_rkwform_domain_model_standardform');
 
@@ -148,7 +148,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
                     //  @todo: Delete confirmed entry from database? There is no delete mode on SaveToDatabaseFinisher.
 
-                    //  @todo: Linkgültigkeit über 24 Stunden, automatisches Löschen nach Ablauf der 24 Stunden ohne Bestätigung.
+                    //  @todo: Linkgültigkeit über 24 Stunden, automatisches Löschen nach Ablauf der 24 Stunden ohne Bestätigung über CommandController.
 
                 }
 

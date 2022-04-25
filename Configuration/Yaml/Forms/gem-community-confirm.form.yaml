@@ -2,8 +2,8 @@
 renderingOptions:
   submitButtonLabel: 'Teilnahme bestätigen'
   width: flex-basis-8
-identifier: gem-confirm
-label: 'GEM-Befragung bestätigen'
+identifier: 'gem-community-confirm'
+label: 'GEM-Community-Teilnahme bestätigen'
 type: Form
 prototypeName: standard
 finishers:

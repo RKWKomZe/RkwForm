@@ -2,7 +2,7 @@
 renderingOptions:
   submitButtonLabel: 'Jetzt anmelden'
   width: flex-basis-8
-identifier: gem
+identifier: 'gem-community'
 label: 'GEM-Befragung'
 type: Form
 prototypeName: standard
@@ -15,6 +15,8 @@ finishers:
       databaseColumnMappings:
         enabled:
           value: '0'
+        identifier:
+          value: 'gem-community'
       elements:
         salutation:
           mapOnDatabaseColumn: salutation
