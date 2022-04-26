@@ -31,7 +31,7 @@ finishers:
       format: html
       attachUploads: true
       translation:
-        language: ''
+        language: 'de'
       templateName: '{@format}.html'
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Receiver'

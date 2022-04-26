@@ -17,8 +17,8 @@ namespace RKW\RkwForm\Domain\Finishers;
 
 use Doctrine\Common\Util\Debug;
 use TYPO3\CMS\Core\Mail\MailMessage;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
@@ -81,7 +81,11 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         $formRuntime = $this->finisherContext->getFormRuntime();
         $standaloneView = $this->initializeStandaloneView($formRuntime);
 
-        //  @todo: In einen dezidierten eigenen Finisher auslagern!!!
+        $translationService = TranslationService::getInstance();
+        if (isset($this->options['translation']['language']) && !empty($this->options['translation']['language'])) {
+            $languageBackup = $translationService->getLanguage();
+            $translationService->setLanguage($this->options['translation']['language']);
+        }
 
         if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-community-confirm') {
 
@@ -123,44 +127,49 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
                     $record = $statement->fetchAll()[0];
 
-                    //  @todo: Load definition from gem.form.yaml if possible?
-                    //  @todo: Alle notwendigen Werte befüllen.
+                    /** @var \TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader $yamlFileLoader */
+                    $yamlFileLoader = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\Loader\\YamlFileLoader');
+                    $formConfiguration = $yamlFileLoader->load('EXT:rkw_form/Configuration/Yaml/Forms/gem-community.form.yaml');
 
-                    $fillableValues = [
-                        'salutation' => 'Anrede',
-                        'title' => 'Titel',
-                        'first_name' => 'Vorname',
-                        'last_name' => 'Nachname',
-                        'phone' => 'Telefon',
-                        'email' => 'E-Mail-Adresse',
-                        'company' => 'Institution/Firma/Start-up',
-                        'street' => 'Straße und Hausnummer',
-                        'postal' => 'PLZ',
-                        'city' => 'Ort',
-                        'theme' => 'Gründungsthemengebiet/Expertise im Thema',
+                    $includableElements = [
+                        'salutation',
+                        'title',
+                        'first_name',
+                        'last_name',
+                        'phone',
+                        'email',
+                        'company',
+                        'street',
+                        'postal',
+                        'city',
+                        'theme',
                     ];
 
-                    foreach ($fillableValues as $key => $value) {
+                    $fillableElements = array_filter($formConfiguration['renderables'][0]['renderables'], function($element) use ($includableElements) {
+                        return in_array($element['identifier'], $includableElements);
+                    });
+
+                    foreach ($fillableElements as $element) {
+
+                        $key = $element['identifier'];
+
                         $fillable = $page->createElement($key, 'Text');
-                        $fillable->setLabel($value);
-                        $fillable->setDefaultValue($record[$key]);
+                        $fillable->setLabel($element['label']);
+
+                        if ($key === 'salutation') {
+                            $fillable->setDefaultValue($translationService->translate(
+                                'LLL:EXT:rkw_form/Resources/Private/Language/locallang.xlf:tx_rkwform_domain_model_standardform.salutation.I.' . $record[$key])
+                            );
+                        } else {
+                            $fillable->setDefaultValue($record[$key]);
+                        }
+
                     }
-
-                    //  @todo: Delete confirmed entry from database? There is no delete mode on SaveToDatabaseFinisher.
-
-                    //  @todo: Linkgültigkeit über 24 Stunden, automatisches Löschen nach Ablauf der 24 Stunden ohne Bestätigung über CommandController.
 
                 }
 
-
             }
 
-        }
-
-        $translationService = TranslationService::getInstance();
-        if (isset($this->options['translation']['language']) && !empty($this->options['translation']['language'])) {
-            $languageBackup = $translationService->getLanguage();
-            $translationService->setLanguage($this->options['translation']['language']);
         }
 
         // this line is replaced through following lines

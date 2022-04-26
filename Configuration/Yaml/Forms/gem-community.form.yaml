@@ -57,6 +57,8 @@ finishers:
       blindCarbonCopyAddress: ''
       format: html
       attachUploads: true
+      translation:
+        language: 'de'
       templateName: '{@format}.html'
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Sender'
@@ -90,9 +92,9 @@ renderables:
         properties:
           options:
             '': '--Bitte wählen--'
-            'Frau': 'Frau'
-            'Herr': 'Herr'
-            'divers': 'divers'
+            '1': 'Frau'
+            '0': 'Herr'
+            '2': 'divers'
           fieldClass: 'width50'
           elementClassAttribute: select-field
         identifier: salutation
