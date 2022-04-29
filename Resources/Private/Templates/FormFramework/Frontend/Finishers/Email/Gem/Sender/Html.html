@@ -6,7 +6,7 @@
 <f:section name="Html">
 <body>
 
-    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first-name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last-name" />,</p>
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first_name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last_name" />,</p>
     <p>
         <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText' />">
             <f:then>
@@ -38,20 +38,39 @@
 								<f:else>
 									<table cellspacing="0" border="0">
 										<tr>
-											<td><f:format.nl2br>{formValue.processedValue}</f:format.nl2br></td>
+                                            <td><f:format.nl2br>{formValue.processedValue}</f:format.nl2br></td>
 										</tr>
 									</table>
 								</f:else>
 							</f:if>
 						</f:then>
 						<f:else>
-							-
+                            <f:if condition="{formValue.element.label} === 'Anrede'">
+                                <f:then>
+                                    <table cellspacing="0" border="0">
+                                        <tr>
+                                            <td><f:format.nl2br>Herr</f:format.nl2br></td>
+                                        </tr>
+                                    </table>
+                                </f:then>
+                                <f:else>
+                                    -
+                                </f:else>
+                            </f:if>
 						</f:else>
 					</f:if>
 				</td>
 			</tr>
 		</formvh:renderAllFormValues>
-	</table>
+    </table>
+    <p>
+        Klicken Sie bitte auf den nachfolgenden Link, um die Anmeldung abzuschließen: <a href="{form.formstate.formValues.confirmurl}?token={form.formstate.formValues.token}">{form.formstate.formValues.confirmurl}{form.formstate.formValues.token}</a>. Bitte beachten Sie, dass dieser Link nur 24 Stunden gültig ist.<br><br>
+        Ihre E-Mail-Adresse speichern wir ausschließlich zum Zwecke der GEM-Befragung und der Einladung für Events im Rahmen des GEM-Projekts.<br><br>
+        Sollten Sie doch nicht teilnehmen wollen, können Sie diese E-Mail ignorieren und müssen nichts weiter unternehmen. In diesem Fall werden wir die Anmeldedaten nach 24 Stunden automatisch löschen. Beachten Sie dazu auch unsere <a href="https://www.rkw-kompetenzzentrum.de/datenschutz/">Datenschutzerklärung</a>.
+    </p>
+    <p>
+        Informationen zur Verarbeitung Ihrer personenbezogenen Daten finden Sie in unseren <a href="https://www.rkw-kompetenzzentrum.de/datenschutz" target="_blank">Datenschutzhinweisen</a>.
+    </p>
 </body>
 
 </f:section>

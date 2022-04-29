@@ -1,0 +1,60 @@
+
+renderingOptions:
+  submitButtonLabel: 'Teilnahme bestätigen'
+  width: flex-basis-8
+identifier: 'gem-community-confirm'
+label: 'GEM-Community-Teilnahme bestätigen'
+type: Form
+prototypeName: standard
+finishers:
+  -
+    identifier: SaveToDatabase
+    options:
+      table: tx_rkwform_domain_model_standardform
+      mode: update
+      whereClause:
+        token: '{gettoken}'
+      databaseColumnMappings:
+        enabled:
+          value: '1'
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Neue Anmeldung zur GEM-Befragung von {first_name} {last_name}'
+      recipientAddress: 'baharian@rkw.de'
+      recipientName: 'Armin Baharian'
+      senderAddress: 'service@rkw.de '
+      senderName: 'RKW Kompetenzzentrum'
+      replyToAddress: '{email}'
+      carbonCopyAddress: 'schauer@rkw.de'
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      translation:
+        language: 'de'
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Receiver'
+      partialRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+      mailText: 'eine neue Anmeldung zur GEM-Befragung wurde eingereicht.'
+    renderingOptions:
+      mailText: 'Test 123'
+  -
+    identifier: Redirect
+    options:
+      pageUid: 5277
+      additionalParameters: ''
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: gettoken
+        defaultValue: ''
+        type: Hidden
+        label: ''
