@@ -39,7 +39,7 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 CREATE TABLE tx_rkwform_domain_model_standardform (
 	identifier varchar(255) DEFAULT '' NOT NULL,
 	title varchar(255) DEFAULT '' NOT NULL,
-	street varchar(5) DEFAULT '' NOT NULL,
+	street varchar(255) DEFAULT '' NOT NULL,
 	postal varchar(5) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
 	theme varchar(255) DEFAULT '' NOT NULL,
