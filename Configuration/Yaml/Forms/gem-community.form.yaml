@@ -2,41 +2,54 @@
 renderingOptions:
   submitButtonLabel: 'Jetzt anmelden'
   width: flex-basis-8
-identifier: gem
+identifier: 'gem-community'
 label: 'GEM-Befragung'
 type: Form
 prototypeName: standard
 finishers:
   -
+    identifier: SaveToDatabase
     options:
-      subject: 'Neue Anmeldung zur GEM-Befragung: {first-name} {last-name}'
-      recipientAddress: 'baharian@rkw.de'
-      recipientName: 'Armin Baharian'
-      senderAddress: 'service@rkw.de '
-      senderName: 'RKW Kompetenzzentrum'
-      replyToAddress: '{email}'
-      carbonCopyAddress: 'schauer@rkw.de'
-      blindCarbonCopyAddress: ''
-      format: html
-      attachUploads: true
-      translation:
-        language: ''
-      templateName: '{@format}.html'
-      templateRootPaths:
-        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Receiver'
-      partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
-      layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
-      mailText: 'eine neue Anmeldung zur GEM-Befragung wurde eingereicht.'
-    identifier: EmailToReceiver
-    renderingOptions:
-      mailText: 'Test 123'
+      table: tx_rkwform_domain_model_standardform
+      mode: insert
+      databaseColumnMappings:
+        enabled:
+          value: '0'
+        identifier:
+          value: 'gem-community'
+      elements:
+        salutation:
+          mapOnDatabaseColumn: salutation
+        title:
+          mapOnDatabaseColumn: title
+        first_name:
+          mapOnDatabaseColumn: first_name
+        last_name:
+          mapOnDatabaseColumn: last_name
+        company:
+          mapOnDatabaseColumn: company
+        phone:
+          mapOnDatabaseColumn: phone
+        email:
+          mapOnDatabaseColumn: email
+        street:
+          mapOnDatabaseColumn: street
+        postal:
+          mapOnDatabaseColumn: postal
+        city:
+          mapOnDatabaseColumn: city
+        theme:
+          mapOnDatabaseColumn: theme
+        token:
+          mapOnDatabaseColumn: token
+        valid_until:
+          mapOnDatabaseColumn: valid_until
   -
+    identifier: EmailToSender
     options:
-      subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung: {first-name} {last-name}'
+      subject: 'Ihre Anmeldung zur Teilnahme an der GEM-Befragung'
       recipientAddress: '{email}'
-      recipientName: '{first-name} {last-name}'
+      recipientName: '{first_name} {last_name}'
       senderAddress: 'service@rkw.de '
       senderName: 'RKW Kompetenzzentrum'
       replyToAddress: 'baharian@rkw.de '
@@ -44,6 +57,8 @@ finishers:
       blindCarbonCopyAddress: ''
       format: html
       attachUploads: true
+      translation:
+        language: 'de'
       templateName: '{@format}.html'
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Sender'
@@ -53,14 +68,13 @@ finishers:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
       mailText: 'vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Sie haben folgende Daten an uns übermittelt:'
-    identifier: EmailToSender
     renderingOptions:
       mailtext: Test.456
   -
+    identifier: Redirect
     options:
       pageUid: 5277
       additionalParameters: ''
-    identifier: Redirect
 renderables:
   -
     identifier: page-1
@@ -72,14 +86,15 @@ renderables:
           text: ''
         type: StaticText
         identifier: statictext-1
-        label: 'Anmeldung'
+        label: 'Anmeldung zur deutschen GEM-Community'
       -
         defaultValue: ''
         properties:
           options:
             '': '--Bitte wählen--'
-            'Frau': 'Frau'
-            'Herr': 'Herr'
+            '1': 'Frau'
+            '0': 'Herr'
+            '2': 'divers'
           fieldClass: 'width50'
           elementClassAttribute: select-field
         identifier: salutation
@@ -99,7 +114,7 @@ renderables:
             required: required
           fieldClass: width50
         type: Text
-        identifier: first-name
+        identifier: first_name
         label: 'Vorname'
         validators:
           -
@@ -111,7 +126,7 @@ renderables:
             required: required
           fieldClass: width50
         type: Text
-        identifier: last-name
+        identifier: last_name
         label: 'Nachname'
         validators:
           -
@@ -137,6 +152,22 @@ renderables:
             identifier: NotEmpty
           -
             identifier: EmailAddress
+      -
+        identifier: token
+        defaultValue: ''
+        type: Hidden
+      -
+        identifier: confirmurl
+        defaultValue: ''
+        type: Hidden
+      -
+        identifier: verifypid
+        defaultValue: '9118'
+        type: Hidden
+      -
+        identifier: valid_until
+        defaultValue: ''
+        type: Hidden
       -
         defaultValue: ''
         properties:

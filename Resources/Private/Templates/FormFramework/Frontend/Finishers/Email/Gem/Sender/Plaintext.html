@@ -5,7 +5,7 @@
 
 <f:section name="Plaintext">
 
-    <f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first-name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last-name" />,
+    <f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="first_name" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="last_name" />,
     <f:spaceless>
         <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText' />">
             <f:then>

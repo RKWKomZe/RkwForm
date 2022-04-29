@@ -15,10 +15,12 @@ namespace RKW\RkwForm\Domain\Finishers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Doctrine\Common\Util\Debug;
 use TYPO3\CMS\Core\Mail\MailMessage;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
@@ -31,6 +33,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use RKW\RkwBasics\Helper\Common;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
+
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * This finisher sends an email to one recipient
@@ -60,6 +64,12 @@ use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
  */
 class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 {
+
+    /**
+     * @var \TYPO3\CMS\Core\Database\Connection
+     */
+    protected $databaseConnection = null;
+
     /**
      * Executes this finisher
      * @see AbstractFinisher::execute()
@@ -75,6 +85,91 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         if (isset($this->options['translation']['language']) && !empty($this->options['translation']['language'])) {
             $languageBackup = $translationService->getLanguage();
             $translationService->setLanguage($this->options['translation']['language']);
+        }
+
+        if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-community-confirm') {
+
+            $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_rkwform_domain_model_standardform');
+
+            // find go through all pages
+            /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
+            $queryBuilder = $this->databaseConnection->createQueryBuilder();
+            $statement = $queryBuilder->select('*')
+                ->from('tx_rkwform_domain_model_standardform')
+                ->where(
+                    $queryBuilder->expr()->eq('token',
+                        $queryBuilder->createNamedParameter($formRuntime['gettoken'], \PDO::PARAM_STR)
+                    )
+                )
+                ->execute();
+
+            $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
+
+            $page = null;
+
+            foreach ($renderables as $renderable) {
+                if ($renderable instanceof Page) {
+                    $page = $renderable;
+                }
+            }
+
+            if ($page) {
+
+                foreach ($page->getRenderablesRecursively() as $renderable) {
+
+                    if ($renderable->getIdentifier() === 'gettoken') {
+                        $page->removeElement($renderable);
+                    }
+
+                }
+
+                if ($statement) {
+
+                    $record = $statement->fetchAll()[0];
+
+                    /** @var \TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader $yamlFileLoader */
+                    $yamlFileLoader = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\Loader\\YamlFileLoader');
+                    $formConfiguration = $yamlFileLoader->load('EXT:rkw_form/Configuration/Yaml/Forms/gem-community.form.yaml');
+
+                    $includableElements = [
+                        'salutation',
+                        'title',
+                        'first_name',
+                        'last_name',
+                        'phone',
+                        'email',
+                        'company',
+                        'street',
+                        'postal',
+                        'city',
+                        'theme',
+                    ];
+
+                    $fillableElements = array_filter($formConfiguration['renderables'][0]['renderables'], function($element) use ($includableElements) {
+                        return in_array($element['identifier'], $includableElements);
+                    });
+
+                    foreach ($fillableElements as $element) {
+
+                        $key = $element['identifier'];
+
+                        $fillable = $page->createElement($key, 'Text');
+                        $fillable->setLabel($element['label']);
+
+                        if ($key === 'salutation') {
+                            $fillable->setDefaultValue($translationService->translate(
+                                'LLL:EXT:rkw_form/Resources/Private/Language/locallang.xlf:tx_rkwform_domain_model_standardform.salutation.I.' . $record[$key])
+                            );
+                        } else {
+                            $fillable->setDefaultValue($record[$key]);
+                        }
+
+                    }
+
+                }
+
+            }
+
         }
 
         // this line is replaced through following lines
