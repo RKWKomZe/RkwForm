@@ -73,7 +73,7 @@ finishers:
   -
     identifier: Redirect
     options:
-      pageUid: 5277
+      pageUid: 9376
       additionalParameters: ''
 renderables:
   -
@@ -162,7 +162,7 @@ renderables:
         type: Hidden
       -
         identifier: verifypid
-        defaultValue: '9118'
+        defaultValue: '9377'
         type: Hidden
       -
         identifier: valid_until
