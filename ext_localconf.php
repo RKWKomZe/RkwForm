@@ -32,6 +32,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwForm',
+            'DoubleOptinForm',
+            [
+                'DoubleOptinForm' => 'new, create, verify'
+            ],
+            // non-cacheable actions
+            [
+                'DoubleOptinForm' => 'new, create, verify'
+            ]
+        );
+
 
         //=================================================================
         // Register CommandController
@@ -80,12 +92,6 @@ call_user_func(
         //=================================================================
         // Hooks
         //=================================================================
-        //  set token
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['1'] = \RKW\RkwForm\Domain\Model\Renderable\SetTokenAndExpiration::class;
-        //  set current base url
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['2'] = \RKW\RkwForm\Domain\Model\Renderable\SetBaseUrl::class;
-        //  get post parameter
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['3'] = \RKW\RkwForm\Domain\Model\Renderable\GetPostParameter::class;
 
         //=================================================================
         // Register Logger

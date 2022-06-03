@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:layout name="Default" />
+    <f:section name="main">
+        <h3 class="system-message--scroll">
+            <f:if condition="{settings.confirmtext.headline}">
+                <f:then>
+                    {settings.confirmtext.headline}
+                </f:then>
+                <f:else>
+                    <f:translate key="templates_standard_create.header" />
+                </f:else>
+            </f:if>
+        </h3>
+        <p>
+            <f:if condition="{settings.confirmtext.description}">
+                <f:then>
+                    <f:format.nl2br>{settings.confirmtext.description}</f:format.nl2br>
+                </f:then>
+                <f:else>
+                    <f:translate key="templates_standard_create.text" />
+                </f:else>
+            </f:if>
+        </p>
+    </f:section>
+</html>

@@ -60,6 +60,13 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $company = '';
 
     /**
+     * city
+     *
+     * @var string
+     */
+    protected $city = '';
+
+    /**
      * email
      *
      * @var string
@@ -189,6 +196,27 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Returns the city
+     *
+     * @return string $city
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Sets the city
+     *
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
      * Returns the email
      *
      * @return string $email
@@ -250,4 +278,5 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->text = $text;
     }
+
 }

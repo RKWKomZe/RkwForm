@@ -46,10 +46,18 @@ config.tx_extbase {
             RKW\RkwForm\Domain\Model\StandardForm {
                 subclasses {
                     Tx_RkwForm_BstForm = RKW\RkwForm\Domain\Model\BstForm
+                    Tx_RkwForm_DoubleOptinForm = RKW\RkwForm\Domain\Model\DoubleOptinForm
                 }
             }
 
             RKW\RkwForm\Domain\Model\BstForm {
+                mapping {
+                    tableName = tx_rkwform_domain_model_standardform
+                    recordType =
+                }
+            }
+
+            RKW\RkwForm\Domain\Model\DoubleOptinForm {
                 mapping {
                     tableName = tx_rkwform_domain_model_standardform
                     recordType =

@@ -84,6 +84,7 @@
             </td>
         </tr>
         <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/></f:if>
+        <f:if condition="{formRequest.type} == 'doubleOptin'"><f:render partial="Email/Details/DoubleOptinForm" section="Html" arguments="{_all}"/></f:if>
     </table>
 
 
