@@ -23,7 +23,7 @@ finishers:
       subject: 'Neue Anmeldung zur GEM-Befragung von {first_name} {last_name}'
       recipientAddress: 'baharian@rkw.de'
       recipientName: 'Armin Baharian'
-      senderAddress: 'service@rkw.de '
+      senderAddress: 'service@rkw.de'
       senderName: 'RKW Kompetenzzentrum'
       replyToAddress: '{email}'
       carbonCopyAddress: 'schauer@rkw.de'
