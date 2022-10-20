@@ -34,7 +34,7 @@ class StandardFormController  extends \RKW\RkwForm\Controller\AbstractFormContro
      *
      * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
      * @param int $privacy
-     * @validate $standardForm \RKW\RkwForm\Validation\Validator\AbstractFormValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
      * @return void
      */
     public function createAction(StandardForm $standardForm, $privacy = 0)

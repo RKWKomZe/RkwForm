@@ -37,7 +37,7 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
      * standardFormRepository
      *
      * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $standardFormRepository;
 

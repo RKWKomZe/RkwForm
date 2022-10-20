@@ -30,7 +30,7 @@ use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use \TYPO3\CMS\Core\Utility\PathUtility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
 
@@ -188,7 +188,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathImages'], '/')), $message);
         $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathLogo'], '/')), $message);
 
-        /* @toDo: Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
+        /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
         $replacePaths = [
             GeneralUtility::getIndpEnv('TYPO3_SITE_PATH'),
             $_SERVER['TYPO3_PATH_ROOT'] .'/'

@@ -14,6 +14,9 @@ namespace RKW\RkwForm\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
 /**
  * Class IsMandatoryFieldViewHelper
  *
@@ -22,26 +25,44 @@ namespace RKW\RkwForm\ViewHelpers;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class CompareFormPropertyPathViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CompareFormPropertyPathViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    use CompileWithRenderStatic;
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('propertyPath', 'string', 'Really, I don\'t know what\'s that for', true);
+        $this->registerArgument('elementIdentifier', 'string', 'Really, I don\'t know what\'s that for', true);
+    }
+
 
     /**
      * return TRUE, if the given propertyPath matches the elementIdentifier
      * TRUE if optional
      *
-     * @param string $propertyPath
-     * @param string $elementIdentifier
-     * @return bool
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
      */
-    public function render($propertyPath, $elementIdentifier)
-    {
-        // {propertyPath} --- eepa.{element.identifier}
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
 
+        $propertyPath = $arguments['propertyPath'];
+        $elementIdentifier = $arguments['elementIdentifier'];
+
+        // {propertyPath} --- eepa.{element.identifier}
         if (str_ends_with($propertyPath, $elementIdentifier)) {
             return true;
         }
         return false;
     }
-
-
 }

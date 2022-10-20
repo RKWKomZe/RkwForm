@@ -5,7 +5,7 @@ use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use \RKW\RkwForm\Domain\Model\StandardForm;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Messaging\AbstractMessage;
-use \RKW\RkwBasics\Helper\Common;
+use RKW\RkwBasics\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -51,7 +51,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * standardFormRepository
      *
      * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $standardFormRepository = null;
 
@@ -59,7 +59,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * FrontendUserRepository
      *
      * @var \RKW\RkwForm\Domain\Repository\FrontendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $frontendUserRepository;
 
@@ -67,7 +67,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * BackendUserRepository
      *
      * @var \RKW\RkwForm\Domain\Repository\BackendUserRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $backendUserRepository;
 
@@ -174,7 +174,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         // currently we do not use real privacy-entries
         if ($this->settings['includeRkwRegistrationPrivacy']) {
             // add privacy info
-            \RKW\RkwRegistration\Tools\Privacy::addPrivacyData($this->request, $frontendUser, $newSupportRequest, 'new support request');
+            \RKW\RkwRegistration\DataProtection\PrivacyHandler::addPrivacyData($this->request, $frontendUser, $newSupportRequest, 'new support request');
         }
         */
 

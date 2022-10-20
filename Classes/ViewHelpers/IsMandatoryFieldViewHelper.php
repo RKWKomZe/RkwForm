@@ -14,6 +14,9 @@ namespace RKW\RkwForm\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
 /**
  * Class IsMandatoryFieldViewHelper
  *
@@ -22,29 +25,46 @@ namespace RKW\RkwForm\ViewHelpers;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class IsMandatoryFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IsMandatoryFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+
+    use CompileWithRenderStatic;
+
+    /**
+     * Initialize arguments
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('fieldName', 'string', 'The name of the field that is to be checked against mandatoryFields.', true);
+        $this->registerArgument('mandatoryFields', 'string', 'Comma-separated list of field-names that are mandatory.', true);
+    }
+
 
     /**
      * return TRUE, if the given fieldName is NOT in given mandatoryFields (string-list from TypoScript)
      * TRUE if optional
      *
-     * @param string $fieldName
-     * @param string $mandatoryFields
-     * @return bool
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     * @return string
      */
-    public function render($fieldName, $mandatoryFields)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+        $fieldName = $arguments['fieldName'];
+        $mandatoryFields = $arguments['mandatoryFields'];
         $mandatoryFieldsArray = array_map('trim', explode(',', $mandatoryFields));
 
         if (!in_array($fieldName, $mandatoryFieldsArray)) {
-
             return true;
-            //===
         }
 
         return false;
-        //===
     }
 
 
