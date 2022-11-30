@@ -26,7 +26,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * Class AbstractFormController
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -174,7 +174,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         // currently we do not use real privacy-entries
         if ($this->settings['includeRkwRegistrationPrivacy']) {
             // add privacy info
-            \RKW\RkwRegistration\DataProtection\PrivacyHandler::addPrivacyData($this->request, $frontendUser, $newSupportRequest, 'new support request');
+            \RKW\RkwRegistration\DataProtection\ConsentHandler::add($this->request, $frontendUser, $newSupportRequest, 'new support request');
         }
         */
 

@@ -18,7 +18,7 @@ namespace RKW\RkwForm\Domain\Model;
  * Class StandardForm
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -124,7 +124,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->title = $title;
     }
-    
+
     /**
      * Returns the firstName
      *

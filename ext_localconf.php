@@ -45,35 +45,35 @@ call_user_func(
         /**
          * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
          */
-        $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
+        $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
 
         // @deprecated start
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\StandardFormController',
+            RKW\RkwForm\Controller\StandardFormController::class,
             \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
-            'RKW\\RkwForm\\Service\\RkwMailService',
+            RKW\RkwForm\Service\RkwMailService::class,
             'userMail'
         );
 
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\StandardFormController',
+            RKW\RkwForm\Controller\StandardFormController::class,
             \RKW\RkwForm\Controller\StandardFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
-            'RKW\\RkwForm\\Service\\RkwMailService',
+            RKW\RkwForm\Service\RkwMailService::class,
             'adminMail'
         );
         // @deprecated end
 
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\AbstractFormController',
+            RKW\RkwForm\Controller\AbstractFormController::class,
             \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
-            'RKW\\RkwForm\\Service\\RkwMailService',
+            RKW\RkwForm\Service\RkwMailService::class,
             'userMail'
         );
 
         $signalSlotDispatcher->connect(
-            'RKW\\RkwForm\\Controller\\AbstractFormController',
+            RKW\RkwForm\Controller\AbstractFormController::class,
             \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
-            'RKW\\RkwForm\\Service\\RkwMailService',
+            RKW\RkwForm\Service\RkwMailService::class,
             'adminMail'
         );
 
