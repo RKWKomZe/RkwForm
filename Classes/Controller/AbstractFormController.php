@@ -5,7 +5,7 @@ use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use \RKW\RkwForm\Domain\Model\StandardForm;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Core\Messaging\AbstractMessage;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -224,7 +224,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     {
         $pluginName = $this->request->getPluginName();
 
-        return Common::getTyposcriptConfiguration('Rkwform_'.$pluginName, $which);
+        return Common::getTypoScriptConfiguration('Rkwform_'.$pluginName, $which);
         //===
     }
 }

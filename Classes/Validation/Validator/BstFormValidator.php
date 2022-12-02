@@ -1,7 +1,7 @@
 <?php
 namespace RKW\RkwForm\Validation\Validator;
 
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -100,7 +100,7 @@ class BstFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractV
      */
     protected static function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
-        return Common::getTyposcriptConfiguration('Rkwform', $which);
+        return Common::getTypoScriptConfiguration('Rkwform', $which);
         //===
     }
 

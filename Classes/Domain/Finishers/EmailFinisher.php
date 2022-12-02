@@ -30,9 +30,9 @@ use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use \TYPO3\CMS\Core\Utility\PathUtility;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Utility\GeneralUtility as Common;
+use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
+use Madj2k\CoreExtended\Utility\FrontendSimulatorUtility;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -318,7 +318,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
      */
     protected function getSettings($extension = 'RkwForm', $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
-        return Common::getTyposcriptConfiguration($extension, $which);
+        return Common::getTypoScriptConfiguration($extension, $which);
     }
 
 }
