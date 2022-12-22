@@ -65,6 +65,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     ),
                 ));
 
+                // @todo: Subject müsste noch an den Vorgang angepasst werden!
                 $mailService->getQueueMail()->setSubject(
                     \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                         'rkwMailService.confirmationUser.subject',

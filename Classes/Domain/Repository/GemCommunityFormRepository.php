@@ -15,14 +15,14 @@ namespace RKW\RkwForm\Domain\Repository;
  */
 
 /**
- * Class DoubleOptinFormRepository
+ * Class GemCommunityFormRepository
  *
  * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class DoubleOptinFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class GemCommunityFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
     /**
@@ -40,7 +40,6 @@ class DoubleOptinFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repositor
         $constraints = [];
 
         $constraints[] = $query->equals('token', $token);
-        $constraints[] = $query->greaterThanOrEqual('validUntil', time());
 
         // NOW: construct final query!
         $query->matching($query->logicalAnd($constraints));

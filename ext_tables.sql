@@ -8,6 +8,7 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 
 	salutation int(11) DEFAULT '0' NOT NULL,
 	first_name varchar(255) DEFAULT '' NOT NULL,
+	title varchar(255) DEFAULT '' NOT NULL,
 	last_name varchar(255) DEFAULT '' NOT NULL,
 	company varchar(255) DEFAULT '' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,
@@ -34,11 +35,10 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 );
 
 #
-# extend for gemCommunityForm
+# extend for gemCommunityForm (GEM Community)
 #
 CREATE TABLE tx_rkwform_domain_model_standardform (
 	identifier varchar(255) DEFAULT '' NOT NULL,
-	title varchar(255) DEFAULT '' NOT NULL,
 	street varchar(255) DEFAULT '' NOT NULL,
 	postal varchar(5) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,

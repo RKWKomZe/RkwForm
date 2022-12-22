@@ -34,13 +34,13 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'RKW.RkwForm',
-            'DoubleOptinForm',
+            'GemCommunityForm',
             [
-                'DoubleOptinForm' => 'new, create, verify'
+                'GemCommunityForm' => 'new, create, verify'
             ],
             // non-cacheable actions
             [
-                'DoubleOptinForm' => 'new, create, verify'
+                'GemCommunityForm' => 'new, create, verify'
             ]
         );
 
@@ -85,6 +85,21 @@ call_user_func(
         $signalSlotDispatcher->connect(
             'RKW\\RkwForm\\Controller\\AbstractFormController',
             \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'adminMail'
+        );
+
+        //  @todo: Brauche ich wirklich diese beiden, um die Mails getrennt auszusenden?
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'userMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             'RKW\\RkwForm\\Service\\RkwMailService',
             'adminMail'
         );

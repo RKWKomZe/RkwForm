@@ -11,8 +11,10 @@
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.email" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.email}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
-<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
-    {formRequest.text}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.street}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.postal}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.city}
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
 <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Plaintext" arguments="{_all}"/></f:if>
 </f:section>
 
@@ -77,6 +79,30 @@
         </tr>
         <tr>
             <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.street}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.postal}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
+                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>:
+            </th>
+            <td>
+                {formRequest.city}
+            </td>
+        </tr>
+        <tr>
+            <th class="align-left">
                 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
             </th>
             <td>
@@ -84,7 +110,8 @@
             </td>
         </tr>
         <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/></f:if>
-        <f:if condition="{formRequest.type} == 'doubleOptin'"><f:render partial="Email/Details/DoubleOptinForm" section="Html" arguments="{_all}"/></f:if>
+        <f:if condition="{formRequest.type} == 'gemCommunity'"><f:render partial="Email/Details/GemCommunityForm" section="Html" arguments="{_all}"/></f:if>
+        <f:render partial="Email/Details/GemCommunityForm" section="Html" arguments="{_all}"/>
     </table>
 
 

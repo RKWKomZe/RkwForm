@@ -11,7 +11,25 @@
                 <target>Bitte bestätigen Sie Ihre aktive Teilnahme am Frankfurter Bausachverständigentag.</target>
             </trans-unit>
 
+            <trans-unit id="gemCommunityFormController.error.verification.expired">
+                <source>Your registration link has already expired. Please register once again.</source>
+                <target>Ihr Registrierungslink ist bereits abgelaufen. Bitte melden Sie sich erneut an.</target>
+            </trans-unit>
 
+			<trans-unit id="gemCommunityFormController.error.verification.notfound">
+				<source>Your registration could not be found. Please register once again.</source>
+				<target>Ihre Registrierung wurde nicht gefunden. Bitte melden Sie sich erneut an.</target>
+			</trans-unit>
+
+            <trans-unit id="gemCommunityFormController.error.verification.already_enabled">
+                <source>Your verification is already confirmed.</source>
+                <target>Ihre E-Mail-Bestätigung wurde bereits erfolgreich durchgeführt.</target>
+            </trans-unit>
+
+            <trans-unit id="gemCommunityFormController.error.verification.confirmed">
+                <source>Your registration has been completed.</source>
+                <target>Ihre Anmeldung wurde nun erfolgreich durchgeführt und Ihre Daten an uns übermittelt.</target>
+            </trans-unit>
 
 		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
@@ -77,6 +95,22 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.street">
+                <source>Street</source>
+                <target>Straße und Hausnummer</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.postal">
+                <source>Postal</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.city">
+                <source>City</source>
+                <target>Ort</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.theme">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
             <trans-unit id="tx_rkwform_domain_model_standardform.text">
                 <source>Message</source>
                 <target>Nachricht</target>
@@ -157,6 +191,22 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
+            <trans-unit id="form.error.newFormRequest.street">
+                <source>Street</source>
+                <target>Straße und Hausnummer</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.postal">
+                <source>Postal</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="form.error.newFormRequest.city">
+                <source>City</source>
+                <target>Ort</target>
+            </trans-unit>
+			<trans-unit id="form.error.newFormRequest.theme">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
                 <source>Message</source>
                 <target>Nachricht</target>

@@ -15,22 +15,15 @@ namespace RKW\RkwForm\Domain\Model;
  */
 
 /**
- * Class DoubleOptinForm
+ * Class GemCommunityForm
  *
  * @author Christian Dilger <c.dilger@addorange.de>
  * @copyright Rkw Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class DoubleOptinForm extends \RKW\RkwForm\Domain\Model\StandardForm
+class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
 {
-
-    /**
-     * type
-     *
-     * @var string
-     */
-    protected $type = 'doubleOptin';
 
     /**
      * token
@@ -53,6 +46,33 @@ class DoubleOptinForm extends \RKW\RkwForm\Domain\Model\StandardForm
      */
     protected $identifier = '';
 
+    /**
+     * street
+     *
+     * @var string
+     */
+    protected $street = '';
+
+    /**
+     * postal
+     *
+     * @var string
+     */
+    protected $postal = '';
+
+    /**
+     * city
+     *
+     * @var string
+     */
+    protected $city = '';
+
+    /**
+     * theme
+     *
+     * @var string
+     */
+    protected $theme = '';
 
     /**
      * verificationUrl
@@ -108,6 +128,90 @@ class DoubleOptinForm extends \RKW\RkwForm\Domain\Model\StandardForm
     public function setIdentifier(string $identifier): void
     {
         $this->identifier = $identifier;
+    }
+
+    /**
+     * Returns the street
+     *
+     * @return string $street
+     */
+    public function getStreet()
+    {
+        return $this->street;
+    }
+
+    /**
+     * Sets the street
+     *
+     * @param string $street
+     * @return void
+     */
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+
+    /**
+     * Returns the postal
+     *
+     * @return string $postal
+     */
+    public function getPostal()
+    {
+        return $this->postal;
+    }
+
+    /**
+     * Sets the postal
+     *
+     * @param string $postal
+     * @return void
+     */
+    public function setPostal($postal)
+    {
+        $this->postal = $postal;
+    }
+
+    /**
+     * Returns the city
+     *
+     * @return string $city
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Sets the city
+     *
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Returns the theme
+     *
+     * @return string $theme
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * Sets the theme
+     *
+     * @param string $theme
+     * @return void
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
     }
 
     /**

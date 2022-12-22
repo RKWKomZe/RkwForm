@@ -16,8 +16,8 @@ defined('TYPO3_MODE') || die('Access denied.');
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'RKW.RkwForm',
-    'DoubleOptinForm',
-    'RKW Form: DoubleOptinForm'
+    'GemCommunityForm',
+    'RKW Form: GemCommunityForm'
 );
 
 
@@ -48,7 +48,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
 );
 
 $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey));
-$pluginName = strtolower('DoubleOptinForm');
+$pluginName = strtolower('GemCommunityForm');
 $pluginSignature = $extensionName.'_'.$pluginName;
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';

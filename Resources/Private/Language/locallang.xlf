@@ -10,6 +10,21 @@
                 <source>Please confirm you participation</source>
             </trans-unit>
 
+            <trans-unit id="gemCommunityFormController.error.verification.expired">
+                <source>Your registration link has already expired. Please register once again.</source>
+            </trans-unit>
+
+			<trans-unit id="gemCommunityFormController.error.verification.notfound">
+				<source>Your registration could not be found. Please register once again.</source>
+			</trans-unit>
+
+            <trans-unit id="gemCommunityFormController.error.verification.already_enabled">
+                <source>Your verification is already confirmed.</source>
+            </trans-unit>
+
+            <trans-unit id="gemCommunityFormController.error.verification.confirmed">
+                <source>Your registration has been completed.</source>
+            </trans-unit>
 
 		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
@@ -63,8 +78,6 @@
 				<source>Message</source>
 			</trans-unit>
 
-
-
 			<!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
                 <source>Number 1</source>
@@ -79,7 +92,19 @@
                 <source>Agree</source>
             </trans-unit>
 
-
+            <!-- gemcommunity extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.postal">
+				<source>Postal</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.theme">
+				<source>Topic</source>
+			</trans-unit>
 
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">

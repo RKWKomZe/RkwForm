@@ -23,6 +23,8 @@ plugin.tx_rkwform {
             # hint: The field "bstAgree" (checkbox) is always checked in BstFormController as mandatory field. Do not set it here again
             # cat=plugin.tx_rkwform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
             bst = firstName, lastName, email, bstNumber1, bstNumber2, bstNumber3
+
+            gemCommunity = firstName, lastName, email, street, postal, city, theme
         }
 
         mail {

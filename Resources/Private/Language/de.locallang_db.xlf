@@ -47,12 +47,10 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standardform.text">
+			<trans-unit id="tx_rkwform_domain_model_standardform.text">
                 <source>Text</source>
                 <target>Textfeld</target>
             </trans-unit>
-
-
 
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
@@ -71,8 +69,6 @@
                 <source>Agree</source>
                 <target>Zustimmung (Ja, ich habe alle Inhalte des 55. Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt, Fragen zu stellen)</target>
             </trans-unit>
-
-
 
 			<!-- flexform -->
             <trans-unit id="flexform.standard.admin">
@@ -107,7 +103,23 @@
                 <target>BST</target>
             </trans-unit>
 
-
+            <!-- gemcommunity extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.street">
+                <source>Street</source>
+                <target>Straße und Hausnummer</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.postal">
+                <source>Postal</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.city">
+                <source>City</source>
+                <target>Ort</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.theme">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
 
 		</body>
 	</file>

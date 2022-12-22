@@ -40,7 +40,6 @@
                 <source>Text</source>
             </trans-unit>
 
-
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
                 <source>Number 1</source>
@@ -55,7 +54,19 @@
                 <source>Agree</source>
             </trans-unit>
 
-
+			<!-- gemcommunity extend -->
+            <trans-unit id="tx_rkwform_domain_model_standardform.street">
+                <source>Street</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.postal">
+                <source>Postal</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.city">
+                <source>City</source>
+            </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.theme">
+				<source>Topic</source>
+			</trans-unit>
 
 			<!-- flexform -->
             <trans-unit id="flexform.standard.admin">
@@ -73,8 +84,6 @@
             <trans-unit id="flexform.standard.confirmtext.description">
                 <source>Description</source>
             </trans-unit>
-
-
 
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
