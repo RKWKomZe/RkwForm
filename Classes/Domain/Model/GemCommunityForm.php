@@ -68,11 +68,11 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     protected $city = '';
 
     /**
-     * theme
+     * topic
      *
      * @var string
      */
-    protected $theme = '';
+    protected $topic = '';
 
     /**
      * verificationUrl
@@ -194,24 +194,24 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     }
 
     /**
-     * Returns the theme
+     * Returns the topic
      *
-     * @return string $theme
+     * @return string $topic
      */
-    public function getTheme()
+    public function getTopic()
     {
-        return $this->theme;
+        return $this->topic;
     }
 
     /**
-     * Sets the theme
+     * Sets the topic
      *
-     * @param string $theme
+     * @param string $topic
      * @return void
      */
-    public function setTheme($theme)
+    public function setTopic($topic)
     {
-        $this->theme = $theme;
+        $this->topic = $topic;
     }
 
     /**

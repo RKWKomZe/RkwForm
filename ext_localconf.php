@@ -94,14 +94,14 @@ call_user_func(
             'RKW\\RkwForm\\Controller\\GemCommunityFormController',
             \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
             'RKW\\RkwForm\\Service\\RkwMailService',
-            'userMail'
+            'verifyMail'
         );
 
         $signalSlotDispatcher->connect(
             'RKW\\RkwForm\\Controller\\GemCommunityFormController',
             \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             'RKW\\RkwForm\\Service\\RkwMailService',
-            'adminMail'
+            'adminNotificationMail'
         );
 
         //=================================================================

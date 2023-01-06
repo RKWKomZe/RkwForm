@@ -108,9 +108,9 @@ return [
                 'eval' => 'trim'
             ],
         ],
-        'theme' => [
+        'topic' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.theme',
+            'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.topic',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

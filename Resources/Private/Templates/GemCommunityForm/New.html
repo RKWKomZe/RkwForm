@@ -16,11 +16,13 @@
                 <div class="flex-basis-8 full-width-medium">
                     <div class="form flex space-between">
 
-                        <f:render partial="Forms/GemCommunity" />
+                        <f:render partial="Forms/GemCommunity" arguments="{topics: topics}" />
 
-                        <f:render partial="FormFields/Privacy" />
+                        <f:render partial="FormFields/GemCommunityForm/Terms" />
 
-                        <f:render partial="FormFields/Submit" />
+                        <f:render partial="FormFields/GemCommunityForm/Privacy" />
+
+                        <f:render partial="FormFields/GemCommunityForm/Submit" />
 
                     </div>
                 </div>

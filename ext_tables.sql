@@ -42,7 +42,7 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 	street varchar(255) DEFAULT '' NOT NULL,
 	postal varchar(5) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
-	theme varchar(255) DEFAULT '' NOT NULL,
+	topic varchar(255) DEFAULT '' NOT NULL,
   token varchar(255) DEFAULT '' NOT NULL,
 	valid_until int(11) unsigned DEFAULT '0' NOT NULL,
   enabled tinyint(1) DEFAULT '0' NOT NULL,

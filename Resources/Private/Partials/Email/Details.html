@@ -5,7 +5,7 @@
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation" languageKey="{language}" extensionName="rkwForm"/>: <f:if condition="{formRequest.salutation} < 99"><rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.salutation.I.{formRequest.salutation}" languageKey="{language}" extensionName="rkwForm"/></f:if>
-<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.title" languageKey="{language}" extensionName="rkwForm"/>:  <f:if condition="{formRequest.title}">{formRequest.title.name}</f:if>
+<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.title" languageKey="{language}" extensionName="rkwForm"/>: <f:if condition="{formRequest.title}">{formRequest.title.name}</f:if>
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.first_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.firstName}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.last_name" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.lastName}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
@@ -14,7 +14,13 @@
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.street}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.postal}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.city}
-<rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
+<f:if condition="{formRequest.identifier} === 'gem-community'">
+    <f:then>
+    </f:then>
+    <f:else>
+        <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
+    </f:else>
+</f:if>
 <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Plaintext" arguments="{_all}"/></f:if>
 </f:section>
 
@@ -101,17 +107,21 @@
                 {formRequest.city}
             </td>
         </tr>
-        <tr>
-            <th class="align-left">
-                <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
-            </th>
-            <td>
-                <f:format.nl2br>{formRequest.text}</f:format.nl2br>
-            </td>
-        </tr>
+        <f:if condition="{formRequest.identifier} === 'gem-community'">
+            <f:then>
+            </f:then>
+            <f:else>
+                <tr>
+                    <th class="align-left">
+                        <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
+                    </th>
+                    <td>
+                        <f:format.nl2br>{formRequest.text}</f:format.nl2br>
+                    </td>
+                </tr>
+            </f:else>
+        </f:if>
         <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/></f:if>
-        <f:if condition="{formRequest.type} == 'gemCommunity'"><f:render partial="Email/Details/GemCommunityForm" section="Html" arguments="{_all}"/></f:if>
-        <f:render partial="Email/Details/GemCommunityForm" section="Html" arguments="{_all}"/>
     </table>
 
 

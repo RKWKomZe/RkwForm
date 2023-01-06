@@ -3,8 +3,8 @@ namespace RKW\RkwForm\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -26,7 +26,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  * Class GemCommunityFormController
  *
  * @author Christian Dilger <c.dilger@addorange.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -59,21 +59,35 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
     protected $persistenceManager;
 
     /**
+     * action new
+     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
+     * @return void
+     */
+    public function newAction(AbstractEntity $standardForm = null)
+    {
+        $this->view->assignMultiple([
+            'standardForm' => $standardForm,
+            'topics' => \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $this->settings['form']['topics'])
+        ]);
+    }
+
+    /**
      * action create
      *
      * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
      * @param int $privacy
+     * @param int $terms
      * @validate $standardForm \RKW\RkwForm\Validation\Validator\GemCommunityFormValidator
      * @return void
      */
-    public function createAction(GemCommunityForm $standardForm, $privacy = 0)
+    public function createAction(GemCommunityForm $standardForm, $privacy = 0, $terms = 0)
     {
 
-        /*
-        if (!$standardForm->getBstAgree()) {
+        //  @todo: Muss das immer gecheckt werden?
+        if (!$privacy) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                    'bstFormController.error.accept_agree', 'rkw_form'
+                    'registrationController.error.accept_privacy', 'rkw_registration'
                 ),
                 '',
                 AbstractMessage::ERROR
@@ -81,12 +95,21 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             $this->forward('new', null, null, array('standardForm' => $standardForm));
             //===
         }
-        */
 
-        //  set token
+        if (!$terms) {
+            $this->addFlashMessage(
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    'gemCommunityFormController.error.accept_terms', 'rkw_form'
+                ),
+                '',
+                AbstractMessage::ERROR
+            );
+            $this->forward('new', null, null, array('standardForm' => $standardForm));
+            //===
+        }
+
         $standardForm->setToken(sha1(rand()));
 
-        //  set verificationLink -> muss aus der FlexForm kommen bzw. muss die gleiche Seite sein?
         $uri = $this->uriBuilder->reset()
             ->setTargetPageUid($GLOBALS["TSFE"]->id)
             ->uriFor(
@@ -96,27 +119,10 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             );
 
         $standardForm->setVerificationUrl('###baseUrl###/' . $uri);
+        $standardForm->setValidUntil(strtotime($this->settings['verification']['validUntil']));
+        $standardForm->setIdentifier($this->settings['identifier']);
 
-        //  set expiry date
-        $standardForm->setValidUntil(strtotime("+24 hour"));  //  @todo: Das muss dynamisch sein und ggfs. aus der Flexform kommen!
-
-        //  set identifier
-        $standardForm->setIdentifier('gem-community');  //  @todo: Das muss dynamisch sein und ggfs. aus der Flexform kommen!
-
-        //  @todo: Muss das immer gecheckt werden?
-//        if (!$privacy) {
-//            $this->addFlashMessage(
-//                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-//                    'registrationController.error.accept_privacy', 'rkw_registration'
-//                ),
-//                '',
-//                AbstractMessage::ERROR
-//            );
-//            $this->forward('new', null, null, array('standardForm' => $standardForm));
-//            //===
-//        }
-
-        // give form to mailHandling function
+        // pass form to mailHandling function
         $this->sendVerificationLink($standardForm);
         $this->standardFormRepository->add($standardForm);
 
@@ -144,7 +150,6 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
             if ($result) {
 
-                //  @todo: Do not verify, if already confirmed or expired!
                 if ($result->getEnabled()) {
 
                     //  already confirmed
@@ -160,11 +165,6 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 }
 
                 if ($result->getValidUntil() < time()) {
-
-                    DebuggerUtility::var_dump(date('d.m.Y H:i:s', $result->getValidUntil()));
-                    DebuggerUtility::var_dump(date('d.m.Y H:i:s', time()));
-
-                    DebuggerUtility::var_dump('expired');
 
                     $this->addFlashMessage(
                         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -186,21 +186,18 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
                 //  @todo: Oder direkt löschen, nachdem die Bestätigung rausgeschickt wurde
 
-                //  @todo: E-Mails an die Backend-User schicken
                 $this->sendRegistrationToAdmins($result);
 
                 //  @todo: Mit Bestätigung weiterleiten
-//                if (!$standardForm->getBstAgree()) {
-                    $this->addFlashMessage(
-                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                            'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
-                        ),
-                        '',
-                        AbstractMessage::OK
-                    );
-                    $this->forward('confirmed', null, null, array('standardForm' => null));
-                    //===
-//                }
+                $this->addFlashMessage(
+                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                        'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
+                    ),
+                    '',
+                    AbstractMessage::OK
+                );
+                $this->forward('confirmed', null, null, array('standardForm' => null));
+                //===
 
             } else {
 
@@ -226,7 +223,8 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     public function confirmedAction()
     {
-        DebuggerUtility::var_dump('confirmed');
+        // @todo muss ich hier was tun bzw. ist da überhaupt ne eigene Action notwendig?
+//        DebuggerUtility::var_dump('confirmed');
     }
 
     /**
@@ -261,9 +259,10 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         }
         */
 
-        //  @todo: Mist, es ist notwendig, hier einen zweiten SignalSlot nur für diesen Controller anzulegen.
-        // send final confirmation mail to user
-        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_USER, array($frontendUser, $formRequest));
+        $backendUsers = $this->getBackendUsers();
+
+        // send mail with verification link to user
+        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_USER, array($backendUsers, $frontendUser, $formRequest));
 
     }
 
@@ -275,7 +274,16 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     protected function sendRegistrationToAdmins(AbstractEntity $formRequest)
     {
-        // send information mail to admins
+        $backendUsers = $this->getBackendUsers();
+
+        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_ADMIN, array($backendUsers, $formRequest));
+    }
+
+    /**
+     * @return array
+     */
+    protected function getBackendUsers(): array
+    {
         $adminUidList = explode(',', $this->settings['mail']['backendUser']);
         $backendUsers = array();
         foreach ($adminUidList as $adminUid) {
@@ -287,22 +295,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             }
         }
 
-        // fallback-handling
-        if (
-            (count($backendUsers) < 1)
-            && ($backendUserFallback = intval($this->settings['mail']['fallbackBackendUser']))
-        ) {
-            $admin = $this->backendUserRepository->findByUid($backendUserFallback);
-            if (
-                ($admin)
-                && ($admin->getEmail())
-            ) {
-                $backendUsers[] = $admin;
-            }
-
-        }
-
-        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_ADMIN, array($backendUsers, $formRequest));
+        return $backendUsers;
     }
 
 }

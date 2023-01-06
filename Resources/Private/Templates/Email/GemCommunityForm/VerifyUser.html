@@ -1,0 +1,31 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+<rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/>
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.clickVerificationLink" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /> {formRequest.verificationUrl}
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+<f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+	<h1><rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/></h1>
+	<p>
+		<rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /><br>
+	</p>
+    <p>
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.clickVerificationLink" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /> <a href="{formRequest.verificationUrl}">{formRequest.verificationUrl}</a>
+    </p>
+    <p>
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+	<f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>

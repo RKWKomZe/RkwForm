@@ -54,5 +54,5 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSi
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:'. $extKey . '/Configuration/FlexForms/Standard.xml'
+    'FILE:EXT:'. $extKey . '/Configuration/FlexForms/GemCommunity.xml'
 );

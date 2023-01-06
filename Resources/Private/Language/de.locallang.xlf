@@ -11,6 +11,11 @@
                 <target>Bitte bestätigen Sie Ihre aktive Teilnahme am Frankfurter Bausachverständigentag.</target>
             </trans-unit>
 
+			<trans-unit id="gemCommunityFormController.error.accept_terms">
+				<source>Please confirm the terms.</source>
+				<target>Bitte bestätigen Sie die Einwilligung zur Verwendung Ihrer Daten.</target>
+			</trans-unit>
+
             <trans-unit id="gemCommunityFormController.error.verification.expired">
                 <source>Your registration link has already expired. Please register once again.</source>
                 <target>Ihr Registrierungslink ist bereits abgelaufen. Bitte melden Sie sich erneut an.</target>
@@ -107,7 +112,11 @@
                 <source>City</source>
                 <target>Ort</target>
             </trans-unit>
-			<trans-unit id="tx_rkwform_domain_model_standardform.theme">
+			<trans-unit id="tx_rkwform_domain_model_standardform.topics">
+				<source>Topics</source>
+				<target>Gründungsthemengebiete/Expertise im Thema</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
 				<source>Topic</source>
 				<target>Thema</target>
 			</trans-unit>
@@ -123,6 +132,11 @@
                 <source>Send</source>
                 <target>Jetzt absenden</target>
             </trans-unit>
+
+			<trans-unit id="templates_gemcommunity_new.button">
+				<source>Send</source>
+				<target>Jetzt anmelden</target>
+			</trans-unit>
 
             <trans-unit id="templates_standard_create.header">
                 <source>Thank you for your message!</source>
@@ -154,7 +168,6 @@
                 <source>Your personal number combination</source>
                 <target>Ihre persönliche Zahlenkombination</target>
             </trans-unit>
-
 
             <!-- PARTIAL: Form errors -->
             <trans-unit id="form.error.notFilled">
@@ -203,7 +216,7 @@
                 <source>City</source>
                 <target>Ort</target>
             </trans-unit>
-			<trans-unit id="form.error.newFormRequest.theme">
+			<trans-unit id="form.error.newFormRequest.topic">
 				<source>Topic</source>
 				<target>Thema</target>
 			</trans-unit>
@@ -236,6 +249,10 @@
                 <source>Thanks for your request</source>
                 <target>Danke für Ihre Nachricht</target>
             </trans-unit>
+			<trans-unit id="rkwMailService.verifyUser.subject">
+				<source>Thanks for your request</source>
+				<target>Ihre Anmeldung zur Teilnahme an der GEM-Befragung</target>
+			</trans-unit>
             <trans-unit id="rkwMailService.notifyAdmin.subject">
                 <source>Request via contact form</source>
                 <target>Anfrage über das Kontaktformular</target>
@@ -256,8 +273,21 @@
                 <target>Untenstehend haben wir die Details Ihrer Anfrage noch einmal für Sie zusammengefasst. Wir werden uns zeitnah mit Ihnen in Verbindung setzen.</target>
             </trans-unit>
 
+			<!-- Template/Email/GemCommunityForm/VerifyUser.html -->
+			<trans-unit id="templates_email_verifyUser.text1">
+				<source>thanks for joining the GEM-Community</source>
+				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text2">
+				<source>Below we have summarized the details of your registration once again for you.</source>
+				<target>Sie haben folgende Daten an uns übermittelt:</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.clickVerificationLink">
+				<source>Please confirm your registration by clicking the following link.</source>
+				<target>Bitte klicken Sie den nachfolgenden Link, um Ihre Anmeldung abzuschließen:</target>
+			</trans-unit>
 
-            <!-- Templates/Email/NotifyAdmin.html -->
+			<!-- Templates/Email/NotifyAdmin.html -->
             <trans-unit id="templates_email_notifyAdmin.headline">
                 <source>Hello %s,</source>
                 <target>Hallo %s,</target>
@@ -267,7 +297,17 @@
                 <target>über die Website wurde Ihnen eine Nachricht übermittelt. Sie können direkt auf diese E-Mail antworten.</target>
             </trans-unit>
 
+			<!-- Template/Email/GemCommunityForm/NotifyAdmin.html -->
+			<trans-unit id="rkwMailService.gemCommunityForm.notifyAdmin.subject">
+				<source>New registration for GEM-Survey by %s</source>
+				<target>Neue Anmeldung zur GEM-Befragung von %s</target>
+			</trans-unit>
 
+			<!-- Template/Email/GemCommunityForm/NotifyAdmin.html -->
+			<trans-unit id="templates_email_gemcommunity_notifyAdmin.text1">
+				<source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
+				<target>eine neue Anmeldung zur GEM-Befragung wurde eingereicht.</target>
+			</trans-unit>
 
             <!-- FORM FRAMEWORK -->
             <trans-unit id="tx_rkwform_formframework_form.not_filled">
