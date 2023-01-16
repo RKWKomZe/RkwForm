@@ -27,6 +27,10 @@
                 <source>Mrs.</source>
                 <target>Frau</target>
             </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.salutation.I.2" approved="yes">
+                <source>Mx</source>
+                <target>Divers</target>
+            </trans-unit>
             <trans-unit id="tx_rkwform_domain_model_standardform.first_name">
                 <source>First Name</source>
                 <target>Vorname</target>
