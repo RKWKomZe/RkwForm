@@ -9,13 +9,16 @@ On the other hand, it's prepared to extend the FormFramework in future with some
 * Needs upload folder fileadmin/user_upload/tx_rkwform
 * Do not edit the forms in live context via backend. Would be overwritten with every following deployment, because the form definitions are lying in /rkw_form/Configuration/Yaml/Forms/
 * The whole FormExt form we can work with and extend it: https://docs.typo3.org/c/typo3/cms-form/master/en-us/I/Config/configuration/Index.html
-### Available cronjob
+### Available cronjobs
+#### RkwForm: FileCleanup
 * Because the "Delete uploads" mail finisher only clear uploads of successfully sent forms, we need a cronjob to clear the upload folder
-* Cronjob name: "RkwForm: cleanup"
 * Argument: "daysFromNow" - Defines which old files should be deleted. Default value: 30 (days)
-* If no htaccess protection for the given upload folder exists, the cronjob should create one. Take a look to the CommandController function "securityCheck"
 * Change or add the upload destination here inside the FormFrameworkConf.yaml: TYPO3.CMS.Form.persistenceManager.allowedFileMounts
 * Intentional restriction: The cronjob handles multiple filemounts. Condition: The filepath must contain the string "tx_rkwform"
+#### RkwForm: Cleanup
+* Deletes expired records
+#### RkwForm: Security
+* If no htaccess protection for the given upload folder exists, the cronjob should create one. Take a look to the method "securityCheck"
 ### Incorporated changes / improvements of the basic ExtForm
 * HTML5 validation deactivated (no styles available)
 * Replacing the bootstrap based "ViewGrid" for every field with simple width property
