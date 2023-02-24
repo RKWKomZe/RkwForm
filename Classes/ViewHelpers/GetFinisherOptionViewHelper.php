@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwForm\ViewHelpers;
 /*
  * This file is part of the TYPO3 CMS project.
@@ -14,33 +13,59 @@ namespace RKW\RkwForm\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * Class GetFinisherOptionViewHelper
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GetFinisherOptionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class GetFinisherOptionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    use CompileWithRenderStatic;
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('formIdentifier', 'string', 'Really, I don\'t know what\'s that for', true);
+        $this->registerArgument('finisherIdentifier', 'string', 'Really, I don\'t know what\'s that for', true);
+        $this->registerArgument('getOption', 'string', 'Really, I don\'t know what\'s that for', true);
+    }
+
 
     /**
      * resolves problem of protected finisher options. Get them via YamlFileLoader!
      *
-     * @param string $formIdentifier The form identifier
-     * @param string $finisherIdentifier The identifier of the finisher
-     * @param string $getOption The option which should read
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render($formIdentifier, $finisherIdentifier, $getOption)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface
+        $renderingContext
+    ): string {
+
+        $formIdentifier = $arguments['formIdentifier'];
+        $finisherIdentifier = $arguments['finisherIdentifier'];
+        $getOption = $arguments['getOption'];
+
         /** @var \TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader $yamlFileLoader */
-        $yamlFileLoader = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\Loader\\YamlFileLoader');
+        $yamlFileLoader = GeneralUtility::makeInstance(YamlFileLoader::class);
         $formConfiguration = $yamlFileLoader->load('EXT:rkw_form/Configuration/Yaml/Forms/' . $formIdentifier . '.form.yaml');
 
         foreach ($formConfiguration['finishers'] as $finisher) {

@@ -14,89 +14,80 @@ namespace RKW\RkwForm\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwRegistration\Domain\Model\Title;
+
 /**
  * Class StandardForm
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+
     /**
-     * salutation
-     *
      * @var int
      */
-    protected $salutation = 99;
+    protected int $salutation = 99;
 
     /**
-     * title
-     *
-     * @var \RKW\RkwRegistration\Domain\Model\Title
+     * @var \RKW\RkwRegistration\Domain\Model\Title|null
      */
-    protected $title = null;
+    protected ?Title $title = null;
+
 
     /**
-     * firstName
-     *
      * @var string
      */
-    protected $firstName = '';
+    protected string $firstName = '';
+
 
     /**
-     * lastName
-     *
      * @var string
      */
-    protected $lastName = '';
+    protected string $lastName = '';
+
 
     /**
-     * company
-     *
      * @var string
      */
-    protected $company = '';
+    protected string $company = '';
+
 
     /**
-     * email
-     *
      * @var string
      */
-    protected $email = '';
+    protected string $email = '';
+
 
     /**
-     * phone
-     *
      * @var string
      */
-    protected $phone = '';
+    protected string $phone = '';
+
 
     /**
-     * text
-     *
      * @var string
      */
-    protected $text = '';
+    protected string $text = '';
+
 
     /**
-     * Returns the salutation
-     *
      * @return int $salutation
      */
-    public function getSalutation()
+    public function getSalutation(): int
     {
         return $this->salutation;
     }
 
+
     /**
-     * Sets the salutation
-     *
      * @param int $salutation
      * @return void
      */
-    public function setSalutation($salutation)
+    public function setSalutation(int $salutation): void
     {
         $this->salutation = $salutation;
     }
@@ -105,35 +96,34 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the title
      *
-     * @return \RKW\RkwRegistration\Domain\Model\Title $title
+     * @return \RKW\RkwRegistration\Domain\Model\Title|null $title
      */
-    public function getTitle()
+    public function getTitle():? Title
     {
         return $this->title;
     }
 
+
     /**
-     * Sets the title
-     *
-     * Hint: default "null" is needed to make value in forms optional
-     *
-     * @param \RKW\RkwRegistration\Domain\Model\Title $title
+     * @param \RKW\RkwRegistration\Domain\Model\Title|null $title
      * @return void
      */
-    public function setTitle(\RKW\RkwRegistration\Domain\Model\Title $title = null)
+    public function setTitle(Title $title = null): void
     {
         $this->title = $title;
     }
-    
+
+
     /**
      * Returns the firstName
      *
      * @return string $firstName
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
+
 
     /**
      * Sets the firstName
@@ -141,20 +131,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $firstName
      * @return void
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
+
 
     /**
      * Returns the lastName
      *
      * @return string $lastName
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
+
 
     /**
      * Sets the lastName
@@ -162,20 +154,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $lastName
      * @return void
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }
+
 
     /**
      * Returns the company
      *
      * @return string $company
      */
-    public function getCompany()
+    public function getCompany(): string
     {
         return $this->company;
     }
+
 
     /**
      * Sets the company
@@ -183,20 +177,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $company
      * @return void
      */
-    public function setCompany($company)
+    public function setCompany(string $company): void
     {
         $this->company = $company;
     }
+
 
     /**
      * Returns the email
      *
      * @return string $email
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
+
 
     /**
      * Sets the email
@@ -204,20 +200,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $email
      * @return void
      */
-    public function setEmail($email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
+
 
     /**
      * Returns the phone
      *
      * @return string $phone
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
+
 
     /**
      * Sets the phone
@@ -225,20 +223,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $phone
      * @return void
      */
-    public function setPhone($phone)
+    public function setPhone(string $phone): void
     {
         $this->phone = $phone;
     }
+
 
     /**
      * Returns the text
      *
      * @return string $text
      */
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
+
 
     /**
      * Sets the text
@@ -246,7 +246,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $text
      * @return void
      */
-    public function setText($text)
+    public function setText(string $text): void
     {
         $this->text = $text;
     }

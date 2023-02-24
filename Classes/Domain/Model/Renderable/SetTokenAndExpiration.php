@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwForm\Domain\Model\Renderable;
 
 /*
@@ -15,43 +14,42 @@ namespace RKW\RkwForm\Domain\Model\Renderable;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface;
+use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
+
 /**
  * Class SetTokenAndExpiration
  *
  * @author Christian Dilger <c.dilger@addorange.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class SetTokenAndExpiration
 {
 
-    /**
-     * function generateRandomSha1
-     *
-     * @return string
-     */
-    public function generateRandomSha1()
-    {
-
-        return sha1(rand());
-        //====
-
-    }
 
     /**
      * @param \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime
      * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable
      * @param mixed $elementValue submitted value of the element "before post processing"
      * @param array $requestArguments submitted raw request values
-     * @return void
+     * @return mixed
+     * @throws \Exception
+     *  @todo mixed return value is not optimal
      */
-    public function afterSubmit(\TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime, \TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable, $elementValue, array $requestArguments = [])
-    {
+    public function afterSubmit(
+        FormRuntime $formRuntime,
+        RenderableInterface $renderable,
+        $elementValue,
+        array $requestArguments = []
+    ) {
+
         $identifier = $renderable->getIdentifier();
 
         if ($identifier === 'token') {
-            $elementValue = $this->generateRandomSha1();
+            $elementValue = GeneralUtility::getUniqueRandomString();
         }
 
         if ($identifier === 'valid_until') {

@@ -4,17 +4,17 @@
 
 <!-- PLAINTEXT -->
 <f:section name="Plaintext">
-<rkwMailer:frontend.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" />
+<rkwMailer:email.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" />
 
-<rkwMailer:frontend.translate key="templates_email_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" />
+<rkwMailer:email.translate key="templates_email_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" />
 
 <f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: backendUser.lang}"/>
 </f:section>
 
 <!-- HTML -->
 <f:section name="Html">
-	<h1><rkwMailer:frontend.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" /></h1>
-	<p><rkwMailer:frontend.translate key="templates_email_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" /></p>
+	<h1><rkwMailer:email.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" /></h1>
+	<p><rkwMailer:email.translate key="templates_email_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" /></p>
 
 	<f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: backendUser.lang}"/>
 </f:section>

@@ -18,84 +18,87 @@ namespace RKW\RkwForm\Domain\Model;
  * Class BstForm
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class BstForm extends \RKW\RkwForm\Domain\Model\StandardForm
 {
     /**
-     * bstNumber1
-     *
      * @var int
      */
-    protected $bstNumber1 = 0;
+    protected int $bstNumber1 = 0;
+
 
     /**
-     * bstNumber2
-     *
      * @var int
      */
-    protected $bstNumber2 = 0;
+    protected int $bstNumber2 = 0;
+
 
     /**
-     * bstNumber3
-     *
      * @var int
      */
-    protected $bstNumber3 = 0;
+    protected int $bstNumber3 = 0;
+
 
     /**
-     * bstAgree
-     *
      * @var bool
      */
-    protected $bstAgree = 0;
+    protected bool $bstAgree = false;
+
 
     /**
      * @return int
      */
-    public function getBstNumber1()
+    public function getBstNumber1(): int
     {
         return $this->bstNumber1;
     }
 
     /**
      * @param int $bstNumber1
+     * @return void
      */
-    public function setBstNumber1($bstNumber1)
+    public function setBstNumber1(int $bstNumber1): void
     {
         $this->bstNumber1 = $bstNumber1;
     }
 
+
     /**
      * @return int
      */
-    public function getBstNumber2()
+    public function getBstNumber2(): int
     {
         return $this->bstNumber2;
     }
 
+
     /**
      * @param int $bstNumber2
+     * @return void
      */
-    public function setBstNumber2($bstNumber2)
+    public function setBstNumber2(int $bstNumber2): void
     {
         $this->bstNumber2 = $bstNumber2;
     }
 
+
     /**
      * @return int
      */
-    public function getBstNumber3()
+    public function getBstNumber3(): int
     {
         return $this->bstNumber3;
     }
 
+
     /**
      * @param int $bstNumber3
+     * @return void
      */
-    public function setBstNumber3($bstNumber3)
+    public function setBstNumber3(int $bstNumber3): void
     {
         $this->bstNumber3 = $bstNumber3;
     }
@@ -103,15 +106,17 @@ class BstForm extends \RKW\RkwForm\Domain\Model\StandardForm
     /**
      * @return bool
      */
-    public function getBstAgree()
+    public function getBstAgree(): bool
     {
         return $this->bstAgree;
     }
 
+
     /**
      * @param bool $bstAgree
+     * @return void
      */
-    public function setBstAgree($bstAgree)
+    public function setBstAgree(bool $bstAgree): void
     {
         $this->bstAgree = $bstAgree;
     }
