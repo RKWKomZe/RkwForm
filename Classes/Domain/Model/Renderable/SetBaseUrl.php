@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwForm\Domain\Model\Renderable;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,11 +14,14 @@ namespace RKW\RkwForm\Domain\Model\Renderable;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface;
+use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
+
 /**
  * Class SetBaseUrl
  *
  * @author Christian Dilger <c.dilger@addorange.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -29,12 +32,17 @@ class SetBaseUrl
      * @param \TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable
      * @param mixed $elementValue submitted value of the element "before post processing"
      * @param array $requestArguments submitted raw request values
-     * @return void
+     * @return  mixed
+     *  @todo mixed return value is not optimal
      */
-    public function afterSubmit(\TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime, \TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface $renderable, $elementValue, array $requestArguments = [])
-    {
-        $identifier = $renderable->getIdentifier();
+    public function afterSubmit(
+        FormRuntime $formRuntime,
+        RenderableInterface $renderable,
+        $elementValue,
+        array $requestArguments = []
+    ) {
 
+        $identifier = $renderable->getIdentifier();
         if ($identifier === 'confirmurl') {
 
             $verifypid = $requestArguments['verifypid'];

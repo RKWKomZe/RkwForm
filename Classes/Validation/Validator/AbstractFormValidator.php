@@ -1,10 +1,6 @@
 <?php
 namespace RKW\RkwForm\Validation\Validator;
 
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,11 +14,14 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+
 /**
  * Class AbstractFormValidator
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -36,13 +35,13 @@ class AbstractFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abst
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($standardForm)
+    public function isValid($standardForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
 
         // get mandatory fields
-        $mandatoryFieldsStandard = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $settings['mandatoryFields']['standard']);
+        $mandatoryFieldsStandard = GeneralUtility::trimExplode(",", $settings['mandatoryFields']['standard']);
 
         $isValid = true;
 
@@ -87,7 +86,6 @@ class AbstractFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abst
         }
 
         return $isValid;
-        //===
     }
 
 
@@ -98,11 +96,9 @@ class AbstractFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abst
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected static function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    protected static function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTyposcriptConfiguration('Rkwform', $which);
-        //===
+        return GeneralUtility::getTypoScriptConfiguration('Rkwform', $which);
     }
-
 }
 

@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 namespace RKW\RkwForm\Domain\Finishers;
 
 /*
@@ -15,25 +14,18 @@ namespace RKW\RkwForm\Domain\Finishers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Doctrine\Common\Util\Debug;
+use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Mail\MailMessage;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
-use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
 use TYPO3\CMS\Form\Service\TranslationService;
-use TYPO3\CMS\Form\ViewHelpers\RenderRenderableViewHelper;
-use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use \TYPO3\CMS\Core\Utility\PathUtility;
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use RKW\RkwBasics\Helper\Common;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
+use Madj2k\CoreExtended\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use RKW\RkwBasics\Utility\FrontendSimulatorUtility;
-
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -60,23 +52,27 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * - blindCarbonCopyAddress: Email address of the blind copy recipient (use multiple addresses with an array)
  * - format: format of the email (one of the FORMAT_* constants). By default mails are sent as HTML
  *
- * Scope: frontend
  */
 class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 {
 
     /**
-     * @var \TYPO3\CMS\Core\Database\Connection
+     * @var \TYPO3\CMS\Core\Database\Connection|null
      */
-    protected $databaseConnection = null;
+    protected ?Connection $databaseConnection = null;
+
 
     /**
      * Executes this finisher
-     * @see AbstractFinisher::execute()
      *
+     * @return void
      * @throws FinisherException
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     * @throws \TYPO3\CMS\Form\Domain\Exception\TypeDefinitionNotFoundException
+     * @throws \TYPO3\CMS\Form\Domain\Exception\TypeDefinitionNotValidException
+     * @see AbstractFinisher::execute()
      */
-    protected function executeInternal()
+    protected function executeInternal(): void
     {
         $formRuntime = $this->finisherContext->getFormRuntime();
         $standaloneView = $this->initializeStandaloneView($formRuntime);
@@ -89,7 +85,8 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
         if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-community-confirm') {
 
-            $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_rkwform_domain_model_standardform');
+            $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getConnectionForTable('tx_rkwform_domain_model_standardform');
 
             // find go through all pages
             /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
@@ -106,7 +103,6 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
             $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
 
             $page = null;
-
             foreach ($renderables as $renderable) {
                 if ($renderable instanceof Page) {
                     $page = $renderable;
@@ -114,7 +110,6 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
             }
 
             if ($page) {
-
                 foreach ($page->getRenderablesRecursively() as $renderable) {
 
                     if ($renderable->getIdentifier() === 'gettoken') {
@@ -128,7 +123,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
                     $record = $statement->fetchAll()[0];
 
                     /** @var \TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader $yamlFileLoader */
-                    $yamlFileLoader = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\Loader\\YamlFileLoader');
+                    $yamlFileLoader = GeneralUtility::makeInstance(YamlFileLoader::class);
                     $formConfiguration = $yamlFileLoader->load('EXT:rkw_form/Configuration/Yaml/Forms/gem-community.form.yaml');
 
                     $includableElements = [
@@ -145,9 +140,12 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
                         'theme',
                     ];
 
-                    $fillableElements = array_filter($formConfiguration['renderables'][0]['renderables'], function($element) use ($includableElements) {
-                        return in_array($element['identifier'], $includableElements);
-                    });
+                    $fillableElements = array_filter(
+                        $formConfiguration['renderables'][0]['renderables'],
+                        function($element) use ($includableElements) {
+                            return in_array($element['identifier'], $includableElements);
+                        }
+                    );
 
                     foreach ($fillableElements as $element) {
 
@@ -163,13 +161,9 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
                         } else {
                             $fillable->setDefaultValue($record[$key]);
                         }
-
                     }
-
                 }
-
             }
-
         }
 
         // this line is replaced through following lines
@@ -177,30 +171,31 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
 
         // ######### new RKW content START #########
-
-        // simulate frontend
-        //FrontendSimulatorUtility::simulateFrontendEnvironment(1);
-
         $settingsRkwMailer = $this->getSettings('RkwMailer');
 
-        // replace baseURLs in final email  - replacement with asign only works in template-files, not on layout-files
+        // replace baseURLs in final email  - replacement with assign only works in template-files, not on layout-files
         $message = preg_replace('/###baseUrl###/', rtrim($settingsRkwMailer['baseUrl'], '/'), $standaloneView->render());
         $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathImages'], '/')), $message);
         $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathLogo'], '/')), $message);
 
-        /* @toDo: Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
+        /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
         $replacePaths = [
             GeneralUtility::getIndpEnv('TYPO3_SITE_PATH'),
             $_SERVER['TYPO3_PATH_ROOT'] .'/'
         ];
 
         foreach ($replacePaths as $replacePath) {
-            $message = preg_replace('/(src|href)="' . str_replace('/', '\/', $replacePath) . '([^"]+)"/', '$1="' . '/$2"', $message);
+            $message = preg_replace(
+                '/(src|href)="' . str_replace('/', '\/', $replacePath) . '([^"]+)"/',
+                '$1="' . '/$2"',
+                $message
+            );
         }
-        $message = preg_replace('/(src|href)="\/([^"]+)"/', '$1="' . rtrim($settingsRkwMailer['baseUrl'], '/') . '/$2"', $message);
 
-        // reset frontend
-        //FrontendSimulatorUtility::resetFrontendEnvironment();
+        $message = preg_replace('/(src|href)="\/([^"]+)"/',
+            '$1="' . rtrim($settingsRkwMailer['baseUrl'], '/') . '/$2"',
+            $message
+        );
 
         // ######### new RKW content END #########
 
@@ -255,7 +250,6 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         }
 
         $elements = $formRuntime->getFormDefinition()->getRenderablesRecursively();
-
         if ($attachUploads) {
             foreach ($elements as $element) {
                 if (!$element instanceof FileUpload) {
@@ -276,14 +270,13 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
     }
 
 
-
     /**
      * Returns the relative image path
      *
      * @param string $path
      * @return string
      */
-    protected function getRelativePath($path)
+    protected function getRelativePath(string $path): string
     {
 
         if (strpos($path, 'EXT:') === 0) {
@@ -303,9 +296,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         }
 
         return $path;
-        //===
     }
-
 
 
     /**
@@ -316,9 +307,12 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected function getSettings($extension = 'RkwForm', $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
-    {
-        return Common::getTyposcriptConfiguration($extension, $which);
+    protected function getSettings(
+        string $extension = 'RkwForm',
+        string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+    ): array {
+
+        return GeneralUtility::getTypoScriptConfiguration($extension, $which);
     }
 
 }
