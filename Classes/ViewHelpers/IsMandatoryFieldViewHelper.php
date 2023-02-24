@@ -33,8 +33,10 @@ class IsMandatoryFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('fieldName', 'string', 'The name of the field that is to be checked against mandatoryFields.', true);
@@ -56,6 +58,7 @@ class IsMandatoryFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ): string {
+
         $fieldName = $arguments['fieldName'];
         $mandatoryFields = $arguments['mandatoryFields'];
         $mandatoryFieldsArray = array_map('trim', explode(',', $mandatoryFields));

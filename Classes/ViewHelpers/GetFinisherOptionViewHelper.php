@@ -33,8 +33,10 @@ class GetFinisherOptionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abst
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('formIdentifier', 'string', 'Really, I don\'t know what\'s that for', true);

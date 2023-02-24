@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwForm\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -32,8 +32,10 @@ class CompareFormPropertyPathViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelpe
 
     /**
      * Initialize arguments
+     *
+     * @return void
      */
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('propertyPath', 'string', 'Really, I don\'t know what\'s that for', true);

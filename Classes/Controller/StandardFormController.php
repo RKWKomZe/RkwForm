@@ -1,10 +1,6 @@
 <?php
 namespace RKW\RkwForm\Controller;
 
-use \RKW\RkwForm\Domain\Model\StandardForm;
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use \TYPO3\CMS\Core\Messaging\AbstractMessage;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,6 +14,8 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwForm\Domain\Model\StandardForm;
+
 /**
  * Class StandardFormController
  *
@@ -26,18 +24,21 @@ use \TYPO3\CMS\Core\Messaging\AbstractMessage;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
 class StandardFormController  extends \RKW\RkwForm\Controller\AbstractFormController
 {
     /**
      * action create
      *
      * @param \RKW\RkwForm\Domain\Model\StandardForm $standardForm
-     * @param int $privacy
-     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
+     * @param bool $privacy
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
      */
-    public function createAction(StandardForm $standardForm, $privacy = 0)
+    public function createAction(StandardForm $standardForm, bool $privacy = false): void
     {
         parent::createAbstractAction($standardForm, $privacy);
     }

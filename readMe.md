@@ -77,7 +77,7 @@ class ExampleFormController extends \RKW\RkwForm\Controller\AbstractFormControll
  * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
  * @return void
  */
-public function createAction(BstForm $standardForm, $privacy = 0)
+public function createAction(BstForm $standardForm, $privacy = 0): void
 {
     // my example code, which is different to the createActractAction of the AbstractController
 

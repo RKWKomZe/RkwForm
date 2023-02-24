@@ -1,10 +1,6 @@
 <?php
 namespace RKW\RkwForm\Validation\Validator;
 
-use Madj2k\CoreExtended\Utility\GeneralUtility as Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -17,6 +13,9 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  *
  * The TYPO3 project - inspiring people to share!
  */
+
+use Madj2k\CoreExtended\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * Class BstFormValidator
@@ -36,13 +35,13 @@ class BstFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractV
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($standardForm)
+    public function isValid($standardForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
 
         // get mandatory fields
-        $mandatoryFieldsStandard = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $settings['mandatoryFields']['bst']);
+        $mandatoryFieldsStandard = GeneralUtility::trimExplode(",", $settings['mandatoryFields']['bst']);
 
         $isValid = true;
 
@@ -98,10 +97,9 @@ class BstFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractV
      * @return array
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    protected static function getSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    protected static function getSettings(string $which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS): array
     {
-        return Common::getTypoScriptConfiguration('Rkwform', $which);
-        //===
+        return GeneralUtility::getTypoScriptConfiguration('Rkwform', $which);
     }
 
 }
