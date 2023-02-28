@@ -25,9 +25,9 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
       partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+        20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'ein neues EEPA-Anmeldeformular wurde eingereicht.'
     identifier: EmailToReceiver
     renderingOptions:
@@ -48,9 +48,9 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+        20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
       mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2022! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Anfang Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
     identifier: EmailToSender

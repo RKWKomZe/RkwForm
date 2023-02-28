@@ -63,9 +63,9 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Gem/Sender'
       partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+        20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
       mailText: 'vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Sie haben folgende Daten an uns übermittelt:'
     renderingOptions:

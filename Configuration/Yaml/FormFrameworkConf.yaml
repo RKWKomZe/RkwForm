@@ -63,13 +63,13 @@ TYPO3:
               renderingOptions:
                 templateRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/'
-                  110: 'EXT:rkw_mailer/Resources/Private/Templates/Email/'
+                  110: 'EXT:postmaster/Resources/Private/Templates/Email/'
                 partialRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Partials/FormFramework/Frontend/'
-                  110: 'EXT:rkw_mailer/Resources/Private/Partials/Email/'
+                  110: 'EXT:postmaster/Resources/Private/Partials/Email/'
                 layoutRootPaths:
                   100: 'EXT:rkw_form/Resources/Private/Layouts/FormFramework/Frontend/'
-                  110: 'EXT:rkw_mailer/Resources/Private/Layouts/Email/'
+                  110: 'EXT:postmaster/Resources/Private/Layouts/Email/'
                 translation:
                   translationFile:
                     # Default translation file for the frontend:

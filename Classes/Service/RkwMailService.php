@@ -16,8 +16,8 @@ namespace RKW\RkwForm\Service;
 
 use Madj2k\CoreExtended\Utility\GeneralUtility;
 use RKW\RkwForm\Domain\Model\StandardForm;
-use RKW\RkwMailer\Service\MailService;
-use RKW\RkwRegistration\Domain\Model\FrontendUser;
+use Madj2k\Postmaster\Service\MailService;
+use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -33,10 +33,10 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     /**
      * Sends an E-Mail to a Frontend-User
      *
-     * @param \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser
+     * @param \Madj2k\FeRegister\Domain\Model\FrontendUser $frontendUser
      * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      * @return void
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
@@ -51,7 +51,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
         if ($frontendUser->getEmail()) {
             if ($settings['view']['templateRootPaths'][0]) {
 
-                /** @var \RKW\RkwMailer\Service\MailService $mailService */
+                /** @var \Madj2k\Postmaster\Service\MailService $mailService */
                 $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
                 // send new user an email with token
@@ -65,11 +65,11 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 ));
 
                 $mailService->getQueueMail()->setSubject(
-                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                    \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                         'rkwMailService.confirmationUser.subject',
                         'rkw_form',
                         null,
-                        $frontendUser->getTxRkwregistrationLanguageKey()
+                        $frontendUser->getTxFeregisterLanguageKey()
                     )
                 );
 
@@ -92,7 +92,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @param \RKW\RkwForm\Domain\Model\BackendUser|array $backendUser
      * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
      * @return void
-     * @throws \RKW\RkwMailer\Exception
+     * @throws \Madj2k\Postmaster\Exception
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
@@ -113,7 +113,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
         if ($settings['view']['templateRootPaths'][0]) {
 
-            /** @var \RKW\RkwMailer\Service\MailService $mailService */
+            /** @var \Madj2k\Postmaster\Service\MailService $mailService */
             $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailService::class);
 
             foreach ($recipients as $recipient) {
@@ -130,7 +130,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                             'pageUid'      => intval($GLOBALS['TSFE']->id),
                             'loginPid'     => intval($settingsDefault['loginPid']),
                         ),
-                        'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                             'rkwMailService.notifyAdmin.subject',
                             'rkw_form',
                             null,
@@ -145,7 +145,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
             }
 
             $mailService->getQueueMail()->setSubject(
-                \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
                     'rkwMailService.notifyAdmin.subject',
                     'rkw_form',
                     null,

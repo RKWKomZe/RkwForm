@@ -22,7 +22,7 @@ namespace RKW\RkwForm\Domain\Model;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class BackendUser extends \RKW\RkwRegistration\Domain\Model\BackendUser
+class BackendUser extends \Madj2k\FeRegister\Domain\Model\BackendUser
 {
 
 
