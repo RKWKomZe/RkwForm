@@ -24,7 +24,7 @@ On the other hand, it's prepared to extend the FormFramework in future with some
 * Replacing the bootstrap based "ViewGrid" for every field with simple width property
 * Individual form error messages
 * h1-h6 options for static text field
-* The checkbox field got the property "type" to use it as terms-checkbox. Is bound to the extension RkwRegistration
+* The checkbox field got the property "type" to use it as terms-checkbox. Is bound to the extension FeRegister
 * Individual greeting text for every E-Mails (look to the mail finisher of the certain form)
 * The mailing is bound to the RkwMailer for using Header, Footer and its components (images; links) for every E-Mail out of the box
 * Attention: The EmailFinisher of the ExtForm is overwritten by /rkw_form/Classes/Domain/Finishers/EmailFinisher.php

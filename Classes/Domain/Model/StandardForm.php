@@ -14,7 +14,7 @@ namespace RKW\RkwForm\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use RKW\RkwRegistration\Domain\Model\Title;
+use Madj2k\FeRegister\Domain\Model\Title;
 
 /**
  * Class StandardForm
@@ -33,7 +33,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected int $salutation = 99;
 
     /**
-     * @var \RKW\RkwRegistration\Domain\Model\Title|null
+     * @var \Madj2k\FeRegister\Domain\Model\Title|null
      */
     protected ?Title $title = null;
 
@@ -96,7 +96,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the title
      *
-     * @return \RKW\RkwRegistration\Domain\Model\Title|null $title
+     * @return \Madj2k\FeRegister\Domain\Model\Title|null $title
      */
     public function getTitle():? Title
     {
@@ -105,7 +105,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 
     /**
-     * @param \RKW\RkwRegistration\Domain\Model\Title|null $title
+     * @param \Madj2k\FeRegister\Domain\Model\Title|null $title
      * @return void
      */
     public function setTitle(Title $title = null): void

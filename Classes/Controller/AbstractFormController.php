@@ -16,7 +16,7 @@ namespace RKW\RkwForm\Controller;
 use RKW\RkwForm\Domain\Repository\BackendUserRepository;
 use RKW\RkwForm\Domain\Repository\FrontendUserRepository;
 use RKW\RkwForm\Domain\Repository\StandardFormRepository;
-use RKW\RkwRegistration\Domain\Model\FrontendUser;
+use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use Madj2k\CoreExtended\Utility\GeneralUtility;
@@ -114,7 +114,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         if (!$privacy) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                    'registrationController.error.accept_privacy', 'rkw_registration'
+                    'registrationController.error.accept_privacy', 'fe_register'
                 ),
                 '',
                 AbstractMessage::ERROR
@@ -139,7 +139,7 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     protected function mailHandling(AbstractEntity $formRequest): void
     {
-        /** @var \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser */
+        /** @var \Madj2k\FeRegister\Domain\Model\FrontendUser $frontendUser */
         $frontendUser = GeneralUtility::makeInstance(FrontendUser::class);
         $frontendUser->setEmail($formRequest->getEmail());
         $frontendUser->setFirstName($formRequest->getFirstName());
@@ -151,13 +151,13 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         ) {
             $frontendUser->setTitle($formRequest->getTitle()->getName());
         }
-        $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ?: 'de');
+        $frontendUser->setTxFeregisterLanguageKey($GLOBALS['TSFE']->config['config']['language'] ?: 'de');
 
         /*
         // currently we do not use real privacy-entries
-        if ($this->settings['includeRkwRegistrationPrivacy']) {
+        if ($this->settings['includeFeRegisterPrivacy']) {
             // add privacy info
-            \RKW\RkwRegistration\DataProtection\ConsentHandler::add($this->request, $frontendUser, $newSupportRequest, 'new support request');
+            \Madj2k\FeRegister\DataProtection\ConsentHandler::add($this->request, $frontendUser, $newSupportRequest, 'new support request');
         }
         */
 
