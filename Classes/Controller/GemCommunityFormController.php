@@ -184,11 +184,8 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 $this->gemCommunityFormRepository->update($result);
                 $this->persistenceManager->persistAll();
 
-                //  @todo: Oder direkt löschen, nachdem die Bestätigung rausgeschickt wurde
-
                 $this->sendRegistrationToAdmins($result);
 
-                //  @todo: Mit Bestätigung weiterleiten
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
@@ -223,8 +220,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     public function confirmedAction()
     {
-        // @todo muss ich hier was tun bzw. ist da überhaupt ne eigene Action notwendig?
-//        DebuggerUtility::var_dump('confirmed');
+        //
     }
 
     /**

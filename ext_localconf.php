@@ -89,7 +89,6 @@ call_user_func(
             'adminMail'
         );
 
-        //  @todo: Brauche ich wirklich diese beiden, um die Mails getrennt auszusenden?
         $signalSlotDispatcher->connect(
             'RKW\\RkwForm\\Controller\\GemCommunityFormController',
             \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,

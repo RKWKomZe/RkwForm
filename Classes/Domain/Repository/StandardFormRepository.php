@@ -42,7 +42,6 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $constraints[] = $query->equals('identifier', $identifier);
         $constraints[] = $query->lessThanOrEqual('validUntil', time());
 
-        // NOW: construct final query!
         $query->matching($query->logicalAnd($constraints));
 
         return $query->execute();

@@ -2,9 +2,8 @@
 
 namespace RKW\RkwForm\Service;
 
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use RKW\RkwBasics\Helper\Common;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -126,7 +125,6 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     ),
                 ));
 
-                // @todo: Subject müsste noch an den Vorgang angepasst werden!
                 $mailService->getQueueMail()->setSubject(
                     \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                         'rkwMailService.verifyUser.subject',
