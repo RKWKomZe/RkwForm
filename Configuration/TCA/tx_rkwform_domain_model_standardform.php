@@ -29,7 +29,8 @@ return [
                 'items' => array(
                     array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.99', 99),
                     array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.0', 0),
-                    array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.1', 1)
+                    array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.1', 1),
+                    array('LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.salutation.I.2', 2)
                 ),
                 'default' => 99,
                 'size' => 1,

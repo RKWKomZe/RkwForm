@@ -81,6 +81,12 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $text = '';
 
     /**
+     * @var string
+     * @validate \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
+     */
+    protected $captchaResponse;
+
+    /**
      * Returns the salutation
      *
      * @return int $salutation
@@ -124,7 +130,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->title = $title;
     }
-
+    
     /**
      * Returns the firstName
      *
@@ -251,4 +257,22 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->text = $text;
     }
 
+    /**
+     * Sets the captchaResponse
+     *
+     * @param string $captchaResponse
+     * @return void
+     */
+    public function setCaptchaResponse($captchaResponse) {
+        $this->captchaResponse = $captchaResponse;
+    }
+
+    /**
+     * Getter for captchaResponse
+     *
+     * @return string
+     */
+    public function getCaptchaResponse() {
+        return $this->captchaResponse;
+    }
 }
