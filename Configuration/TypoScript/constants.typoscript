@@ -24,6 +24,7 @@ plugin.tx_rkwform {
             # cat=plugin.tx_rkwform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
             bst = firstName, lastName, email, bstNumber1, bstNumber2, bstNumber3
 
+            # cat=plugin.tx_rkwform//f; type=string; label=mandatory fields for standard form (e.g. salutation, firstName, lastName, company, email, phone, text )
             gemCommunity = firstName, lastName, email, street, postal, city, topic
         }
 

@@ -17,7 +17,7 @@ defined('TYPO3_MODE') || die('Access denied.');
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'RKW.RkwForm',
     'GemCommunityForm',
-    'RKW Form: GemCommunityForm'
+    'RKW Form: Anmeldung zur Gem-Community'
 );
 
 
