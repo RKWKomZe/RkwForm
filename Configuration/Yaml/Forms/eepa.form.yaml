@@ -52,7 +52,7 @@ finishers:
       layoutRootPaths:
         20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
-      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2022! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Anfang Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
+      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2023! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Anfang Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
     identifier: EmailToSender
     renderingOptions:
       mailtext: Test.456
@@ -83,7 +83,7 @@ renderables:
             required: required
           fieldClass: width50
         identifier: name
-        label: 'Name der Initiative'
+        label: 'Name des Projekts/der Initiative'
         type: Text
         validators:
           -
@@ -210,12 +210,12 @@ renderables:
       -
         properties:
           options:
-            'Förderung des Unternehmergeistes ': '1. Förderung des Unternehmergeistes'
-            'Investition in Unternehmenskompetenzen ': '2. Investition in Unternehmenskompetenzen '
-            'Verbesserung der Geschäftsumgebung und Förderung der Digitalisierung ': '3. Verbesserung der Geschäftsumgebung und Unterstützung des digitalen Wandels'
-            'Förderung der Internationalisierung der Wirtschaftstätigkeit ': '4. Förderung der Internationalisierung der Wirtschaftstätigkeit '
-            'Förderung des nachhaltigen Wandels ': '5. Förderung des nachhaltigen Wandels'
-            'Verantwortungsvolles und integrationsfreundliches Unternehmertum ': '6. Verantwortungsvolles und integrationsfreundliches Unternehmertum '
+            'Förderung des Unternehmergeistes': '1. Förderung des Unternehmergeistes'
+            'Investition in Unternehmenskompetenzen': '2. Investition in Unternehmenskompetenzen'
+            'Unterstützung des digitalen Wandels': '3. Unterstützung des digitalen Wandels'
+            'Verbesserung des Geschäftsumfelds und Unterstützung der Internationalisierung von Unternehmen': '4. Verbesserung des Geschäftsumfelds und Unterstützung der Internationalisierung von Unternehmen'
+            'Förderung des nachhaltigen Wandels': '5. Förderung des nachhaltigen Wandels'
+            'Verantwortungsvolles und integrationsfreundliches Unternehmertum': '6. Verantwortungsvolles und integrationsfreundliches Unternehmertum'
           elementDescription: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
           fluidAdditionalAttributes:
             required: required
@@ -248,7 +248,7 @@ renderables:
         label: ''
       -
         properties:
-          text: 'Dauer der Initiative (Hinweis: Die Initiative muss seit mindestens 15 Monaten bestehen) '
+          text: 'Dauer der Initiative (Hinweis: Die Initiative muss seit mindestens 15 Monaten bestehen)'
         type: StaticText
         identifier: statictext-6
         label: ''
@@ -256,6 +256,8 @@ renderables:
         type: GridRow
         identifier: gridrow-2
         label: 'Grid: Row'
+        properties:
+          elementClassAttribute: width100
         renderables:
           -
             properties:
@@ -292,6 +294,7 @@ renderables:
           options:
             Ja: Ja
             Nein: Nein
+          fieldClass: width100
         type: RadioButton
         identifier: radiobutton-2
         label: 'ein Finanzabkommen'
@@ -300,6 +303,7 @@ renderables:
           options:
             Ja: Ja
             Nein: Nein
+          fieldClass: width100
         type: RadioButton
         identifier: radiobutton-3
         label: 'ein offizielles Abkommen'
@@ -308,6 +312,7 @@ renderables:
           options:
             Ja: Ja
             Nein: Nein
+          fieldClass: width100
         type: RadioButton
         identifier: radiobutton-4
         label: 'eine ausdrückliche Unterstützung'
@@ -319,30 +324,16 @@ renderables:
         identifier: textarea-1
         label: 'Beschreiben Sie die Details des Vertrags der öffentlich-privaten Partnerschaft: '
       -
-        properties:
-          text: 'Wie hoch war das Budget der Initiative? '
-        type: StaticText
-        identifier: statictext-8
-        label: ''
-      -
         defaultValue: ''
         properties:
+          elementDescription: ''
           fluidAdditionalAttributes:
+            placeholder: 'Woher kommt das Geld/die Finanzierung für das Projekt? In welchem Zeitraum wurde das Budget verwendet bzw. in welchem Zeitrahmen soll es verwendet werden?'
             required: required
-        type: Text
-        identifier: text-8
-        label: 'In den letzten zwei Jahren'
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-        type: Text
-        identifier: text-9
-        label: Insgesamt
+          fieldClass: width100
+        type: Textarea
+        identifier: textarea-1-1
+        label: Finanzierung
         validators:
           -
             identifier: NotEmpty
@@ -357,12 +348,11 @@ renderables:
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
-            placeholder: 'Grundlegendendes Konzept, Ziele, Zielgruppe(n)'
             required: required
           fieldClass: width100
         type: Textarea
         identifier: textarea-2
-        label: 'Kurzbeschreibung der Initiative'
+        label: 'Was ist das grundlegende Konzept und Ziel des Projekts? Wie erreichen Sie diese Ziele?'
         validators:
           -
             identifier: NotEmpty
@@ -371,12 +361,12 @@ renderables:
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
-            placeholder: 'Welche Auswirkungen hatte die Initiative auf die lokale Wirtschaft? In welchem Umfang sind bspw. Arbeitsplätze entstanden? In welcher Form wird die Initiative in Zukunft weitergeführt werden können? '
+            placeholder: 'Welche Auswirkungen hatte die Initiative auf die lokale Wirtschaft? In welchem Umfang sind bspw. Arbeitsplätze entstanden? In welcher Form wird die Initiative in Zukunft weitergeführt werden können?'
             required: required
           fieldClass: width100
         type: Textarea
         identifier: textarea-3
-        label: 'Ergebnisse/ Erfolge der Initiative'
+        label: 'Was sind die bisherigen Ergebnisse der Initiative?'
         validators:
           -
             identifier: NotEmpty
@@ -395,18 +385,8 @@ renderables:
           -
             identifier: NotEmpty
       -
-        defaultValue: ''
         properties:
-          elementDescription: ''
-          fluidAdditionalAttributes:
-            placeholder: 'Hat eine/mehrere der nachfolgenden Interessensgruppen von der Umsetzung der Initiative profitiert: schwerbehinderte Menschen, geflüchtete Personen, Frauen, Kinder/Jugendliche, Ältere, sonstige benachteiligte Gruppen? Wodurch? '
-          fieldClass: width100
-        type: Textarea
-        identifier: textarea-5
-        label: 'Weitere positive Auswirkungen'
-      -
-        properties:
-          text: '3. Öffentlichkeitsarbeit '
+          text: '3. Öffentlichkeitsarbeit'
         type: StaticText
         identifier: statictext-10
         label: ''
@@ -449,7 +429,7 @@ renderables:
     renderables:
       -
         properties:
-          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2021. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
+          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2023. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
         type: StaticText
         identifier: statictext-11
         label: '(III) Teilnahmezustimmung '
