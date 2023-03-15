@@ -14,6 +14,8 @@ namespace RKW\RkwForm\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * Class GemCommunityFormRepository
  *
@@ -29,23 +31,19 @@ class GemCommunityFormRepository extends \TYPO3\CMS\Extbase\Persistence\Reposito
      * find form entries by token
      *
      * @param string $token
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|null
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function findByToken(string $token = '')
+    public function findByToken(string $token = ''): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
         $constraints = [];
-
         $constraints[] = $query->equals('token', $token);
 
-        // NOW: construct final query!
         $query->matching($query->logicalAnd($constraints));
-
-        return $query->execute()->getFirst();
-        //====
+        return $query->execute();
     }
 
 }

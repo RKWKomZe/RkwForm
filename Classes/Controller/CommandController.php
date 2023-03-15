@@ -46,6 +46,7 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
      */
     protected $logger;
 
+
     /**
      * Clean up for form uploads
      *
@@ -135,7 +136,7 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
             $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::INFO, sprintf('Successfully removed %s expired form records completely from the database.', $cnt));
 
         } catch (\Exception $e) {
-            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('An error occurred while trying to remove expired form records completely from the database. Message: %s', str_replace(array("\n", "\r"), '', $e->getMessage())));
+            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('An error occurred while trying to remove expired form records completely from the database. Message: %s', str_replace(["\n", "\r"], '', $e->getMessage())));
         }
 
     }

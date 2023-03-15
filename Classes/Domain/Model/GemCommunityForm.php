@@ -88,6 +88,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
      */
     protected $enabled = 0;
 
+
     /**
      * Returns the type
      *

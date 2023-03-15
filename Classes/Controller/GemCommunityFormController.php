@@ -1,14 +1,6 @@
 <?php
 namespace RKW\RkwForm\Controller;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use RKW\RkwForm\Domain\Model\GemCommunityForm;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -22,6 +14,14 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwForm\Domain\Model\GemCommunityForm;
+use RKW\RkwForm\Domain\Model\StandardForm;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+
 /**
  * Class GemCommunityFormController
  *
@@ -30,17 +30,15 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
 class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormController
 {
-
     /**
      * gemCommunityFormRepository
      *
      * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
      * @inject
      */
-    protected $gemCommunityFormRepository = null;
+    protected $gemCommunityFormRepository;
 
     /**
      * objectManager
@@ -58,12 +56,14 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     protected $persistenceManager;
 
+
     /**
      * action new
+     *
      * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
      * @return void
      */
-    public function newAction(AbstractEntity $standardForm = null)
+    public function newAction(AbstractEntity $standardForm = null): void
     {
         $this->view->assignMultiple([
             'standardForm' => $standardForm,
@@ -80,10 +80,9 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      * @validate $standardForm \RKW\RkwForm\Validation\Validator\GemCommunityFormValidator
      * @return void
      */
-    public function createAction(GemCommunityForm $standardForm, $privacy = 0, $terms = 0)
+    public function createAction(GemCommunityForm $standardForm, $privacy = 0, $terms = 0): void
     {
 
-        //  @todo: Muss das immer gecheckt werden?
         if (!$privacy) {
             $this->addFlashMessage(
                 \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -92,7 +91,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 '',
                 AbstractMessage::ERROR
             );
-            $this->forward('new', null, null, array('standardForm' => $standardForm));
+            $this->forward('new', null, null, ['standardForm' => $standardForm]);
             //===
         }
 
@@ -104,7 +103,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 '',
                 AbstractMessage::ERROR
             );
-            $this->forward('new', null, null, array('standardForm' => $standardForm));
+            $this->forward('new', null, null, ['standardForm' => $standardForm]);
             //===
         }
 
@@ -130,12 +129,12 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
     /**
      * action verify
+     *
      * @param string $token
      * @return void
      */
-    public function verifyAction(string $token = '')
+    public function verifyAction(string $token = ''): void
     {
-
         // set objects if they haven't been injected yet
         if (!$this->objectManager) {
             $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
@@ -145,13 +144,14 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         }
 
         if ($token) {
-
             $result = $this->gemCommunityFormRepository->findByToken($token);
 
-            if ($result) {
+            if ($result->getFirst()) {
 
-                if ($result->getEnabled()) {
+                /* @var \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm */
+                $standardForm = $result->getFirst();
 
+                if ($standardForm->getEnabled()) {
                     //  already confirmed
                     $this->addFlashMessage(
                         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -160,12 +160,10 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                         '',
                         AbstractMessage::INFO
                     );
-                    $this->forward('confirmed', null, null, array('standardForm' => null));
-
+                    $this->forward('confirmed', null, null, ['standardForm' => null]);
                 }
 
-                if ($result->getValidUntil() < time()) {
-
+                if ($standardForm->getValidUntil() < time()) {
                     $this->addFlashMessage(
                         \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                             'gemCommunityFormController.error.verification.expired', 'rkw_form'
@@ -173,18 +171,15 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                         '',
                         AbstractMessage::ERROR
                     );
-                    $this->forward('new', null, null, array('standardForm' => null));
-
+                    $this->forward('new', null, null, ['standardForm' => null]);
                 }
 
-                //  set enabled
-                $result->setEnabled(true);
+                $standardForm->setEnabled(true);
 
-                //  persist it
-                $this->gemCommunityFormRepository->update($result);
+                $this->gemCommunityFormRepository->update($standardForm);
                 $this->persistenceManager->persistAll();
 
-                $this->sendRegistrationToAdmins($result);
+                $this->sendRegistrationToAdmins($standardForm);
 
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
@@ -193,7 +188,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                     '',
                     AbstractMessage::OK
                 );
-                $this->forward('confirmed', null, null, array('standardForm' => null));
+                $this->forward('confirmed', null, null, ['standardForm' => null]);
                 //===
 
             } else {
@@ -205,7 +200,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                     '',
                     AbstractMessage::ERROR
                 );
-                $this->forward('new', null, null, array('standardForm' => null));
+                $this->forward('new', null, null, ['standardForm' => null]);
 
             }
 
@@ -218,31 +213,33 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      *
      * @return void
      */
-    public function confirmedAction()
+    public function confirmedAction(): void
     {
         //
     }
 
     /**
      * mail handling
-     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $formRequest
+     *
+     * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
+     * @return void
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
-    protected function sendVerificationLink(AbstractEntity $formRequest)
+    protected function sendVerificationLink(GemCommunityForm $standardForm): void
     {
 
         /** @var \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser */
         $frontendUser = GeneralUtility::makeInstance('RKW\\RkwRegistration\\Domain\\Model\\FrontendUser');
-        $frontendUser->setEmail($formRequest->getEmail());
-        $frontendUser->setFirstName($formRequest->getFirstName());
-        $frontendUser->setLastName($formRequest->getLastName());
+        $frontendUser->setEmail($standardForm->getEmail());
+        $frontendUser->setFirstName($standardForm->getFirstName());
+        $frontendUser->setLastName($standardForm->getLastName());
         if (
-            ($formRequest->getTitle())
-            && ($formRequest->getTitle()->getIsIncludedInSalutation())
-            && (! $formRequest->getTitle()->getIsTitleAfter())
+            ($standardForm->getTitle())
+            && ($standardForm->getTitle()->getIsIncludedInSalutation())
+            && (! $standardForm->getTitle()->getIsTitleAfter())
         ) {
-            $frontendUser->setTitle($formRequest->getTitle()->getName());
+            $frontendUser->setTitle($standardForm->getTitle()->getName());
         }
 
         $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'de');
@@ -258,21 +255,30 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         $backendUsers = $this->getBackendUsers();
 
         // send mail with verification link to user
-        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_USER, array($backendUsers, $frontendUser, $formRequest));
+        $this->signalSlotDispatcher->dispatch(
+            __CLASS__,
+            self::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            [$backendUsers, $frontendUser, $standardForm]
+        );
 
     }
 
     /**
      * mail handling
-     * @param \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $formRequest
+     *
+     * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException if a slot return
      */
-    protected function sendRegistrationToAdmins(AbstractEntity $formRequest)
+    protected function sendRegistrationToAdmins(StandardForm $standardForm): void
     {
         $backendUsers = $this->getBackendUsers();
 
-        $this->signalSlotDispatcher->dispatch(__CLASS__, self::SIGNAL_AFTER_REQUEST_CREATED_ADMIN, array($backendUsers, $formRequest));
+        $this->signalSlotDispatcher->dispatch(
+            __CLASS__,
+            self::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            [$backendUsers, $standardForm]
+        );
     }
 
     /**
@@ -281,7 +287,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
     protected function getBackendUsers(): array
     {
         $adminUidList = explode(',', $this->settings['mail']['backendUser']);
-        $backendUsers = array();
+        $backendUsers = [];
         foreach ($adminUidList as $adminUid) {
             if ($adminUid) {
                 $admin = $this->backendUserRepository->findByUid($adminUid);
