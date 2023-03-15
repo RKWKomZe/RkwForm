@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwForm\Domain\Repository;
 
 /*
@@ -19,11 +18,11 @@ namespace RKW\RkwForm\Domain\Repository;
  * Class FrontendUserRepository
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class FrontendUserRepository extends \RKW\RkwRegistration\Domain\Repository\FrontendUserRepository
+class FrontendUserRepository extends \Madj2k\FeRegister\Domain\Repository\FrontendUserRepository
 {
 
 

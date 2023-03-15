@@ -1,13 +1,6 @@
 <?php
 namespace RKW\RkwForm\Controller;
 
-use \RKW\RkwForm\Domain\Model\BstForm;
-use \TYPO3\CMS\Core\Utility\GeneralUtility;
-use \TYPO3\CMS\Core\Messaging\AbstractMessage;
-
-use \TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -21,11 +14,14 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwForm\Domain\Model\BstForm;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+
 /**
  * Class BstFormController
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -36,11 +32,15 @@ class BstFormController extends \RKW\RkwForm\Controller\AbstractFormController
      * action create
      *
      * @param \RKW\RkwForm\Domain\Model\BstForm $standardForm
-     * @param int $privacy
-     * @validate $standardForm \RKW\RkwForm\Validation\Validator\BstFormValidator
+     * @param bool $privacy
      * @return void
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\BstFormValidator", param="standardForm")
      */
-    public function createAction(BstForm $standardForm, $privacy = 0)
+    public function createAction(BstForm $standardForm, bool $privacy = false): void
     {
         if (!$standardForm->getBstAgree()) {
             $this->addFlashMessage(
@@ -50,8 +50,7 @@ class BstFormController extends \RKW\RkwForm\Controller\AbstractFormController
                 '',
                 AbstractMessage::ERROR
             );
-            $this->forward('new', null, null, array('standardForm' => $standardForm));
-            //===
+            $this->forward('new', null, null, ['standardForm' => $standardForm]);
         }
 
         parent::createAbstractAction($standardForm, $privacy);

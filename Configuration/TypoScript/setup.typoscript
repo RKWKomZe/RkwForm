@@ -12,13 +12,16 @@ config.tx_extbase {
 
             #===============================================
 
-            RKW\RkwRegistration\Domain\Model\FrontendUser {
+            Madj2k\FeRegister\Domain\Model\FrontendUser {
                 subclasses {
                     Tx_RkwForm_FrontendUser = RKW\RkwForm\Domain\Model\FrontendUser
                 }
             }
 
             RKW\RkwForm\Domain\Model\FrontendUser {
+
+                // storage for new records in cross-extension-context
+                newRecordStoragePid = {$plugin.tx_feregister.persistence.storagePid}
                 mapping {
                     tableName = fe_users
                     recordType =
@@ -27,7 +30,7 @@ config.tx_extbase {
 
             #===============================================
 
-            RKW\RkwRegistration\Domain\Model\BackendUser {
+            Madj2k\FeRegister\Domain\Model\BackendUser {
                 subclasses {
                     Tx_RkwForm_BackendUser = RKW\RkwForm\Domain\Model\BackendUser
                 }

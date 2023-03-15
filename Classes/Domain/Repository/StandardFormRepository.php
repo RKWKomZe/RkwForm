@@ -14,11 +14,13 @@ namespace RKW\RkwForm\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /**
  * Class StandardFormRepository
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -29,16 +31,15 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * find expired form entries
      *
      * @param string $identifier
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function findExpiredByFormIdentifier(string $identifier = '')
+    public function findExpiredByFormIdentifier(string $identifier = ''): QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
 
         $constraints = [];
-
         $constraints[] = $query->equals('identifier', $identifier);
         $constraints[] = $query->lessThanOrEqual('validUntil', time());
 
@@ -46,7 +47,6 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->matching($query->logicalAnd($constraints));
 
         return $query->execute();
-        //====
     }
 
 }

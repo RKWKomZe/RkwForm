@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwForm\ViewHelpers;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -14,34 +14,57 @@ namespace RKW\RkwForm\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 /**
  * Class GetValueFromArrayViewHelper
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GetValueFromArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class GetValueFromArrayViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+    use CompileWithRenderStatic;
+
+    /**
+     * Initialize arguments
+     *
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('array', 'array', 'The array to get data from', true);
+        $this->registerArgument('value', 'string', 'The array-key to find', true);
+    }
+
 
     /**
      * needed for dynamic created variables which contains variables
      *
-     * @param array $array The array
-     * @param string $value The wanted value
+     * @param array $arguments
+     * @param \Closure  $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
      * @return string
      */
-    public function render($array, $value)
-    {
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ): string {
+
+        $array = $arguments['array'];
+        $value = $arguments['value'];
+
         if(array_key_exists($value, $array)) {
             return $array[$value];
         }
-    }
 
+        return '';
+    }
 
 }

@@ -18,11 +18,11 @@ namespace RKW\RkwForm\Domain\Model;
  * Class BackendUser
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class BackendUser extends \RKW\RkwRegistration\Domain\Model\BackendUser
+class BackendUser extends \Madj2k\FeRegister\Domain\Model\BackendUser
 {
 
 

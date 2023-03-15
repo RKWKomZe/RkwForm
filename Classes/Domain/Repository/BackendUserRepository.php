@@ -1,6 +1,6 @@
 <?php
-
 namespace RKW\RkwForm\Domain\Repository;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -18,7 +18,7 @@ namespace RKW\RkwForm\Domain\Repository;
  * Class BackendUserRepository
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
