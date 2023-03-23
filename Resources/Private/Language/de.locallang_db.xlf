@@ -113,11 +113,11 @@
                 <source>Valid until</source>
                 <target>Verifizierungslink gültig bis (Format: +x hour, +x day)</target>
             </trans-unit>
-            <trans-unit id="flexform.standard.global.topics">
+            <trans-unit id="flexform.standard.topics">
             	<source>Topics</source>
             	<target>Gründungsthemengebiete (kommagetrennt)</target>
 			</trans-unit>
-			<trans-unit id="flexform.standard.global.identifier">
+			<trans-unit id="flexform.standard.identifier">
             	<source>Identifier</source>
             	<target>Eindeutiger Formularname</target>
 			</trans-unit>

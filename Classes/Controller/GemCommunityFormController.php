@@ -16,11 +16,13 @@ namespace RKW\RkwForm\Controller;
 
 use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use RKW\RkwForm\Domain\Model\StandardForm;
+use RKW\RkwRegistration\Domain\Model\FrontendUser;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Class GemCommunityFormController
@@ -30,7 +32,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormController
+class GemCommunityFormController extends AbstractFormController
 {
     /**
      * gemCommunityFormRepository
@@ -67,7 +69,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
     {
         $this->view->assignMultiple([
             'standardForm' => $standardForm,
-            'topics' => \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(",", $this->settings['form']['topics'])
+            'topics' => GeneralUtility::trimExplode(",", $this->settings['form']['topics'])
         ]);
     }
 
@@ -80,31 +82,29 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      * @validate $standardForm \RKW\RkwForm\Validation\Validator\GemCommunityFormValidator
      * @return void
      */
-    public function createAction(GemCommunityForm $standardForm, $privacy = 0, $terms = 0): void
+    public function createAction(GemCommunityForm $standardForm, int $privacy = 0, int $terms = 0): void
     {
 
         if (!$privacy) {
             $this->addFlashMessage(
-                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                LocalizationUtility::translate(
                     'registrationController.error.accept_privacy', 'rkw_registration'
                 ),
                 '',
                 AbstractMessage::ERROR
             );
             $this->forward('new', null, null, ['standardForm' => $standardForm]);
-            //===
         }
 
         if (!$terms) {
             $this->addFlashMessage(
-                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                LocalizationUtility::translate(
                     'gemCommunityFormController.error.accept_terms', 'rkw_form'
                 ),
                 '',
                 AbstractMessage::ERROR
             );
             $this->forward('new', null, null, ['standardForm' => $standardForm]);
-            //===
         }
 
         $standardForm->setToken(sha1(rand()));
@@ -112,14 +112,14 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         $uri = $this->uriBuilder->reset()
             ->setTargetPageUid($GLOBALS["TSFE"]->id)
             ->uriFor(
-                $actionName = 'verify',
-                $controllerArguments = ['token' => $standardForm->getToken()],
-                $controllerName = 'GemCommunityForm'
+                'verify',
+                ['token' => $standardForm->getToken()],
+                'GemCommunityForm'
             );
 
         $standardForm->setVerificationUrl('###baseUrl###/' . $uri);
         $standardForm->setValidUntil(strtotime($this->settings['verification']['validUntil']));
-        $standardForm->setIdentifier($this->settings['identifier']);
+        $standardForm->setIdentifier($this->settings['form']['identifier']);
 
         // pass form to mailHandling function
         $this->sendVerificationLink($standardForm);
@@ -154,7 +154,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 if ($standardForm->getEnabled()) {
                     //  already confirmed
                     $this->addFlashMessage(
-                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                        LocalizationUtility::translate(
                             'gemCommunityFormController.error.verification.already_enabled', 'rkw_form'
                         ),
                         '',
@@ -165,7 +165,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
                 if ($standardForm->getValidUntil() < time()) {
                     $this->addFlashMessage(
-                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                        LocalizationUtility::translate(
                             'gemCommunityFormController.error.verification.expired', 'rkw_form'
                         ),
                         '',
@@ -182,31 +182,29 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 $this->sendRegistrationToAdmins($standardForm);
 
                 $this->addFlashMessage(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    LocalizationUtility::translate(
                         'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
                     ),
                     '',
                     AbstractMessage::OK
                 );
                 $this->forward('confirmed', null, null, ['standardForm' => null]);
-                //===
 
             } else {
 
                 $this->addFlashMessage(
-                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                    LocalizationUtility::translate(
                         'gemCommunityFormController.error.verification.notfound', 'rkw_form'
                     ),
                     '',
                     AbstractMessage::ERROR
                 );
                 $this->forward('new', null, null, ['standardForm' => null]);
-
             }
 
         }
-
     }
+
 
     /**
      * action confirmed
@@ -217,6 +215,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
     {
         //
     }
+
 
     /**
      * mail handling
@@ -230,7 +229,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
     {
 
         /** @var \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser */
-        $frontendUser = GeneralUtility::makeInstance('RKW\\RkwRegistration\\Domain\\Model\\FrontendUser');
+        $frontendUser = GeneralUtility::makeInstance(FrontendUser::class);
         $frontendUser->setEmail($standardForm->getEmail());
         $frontendUser->setFirstName($standardForm->getFirstName());
         $frontendUser->setLastName($standardForm->getLastName());
@@ -242,7 +241,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             $frontendUser->setTitle($standardForm->getTitle()->getName());
         }
 
-        $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ? $GLOBALS['TSFE']->config['config']['language'] : 'de');
+        $frontendUser->setTxRkwregistrationLanguageKey($GLOBALS['TSFE']->config['config']['language'] ?: 'de');
 
         /*
         // currently we do not use real privacy-entries
@@ -260,8 +259,8 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             self::SIGNAL_AFTER_REQUEST_CREATED_USER,
             [$backendUsers, $frontendUser, $standardForm]
         );
-
     }
+
 
     /**
      * mail handling
@@ -280,6 +279,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             [$backendUsers, $standardForm]
         );
     }
+
 
     /**
      * @return array
