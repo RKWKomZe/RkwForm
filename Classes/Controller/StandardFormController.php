@@ -36,7 +36,7 @@ class StandardFormController  extends \RKW\RkwForm\Controller\AbstractFormContro
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
-     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("RKW\RkwForm\Validation\Validator\AbstractFormValidator", param="standardForm")
      */
     public function createAction(StandardForm $standardForm, bool $privacy = false): void
     {

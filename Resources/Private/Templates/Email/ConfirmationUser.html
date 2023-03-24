@@ -6,8 +6,8 @@
 <f:section name="Plaintext">
 <postmaster:email.recipientSalutation queueRecipient="{queueRecipient}" prependText="<postmaster:email.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/>
 
-<postmaster:email.translate key="templates_email_confirmationUser.text1" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwForm" />
-<postmaster:email.translate key="templates_email_confirmationUser.text2" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwForm" />
+<postmaster:email.translate key="templates_email_confirmationUser.text1" languageKey="{queueRecipient.languageCode}" extensionName="rkwForm" />
+<postmaster:email.translate key="templates_email_confirmationUser.text2" languageKey="{queueRecipient.languageCode}" extensionName="rkwForm" />
 
 <f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txFeregisterLanguageKey}"/>
 </f:section>
@@ -16,8 +16,8 @@
 <f:section name="Html">
 	<h1><postmaster:email.recipientSalutation queueRecipient="{queueRecipient}" prependText="<postmaster:email.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/></h1>
 	<p>
-		<postmaster:email.translate key="templates_email_confirmationUser.text1" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwForm" /><br>
-		<postmaster:email.translate key="templates_email_confirmationUser.text2" languageKey="{frontendUser.txFeregisterLanguageKey}" extensionName="rkwForm" />
+		<postmaster:email.translate key="templates_email_confirmationUser.text1" languageKey="{queueRecipient.languageCode}" extensionName="rkwForm" /><br>
+		<postmaster:email.translate key="templates_email_confirmationUser.text2" languageKey="{queueRecipient.languageCode}" extensionName="rkwForm" />
 	</p>
 	<f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txFeregisterLanguageKey}"/>
 </f:section>

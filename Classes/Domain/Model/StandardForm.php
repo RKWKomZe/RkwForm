@@ -32,6 +32,7 @@ class StandardForm extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected int $salutation = 99;
 
+
     /**
      * @var \Madj2k\FeRegister\Domain\Model\Title|null
      */

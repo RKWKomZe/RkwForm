@@ -136,12 +136,12 @@ class SecurityCommand extends Command
                     $message = sprintf('Upload path "%s" is secure.', $filePath );
                     $io->note($message);
                     $this->getLogger()->log(LogLevel::INFO, $message);
-                    $result = 1;
 
                 } else {
                     $message = sprintf('Upload path "%s" is NOT secure. Fix this immediately!', $filePath );
                     $io->error($message);
                     $this->getLogger()->log(LogLevel::ERROR, $message);
+                    $result = 1;
                 }
             }
 
@@ -153,6 +153,7 @@ class SecurityCommand extends Command
 
             $io->error($message);
             $this->getLogger()->log(LogLevel::ERROR, $message);
+            $result = 1;
         }
 
         $io->writeln('Done');

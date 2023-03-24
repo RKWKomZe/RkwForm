@@ -99,7 +99,7 @@ class CleanupCommand extends Command
         $result = 0;
         try {
 
-            /** @todo gem-community? do we really only cleanup these records? why? */
+            /** @todo gem-community? do we really only cleanup these records? why not all? */
             $expiredRecords = $this->standardFormRepository->findExpiredByFormIdentifier('gem-community');
 
             $cnt = 0;
@@ -116,8 +116,6 @@ class CleanupCommand extends Command
             $io->note($message);
             $this->getLogger()->log(LogLevel::INFO, $message);
 
-            $result = 1;
-
         } catch (\Exception $e) {
 
             $message = sprintf('An unexpected error occurred while trying to cleanup the database: %s',
@@ -126,6 +124,7 @@ class CleanupCommand extends Command
 
             $io->error($message);
             $this->getLogger()->log(LogLevel::ERROR, $message);
+            $result = 1;
         }
 
         $io->writeln('Done');
