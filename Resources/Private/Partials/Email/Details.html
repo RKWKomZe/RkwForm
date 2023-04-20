@@ -14,13 +14,7 @@
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.street}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.postal}
 <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.city}
-<f:if condition="{formRequest.identifier} === 'gem-community'">
-    <f:then>
-    </f:then>
-    <f:else>
-        <rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
-    </f:else>
-</f:if>
+<f:if condition="{formRequest.identifier} === 'gem-community'"><f:else><rkwMailer:frontend.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}</f:else></f:if>
 <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Plaintext" arguments="{_all}"/></f:if>
 </f:section>
 

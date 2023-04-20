@@ -15,6 +15,7 @@
                                 <size>50</size>
                                 <max>50</max>
                                 <eval>trim</eval>
+                                <eval>required</eval>
                             </config>
                         </TCEforms>
                     </settings.verification.validUntil>
@@ -26,6 +27,7 @@
                                 <size>50</size>
                                 <max>50</max>
                                 <eval>trim</eval>
+                                <eval>required</eval>
                             </config>
                         </TCEforms>
                     </settings.form.identifier>
@@ -36,6 +38,7 @@
                                 <type>text</type>
                                 <cols>24</cols>
                                 <rows>3</rows>
+                                <eval>required</eval>
                             </config>
                         </TCEforms>
                     </settings.form.topics>

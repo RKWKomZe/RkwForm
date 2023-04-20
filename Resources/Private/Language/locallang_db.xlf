@@ -98,7 +98,7 @@
             	<source>Identifier</source>
 			</trans-unit>
 			<trans-unit id="flexform.standard.topics">
-            	<source>Topics</source>
+            	<source>Topics (enter topics comma separated)</source>
 			</trans-unit>
             <trans-unit id="flexform.standard.confirmtext">
                 <source>Confirmation Text</source>
