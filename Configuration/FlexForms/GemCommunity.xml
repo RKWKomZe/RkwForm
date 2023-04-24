@@ -19,18 +19,6 @@
                             </config>
                         </TCEforms>
                     </settings.verification.validUntil>
-                    <settings.form.identifier>
-                        <TCEforms>
-                            <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.identifier</label>
-                            <config>
-                                <type>input</type>
-                                <size>50</size>
-                                <max>50</max>
-                                <eval>trim</eval>
-                                <eval>required</eval>
-                            </config>
-                        </TCEforms>
-                    </settings.form.identifier>
                     <settings.form.topics>
                         <TCEforms>
                             <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.topics</label>

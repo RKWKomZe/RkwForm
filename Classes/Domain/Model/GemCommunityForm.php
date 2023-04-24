@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwForm\Domain\Model;
 
 /*
@@ -26,67 +27,57 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
 {
 
     /**
-     * token
-     *
      * @var string
      */
     protected $token = '';
 
+
     /**
-     * validUntil
-     *
      * @var int
      */
     protected $validUntil = 0;
 
-    /**
-     * identifier
-     *
-     * @var string
-     */
-    protected $identifier = '';
 
     /**
-     * street
-     *
+     * @var string
+     */
+    protected $identifier = 'gem-community';
+
+
+    /**
      * @var string
      */
     protected $street = '';
 
+
     /**
-     * postal
-     *
      * @var string
      */
     protected $postal = '';
 
+
     /**
-     * city
-     *
      * @var string
      */
     protected $city = '';
 
+
     /**
-     * topic
-     *
      * @var string
      */
     protected $topic = '';
 
+
     /**
-     * verificationUrl
-     *
      * @var string
      */
     protected $verificationUrl = '';
 
+
     /**
-     * enabled
-     *
      * @var bool
      */
-    protected $enabled = 0;
+    protected $enabled = false;
 
 
     /**
@@ -99,6 +90,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         return $this->type;
     }
 
+
     /**
      * Sets the type
      *
@@ -110,6 +102,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->type = $type;
     }
 
+
     /**
      * Returns the identifier
      *
@@ -119,6 +112,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->identifier;
     }
+
 
     /**
      * Sets the identifier
@@ -131,6 +125,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->identifier = $identifier;
     }
 
+
     /**
      * Returns the street
      *
@@ -140,6 +135,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->street;
     }
+
 
     /**
      * Sets the street
@@ -152,6 +148,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->street = $street;
     }
 
+
     /**
      * Returns the postal
      *
@@ -161,6 +158,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->postal;
     }
+
 
     /**
      * Sets the postal
@@ -173,6 +171,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->postal = $postal;
     }
 
+
     /**
      * Returns the city
      *
@@ -182,6 +181,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->city;
     }
+
 
     /**
      * Sets the city
@@ -194,6 +194,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->city = $city;
     }
 
+
     /**
      * Returns the topic
      *
@@ -203,6 +204,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->topic;
     }
+
 
     /**
      * Sets the topic
@@ -215,6 +217,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->topic = $topic;
     }
 
+
     /**
      * Returns the verificationUrl
      *
@@ -224,6 +227,7 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     {
         return $this->verificationUrl;
     }
+
 
     /**
      * Sets the verificationUrl
@@ -236,15 +240,17 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->verificationUrl = $verificationUrl;
     }
 
+
     /**
      * Returns the token
      *
      * @return string $token
      */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
+
 
     /**
      * Sets the token
@@ -257,15 +263,17 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->token = $token;
     }
 
+
     /**
      * Returns the validUntil
      *
      * @return int $validUntil
      */
-    public function getValidUntil()
+    public function getValidUntil(): int
     {
         return $this->validUntil;
     }
+
 
     /**
      * Sets the validUntil
@@ -278,21 +286,22 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
         $this->validUntil = $validUntil;
     }
 
+
     /**
      * @return bool
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
+
     /**
      * @param bool $enabled
      */
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled): void
     {
         $this->enabled = $enabled;
     }
-
 
 }

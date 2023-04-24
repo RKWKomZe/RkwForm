@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwForm\Controller;
 
 /*
@@ -19,10 +20,11 @@ use RKW\RkwForm\Domain\Model\StandardForm;
 use RKW\RkwRegistration\Domain\Model\FrontendUser;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class GemCommunityFormController
@@ -32,27 +34,21 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class GemCommunityFormController extends AbstractFormController
+class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormController
 {
     /**
-     * gemCommunityFormRepository
-     *
      * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
      * @inject
      */
     protected $gemCommunityFormRepository;
 
     /**
-     * objectManager
-     *
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
      * @inject
      */
     protected $objectManager;
 
     /**
-     * persistenceManager
-     *
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @inject
      */
@@ -68,6 +64,8 @@ class GemCommunityFormController extends AbstractFormController
     public function newAction(AbstractEntity $standardForm = null): void
     {
         $this->view->assignMultiple([
+            'privacyPid' => $this->settings['privacyPid'],
+            'revocationEmail' => $this->settings['revocationEmail'],
             'standardForm' => $standardForm,
             'topics' => GeneralUtility::trimExplode(",", $this->settings['form']['topics'])
         ]);
@@ -77,17 +75,17 @@ class GemCommunityFormController extends AbstractFormController
      * action create
      *
      * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
-     * @param int $privacy
-     * @param int $terms
+     * @param bool $privacy
+     * @param bool $terms
      * @validate $standardForm \RKW\RkwForm\Validation\Validator\GemCommunityFormValidator
      * @return void
      */
-    public function createAction(GemCommunityForm $standardForm, int $privacy = 0, int $terms = 0): void
+    public function createAction(GemCommunityForm $standardForm, bool $privacy = false, bool $terms = false): void
     {
 
         if (!$privacy) {
             $this->addFlashMessage(
-                LocalizationUtility::translate(
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                     'registrationController.error.accept_privacy', 'rkw_registration'
                 ),
                 '',
@@ -98,7 +96,7 @@ class GemCommunityFormController extends AbstractFormController
 
         if (!$terms) {
             $this->addFlashMessage(
-                LocalizationUtility::translate(
+                \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                     'gemCommunityFormController.error.accept_terms', 'rkw_form'
                 ),
                 '',
@@ -119,13 +117,13 @@ class GemCommunityFormController extends AbstractFormController
 
         $standardForm->setVerificationUrl('###baseUrl###/' . $uri);
         $standardForm->setValidUntil(strtotime($this->settings['verification']['validUntil']));
-        $standardForm->setIdentifier($this->settings['form']['identifier']);
 
         // pass form to mailHandling function
         $this->sendVerificationLink($standardForm);
         $this->standardFormRepository->add($standardForm);
 
     }
+
 
     /**
      * action verify
@@ -152,9 +150,8 @@ class GemCommunityFormController extends AbstractFormController
                 $standardForm = $result->getFirst();
 
                 if ($standardForm->getEnabled()) {
-                    //  already confirmed
                     $this->addFlashMessage(
-                        LocalizationUtility::translate(
+                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                             'gemCommunityFormController.error.verification.already_enabled', 'rkw_form'
                         ),
                         '',
@@ -165,7 +162,7 @@ class GemCommunityFormController extends AbstractFormController
 
                 if ($standardForm->getValidUntil() < time()) {
                     $this->addFlashMessage(
-                        LocalizationUtility::translate(
+                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                             'gemCommunityFormController.error.verification.expired', 'rkw_form'
                         ),
                         '',
@@ -182,7 +179,7 @@ class GemCommunityFormController extends AbstractFormController
                 $this->sendRegistrationToAdmins($standardForm);
 
                 $this->addFlashMessage(
-                    LocalizationUtility::translate(
+                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
                     ),
                     '',
@@ -193,7 +190,7 @@ class GemCommunityFormController extends AbstractFormController
             } else {
 
                 $this->addFlashMessage(
-                    LocalizationUtility::translate(
+                    \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'gemCommunityFormController.error.verification.notfound', 'rkw_form'
                     ),
                     '',
@@ -218,8 +215,6 @@ class GemCommunityFormController extends AbstractFormController
 
 
     /**
-     * mail handling
-     *
      * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
      * @return void
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException if the slot is not valid

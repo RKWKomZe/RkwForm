@@ -118,7 +118,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 // send new user an email with token
                 $mailService->setTo($frontendUser, array(
                     'marker' => array(
-                        'formRequest' => $formRequest,
+                        'formRequest'  => $formRequest,
                         'frontendUser' => $frontendUser,
                         'pageUid'      => intval($GLOBALS['TSFE']->id),
                         'loginPid'     => intval($settingsDefault['loginPid']),
@@ -187,7 +187,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     // send new user an email with token
                     $mailService->setTo($recipient, array(
                         'marker'  => array(
-                            'formRequest' => $formRequest,
+                            'formRequest'  => $formRequest,
                             'backendUser'  => $recipient,
                             'pageUid'      => intval($GLOBALS['TSFE']->id),
                             'loginPid'     => intval($settingsDefault['loginPid']),
@@ -256,7 +256,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     // send new user an email with token
                     $mailService->setTo($recipient, array(
                         'marker'  => array(
-                            'formRequest' => $formRequest,
+                            'formRequest'  => $formRequest,
                             'backendUser'  => $recipient,
                         ),
                         'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(

@@ -1,4 +1,5 @@
 <?php
+
 namespace RKW\RkwForm\Validation\Validator;
 
 use \RKW\RkwBasics\Helper\Common;
@@ -35,7 +36,7 @@ class GemCommunityFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($standardForm)
+    public function isValid($standardForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
