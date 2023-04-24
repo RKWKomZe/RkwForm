@@ -41,12 +41,10 @@
                 <source>Standard Form</source>
                 <target>Standard Formular</target>
             </trans-unit>
-            <trans-unit id="tx_rkw_form_domain_model_standardfporm.description">
+            <trans-unit id="tx_rkw_form_domain_model_standardform.description">
                 <source>Provides forms. With FormFramework support from TYPO3 version 8.7.</source>
                 <target>Stellt Standard-Formulare zur Verfügung. Ab TYPO3 version 8.7 mit FormFramework-Support.</target>
             </trans-unit>
-
-
 
             <trans-unit id="tx_rkwform_domain_model_standardform">
                 <source>Standard</source>
@@ -112,6 +110,12 @@
                 <source>City</source>
                 <target>Ort</target>
             </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.text">
+                <source>Message</source>
+                <target>Nachricht</target>
+            </trans-unit>
+
+			<!-- gem extend -->
 			<trans-unit id="tx_rkwform_domain_model_standardform.topics">
 				<source>Topics</source>
 				<target>Gründungsthemengebiete/Expertise im Thema</target>
@@ -120,11 +124,26 @@
 				<source>Topic</source>
 				<target>Thema</target>
 			</trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standardform.text">
-                <source>Message</source>
-                <target>Nachricht</target>
-            </trans-unit>
-
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
+				<source>I have read and agree to the extended notes in the</source>
+				<target>Die </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.secondPart">
+				<source>data protection declaration</source>
+				<target>Datenschutzerklärung </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
+				<source>. This consent can be revoked at any time.</source>
+				<target>habe ich gelesen und bin einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
+				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
+				<target>Hiermit willige ich ein, dass im Rahmen und für die Dauer des GEM-Projekts meine personenbezogenen Daten wie Anrede, Vorname, Nachname, Titel, Geschlecht, E-Mail-Adresse, Institution/Firma/Gründung, Telefonnummer, Postanschrift (Adresse, PLZ, Ort), Gründungsthemengebiet, ggf. Jahr der freiwilligen Umfrageteilnahme vom RKW Kompetenzzentrum in eine Liste aufgenommen und gespeichert werden und zum Zwecke der Kontaktaufnahme für Einladungen zu Umfragen, GEM-Veranstaltungen sowie Zusendung des GEM-Berichts per Post verwendet werden. Die Daten werden nicht an Dritte weitergegeben. Diese Einwilligung ist freiwillig und die Nichterteilung hat keine negativen Auswirkungen. Diese Einwilligung kann ich jederzeit per Mail an </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.thirdPart">
+				<source>.</source>
+				<target> mit Wirkung für die Zukunft widerrufen.</target>
+			</trans-unit>
 
 
             <!-- TEMPLATES -->
@@ -276,15 +295,15 @@
 			<!-- Template/Email/GemCommunityForm/VerifyUser.html -->
 			<trans-unit id="templates_email_verifyUser.text1">
 				<source>thanks for joining the GEM-Community</source>
-				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung.</target>
+				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Bitte schließen Sie Ihre Anmeldung mit Klick auf den nachfolgenden Link ab:</target>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.text2">
 				<source>Below we have summarized the details of your registration once again for you.</source>
 				<target>Sie haben folgende Daten an uns übermittelt:</target>
 			</trans-unit>
-			<trans-unit id="templates_email_verifyUser.clickVerificationLink">
-				<source>Please confirm your registration by clicking the following link.</source>
-				<target>Bitte klicken Sie den nachfolgenden Link, um Ihre Anmeldung abzuschließen:</target>
+			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">
+				<source>Yes, I confirm my registration.</source>
+				<target>Ja, ich möchte meine Anmeldung abzuschließen.</target>
 			</trans-unit>
 
 			<!-- Templates/Email/NotifyAdmin.html -->

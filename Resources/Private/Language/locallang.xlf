@@ -112,6 +112,21 @@
 			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
 				<source>Topic</source>
 			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
+				<source>I have read and agree to the extended notes in the</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.secondPart">
+				<source>data protection declaration</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
+				<source>. This consent can be revoked at any time.</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
+				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.thirdPart">
+				<source>.</source>
+			</trans-unit>
 
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">
@@ -221,8 +236,8 @@
 			<trans-unit id="templates_email_verifyUser.text2">
 				<source>Below we have summarized the details of your registration once again for you.</source>
 			</trans-unit>
-			<trans-unit id="templates_email_verifyUser.clickVerificationLink">
-				<source>Please confirm your registration by clicking the following link.</source>
+			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">
+				<source>Yes, I confirm my registration.</source>
 			</trans-unit>
 
 			<!-- Templates/Email/NotifyAdmin.html -->

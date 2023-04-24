@@ -8,7 +8,7 @@
 
 <rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
 
-<rkwMailer:frontend.translate key="templates_email_verifyUser.clickVerificationLink" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /> {formRequest.verificationUrl}
+{formRequest.verificationUrl}
 
 <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
 
@@ -22,7 +22,9 @@
 		<rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /><br>
 	</p>
     <p>
-        <rkwMailer:frontend.translate key="templates_email_verifyUser.clickVerificationLink" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /> <a href="{formRequest.verificationUrl}">{formRequest.verificationUrl}</a>
+        <a href="{formRequest.verificationUrl}" target="_blank">
+            <rkwMailer:frontend.translate key="templates_email_verifyUser.textVerifyEmailLinkLabel" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+        </a>
     </p>
     <p>
         <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />

@@ -117,6 +117,14 @@
             	<source>Topics</source>
             	<target>Gründungsthemengebiete (kommagetrennt)</target>
 			</trans-unit>
+			<trans-unit id="flexform.standard.privacyPage">
+				<source>Privacy page</source>
+				<target>Datenschutzseite</target>
+			</trans-unit>
+			<trans-unit id="flexform.standard.revocationEmail">
+				<source>Revocation email</source>
+				<target>E-Mail-Adresse für Widerruf</target>
+			</trans-unit>
 			<trans-unit id="flexform.standard.identifier">
             	<source>Identifier</source>
             	<target>Eindeutiger Formularname</target>
