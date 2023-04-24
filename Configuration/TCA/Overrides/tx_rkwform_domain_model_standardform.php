@@ -68,6 +68,15 @@ $tempPagesColumns = array(
         ],
     ],
 
+    'title' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.title',
+        'config' => [
+            'type' => 'input',
+            'readOnly' => true
+        ]
+    ],
+
     'city' => [
         'exclude' => true,
         'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.city',
