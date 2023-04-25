@@ -15,12 +15,8 @@ namespace RKW\RkwForm\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Doctrine\Common\Util\Debug;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Version\Dependency\DependencyEntityFactory;
 
 /**
  * CommandController
@@ -45,6 +41,7 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
      * @var \TYPO3\CMS\Core\Log\Logger
      */
     protected $logger;
+
 
     /**
      * Clean up for form uploads
@@ -114,16 +111,17 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
     /**
      * Cleanup expired records
      *
+     * @param string $identifier
      * @return void
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      */
-    public function cleanupOptinCommand()
+    public function cleanupOptinCommand(string $identifier = '')
     {
 
         try {
 
-            $expiredRecords = $this->standardFormRepository->findExpiredByFormIdentifier('gem-community');
+            $expiredRecords = $this->standardFormRepository->findExpiredByFormIdentifier($identifier);
 
             $cnt = 0;
             foreach ($expiredRecords as $expiredRecord) {
@@ -134,14 +132,8 @@ class CommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandControl
             $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::INFO, sprintf('Successfully removed %s expired form records completely from the database.', $cnt));
 
         } catch (\Exception $e) {
-            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('An error occurred while trying to remove expired form records completely from the database. Message: %s', str_replace(array("\n", "\r"), '', $e->getMessage())));
+            $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::ERROR, sprintf('An error occurred while trying to remove expired form records completely from the database. Message: %s', str_replace(["\n", "\r"], '', $e->getMessage())));
         }
-
-
-        //  delete all of them
-
-//        // Message with X files were deleted
-//        $this->getLogger()->log(\TYPO3\CMS\Core\Log\LogLevel::INFO, sprintf('Cleanup command runs successfully. A total of %s files were deleted from %s.', $counter, $filePath));
 
     }
 

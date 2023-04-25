@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'RkwForm',
+    'title' => 'RKW Form',
     'description' => 'Provides forms. With FormFramework support from Typo3 version 8.7.',
     'category' => 'plugin',
     'author' => 'Maximilian Fäßler, Steffen Kroggel',
@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '8.7.65',
+    'version' => '8.7.66',
     'constraints' => [
         'depends' => [
             'typo3' => '7.6.0-8.7.99',

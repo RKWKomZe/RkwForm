@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+        <f:render partial="FormFields/Salutation" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Title" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/FirstName" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/LastName" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Phone" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Email" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Company" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Street" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/Postal" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/City" arguments="{cssClass: 'width50', mandatoryFields: settings.mandatoryFields.gemCommunity}" />
+
+        <f:render partial="FormFields/GemCommunityForm/Topics" arguments="{cssClass: 'width100', mandatoryFields: settings.mandatoryFields.gemCommunity, topics: topics}" />
+
+</html>

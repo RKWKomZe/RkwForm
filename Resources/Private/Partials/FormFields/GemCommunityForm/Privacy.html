@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <div class="form__field width100">
+        <f:form.checkbox class="checkbox" id="privacy" name="privacy" value="1" />
+        <label for="privacy" class="checkbox-label">
+            <f:translate key="tx_rkwform_domain_model_standardform.gem.privacy.firstPart" />
+            <f:link.page pageUid="{privacyPid}" target="_blank"><f:translate key="tx_rkwform_domain_model_standardform.gem.privacy.secondPart" /></f:link.page>
+            <f:translate key="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart" />
+        </label>
+    </div>
+
+</html>
+
+

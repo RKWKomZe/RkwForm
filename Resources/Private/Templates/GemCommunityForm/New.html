@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+    <f:layout name="Default" />
+
+    <f:section name="main">
+
+        <f:render partial="FlashMessages"  />
+        <f:render partial="FormErrors" arguments="{object:Standard}" />
+
+        <f:form action="create" enctype="multipart/form-data" name="standardForm" object="{standardForm}">
+
+            <div class="flex-container">
+                <div class="flex-basis-8 full-width-medium">
+                    <div class="form flex space-between">
+
+                        <f:render partial="Forms/GemCommunity" arguments="{topics: topics}" />
+
+                        <f:render partial="FormFields/GemCommunityForm/Terms" arguments="{revocationEmail: revocationEmail}" />
+
+                        <f:render partial="FormFields/GemCommunityForm/Privacy" arguments="{privacyPid: privacyPid}" />
+
+                        <f:render partial="FormFields/CaptchaElement" />
+
+                        <f:render partial="FormFields/GemCommunityForm/Submit" />
+
+                    </div>
+                </div>
+            </div>
+        </f:form>
+    </f:section>
+</html>

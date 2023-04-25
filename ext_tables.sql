@@ -34,17 +34,17 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
 );
 
 #
-# extend for gemCommunityForm
+# extend for gemCommunityForm (GEM Community)
 #
 CREATE TABLE tx_rkwform_domain_model_standardform (
 	identifier varchar(255) DEFAULT '' NOT NULL,
-	title varchar(255) DEFAULT '' NOT NULL,
+	title int(11) unsigned DEFAULT '0' NOT NULL,
 	street varchar(255) DEFAULT '' NOT NULL,
 	postal varchar(5) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
-	theme varchar(255) DEFAULT '' NOT NULL,
-  token varchar(255) DEFAULT '' NOT NULL,
+	topic varchar(255) DEFAULT '' NOT NULL,
+	token varchar(255) DEFAULT '' NOT NULL,
 	valid_until int(11) unsigned DEFAULT '0' NOT NULL,
-  enabled tinyint(1) DEFAULT '0' NOT NULL,
+	enabled tinyint(1) DEFAULT '0' NOT NULL,
 );
 

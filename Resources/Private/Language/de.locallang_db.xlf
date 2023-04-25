@@ -51,12 +51,20 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standardform.text">
+			<trans-unit id="tx_rkwform_domain_model_standardform.text">
                 <source>Text</source>
                 <target>Textfeld</target>
             </trans-unit>
 
-
+			<!-- flexform -->
+            <trans-unit id="flexform.standard.admin">
+                <source>E-Mail</source>
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="flexform.standard.admin.beuser">
+                <source>Backend User for E-mails</source>
+                <target>Backend User für E-Mails</target>
+            </trans-unit>
 
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
@@ -75,18 +83,20 @@
                 <source>Agree</source>
                 <target>Zustimmung (Ja, ich habe alle Inhalte des 55. Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt, Fragen zu stellen)</target>
             </trans-unit>
-
-
-
-			<!-- flexform -->
-            <trans-unit id="flexform.standard.admin">
-                <source>E-Mail</source>
-                <target>E-Mail</target>
+            <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
+                <source>BST</source>
+                <target>BST</target>
             </trans-unit>
-            <trans-unit id="flexform.standard.admin.beuser">
-                <source>Backend User for E-mails</source>
-                <target>Backend User für E-Mails</target>
+            <trans-unit id="tx_rkwform_domain_model_standardform.palettes.bst">
+                <source>BST</source>
+                <target>BST</target>
             </trans-unit>
+
+            <!-- gemcommunity extend -->
+			<trans-unit id="flexform.standard.global">
+				<source>General</source>
+				<target>Allgemein</target>
+			</trans-unit>
             <trans-unit id="flexform.standard.confirmtext">
                 <source>Confirmation Text</source>
                 <target>Bestätigungstext</target>
@@ -99,19 +109,42 @@
                 <source>Description</source>
                 <target>Beschreibung</target>
             </trans-unit>
-
-
-            <!-- bst extend -->
-            <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
-                <source>BST</source>
-                <target>BST</target>
+            <trans-unit id="flexform.standard.verification.validUntil">
+                <source>Valid until</source>
+                <target>Verifizierungslink gültig bis (Format: +x hour, +x day)</target>
             </trans-unit>
-            <trans-unit id="tx_rkwform_domain_model_standardform.palettes.bst">
-                <source>BST</source>
-                <target>BST</target>
+            <trans-unit id="flexform.standard.topics">
+            	<source>Topics</source>
+            	<target>Gründungsthemengebiete (kommagetrennt)</target>
+			</trans-unit>
+			<trans-unit id="flexform.standard.privacyPage">
+				<source>Privacy page</source>
+				<target>Datenschutzseite</target>
+			</trans-unit>
+			<trans-unit id="flexform.standard.revocationEmail">
+				<source>Revocation email</source>
+				<target>E-Mail-Adresse für Widerruf</target>
+			</trans-unit>
+			<trans-unit id="flexform.standard.identifier">
+            	<source>Identifier</source>
+            	<target>Eindeutiger Formularname</target>
+			</trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.street">
+                <source>Street</source>
+                <target>Straße und Hausnummer</target>
             </trans-unit>
-
-
+            <trans-unit id="tx_rkwform_domain_model_standardform.postal">
+                <source>Postal</source>
+                <target>Postleitzahl</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.city">
+                <source>City</source>
+                <target>Ort</target>
+            </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
 
 		</body>
 	</file>

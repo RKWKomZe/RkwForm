@@ -32,6 +32,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwForm',
+            'GemCommunityForm',
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ],
+            // non-cacheable actions
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ]
+        );
+
 
         //=================================================================
         // Register CommandController
@@ -77,15 +89,23 @@ call_user_func(
             'adminMail'
         );
 
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'verifyMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'adminNotificationMail'
+        );
+
         //=================================================================
         // Hooks
         //=================================================================
-        //  set token
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['1'] = \RKW\RkwForm\Domain\Model\Renderable\SetTokenAndExpiration::class;
-        //  set current base url
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['2'] = \RKW\RkwForm\Domain\Model\Renderable\SetBaseUrl::class;
-        //  get post parameter
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['3'] = \RKW\RkwForm\Domain\Model\Renderable\GetPostParameter::class;
 
         //=================================================================
         // Register Logger

@@ -2,9 +2,8 @@
 
 namespace RKW\RkwForm\Service;
 
-use \RKW\RkwBasics\Helper\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use RKW\RkwBasics\Helper\Common;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -65,6 +64,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     ),
                 ));
 
+                // @todo: Subject müsste noch an den Vorgang angepasst werden!
                 $mailService->getQueueMail()->setSubject(
                     \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
                         'rkwMailService.confirmationUser.subject',
@@ -86,6 +86,70 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
 
     }
 
+    /**
+     * Sends a verification E-Mail to a Frontend-User
+     *
+     * @param \RKW\RkwForm\Domain\Model\BackendUser|array $backendUser
+     * @param \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
+     *
+     * @throws \RKW\RkwMailer\Service\MailException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     */
+    public function verifyMail($backendUser, \RKW\RkwRegistration\Domain\Model\FrontendUser $frontendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
+    {
+        // get settings
+        $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $settingsDefault = $this->getSettings();
+
+        $recipients = $this->getBackendRecipients($backendUser);
+
+        if ($frontendUser->getEmail()) {
+            if ($settings['view']['templateRootPaths'][0]) {
+
+                /** @var \RKW\RkwMailer\Service\MailService $mailService */
+                $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+
+                // send new user an email with token
+                $mailService->setTo($frontendUser, array(
+                    'marker' => array(
+                        'formRequest'  => $formRequest,
+                        'frontendUser' => $frontendUser,
+                        'pageUid'      => intval($GLOBALS['TSFE']->id),
+                        'loginPid'     => intval($settingsDefault['loginPid']),
+                    ),
+                ));
+
+                $mailService->getQueueMail()->setSubject(
+                    \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                        'rkwMailService.verifyUser.subject',
+                        'rkw_form',
+                        null,
+                        $frontendUser->getTxRkwregistrationLanguageKey()
+                    )
+                );
+
+                if ($recipients[0]->getRealName()) {
+                    $mailService->getQueueMail()->setReplyToName($recipients[0]->getRealName());
+                }
+                $mailService->getQueueMail()->setReplyToAddress($recipients[0]->getEmail());
+
+                $mailService->getQueueMail()->addTemplatePaths($settings['view']['templateRootPaths']);
+                $mailService->getQueueMail()->addPartialPaths($settings['view']['partialRootPaths']);
+
+                $mailService->getQueueMail()->setPlaintextTemplate('Email/GemCommunityForm/VerifyUser');
+                $mailService->getQueueMail()->setHtmlTemplate('Email/GemCommunityForm/VerifyUser');
+
+                $mailService->send();
+            }
+        }
+
+    }
 
     /**
      * Sends an E-Mail to an Admin
@@ -107,12 +171,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
         $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         $settingsDefault = $this->getSettings();
 
-        $recipients = array();
-        if (is_array($backendUser)) {
-            $recipients = $backendUser;
-        } else {
-            $recipients[] = $backendUser;
-        }
+        $recipients = $this->getBackendRecipients($backendUser);
 
         if ($settings['view']['templateRootPaths'][0]) {
 
@@ -128,7 +187,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     // send new user an email with token
                     $mailService->setTo($recipient, array(
                         'marker'  => array(
-                            'formRequest' => $formRequest,
+                            'formRequest'  => $formRequest,
                             'backendUser'  => $recipient,
                             'pageUid'      => intval($GLOBALS['TSFE']->id),
                             'loginPid'     => intval($settingsDefault['loginPid']),
@@ -149,15 +208,6 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                 $mailService->getQueueMail()->setReplyAddress($formRequest->getEmail());
             }
 
-            $mailService->getQueueMail()->setSubject(
-                \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
-                    'rkwMailService.notifyAdmin.subject',
-                    'rkw_form',
-                    null,
-                    'de'
-                )
-            );
-
             $mailService->getQueueMail()->addTemplatePaths($settings['view']['templateRootPaths']);
             $mailService->getQueueMail()->addPartialPaths($settings['view']['partialRootPaths']);
 
@@ -170,6 +220,72 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
         }
     }
 
+    /**
+     * Sends a notification about gem community registration to an admin
+     *
+     * @param \RKW\RkwForm\Domain\Model\BackendUser|array $backendUser
+     * @param \RKW\RkwForm\Domain\Model\StandardForm $formRequest
+     *
+     * @throws \RKW\RkwMailer\Service\MailException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Generic\Exception
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
+     * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     */
+    public function adminNotificationMail($backendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
+    {
+        // get settings
+        $settings = $this->getSettings(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $settingsDefault = $this->getSettings();
+
+        $recipients = $this->getBackendRecipients($backendUser);
+
+        if ($settings['view']['templateRootPaths'][0]) {
+
+            /** @var \RKW\RkwMailer\Service\MailService $mailService */
+            $mailService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('RKW\\RkwMailer\\Service\\MailService');
+
+            foreach ($recipients as $recipient) {
+                if (
+                    ($recipient instanceof \RKW\RkwForm\Domain\Model\BackendUser)
+                    && ($recipient->getEmail())
+                ) {
+
+                    // send new user an email with token
+                    $mailService->setTo($recipient, array(
+                        'marker'  => array(
+                            'formRequest'  => $formRequest,
+                            'backendUser'  => $recipient,
+                        ),
+                        'subject' => \RKW\RkwMailer\Utility\FrontendLocalizationUtility::translate(
+                            'rkwMailService.gemCommunityForm.notifyAdmin.subject',
+                            'rkw_form',
+                            [$formRequest->getFirstName() . ' ' . $formRequest->getLastName()],
+                            $recipient->getLang()
+                        ),
+                    ));
+                }
+            }
+
+            if (
+                ($formRequest->getEmail())
+            ) {
+                $mailService->getQueueMail()->setReplyToAddress($formRequest->getEmail());
+            }
+
+            $mailService->getQueueMail()->addTemplatePaths($settings['view']['templateRootPaths']);
+            $mailService->getQueueMail()->addPartialPaths($settings['view']['partialRootPaths']);
+
+            $mailService->getQueueMail()->setPlaintextTemplate('Email/GemCommunityForm/NotifyAdmin');
+            $mailService->getQueueMail()->setHtmlTemplate('Email/GemCommunityForm/NotifyAdmin');
+
+            if (count($mailService->getTo())) {
+                $mailService->send();
+            }
+        }
+    }
 
     /**
      * Returns TYPO3 settings
@@ -181,5 +297,21 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
     {
         return Common::getTyposcriptConfiguration('Rkwform', $which);
         //===
+    }
+
+    /**
+     * @param $backendUser
+     * @return array
+     */
+    protected function getBackendRecipients($backendUser): array
+    {
+        $recipients = array();
+        if (is_array($backendUser)) {
+            $recipients = $backendUser;
+        } else {
+            $recipients[] = $backendUser;
+        }
+
+        return $recipients;
     }
 }

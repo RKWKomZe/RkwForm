@@ -1,0 +1,38 @@
+{namespace rkwMailer=RKW\RkwMailer\ViewHelpers}
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+<rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/>
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+{formRequest.verificationUrl}
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+<f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+	<h1><rkwMailer:recipientSalutation queueRecipient="{queueRecipient}" prependText="<rkwMailer:frontend.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/></h1>
+	<p>
+		<rkwMailer:frontend.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /><br>
+	</p>
+    <p>
+        <a href="{formRequest.verificationUrl}" target="_blank">
+            <rkwMailer:frontend.translate key="templates_email_verifyUser.textVerifyEmailLinkLabel" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+        </a>
+    </p>
+    <p>
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+    <p>
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+	<f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>

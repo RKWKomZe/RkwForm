@@ -43,7 +43,6 @@
                 <source>Text</source>
             </trans-unit>
 
-
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.bst_number1">
                 <source>Number 1</source>
@@ -58,8 +57,6 @@
                 <source>Agree</source>
             </trans-unit>
 
-
-
 			<!-- flexform -->
             <trans-unit id="flexform.standard.admin">
                 <source>E-Mail</source>
@@ -67,17 +64,6 @@
             <trans-unit id="flexform.standard.admin.beuser">
                 <source>Backend User for E-mails</source>
             </trans-unit>
-            <trans-unit id="flexform.standard.confirmtext">
-                <source>Confirmation Text</source>
-            </trans-unit>
-            <trans-unit id="flexform.standard.confirmtext.headline">
-                <source>Headline</source>
-            </trans-unit>
-            <trans-unit id="flexform.standard.confirmtext.description">
-                <source>Description</source>
-            </trans-unit>
-
-
 
             <!-- bst extend -->
             <trans-unit id="tx_rkwform_domain_model_standardform.tabs.bst">
@@ -87,6 +73,47 @@
             <trans-unit id="tx_rkwform_domain_model_standardform.palettes.bst">
                 <source>BST</source>
                 <target>BST</target>
+            </trans-unit>
+
+			<!-- gemcommunity extend -->
+			<trans-unit id="flexform.standard.global">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.street">
+                <source>Street</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.postal">
+                <source>Postal</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.city">
+                <source>City</source>
+            </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
+				<source>Topic</source>
+			</trans-unit>
+			<trans-unit id="flexform.standard.verification.validUntil">
+				<source>Valid until</source>
+			</trans-unit>
+			<trans-unit id="flexform.standard.identifier">
+            	<source>Identifier</source>
+			</trans-unit>
+			<trans-unit id="flexform.standard.topics">
+            	<source>Topics (enter topics comma separated)</source>
+			</trans-unit>
+			<trans-unit id="flexform.standard.privacyPage">
+				<source>Privacy page</source>
+			</trans-unit>
+			<trans-unit id="flexform.standard.revocationEmail">
+				<source>Revocation email</source>
+			</trans-unit>
+            <trans-unit id="flexform.standard.confirmtext">
+                <source>Confirmation Text</source>
+            </trans-unit>
+            <trans-unit id="flexform.standard.confirmtext.headline">
+                <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="flexform.standard.confirmtext.description">
+                <source>Description</source>
             </trans-unit>
 
 		</body>
