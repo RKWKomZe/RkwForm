@@ -20,11 +20,9 @@ use RKW\RkwForm\Domain\Model\StandardForm;
 use RKW\RkwRegistration\Domain\Model\FrontendUser;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class GemCommunityFormController
@@ -118,9 +116,14 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         $standardForm->setVerificationUrl('###baseUrl###/' . $uri);
         $standardForm->setValidUntil(strtotime($this->settings['verification']['validUntil']));
 
-        // pass form to mailHandling function
         $this->sendVerificationLink($standardForm);
         $this->standardFormRepository->add($standardForm);
+
+        $this->addFlashMessage(
+            nl2br($this->settings['confirmtext']),
+            '',
+            AbstractMessage::OK
+        );
 
     }
 
@@ -180,7 +183,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
-                        'gemCommunityFormController.error.verification.confirmed', 'rkw_form'
+                        'gemCommunityFormController.success.verification.confirmed', 'rkw_form'
                     ),
                     '',
                     AbstractMessage::OK

@@ -26,7 +26,7 @@
                 <source>Your verification is already confirmed.</source>
             </trans-unit>
 
-            <trans-unit id="gemCommunityFormController.error.verification.confirmed">
+            <trans-unit id="gemCommunityFormController.success.verification.confirmed">
                 <source>Your registration has been completed.</source>
             </trans-unit>
 
@@ -234,6 +234,9 @@
 				<source>thanks for joining the GEM-Community</source>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.text2">
+				<source>Below we have summarized the details of your registration once again for you.</source>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text3">
 				<source>Below we have summarized the details of your registration once again for you.</source>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">

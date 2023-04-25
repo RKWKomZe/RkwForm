@@ -10,7 +10,9 @@
 
 {formRequest.verificationUrl}
 
-<rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+<rkwMailer:frontend.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
 
 <f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
 </f:section>
@@ -27,7 +29,10 @@
         </a>
     </p>
     <p>
-        <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+    <p>
+        <rkwMailer:frontend.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
     </p>
 	<f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
 </f:section>

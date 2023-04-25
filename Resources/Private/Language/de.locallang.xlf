@@ -18,12 +18,12 @@
 
             <trans-unit id="gemCommunityFormController.error.verification.expired">
                 <source>Your registration link has already expired. Please register once again.</source>
-                <target>Ihr Registrierungslink ist bereits abgelaufen. Bitte melden Sie sich erneut an.</target>
+                <target>Ihr E-Mail-Bestätigungslink ist bereits abgelaufen. Bitte melden Sie sich erneut an.</target>
             </trans-unit>
 
 			<trans-unit id="gemCommunityFormController.error.verification.notfound">
 				<source>Your registration could not be found. Please register once again.</source>
-				<target>Ihre Registrierung wurde nicht gefunden. Bitte melden Sie sich erneut an.</target>
+				<target>Ihre Anmeldung wurde nicht gefunden. Bitte melden Sie sich erneut an.</target>
 			</trans-unit>
 
             <trans-unit id="gemCommunityFormController.error.verification.already_enabled">
@@ -31,9 +31,9 @@
                 <target>Ihre E-Mail-Bestätigung wurde bereits erfolgreich durchgeführt.</target>
             </trans-unit>
 
-            <trans-unit id="gemCommunityFormController.error.verification.confirmed">
+            <trans-unit id="gemCommunityFormController.success.verification.confirmed">
                 <source>Your registration has been completed.</source>
-                <target>Ihre Anmeldung wurde nun erfolgreich durchgeführt und Ihre Daten an uns übermittelt.</target>
+                <target>Ihre Anmeldung wurde nun erfolgreich bestätigt und Ihre Daten an uns übermittelt.</target>
             </trans-unit>
 
 		    <!-- MODEL -->
@@ -295,15 +295,19 @@
 			<!-- Template/Email/GemCommunityForm/VerifyUser.html -->
 			<trans-unit id="templates_email_verifyUser.text1">
 				<source>thanks for joining the GEM-Community</source>
-				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Bitte schließen Sie Ihre Anmeldung mit Klick auf den nachfolgenden Link ab:</target>
+				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Klicken Sie bitte den nachfolgenden Link, um Ihre Anmeldung zu bestätigen:</target>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.text2">
+				<source>Please confirm your email.</source>
+				<target>Bitte beachten Sie, dass dieser Link nur bis %s Uhr gültig ist. Ihre E-Mail-Adresse speichern wir ausschließlich zum Zweck der GEM-Befragung und der Einladung zu Veranstaltungen im Rahmen des GEM-Projekts. Sollten Sie doch nicht teilnehmen wollen, können Sie diese E-Mail ignorieren und müssen nichts weiter unternehmen. Ihre Anmeldedaten werden dann nach Ablauf der Gültigkeit automatisch gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text3">
 				<source>Below we have summarized the details of your registration once again for you.</source>
 				<target>Sie haben folgende Daten an uns übermittelt:</target>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">
 				<source>Yes, I confirm my registration.</source>
-				<target>Ja, ich möchte meine Anmeldung abzuschließen.</target>
+				<target>Ja, ich möchte meine Anmeldung bestätigen</target>
 			</trans-unit>
 
 			<!-- Templates/Email/NotifyAdmin.html -->

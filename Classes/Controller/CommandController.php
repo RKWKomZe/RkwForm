@@ -15,12 +15,8 @@ namespace RKW\RkwForm\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Doctrine\Common\Util\Debug;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Version\Dependency\DependencyEntityFactory;
 
 /**
  * CommandController
