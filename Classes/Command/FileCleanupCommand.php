@@ -116,13 +116,16 @@ class FileCleanupCommand extends Command
                     . $filePathSplit[1]
                 );
 
-                // ERROR Check if path does not exists
+                // Check if path does not exist
                 if (!is_dir($filePath)) {
-                    $message = sprintf('Given file path does not exist=%s.', $filePath);
-
-                    $io->error($message);
-                    $this->getLogger()->log(LogLevel::ERROR, $message);
-                    continue;
+                    if (!is_dir($filePath)) {
+                        if (! mkdir($filePath, 0777, true)) {
+                            $message = sprintf('Given file path does not exist=%s. Failed trying to create folder.', $filePath);
+                            $io->error($message);
+                            $this->getLogger()->log(LogLevel::ERROR, $message);
+                            continue;
+                        }
+                    }
                 }
 
                 // WARNING Disallow ALL paths without string "tx_rkwform" in it! Just for secure. Anything could be defined via
@@ -144,13 +147,16 @@ class FileCleanupCommand extends Command
                 foreach ($fileList as $file) {
 
                     if (
-                        $daysFromNow === 0
-                        || (
-                            $cleanupTimestamp > 0
-                            && ($cleanupTimestamp > filemtime($filePath . $file)
+                        (
+                            $daysFromNow === 0
+                            || (
+                                $cleanupTimestamp > 0
+                                && ($cleanupTimestamp > filemtime($filePath . $file))
                             )
                         )
+                        && ($file != '.htaccess')
                     ) {
+
                         $counter++;
                         // remove file from disk
                         unlink($filePath . $file);
@@ -167,8 +173,6 @@ class FileCleanupCommand extends Command
                 $this->getLogger()->log(LogLevel::INFO, $message);
             }
 
-            $result = 1;
-
         } catch (\Exception $e) {
 
             $message = sprintf('An unexpected error occurred while trying to cleanup the requests: %s',
@@ -177,6 +181,7 @@ class FileCleanupCommand extends Command
 
             $io->error($message);
             $this->getLogger()->log(LogLevel::ERROR, $message);
+            $result = 1;
         }
 
         $io->writeln('Done');

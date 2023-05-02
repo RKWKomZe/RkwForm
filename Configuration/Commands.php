@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'rkw_feecalculator:cleanup' => [
+    'rkw_form:cleanup' => [
         'class' => \RKW\RkwForm\Command\CleanupCommand::class,
         'schedulable' => true,
     ],
-    'rkw_feecalculator:fileCleanup' => [
+    'rkw_form:fileCleanup' => [
         'class' => \RKW\RkwForm\Command\FileCleanupCommand::class,
         'schedulable' => true,
     ],

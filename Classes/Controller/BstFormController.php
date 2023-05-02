@@ -38,7 +38,7 @@ class BstFormController extends \RKW\RkwForm\Controller\AbstractFormController
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
-     * @TYPO3\CMS\Extbase\Annotation\Validate("\RKW\RkwForm\Validation\Validator\BstFormValidator", param="standardForm")
+     * @TYPO3\CMS\Extbase\Annotation\Validate("RKW\RkwForm\Validation\Validator\BstFormValidator", param="standardForm")
      */
     public function createAction(BstForm $standardForm, bool $privacy = false): void
     {

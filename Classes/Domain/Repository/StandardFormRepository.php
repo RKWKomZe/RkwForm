@@ -33,6 +33,7 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $identifier
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @api used in CLI-command for cleanup
      */
     public function findExpiredByFormIdentifier(string $identifier = ''): QueryResultInterface
     {
