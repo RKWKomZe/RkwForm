@@ -154,10 +154,7 @@ class FileCleanupCommand extends Command
                                 && ($cleanupTimestamp > filemtime($filePath . $file))
                             )
                         )
-                        && (
-                            $file != '.htaccess'
-                            && $file != 'conf.nginx'
-                        )
+                        && ($file != '.htaccess')
                     ) {
 
                         $counter++;
