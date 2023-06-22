@@ -32,6 +32,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwForm',
+            'GemCommunityForm',
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ],
+            // non-cacheable actions
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ]
+        );
+
 
         //=================================================================
         // Register SignalSlots
@@ -69,6 +81,20 @@ call_user_func(
             \RKW\RkwForm\Controller\AbstractFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
             RKW\RkwForm\Service\RkwMailService::class,
             'adminMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'verifyMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'adminNotificationMail'
         );
 
         //=================================================================

@@ -53,10 +53,22 @@ config.tx_extbase {
 
                 subclasses {
                     Tx_RkwForm_BstForm = RKW\RkwForm\Domain\Model\BstForm
+                    Tx_RkwForm_GemCommunityForm = RKW\RkwForm\Domain\Model\GemCommunityForm
                 }
             }
 
             RKW\RkwForm\Domain\Model\BstForm {
+
+                // storage for new records in cross-extension-context
+                newRecordStoragePid = {$plugin.tx_rkwform.persistence.storagePid}
+
+                mapping {
+                    tableName = tx_rkwform_domain_model_standardform
+                    recordType =
+                }
+            }
+
+            RKW\RkwForm\Domain\Model\GemCommunityForm {
 
                 // storage for new records in cross-extension-context
                 newRecordStoragePid = {$plugin.tx_rkwform.persistence.storagePid}
@@ -105,6 +117,7 @@ plugin.tx_rkwform {
         mandatoryFields {
             standard = {$plugin.tx_rkwform.settings.mandatoryFields.standard}
             bst = {$plugin.tx_rkwform.settings.mandatoryFields.bst}
+            gemCommunity = {$plugin.tx_rkwform.settings.mandatoryFields.gemCommunity}
         }
 
         mail {

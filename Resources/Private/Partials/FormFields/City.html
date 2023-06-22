@@ -1,0 +1,25 @@
+<f:comment>
+    <!--
+    @param $width The width of the field. Default is "width100"; use "width50" for half width
+    @use arguments="{cssClass: 'width50', mandatoryFields: 'firstName, lastName'}"
+    -->
+</f:comment>
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<div class="form__field {f:if(condition: '{cssClass}', then: '{cssClass}', else: 'width100')}">
+    <label for="tx-rkwform-city">
+        <f:translate key="tx_rkwform_domain_model_standardform.city" />
+        <f:render partial="LabelSuffix" arguments="{field: 'city', mandatoryFields: mandatoryFields}" />
+    </label>
+    <f:form.textfield
+        id="tx-rkwform-city"
+        property="city"
+        value="{standard.city}"
+        additionalAttributes="{autocomplete:'city'}"
+    />
+</div>
+
+</html>
