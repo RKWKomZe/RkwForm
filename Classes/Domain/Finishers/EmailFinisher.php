@@ -171,12 +171,12 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
 
         // ######### new RKW content START #########
-        $settingsRkwMailer = $this->getSettings('RkwMailer');
+        $settingsPostmaster = $this->getSettings('Postmaster');
 
         // replace baseURLs in final email  - replacement with assign only works in template-files, not on layout-files
-        $message = preg_replace('/###baseUrl###/', rtrim($settingsRkwMailer['baseUrl'], '/'), $standaloneView->render());
-        $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathImages'], '/')), $message);
-        $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathLogo'], '/')), $message);
+        $message = preg_replace('/###baseUrl###/', rtrim($settingsPostmaster['baseUrl'], '/'), $standaloneView->render());
+        $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathImages'], '/')), $message);
+        $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathLogo'], '/')), $message);
 
         /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
         $replacePaths = [
@@ -193,7 +193,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         }
 
         $message = preg_replace('/(src|href)="\/([^"]+)"/',
-            '$1="' . rtrim($settingsRkwMailer['baseUrl'], '/') . '/$2"',
+            '$1="' . rtrim($settingsPostmaster['baseUrl'], '/') . '/$2"',
             $message
         );
 

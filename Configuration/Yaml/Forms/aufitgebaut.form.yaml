@@ -25,9 +25,9 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
       partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+        20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'eine neue Anmeldung zum IT-Wettbewerb wurde eingereicht.'
     identifier: EmailToReceiver
     renderingOptions:
@@ -48,9 +48,9 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Partials/'
+        20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
-        20: 'EXT:rkw_mailer/Resources/Private/Layouts/'
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
       mailText: 'diese E-Mail wurde automatisch generiert. Sie dient als Kopie für Ihre Unterlagen. Folgende Daten wurden an uns übermittelt:'
     identifier: EmailToSender
@@ -222,6 +222,9 @@ renderables:
         label: Datenschutzerklärung
         properties:
           type: terms
+          additionalAttributes:
+            linkPageUid: 1921
+            companyName: 'RKW Kompetenzzentrum'
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100

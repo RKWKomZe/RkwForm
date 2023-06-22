@@ -32,6 +32,19 @@ class GetFinisherOptionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abst
     use CompileWithRenderStatic;
 
     /**
+     * @param string $formIdentifier
+     * @return string
+     */
+    protected static function getFormConfigurationByIdentifier($formIdentifier): string
+    {
+        $delimiter = '-';
+        $formIdentifierToArray = GeneralUtility::trimExplode($delimiter, $formIdentifier);
+        array_pop($formIdentifierToArray);
+
+        return implode($delimiter, $formIdentifierToArray);
+    }
+
+    /**
      * Initialize arguments
      *
      * @return void
@@ -60,7 +73,7 @@ class GetFinisherOptionViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abst
         $renderingContext
     ): string {
 
-        $formIdentifier = $arguments['formIdentifier'];
+        $formIdentifier = self::getFormConfigurationByIdentifier($arguments['formIdentifier']);
         $finisherIdentifier = $arguments['finisherIdentifier'];
         $getOption = $arguments['getOption'];
 

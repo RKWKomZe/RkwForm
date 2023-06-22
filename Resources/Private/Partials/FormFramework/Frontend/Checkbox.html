@@ -1,6 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
-      xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
       data-namespace-typo3-fluid="true">
 <formvh:renderRenderable renderable="{element}">
     <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
@@ -17,7 +16,11 @@
             <label class="checkbox-label {element.properties.elementClassAttribute} form-check-label" for="{element.uniqueIdentifier}">
                 <f:switch expression="{element.properties.type}">
                     <f:case value="terms">
-                        <rkwRegistration:privacyText textVersion="defaultAlternative" />
+                        <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partOne" extensionName="feRegister" arguments="{0: '{element.properties.additionalAttributes.companyName}'}" />
+                        <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">
+                            <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partTwo" extensionName="feRegister" />
+                        </f:link.page>
+                        <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partThree" extensionName="feRegister"/>
                     </f:case>
                     <f:case value="aufitgebaut-terms">
                         Ich akzeptiere die <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">{element.label}</f:link.page>.
@@ -28,9 +31,9 @@
                     <f:case value="gem-privacy">
                         Die <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">{element.label}</f:link.page> habe ich gelesen und verstanden.
                     </f:case>
-                    <f:case default="1">
+                    <f:defaultCase>
                         <span>{formvh:translateElementProperty(element: element, property: 'label')}</span>
-                    </f:case>
+                    </f:defaultCase>
                 </f:switch>
             </label>
         </div>
