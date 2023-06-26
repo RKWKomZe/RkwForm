@@ -25,7 +25,7 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
       partialRootPaths:
-        20: 'EXT:postmaster/Resources/Private/Partials/'
+        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'eine neue Anmeldung zum IT-Wettbewerb wurde eingereicht.'
@@ -48,7 +48,7 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
-        20: 'EXT:postmaster/Resources/Private/Partials/'
+        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
