@@ -96,7 +96,7 @@ return [
             'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.postal',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
+                'size' => 5,
                 'eval' => 'trim'
             ],
         ],

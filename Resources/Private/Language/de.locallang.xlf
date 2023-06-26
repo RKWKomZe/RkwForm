@@ -180,6 +180,16 @@
 				<target> mit Wirkung für die Zukunft widerrufen.</target>
 			</trans-unit>
 
+			<!-- aufitgebaut extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.firstPart">
+				<source>I do accept the </source>
+				<target>Ich akzeptiere die </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.thirdPart">
+				<source>.</source>
+				<target>.</target>
+			</trans-unit>
+
 
             <!-- PARTIALS -->
             <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
