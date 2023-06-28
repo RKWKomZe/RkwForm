@@ -225,6 +225,7 @@ renderables:
           additionalAttributes:
             linkPageUid: 1921
             companyName: 'RKW Kompetenzzentrum'
+            companyEmail: 'service@rkw.de'
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100

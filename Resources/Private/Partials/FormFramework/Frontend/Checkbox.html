@@ -16,11 +16,13 @@
             <label class="checkbox-label {element.properties.elementClassAttribute} form-check-label" for="{element.uniqueIdentifier}">
                 <f:switch expression="{element.properties.type}">
                     <f:case value="terms">
-                        <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partOne" extensionName="feRegister" arguments="{0: '{element.properties.additionalAttributes.companyName}'}" />
-                        <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">
-                            <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partTwo" extensionName="feRegister" />
-                        </f:link.page>
-                        <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partThree" extensionName="feRegister"/>
+                        <f:format.raw>
+                            <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partOne" extensionName="feRegister" arguments="{0: '{element.properties.additionalAttributes.companyName}', 1: '{element.properties.additionalAttributes.companyEmail}'}" />
+                            <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">
+                                <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partTwo" extensionName="feRegister" />
+                            </f:link.page>
+                            <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partThree" extensionName="feRegister"/>
+                        </f:format.raw>
                     </f:case>
                     <f:case value="aufitgebaut-terms">
                         <f:translate key="tx_rkwform_domain_model_standardform.aufitgebaut.terms.firstPart" extensionName="rkwForm"/>
