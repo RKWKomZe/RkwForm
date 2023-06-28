@@ -83,100 +83,17 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
             $translationService->setLanguage($this->options['translation']['language']);
         }
 
-        if ($formRuntime->getFormDefinition()->getIdentifier() === 'gem-community-confirm') {
-
-            $this->databaseConnection = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getConnectionForTable('tx_rkwform_domain_model_standardform');
-
-            // find go through all pages
-            /** @var \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder */
-            $queryBuilder = $this->databaseConnection->createQueryBuilder();
-            $statement = $queryBuilder->select('*')
-                ->from('tx_rkwform_domain_model_standardform')
-                ->where(
-                    $queryBuilder->expr()->eq('token',
-                        $queryBuilder->createNamedParameter($formRuntime['gettoken'], \PDO::PARAM_STR)
-                    )
-                )
-                ->execute();
-
-            $renderables = $formRuntime->getFormDefinition()->getRenderablesRecursively();
-
-            $page = null;
-            foreach ($renderables as $renderable) {
-                if ($renderable instanceof Page) {
-                    $page = $renderable;
-                }
-            }
-
-            if ($page) {
-                foreach ($page->getRenderablesRecursively() as $renderable) {
-
-                    if ($renderable->getIdentifier() === 'gettoken') {
-                        $page->removeElement($renderable);
-                    }
-
-                }
-
-                if ($statement) {
-
-                    $record = $statement->fetchAll()[0];
-
-                    /** @var \TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader $yamlFileLoader */
-                    $yamlFileLoader = GeneralUtility::makeInstance(YamlFileLoader::class);
-                    $formConfiguration = $yamlFileLoader->load('EXT:rkw_form/Configuration/Yaml/Forms/gem-community.form.yaml');
-
-                    $includableElements = [
-                        'salutation',
-                        'title',
-                        'first_name',
-                        'last_name',
-                        'phone',
-                        'email',
-                        'company',
-                        'street',
-                        'postal',
-                        'city',
-                        'theme',
-                    ];
-
-                    $fillableElements = array_filter(
-                        $formConfiguration['renderables'][0]['renderables'],
-                        function($element) use ($includableElements) {
-                            return in_array($element['identifier'], $includableElements);
-                        }
-                    );
-
-                    foreach ($fillableElements as $element) {
-
-                        $key = $element['identifier'];
-
-                        $fillable = $page->createElement($key, 'Text');
-                        $fillable->setLabel($element['label']);
-
-                        if ($key === 'salutation') {
-                            $fillable->setDefaultValue($translationService->translate(
-                                'LLL:EXT:rkw_form/Resources/Private/Language/locallang.xlf:tx_rkwform_domain_model_standardform.salutation.I.' . $record[$key])
-                            );
-                        } else {
-                            $fillable->setDefaultValue($record[$key]);
-                        }
-                    }
-                }
-            }
-        }
-
         // this line is replaced through following lines
         //$message = $standaloneView->render();
 
 
         // ######### new RKW content START #########
-        $settingsRkwMailer = $this->getSettings('RkwMailer');
+        $settingsPostmaster = $this->getSettings('Postmaster');
 
         // replace baseURLs in final email  - replacement with assign only works in template-files, not on layout-files
-        $message = preg_replace('/###baseUrl###/', rtrim($settingsRkwMailer['baseUrl'], '/'), $standaloneView->render());
-        $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathImages'], '/')), $message);
-        $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsRkwMailer['basePathLogo'], '/')), $message);
+        $message = preg_replace('/###baseUrl###/', rtrim($settingsPostmaster['baseUrl'], '/'), $standaloneView->render());
+        $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathImages'], '/')), $message);
+        $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathLogo'], '/')), $message);
 
         /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
         $replacePaths = [
@@ -193,7 +110,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         }
 
         $message = preg_replace('/(src|href)="\/([^"]+)"/',
-            '$1="' . rtrim($settingsRkwMailer['baseUrl'], '/') . '/$2"',
+            '$1="' . rtrim($settingsPostmaster['baseUrl'], '/') . '/$2"',
             $message
         );
 

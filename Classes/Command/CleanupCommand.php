@@ -24,6 +24,7 @@ use TYPO3\CMS\Core\Log\LogLevel;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  * Class CleanupCommand
@@ -50,6 +51,12 @@ class CleanupCommand extends Command
      */
     protected ?StandardFormRepository $standardFormRepository = null;
 
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @TYPO3\CMS\Extbase\Annotation\Inject
+     */
+    protected $persistenceManager;
 
     /**
      * Configure the command by defining the name, options and arguments
@@ -79,6 +86,9 @@ class CleanupCommand extends Command
 
         /** @var \RKW\RkwForm\Domain\Repository\StandardFormRepository standardFormRepository */
         $this->standardFormRepository = $objectManager->get(StandardFormRepository::class);
+
+        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager persistenceManager */
+        $this->persistenceManager = $objectManager->get(PersistenceManager::class);
     }
 
 
@@ -99,7 +109,6 @@ class CleanupCommand extends Command
         $result = 0;
         try {
 
-            /** @todo gem-community? do we really only cleanup these records? why not all? */
             $expiredRecords = $this->standardFormRepository->findExpiredByFormIdentifier('gem-community');
 
             $cnt = 0;
@@ -108,11 +117,14 @@ class CleanupCommand extends Command
                 $cnt++;
             }
 
+            $this->persistenceManager->persistAll();
+
             // Message with x files were deleted
             $message = sprintf(
                 'Removed %s expired form records from the database.',
                 $cnt
             );
+
             $io->note($message);
             $this->getLogger()->log(LogLevel::INFO, $message);
 

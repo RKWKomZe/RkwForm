@@ -1,0 +1,14 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:rkwRegistration="http://typo3.org/ns/RKW/RkwRegistration/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<div class="form__field width100">
+    <f:form.checkbox class="checkbox" id="terms" name="terms" value="1" />
+    <label for="terms" class="checkbox-label">
+        <f:translate key="tx_rkwform_domain_model_standardform.gem.terms.firstPart" />
+        <a href="mailto:{revocationEmail}" target="_blank">{revocationEmail}</a>
+        <f:translate key="tx_rkwform_domain_model_standardform.gem.terms.thirdPart" />
+    </label>
+</div>
+
+</html>

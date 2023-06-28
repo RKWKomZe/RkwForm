@@ -26,7 +26,7 @@ On the other hand, it's prepared to extend the FormFramework in future with some
 * h1-h6 options for static text field
 * The checkbox field got the property "type" to use it as terms-checkbox. Is bound to the extension FeRegister
 * Individual greeting text for every E-Mails (look to the mail finisher of the certain form)
-* The mailing is bound to the RkwMailer for using Header, Footer and its components (images; links) for every E-Mail out of the box
+* The mailing is bound to the extension Postmaster for using Header, Footer and its components (images; links) for every E-Mail out of the box
 * Attention: The EmailFinisher of the ExtForm is overwritten by /rkw_form/Classes/Domain/Finishers/EmailFinisher.php
 * Hint: To work in fluid with individual form configurations you can use a YAML-reader like it is used here: /rkw_form/Classes/ViewHelpers/GetFinisherOptionViewHelper.php
 ### Hints
