@@ -243,7 +243,7 @@
 				<source>thanks for joining the GEM-Community</source>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.text2">
-				<source>Below we have summarized the details of your registration once again for you.</source>
+				<source>Please confirm your email.</source>
 			</trans-unit>
 			<trans-unit id="templates_email_verifyUser.text3">
 				<source>Below we have summarized the details of your registration once again for you.</source>
