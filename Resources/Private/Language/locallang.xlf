@@ -10,6 +10,21 @@
                 <source>Please confirm you participation</source>
             </trans-unit>
 
+            <trans-unit id="gemCommunityFormController.error.accept_terms">
+                <source>Please confirm the terms.</source>
+            </trans-unit>
+			<trans-unit id="gemCommunityFormController.error.verification.expired">
+                <source>Your registration link has already expired. Please register once again.</source>
+            </trans-unit>
+			<trans-unit id="gemCommunityFormController.error.verification.notfound">
+				<source>Your registration could not be found. Please register once again.</source>
+			</trans-unit>
+            <trans-unit id="gemCommunityFormController.error.verification.already_enabled">
+                <source>Your verification is already confirmed.</source>
+            </trans-unit>
+            <trans-unit id="gemCommunityFormController.success.verification.confirmed">
+                <source>Your registration has been completed.</source>
+            </trans-unit>
 
 		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
@@ -80,11 +95,54 @@
             </trans-unit>
 
 
+            <!-- gemcommunity extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.postal">
+				<source>Postal</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topics">
+				<source>Topics</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
+				<source>Topic</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
+				<source>I have read and agree to the extended notes in the</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.secondPart">
+				<source>data protection declaration</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
+				<source>. This consent can be revoked at any time.</source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
+				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.thirdPart">
+				<source>.</source>
+			</trans-unit>
+
+			<!-- aufitgebaut extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.firstPart">
+				<source>I do accept the </source>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.thirdPart">
+				<source>.</source>
+			</trans-unit>
+
 
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">
                 <source>Send</source>
             </trans-unit>
+			<trans-unit id="templates_gemcommunity_new.button">
+				<source>Send</source>
+			</trans-unit>
 
             <trans-unit id="templates_standard_create.header">
                 <source>Thank you for your message!</source>
@@ -160,6 +218,9 @@
             <trans-unit id="rkwMailService.confirmationUser.subject">
                 <source>Thanks for your request</source>
             </trans-unit>
+			<trans-unit id="rkwMailService.verifyUser.subject">
+				<source>Thanks for your request</source>
+			</trans-unit>
             <trans-unit id="rkwMailService.notifyAdmin.subject">
                 <source>Request via contact form</source>
             </trans-unit>
@@ -177,6 +238,20 @@
             </trans-unit>
 
 
+			<!-- Template/Email/GemCommunityForm/VerifyUser.html -->
+			<trans-unit id="templates_email_verifyUser.text1">
+				<source>thanks for joining the GEM-Community</source>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text2">
+				<source>Below we have summarized the details of your registration once again for you.</source>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text3">
+				<source>Below we have summarized the details of your registration once again for you.</source>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">
+				<source>Yes, I confirm my registration.</source>
+			</trans-unit>
+
 
             <!-- Templates/Email/NotifyAdmin.html -->
             <trans-unit id="templates_email_notifyAdmin.headline">
@@ -186,7 +261,15 @@
                 <source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
             </trans-unit>
 
+            <!-- Template/Email/GemCommunityForm/VerifyUser.html -->
+            <trans-unit id="rkwMailService.gemCommunityForm.notifyAdmin.subject">
+				<source>Request via contact form</source>
+			</trans-unit>
 
+            <!-- Template/Email/GemCommunityForm/NotifyAdmin.html -->
+			<trans-unit id="templates_email_gemcommunity_notifyAdmin.text1">
+				<source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
+			</trans-unit>
 
             <!-- FORM FRAMEWORK -->
             <trans-unit id="tx_rkwform_formframework_form.not_filled">

@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:postmaster="http://typo3.org/ns/Madj2k/Postmaster/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<f:layout name="Email/{mailType}" />
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+<postmaster:email.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.street}
+<postmaster:email.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.postal}
+<postmaster:email.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.city}
+<postmaster:email.translate key="tx_rkwform_domain_model_standardform.topic" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.topic}
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+
+    <tr>
+        <th class="align-left">
+            <postmaster:email.translate key="tx_rkwform_domain_model_standardform.street" languageKey="{language}" extensionName="rkwForm"/>:
+        </th>
+        <td>
+            {formRequest.street}
+        </td>
+    </tr>
+    <tr>
+        <th class="align-left">
+            <postmaster:email.translate key="tx_rkwform_domain_model_standardform.postal" languageKey="{language}" extensionName="rkwForm"/>:
+        </th>
+        <td>
+            {formRequest.postal}
+        </td>
+    </tr>
+    <tr>
+        <th class="align-left">
+            <postmaster:email.translate key="tx_rkwform_domain_model_standardform.city" languageKey="{language}" extensionName="rkwForm"/>:
+        </th>
+        <td>
+            {formRequest.city}
+        </td>
+    </tr>
+    <tr>
+        <th class="align-left">
+            <postmaster:email.translate key="tx_rkwform_domain_model_standardform.topic" languageKey="{language}" extensionName="rkwForm"/>:
+        </th>
+        <td>
+            {formRequest.topic}
+        </td>
+    </tr>
+
+</f:section>

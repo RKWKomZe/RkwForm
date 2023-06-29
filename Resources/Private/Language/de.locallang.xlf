@@ -11,7 +11,30 @@
                 <target>Bitte bestätigen Sie Ihre aktive Teilnahme am Frankfurter Bausachverständigentag.</target>
             </trans-unit>
 
+			<trans-unit id="gemCommunityFormController.error.accept_terms">
+				<source>Please confirm the terms.</source>
+				<target>Bitte bestätigen Sie die Einwilligung zur Verwendung Ihrer Daten.</target>
+			</trans-unit>
 
+			<trans-unit id="gemCommunityFormController.error.verification.expired">
+				<source>Your registration link has already expired. Please register once again.</source>
+				<target>Ihr E-Mail-Bestätigungslink ist bereits abgelaufen. Bitte melden Sie sich erneut an.</target>
+			</trans-unit>
+
+			<trans-unit id="gemCommunityFormController.error.verification.notfound">
+				<source>Your registration could not be found. Please register once again.</source>
+				<target>Ihre Anmeldung wurde nicht gefunden. Bitte melden Sie sich erneut an.</target>
+			</trans-unit>
+
+			<trans-unit id="gemCommunityFormController.error.verification.already_enabled">
+				<source>Your verification is already confirmed.</source>
+				<target>Ihre E-Mail-Bestätigung wurde bereits erfolgreich durchgeführt.</target>
+			</trans-unit>
+
+			<trans-unit id="gemCommunityFormController.success.verification.confirmed">
+				<source>Your registration has been completed.</source>
+				<target>Ihre Anmeldung wurde nun erfolgreich bestätigt und Ihre Daten an uns übermittelt.</target>
+			</trans-unit>
 
 		    <!-- MODEL -->
 			<trans-unit id="tx_rkw_form_domain_model_standardform">
@@ -77,19 +100,40 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.street">
+				<source>Street</source>
+				<target>Straße und Hausnummer</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.postal">
+				<source>Postal</source>
+				<target>Postleitzahl</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.city">
+				<source>City</source>
+				<target>Ort</target>
+			</trans-unit>
             <trans-unit id="tx_rkwform_domain_model_standardform.text">
                 <source>Message</source>
                 <target>Nachricht</target>
             </trans-unit>
-
-
+			<trans-unit id="tx_rkwform_domain_model_standardform.topics">
+				<source>Topics</source>
+				<target>Gründungsthemengebiete/Expertise im Thema</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
 
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">
                 <source>Send</source>
                 <target>Jetzt absenden</target>
             </trans-unit>
-
+			<trans-unit id="templates_gemcommunity_new.button">
+				<source>Send</source>
+				<target>Jetzt anmelden</target>
+			</trans-unit>
             <trans-unit id="templates_standard_create.header">
                 <source>Thank you for your message!</source>
                 <target>Vielen Dank für Ihre Nachricht!</target>
@@ -105,6 +149,46 @@
                 <target>Ja, ich habe alle Inhalte des diesjährigen Frankfurter Bausachverständigentag wahrgenommen und die Möglichkeit gehabt, Fragen zu stellen.</target>
             </trans-unit>
 
+
+			<!-- gem extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.topics">
+				<source>Topics</source>
+				<target>Gründungsthemengebiete/Expertise im Thema</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
+				<source>I have read and agree to the extended notes in the</source>
+				<target>Die </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.secondPart">
+				<source>data protection declaration</source>
+				<target>Datenschutzerklärung </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
+				<source>. This consent can be revoked at any time.</source>
+				<target>habe ich gelesen und bin einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
+				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
+				<target>Hiermit willige ich ein, dass im Rahmen und für die Dauer des GEM-Projekts meine personenbezogenen Daten wie Anrede, Vorname, Nachname, Titel, Geschlecht, E-Mail-Adresse, Institution/Firma/Gründung, Telefonnummer, Postanschrift (Adresse, PLZ, Ort), Gründungsthemengebiet, ggf. Jahr der freiwilligen Umfrageteilnahme vom RKW Kompetenzzentrum in eine Liste aufgenommen und gespeichert werden und zum Zwecke der Kontaktaufnahme für Einladungen zu Umfragen, GEM-Veranstaltungen sowie Zusendung des GEM-Berichts per Post verwendet werden. Die Daten werden nicht an Dritte weitergegeben. Diese Einwilligung ist freiwillig und die Nichterteilung hat keine negativen Auswirkungen. Diese Einwilligung kann ich jederzeit per Mail an </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.thirdPart">
+				<source>.</source>
+				<target> mit Wirkung für die Zukunft widerrufen.</target>
+			</trans-unit>
+
+			<!-- aufitgebaut extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.firstPart">
+				<source>I do accept the </source>
+				<target>Ich akzeptiere die </target>
+			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.aufitgebaut.terms.thirdPart">
+				<source>.</source>
+				<target>.</target>
+			</trans-unit>
 
 
             <!-- PARTIALS -->
@@ -157,6 +241,22 @@
                 <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
+			<trans-unit id="form.error.newFormRequest.street">
+				<source>Street</source>
+				<target>Straße und Hausnummer</target>
+			</trans-unit>
+			<trans-unit id="form.error.newFormRequest.postal">
+				<source>Postal</source>
+				<target>Postleitzahl</target>
+			</trans-unit>
+			<trans-unit id="form.error.newFormRequest.city">
+				<source>City</source>
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="form.error.newFormRequest.topic">
+				<source>Topic</source>
+				<target>Thema</target>
+			</trans-unit>
             <trans-unit id="form.error.newFormRequest.text">
                 <source>Message</source>
                 <target>Nachricht</target>
@@ -186,6 +286,10 @@
                 <source>Thanks for your request</source>
                 <target>Danke für Ihre Nachricht</target>
             </trans-unit>
+			<trans-unit id="rkwMailService.verifyUser.subject">
+				<source>Thanks for your request</source>
+				<target>Ihre Anmeldung zur Teilnahme an der GEM-Befragung</target>
+			</trans-unit>
             <trans-unit id="rkwMailService.notifyAdmin.subject">
                 <source>Request via contact form</source>
                 <target>Anfrage über das Kontaktformular</target>
@@ -206,6 +310,24 @@
                 <target>Untenstehend haben wir die Details Ihrer Anfrage noch einmal für Sie zusammengefasst. Wir werden uns zeitnah mit Ihnen in Verbindung setzen.</target>
             </trans-unit>
 
+			<!-- Template/Email/GemCommunityForm/VerifyUser.html -->
+			<trans-unit id="templates_email_verifyUser.text1">
+				<source>thanks for joining the GEM-Community</source>
+				<target>vielen herzlichen Dank für Ihre Bereitschaft zur Teilnahme an der jährlichen GEM-Befragung. Klicken Sie bitte den nachfolgenden Link, um Ihre Anmeldung zu bestätigen:</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text2">
+				<source>Please confirm your email.</source>
+				<target>Bitte beachten Sie, dass dieser Link nur bis %s Uhr gültig ist. Ihre E-Mail-Adresse speichern wir ausschließlich zum Zweck der GEM-Befragung und der Einladung zu Veranstaltungen im Rahmen des GEM-Projekts. Sollten Sie doch nicht teilnehmen wollen, können Sie diese E-Mail ignorieren und müssen nichts weiter unternehmen. Ihre Anmeldedaten werden dann nach Ablauf der Gültigkeit automatisch gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.text3">
+				<source>Below we have summarized the details of your registration once again for you.</source>
+				<target>Sie haben folgende Daten an uns übermittelt:</target>
+			</trans-unit>
+			<trans-unit id="templates_email_verifyUser.textVerifyEmailLinkLabel">
+				<source>Yes, I confirm my registration.</source>
+				<target>Ja, ich möchte meine Anmeldung bestätigen</target>
+			</trans-unit>
+
 
             <!-- Templates/Email/NotifyAdmin.html -->
             <trans-unit id="templates_email_notifyAdmin.headline">
@@ -217,6 +339,18 @@
                 <target>über die Website wurde Ihnen eine Nachricht übermittelt. Sie können direkt auf diese E-Mail antworten.</target>
             </trans-unit>
 
+
+			<!-- Template/Email/GemCommunityForm/NotifyAdmin.html -->
+			<trans-unit id="rkwMailService.gemCommunityForm.notifyAdmin.subject">
+				<source>New registration for GEM-Survey by %s</source>
+				<target>Neue Anmeldung zur GEM-Befragung von %s</target>
+			</trans-unit>
+
+			<!-- Template/Email/GemCommunityForm/NotifyAdmin.html -->
+			<trans-unit id="templates_email_gemcommunity_notifyAdmin.text1">
+				<source>a message was sent to you via the website. You can reply directly to this e-mail.</source>
+				<target>eine neue Anmeldung zur GEM-Befragung wurde eingereicht.</target>
+			</trans-unit>
 
 
             <!-- FORM FRAMEWORK -->

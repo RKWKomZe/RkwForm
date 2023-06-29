@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:postmaster="http://typo3.org/ns/Madj2k/Postmaster/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <postmaster:email.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" />
+
+    <postmaster:email.translate key="templates_email_gemcommunity_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" />
+
+    <f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: backendUser.lang}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+    <h1><postmaster:email.translate key="templates_email_notifyAdmin.headline" languageKey="{backendUser.lang}" extensionName="rkwForm" arguments="{0 : backendUser.realName}" /></h1>
+    <p><postmaster:email.translate key="templates_email_gemcommunity_notifyAdmin.text1" languageKey="{backendUser.lang}" extensionName="rkwForm" /></p>
+
+    <f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: backendUser.lang}"/>
+</f:section>

@@ -32,6 +32,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'RKW.RkwForm',
+            'GemCommunityForm',
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ],
+            // non-cacheable actions
+            [
+                'GemCommunityForm' => 'new, create, verify'
+            ]
+        );
+
 
         //=================================================================
         // Register SignalSlots
@@ -71,6 +83,20 @@ call_user_func(
             'adminMail'
         );
 
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_USER,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'verifyMail'
+        );
+
+        $signalSlotDispatcher->connect(
+            'RKW\\RkwForm\\Controller\\GemCommunityFormController',
+            \RKW\RkwForm\Controller\GemCommunityFormController::SIGNAL_AFTER_REQUEST_CREATED_ADMIN,
+            'RKW\\RkwForm\\Service\\RkwMailService',
+            'adminNotificationMail'
+        );
+
         //=================================================================
         // Hooks
         //=================================================================
@@ -88,7 +114,7 @@ call_user_func(
 
             // configuration for WARNING severity, including all
             // levels with higher severity (ERROR, CRITICAL, EMERGENCY)
-            \TYPO3\CMS\Core\Log\LogLevel::DEBUG => array(
+            \TYPO3\CMS\Core\Log\LogLevel::WARNING => array(
                 // add a FileWriter
                 'TYPO3\\CMS\\Core\\Log\\Writer\\FileWriter' => array(
                     // configuration for the writer

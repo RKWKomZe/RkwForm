@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:postmaster="http://typo3.org/ns/Madj2k/Postmaster/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<f:layout name="Email/{mailType}" />
+
+
+<!-- PLAINTEXT -->
+<f:section name="Plaintext">
+    <postmaster:email.recipientSalutation queueRecipient="{queueRecipient}" prependText="<postmaster:email.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/>
+
+    <postmaster:email.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+    {formRequest.verificationUrl}
+
+    <postmaster:email.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+    <postmaster:email.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+
+    <f:render partial="Email/Details" section="Plaintext" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>
+
+<!-- HTML -->
+<f:section name="Html">
+    <h1><postmaster:email.recipientSalutation queueRecipient="{queueRecipient}" prependText="<postmaster:email.translate key='templates_email_confirmationUser.headline' languageKey='{queueRecipient.languageCode}' extensionName='rkwForm' /> " appendText=","/></h1>
+    <p>
+        <postmaster:email.translate key="templates_email_verifyUser.text1" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" /><br>
+    </p>
+    <p>
+        <a href="{formRequest.verificationUrl}" target="_blank">
+            <postmaster:email.translate key="templates_email_verifyUser.textVerifyEmailLinkLabel" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+        </a>
+    </p>
+    <p>
+        <postmaster:email.translate key="templates_email_verifyUser.text2" arguments="{1 : '{f:format.date(date: formRequest.validUntil, format: \'d.m.Y H:i\')}'}" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+    <p>
+        <postmaster:email.translate key="templates_email_verifyUser.text3" languageKey="{frontendUser.txRkwregistrationLanguageKey}" extensionName="rkwForm" />
+    </p>
+    <f:render partial="Email/Details" section="Html" arguments="{formRequest: formRequest, frontendUser: frontendUser, language: frontendUser.txRkwregistrationLanguageKey}"/>
+</f:section>
