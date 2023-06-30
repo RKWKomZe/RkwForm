@@ -265,22 +265,24 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
                     ($recipient instanceof \RKW\RkwForm\Domain\Model\BackendUser)
                     && ($recipient->getEmail())
                 ) {
-
                     // send new user an email with token
                     $mailService->setTo($recipient, array(
                         'marker'  => array(
                             'formRequest'  => $formRequest,
                             'backendUser'  => $recipient,
                         ),
-                        'subject' => \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
-                            'rkwMailService.gemCommunityForm.notifyAdmin.subject',
-                            'rkw_form',
-                            [$formRequest->getFirstName() . ' ' . $formRequest->getLastName()],
-                            $recipient->getLang()
-                        ),
                     ));
                 }
             }
+
+            $mailService->getQueueMail()->setSubject(
+                \Madj2k\Postmaster\Utility\FrontendLocalizationUtility::translate(
+                    'rkwMailService.gemCommunityForm.notifyAdmin.subject',
+                    'rkw_form',
+                    [$formRequest->getFirstName() . ' ' . $formRequest->getLastName()],
+                    $recipient->getLang()
+                )
+            );
 
             if (
                 ($formRequest->getEmail())
