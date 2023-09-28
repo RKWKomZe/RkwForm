@@ -2,7 +2,7 @@ renderingOptions:
   submitButtonLabel: Mitgliedschaft beantragen
   width: flex-basis-8
 identifier: mitgliedsantrag-sa
-label: Mitgliedsantrag-SA
+label: 'Mitgliedsantrag Sachsen-Anhalt'
 type: Form
 prototypeName: standard
 finishers:
@@ -62,139 +62,126 @@ finishers:
     identifier: Redirect
 renderables:
   -
+    type: Page
+    identifier: company-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    identifier: page-1
-    label: ''
-    type: Page
     renderables:
       -
         type: StaticText
         identifier: company-general-information
         label: 'Allgemeine Unternehmensdaten'
       -
+        type: Text
+        identifier: name
+        label: 'Name des Unternehmens'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        identifier: name
-        label: 'Name des Unternehmens'
-        type: Text
         validators:
           -
             identifier: NotEmpty
       -
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
         type: Text
         identifier: street
         label: Straße und Hausnummer / Postfach
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: postal
         label: Postleitzahl
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: city
         label: Ort
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
       -
-        defaultValue: ''
-        properties:
-          fieldClass: width50
+        type: Text
         identifier: phone
         label: Telefon
-        type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
       -
+        type: Text
+        identifier: email
+        label: 'E-Mail'
         defaultValue: ''
         properties:
           fieldClass: width50
-        identifier: email
-        label: 'E-Mail'
-        type: Text
         validators:
           -
             identifier: EmailAddress
       -
-        properties:
-          fieldClass: width50
-          dateFormat: d.m.Y
-          enableDatePicker: false
-          displayTimeSelector: false
-          fluidAdditionalAttributes:
-            required: required
-            placeholder: tt.mm.yyyy
-        type: DatePicker
-        identifier: founding-date
-        label: 'Gründungsdatum'
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
         type: Text
         identifier: registration-entry
         label: Handelsregisternummer
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: registration-place
         label: Ort der Eintragung
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: employees-count
-        label: Anzahl Beschäftigte
         validators:
           -
             identifier: NotEmpty
       -
-        identifier: industry
+        type: Text
+        identifier: employees-count
+        label: Anzahl Beschäftigte
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
+      -
         type: SingleSelect
+        identifier: industry
         label: 'Branche'
         properties:
           fluidAdditionalAttributes:
@@ -217,13 +204,13 @@ renderables:
           -
             identifier: NotEmpty
       -
+        type: Textarea
+        identifier: company-profile
+        label: 'Unternehmensprofil'
         defaultValue: ''
         properties:
           elementDescription: 'Hier können Sie gern einen Text zur Beschreibung Ihres Unternehmens verfassen (maximal 1.000 Zeichen).'
           fieldClass: width100
-        type: Textarea
-        identifier: company-profile
-        label: 'Unternehmensprofil'
         validators:
           -
             identifier: NotEmpty
@@ -232,12 +219,12 @@ renderables:
             options:
               maximum: 1000
   -
+    type: Page
+    identifier: company-director-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-2
-    label: ''
     renderables:
       -
         type: StaticText
@@ -251,63 +238,66 @@ renderables:
         identifier: company-director-salutation
         label: Anrede
       -
-        defaultValue: ''
-        properties:
-          fieldClass: width50
         type: Text
         identifier: company-director-title
         label: Titel
-      -
         defaultValue: ''
         properties:
-          fluidAdditionalAttributes:
-            required: required
           fieldClass: width50
+      -
         type: Text
         identifier: company-director-first-name
         label: Vorname
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: company-director-name
         label: Name
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: company-director-phone
         label: Telefon
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: company-director-email
         label: 'E-Mail'
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
           -
             identifier: EmailAddress
       -
+        type: DatePicker
+        identifier: company-director-birthdate
+        label: 'Geburtsdatum'
         properties:
           fieldClass: width50
           dateFormat: d.m.Y
@@ -317,12 +307,11 @@ renderables:
           fluidAdditionalAttributes:
             required: required
             placeholder: tt.mm.yyyy
-        type: DatePicker
-        identifier: company-director-birthdate
-        label: 'Geburtsdatum'
         validators:
           -
             identifier: NotEmpty
+          -
+            identifier: DateTime
       -
         type: Checkbox
         identifier: company-director-to-company-contact-person
@@ -330,51 +319,51 @@ renderables:
         properties:
           fieldClass: width100
   -
+    type: Page
+    identifier: company-contact-person-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-3
-    label: ''
     renderables:
       -
-        properties:
-          text: 'Bitte tragen Sie hier die Person ein, die sich hauptsächlich im Verein engagieren wird und dauerhaft unsere Ansprechperson ist.'
         type: StaticText
         identifier: company-contact-person
         label: 'Ansprechperson'
-      -
-        defaultValue: ''
         properties:
-          fieldClass: width50
+          text: 'Bitte tragen Sie hier die Person ein, die sich hauptsächlich im Verein engagieren wird und dauerhaft unsere Ansprechperson ist.'
+      -
         type: Text
         identifier: company-contact-person-salutation
         label: Anrede
+        defaultValue: ''
+        properties:
+          fieldClass: width50
         variants:
           -
             identifier: company-contact-person-salutation-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
             defaultValue: 'formValues["company-director-salutation"]'
       -
-        defaultValue: ''
-        properties:
-          fieldClass: width50
         type: Text
         identifier: company-contact-person-title
         label: Titel
+        defaultValue: ''
+        properties:
+          fieldClass: width50
         variants:
           - identifier: company-contact-person-title-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
             defaultValue: 'formValues["company-director-title"]'
       -
+        type: Text
+        identifier: company-contact-person-first-name
+        label: Vorname
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: company-contact-person-first-name
-        label: Vorname
         variants:
           - identifier: company-contact-person-first-name-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
@@ -383,14 +372,14 @@ renderables:
           -
             identifier: NotEmpty
       -
+        type: Text
+        identifier: company-contact-person-name
+        label: Name
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: company-contact-person-name
-        label: Name
         variants:
           - identifier: company-contact-person-name-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
@@ -399,14 +388,14 @@ renderables:
           -
             identifier: NotEmpty
       -
+        type: Text
+        identifier: company-contact-person-phone
+        label: Telefon
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: company-contact-person-phone
-        label: Telefon
         variants:
           - identifier: company-contact-person-phone-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
@@ -415,14 +404,14 @@ renderables:
           -
             identifier: NotEmpty
       -
+        type: Text
+        identifier: company-contact-person-email
+        label: 'E-Mail'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: company-contact-person-email
-        label: 'E-Mail'
         variants:
           - identifier: company-contact-person-email-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
@@ -433,6 +422,9 @@ renderables:
           -
             identifier: EmailAddress
       -
+        type: DatePicker
+        identifier: company-contact-person-birthdate
+        label: 'Geburtsdatum'
         properties:
           fieldClass: width50
           dateFormat: d.m.Y
@@ -442,9 +434,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
             placeholder: tt.mm.yyyy
-        type: DatePicker
-        identifier: company-contact-person-birthdate
-        label: 'Geburtsdatum'
         variants:
           - identifier: company-contact-person-birthdate-variant
             condition: 'formValues["company-director-to-company-contact-person"] == 1'
@@ -452,54 +441,82 @@ renderables:
         validators:
           -
             identifier: NotEmpty
+          -
+            identifier: DateTime
   -
+    type: Page
+    identifier: membership-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-4
-    label: ''
     renderables:
       -
         type: StaticText
-        identifier: member-fee
+        identifier: membership-fee
         label: 'Mitgliedsbeitrag'
-      -
-        defaultValue: ''
         properties:
+          text: 'Der Jahresbeitrag richtet sich entsprechend der <a href="https://www.rkw-sachsenanhalt.de/fileadmin/media_sachsenanhalt/Dateien/20180601_Beitragsstaffel.pdf" target="_blank">RKW-Beitragsstaffel</a> nach Ihrem Bruttoumsatz des Vorjahres.'
+      -
+        type: DatePicker
+        identifier: membership-founding-date
+        label: 'Gründungsdatum'
+        properties:
+          fieldClass: width50 membership-founding-date
+          dateFormat: d.m.Y
+          enableDatePicker: false
+          displayTimeSelector: false
           fluidAdditionalAttributes:
             required: required
-          fieldClass: width50
-        type: Text
-        identifier: member-fee-gross-total
+            placeholder: tt.mm.yyyy
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: DateTime
+      -
+        type: Number
+        identifier: membership-fee-gross-total
         label: 'Bruttoumsatz in Euro'
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
-          fieldClass: width50
-        type: Text
-        identifier: member-fee-gross-total-year
+          fieldClass: width50 membership-fee-gross-total
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
+      -
+        type: Number
+        identifier: membership-fee-gross-total-year
         label: 'Kalenderjahr'
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
-          fieldClass: width50
-        type: Text
-        identifier: member-fee-yearly
-        label: 'Jahresbeitrag (berechnet)'
+          fieldClass: width50 membership-fee-gross-total-year
         validators:
           -
             identifier: NotEmpty
+          -
+            identifier: Integer
+      -
+        type: Number
+        identifier: membership-fee-yearly
+        label: 'Jahresbeitrag in Euro'
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            readonly: readonly
+          fieldClass: width50 membership-fee-yearly
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
       -
         type: Checkbox
         identifier: invoice-by-email
@@ -514,7 +531,7 @@ renderables:
           fieldClass: width100
   -
     type: Page
-    identifier: page-4
+    identifier: invoice-receiver-page
     label: 'Angaben zum Erhalt der Rechnung'
     renderingOptions:
       previousButtonLabel: Zurück
@@ -532,34 +549,34 @@ renderables:
           enabled: true
     renderables:
       -
+        type: Text
+        identifier: invoice-receiver-email
+        label: 'E-Mail für Erhalt der Rechnung'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: invoice-receiver-email
-        label: 'E-Mail für Erhalt der Rechnung'
         validators:
           -
             identifier: NotEmpty
           -
             identifier: EmailAddress
   -
+    type: Page
+    identifier: invoice-address-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-5
-    label: ''
     variants:
       -
-        identifier: variant-4-1
+        identifier: variant-invoice-different-address-0
         condition: 'formValues["invoice-different-address"] == 0'
         renderingOptions:
           enabled: false
       -
-        identifier: variant-4-2
+        identifier: variant-invoice-different-address-1
         condition: 'formValues["invoice-different-address"] == 1'
         renderingOptions:
           enabled: true
@@ -569,84 +586,84 @@ renderables:
         identifier: invoice
         label: 'Angaben zur abweichenden Rechnungsadresse'
       -
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
         type: Text
         identifier: invoice-address-company-name
         label: 'Name des Unternehmens'
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
-          fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: invoice-address-company-street
         label: Straße und Hausnummer / Postfach
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: invoice-address-company-postal
         label: Postleitzahl
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         type: Text
         identifier: invoice-address-company-city
         label: Ort
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
   -
+    type: Page
+    identifier: personal-comment-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-6
-    label: ''
     renderables:
       -
         type: StaticText
         identifier: comment-intro
         label: 'Persönliche Nachricht an uns'
       -
-        defaultValue: ''
+        type: Textarea
+        identifier: comment
         label: 'Ihre Nachricht'
+        defaultValue: ''
         properties:
           elementDescription: 'Hier können Sie gern eine persönliche Nachricht an uns verfassen (maximal 1.000 Zeichen).'
           fieldClass: width100
-        type: Textarea
-        identifier: comment
         validators:
           -
             identifier: StringLength
             options:
               maximum: 1000
   -
+    type: Page
+    identifier: terms-page
+    label: ''
     renderingOptions:
       previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
-    type: Page
-    identifier: page-6
-    label: ''
+      nextButtonLabel: 'Zur Zusammenfassung'
     renderables:
       -
         type: StaticText
@@ -671,10 +688,10 @@ renderables:
         identifier: contact-confirm-intro
         label: 'Zustimmung zur Kontaktaufnahme'
       -
-        properties:
-          text: 'Ihre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: <a href="#" target="_blank">https://www.rkw-sachsenanhalt.de/datenschutz/</a>'
         type: StaticText
         identifier: contact-confirm-reject
+        properties:
+          text: 'Ihre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: <a href="#" target="_blank">https://www.rkw-sachsenanhalt.de/datenschutz/</a>'
       -
         type: Checkbox
         identifier: contact-by-email-confirm
@@ -694,9 +711,10 @@ renderables:
         properties:
           fieldClass: width100
   -
+    type: SummaryPage
+    identifier: summarypage
+    label: Zusammenfassung
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Mitgliedschaft beantragen
-    identifier: summarypage
-    label: Zusammenfassung
-    type: SummaryPage
+
