@@ -132,6 +132,11 @@ plugin.tx_rkwform {
 [extensionLoaded('form')]
     plugin.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
     module.tx_form.settings.yamlConfigurations.100 = EXT:rkw_form/Configuration/Yaml/FormFrameworkConf.yaml
+
+    page.includeJSFooterlibs {
+        sa-membership-application = EXT:rkw_form/Resources/Public/JavaScript/MembershipApplication.js
+    }
+
 [END]
 
 
