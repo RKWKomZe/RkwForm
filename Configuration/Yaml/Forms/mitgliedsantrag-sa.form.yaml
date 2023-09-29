@@ -57,7 +57,7 @@ finishers:
       mailtext: Test.456
   -
     options:
-      pageUid: '7543'
+      pageUid: '11285'
       additionalParameters: ''
     identifier: Redirect
 renderables:
