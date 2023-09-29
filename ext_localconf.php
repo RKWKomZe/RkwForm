@@ -106,6 +106,9 @@ call_user_func(
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterSubmit']['2'] = \RKW\RkwForm\Domain\Model\Renderable\SetBaseUrl::class;
         //  get post parameter
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['afterBuildingFinished']['3'] = \RKW\RkwForm\Domain\Model\Renderable\GetPostParameter::class;
+        //  set default value depending on condition
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/form']['beforeRendering']['
+1695737224'] = \RKW\RkwForm\Domain\Model\Renderable\SetDynamicDefaultValue::class;
 
         //=================================================================
         // Register Logger
