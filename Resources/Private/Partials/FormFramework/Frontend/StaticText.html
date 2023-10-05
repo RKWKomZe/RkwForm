@@ -5,7 +5,7 @@
 			<{f:if(condition: element.properties.headerTag, then: '{element.properties.headerTag}', else: 'h3')}>{formvh:translateElementProperty(element: element, property: 'label')}</{f:if(condition: element.properties.headerTag, then: '{element.properties.headerTag}', else: 'h3')}>
 		</f:if>
 		<f:if condition="{element.properties.text}">
-			<p{f:if(condition: element.properties.elementClassAttribute, then: ' class="{element.properties.elementClassAttribute}"')}>{formvh:translateElementProperty(element: element, property: 'text') -> f:format.nl2br()}</p>
+            <p{f:if(condition: element.properties.elementClassAttribute, then: ' class="{element.properties.elementClassAttribute}"')}><f:format.raw>{formvh:translateElementProperty(element: element, property: 'text') -> f:format.nl2br()}</f:format.raw></p>
 		</f:if>
 	</div>
 </formvh:renderRenderable>
