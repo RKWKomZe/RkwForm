@@ -18,6 +18,7 @@ namespace RKW\RkwForm\Controller;
 use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use RKW\RkwForm\Domain\Model\StandardForm;
 use Madj2k\FeRegister\Domain\Model\FrontendUser;
+use RKW\RkwForm\Domain\Repository\GemCommunityFormRepository;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -36,21 +37,23 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 {
     /**
      * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $gemCommunityFormRepository;
+    protected GemCommunityFormRepository $gemCommunityFormRepository;
+
 
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $objectManager;
 
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $persistenceManager;
+    protected PersistenceManager $persistenceManager;
 
 
     /**

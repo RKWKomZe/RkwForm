@@ -121,6 +121,8 @@ class FileCleanupCommand extends Command
                     if (!is_dir($filePath)) {
                         if (! mkdir($filePath, 0777, true)) {
                             $message = sprintf('Given file path does not exist=%s. Failed trying to create folder.', $filePath);
+
+                            // @extensionScannerIgnoreLine
                             $io->error($message);
                             $this->getLogger()->log(LogLevel::ERROR, $message);
                             continue;
@@ -179,6 +181,7 @@ class FileCleanupCommand extends Command
                 str_replace(array("\n", "\r"), '', $e->getMessage())
             );
 
+            // @extensionScannerIgnoreLine
             $io->error($message);
             $this->getLogger()->log(LogLevel::ERROR, $message);
             $result = 1;
