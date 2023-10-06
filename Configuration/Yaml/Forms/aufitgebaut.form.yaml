@@ -1,0 +1,234 @@
+
+renderingOptions:
+  submitButtonLabel: Absenden
+  width: flex-basis-8
+identifier: aufitgebaut
+label: AufITgebaut
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Anmeldung IT-Wettbewerb: {name}'
+      recipientAddress: 'leis@rkw.de'
+      recipientName: 'AufITgebaut - Wettbewerb'
+      senderAddress: 'leis@rkw.de'
+      senderName: 'RKW AufITgebaut'
+      replyToAddress: '{email}'
+      carbonCopyAddress: 'megerlin@rkw.de'
+      blindCarbonCopyAddress: 'c.hoffmann@rkw.de'
+      format: html
+      attachUploads: true
+      translation:
+        language: ''
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
+      partialRootPaths:
+        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailText: 'eine neue Anmeldung zum IT-Wettbewerb wurde eingereicht.'
+    identifier: EmailToReceiver
+    renderingOptions:
+      mailText: 'Test 123'
+  -
+    options:
+      subject: 'Vielen Dank für Ihre Anmeldung!'
+      recipientAddress: '{email}'
+      recipientName: '{name}'
+      senderAddress: 'leis@rkw.de'
+      senderName: 'auf-IT-gebaut'
+      replyToAddress: 'leis@rkw.de'
+      carbonCopyAddress: ''
+      blindCarbonCopyAddress: ''
+      format: html
+      attachUploads: true
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
+      partialRootPaths:
+        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailtext: 'Test Text 222'
+      mailText: 'diese E-Mail wurde automatisch generiert. Sie dient als Kopie für Ihre Unterlagen. Folgende Daten wurden an uns übermittelt:'
+    identifier: EmailToSender
+    renderingOptions:
+      mailtext: Test.456
+  -
+    options:
+      pageUid: '10621'
+      additionalParameters: ''
+    identifier: Redirect
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Senden'
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        identifier: name
+        label: 'Name, Vorname'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        identifier: company
+        label: 'Firma'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-1
+        label: 'Straße, Hausnummer'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-2
+        label: 'PLZ, Ort'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+        identifier: email
+        label: 'E-Mail'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: text-5
+        label: 'Telefon'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: Text
+        identifier: text-6
+        label: 'Titel des Beitrags'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        identifier: art
+        type: SingleSelect
+        label: 'Art der Arbeit'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: 'width50'
+          elementClassAttribute: select-field
+          prependOptionLabel: 'Bitte wählen Sie'
+          options:
+            'Einzelarbeit': 'Einzelarbeit'
+            'Gruppenarbeit': 'Gruppenarbeit'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        identifier: wettbewerbsbereich
+        type: SingleSelect
+        label: 'Wettbewerbsbereich'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: 'width50'
+          elementClassAttribute: select-field
+          prependOptionLabel: 'Bitte wählen Sie'
+          options:
+            'Handwerk und Technik': 'Handwerk und Technik'
+            'Bauingenieurwesen': 'Bauingenieurwesen'
+            'Betriebswirtschaft': 'Betriebswirtschaft'
+            'Architektur': 'Architektur'
+            'Sonderpreis Start-up': 'Sonderpreis Start-up'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          elementDescription: ''
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: Textarea
+        identifier: textarea-1
+        label: 'Text, Kommentare, Anmerkungen'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: checkbox-1
+        label: Teilnahmebedingungen
+        properties:
+          type: aufitgebaut-terms
+          additionalAttributes:
+            linkPageUid: 9222
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: checkbox-2
+        label: Datenschutzerklärung
+        properties:
+          type: terms
+          additionalAttributes:
+            linkPageUid: 1921
+            companyName: 'RKW Kompetenzzentrum'
+            companyEmail: 'service@rkw.de'
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        validators:
+          -
+            identifier: NotEmpty

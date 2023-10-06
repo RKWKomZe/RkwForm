@@ -1,4 +1,6 @@
-{namespace postmaster=Madj2k\Postmaster\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:postmaster="http://typo3.org/ns/Madj2k/Postmaster/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 <f:layout name="Email/{mailType}" />
 
 
@@ -11,8 +13,14 @@
 <postmaster:email.translate key="tx_rkwform_domain_model_standardform.company" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.company}
 <postmaster:email.translate key="tx_rkwform_domain_model_standardform.email" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.email}
 <postmaster:email.translate key="tx_rkwform_domain_model_standardform.phone" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.phone}
-<postmaster:email.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
-    {formRequest.text}
+<f:if condition="{formRequest.identifier} === 'gem-community'">
+    <f:then>
+        <f:render partial="Email/Details/GemCommunityForm" section="Plaintext" arguments="{_all}"/>
+    </f:then>
+    <f:else>
+        <postmaster:email.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>: {formRequest.text}
+    </f:else>
+</f:if>
 <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Plaintext" arguments="{_all}"/></f:if>
 </f:section>
 
@@ -75,15 +83,24 @@
                 {formRequest.phone}
             </td>
         </tr>
-        <tr>
-            <th class="align-left">
-                <postmaster:email.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
-            </th>
-            <td>
-                <f:format.nl2br>{formRequest.text}</f:format.nl2br>
-            </td>
-        </tr>
-        <f:if condition="{formRequest.bstAgree}"><f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/></f:if>
+        <f:if condition="{formRequest.identifier} === 'gem-community'">
+            <f:then>
+                <f:render partial="Email/Details/GemCommunityForm" section="Html" arguments="{_all}"/>
+            </f:then>
+            <f:else>
+                <tr>
+                    <th class="align-left">
+                        <postmaster:email.translate key="tx_rkwform_domain_model_standardform.text" languageKey="{language}" extensionName="rkwForm"/>:
+                    </th>
+                    <td>
+                        <f:format.nl2br>{formRequest.text}</f:format.nl2br>
+                    </td>
+                </tr>  
+            </f:else>
+        </f:if>
+        <f:if condition="{formRequest.bstAgree}">
+            <f:render partial="Email/Details/BstForm" section="Html" arguments="{_all}"/>
+        </f:if>
     </table>
 
 
