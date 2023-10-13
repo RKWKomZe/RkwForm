@@ -143,30 +143,6 @@ renderables:
             identifier: EmailAddress
       -
         type: Text
-        identifier: registration-entry
-        label: Handelsregisternummer
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        type: Text
-        identifier: registration-place
-        label: Ort der Eintragung
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        type: Text
         identifier: employees-count
         label: Anzahl Beschäftigte
         defaultValue: ''
@@ -212,8 +188,6 @@ renderables:
           elementDescription: 'Hier können Sie gern einen Text zur Beschreibung Ihres Unternehmens verfassen (maximal 1.000 Zeichen).'
           fieldClass: width100
         validators:
-          -
-            identifier: NotEmpty
           -
             identifier: StringLength
             options:
