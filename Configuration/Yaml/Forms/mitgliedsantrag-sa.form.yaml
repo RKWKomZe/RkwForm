@@ -8,12 +8,12 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Neuer Mitgliedsantrag: {name}'
+      subject: 'Neuer Mitgliedsantrag: {company-name}'
       recipientAddress: 'info@rkw-sachsenanhalt.de'
       recipientName: 'RKW Sachen-Anhalt'
       senderAddress: 'info@rkw-sachsenanhalt.de'
       senderName: 'RKW Sachsen-Anhalt'
-      replyToAddress: '{email}'
+      replyToAddress: '{company-director-email}'
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -33,9 +33,9 @@ finishers:
       mailText: 'Test 123'
   -
     options:
-      subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Sachsen-Anhalt: {name}'
-      recipientAddress: '{company-contact-person-email}'
-      recipientName: '{company-contact-person-first-name} {company-contact-person-name}'
+      subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Sachsen-Anhalt: {company-name}'
+      recipientAddress: '{company-director-email}'
+      recipientName: '{company-director-first-name} {company-director-name}'
       senderAddress: 'info@rkw-sachsenanhalt.de'
       senderName: 'RKW Sachsen-Anhalt'
       replyToAddress: 'info@rkw-sachsenanhalt.de'
@@ -75,7 +75,7 @@ renderables:
         label: 'Allgemeine Unternehmensdaten'
       -
         type: Text
-        identifier: name
+        identifier: company-name
         label: 'Name des Unternehmens'
         defaultValue: ''
         properties:
@@ -87,7 +87,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: street
+        identifier: company-street
         label: Straße und Hausnummer / Postfach
         defaultValue: ''
         properties:
@@ -99,7 +99,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: postal
+        identifier: company-postal
         label: Postleitzahl
         defaultValue: ''
         properties:
@@ -111,7 +111,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: city
+        identifier: company-city
         label: Ort
         defaultValue: ''
         properties:
@@ -123,7 +123,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: phone
+        identifier: company-phone
         label: Telefon
         defaultValue: ''
         properties:
@@ -133,7 +133,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: email
+        identifier: company-email
         label: 'E-Mail'
         defaultValue: ''
         properties:
@@ -143,7 +143,7 @@ renderables:
             identifier: EmailAddress
       -
         type: Text
-        identifier: employees-count
+        identifier: company-employees-count
         label: Anzahl Beschäftigte
         defaultValue: ''
         properties:
@@ -157,7 +157,7 @@ renderables:
             identifier: Integer
       -
         type: SingleSelect
-        identifier: industry
+        identifier: company-industry
         label: 'Branche'
         properties:
           fluidAdditionalAttributes:
@@ -465,7 +465,7 @@ renderables:
       -
         type: Number
         identifier: membership-fee-gross-total-year
-        label: 'Kalenderjahr'
+        label: 'Kalenderjahr letzter vorliegender Jahresabschluss'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
@@ -494,48 +494,33 @@ renderables:
       -
         type: Checkbox
         identifier: invoice-by-email
-        label: Rechnung per E-Mail erhalten?
+        label: Ich möchte die Rechnungen per E-Mail erhalten.
         properties:
           fieldClass: width100
-      -
-        type: Checkbox
-        identifier: invoice-different-address
-        label: Möchten Sie eine abweichende Rechnungsadresse angeben?
-        properties:
-          fieldClass: width100
-  -
-    type: Page
-    identifier: invoice-receiver-page
-    label: 'Angaben zum Erhalt der Rechnung'
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
-    variants:
-      -
-        identifier: variant-4-1
-        condition: 'formValues["invoice-by-email"] == 0'
-        renderingOptions:
-          enabled: false
-      -
-        identifier: variant-4-2
-        condition: 'formValues["invoice-by-email"] == 1'
-        renderingOptions:
-          enabled: true
-    renderables:
       -
         type: Text
         identifier: invoice-receiver-email
         label: 'E-Mail für Erhalt der Rechnung'
         defaultValue: ''
+        variants:
+          -
+            identifier: invoice-receiver-email-validate
+            condition: 'formValues["invoice-by-email"] == 1'
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+              fieldClass: width50
+            validators:
+              -
+                identifier: NotEmpty
+              -
+                identifier: EmailAddress
+      -
+        type: Checkbox
+        identifier: invoice-different-address
+        label: Ich möchte eine abweichende Rechnungsadresse angeben.
         properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-          -
-            identifier: EmailAddress
+          fieldClass: width100
   -
     type: Page
     identifier: invoice-address-page
@@ -608,31 +593,6 @@ renderables:
             identifier: NotEmpty
   -
     type: Page
-    identifier: personal-comment-page
-    label: ''
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
-    renderables:
-      -
-        type: StaticText
-        identifier: comment-intro
-        label: 'Persönliche Nachricht an uns'
-      -
-        type: Textarea
-        identifier: comment
-        label: 'Ihre Nachricht'
-        defaultValue: ''
-        properties:
-          elementDescription: 'Hier können Sie gern eine persönliche Nachricht an uns verfassen (maximal 1.000 Zeichen).'
-          fieldClass: width100
-        validators:
-          -
-            identifier: StringLength
-            options:
-              maximum: 1000
-  -
-    type: Page
     identifier: terms-page
     label: ''
     renderingOptions:
@@ -684,6 +644,23 @@ renderables:
         label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt o.g. Informationen per Post übersendet.'
         properties:
           fieldClass: width100
+      -
+        type: StaticText
+        identifier: comment-intro
+        label: 'Persönliche Nachricht an uns'
+      -
+        type: Textarea
+        identifier: comment
+        label: 'Ihre Nachricht'
+        defaultValue: ''
+        properties:
+          elementDescription: 'Hier können Sie gern eine persönliche Nachricht an uns verfassen (maximal 1.000 Zeichen).'
+          fieldClass: width100
+        validators:
+          -
+            identifier: StringLength
+            options:
+              maximum: 1000
   -
     type: SummaryPage
     identifier: summarypage
