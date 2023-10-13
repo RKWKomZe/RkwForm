@@ -34,8 +34,8 @@ finishers:
   -
     options:
       subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Sachsen-Anhalt: {name}'
-      recipientAddress: '{email}'
-      recipientName: '{name}'
+      recipientAddress: '{company-contact-person-email}'
+      recipientName: '{company-contact-person-first-name} {company-contact-person-name}'
       senderAddress: 'info@rkw-sachsenanhalt.de'
       senderName: 'RKW Sachsen-Anhalt'
       replyToAddress: 'info@rkw-sachsenanhalt.de'
