@@ -1,6 +1,8 @@
 renderingOptions:
   submitButtonLabel: Mitgliedschaft beantragen
   width: flex-basis-8
+  showProgress: true
+  progressLabel: 'Schritt'
 identifier: mitgliedsantrag-sa
 label: 'Mitgliedsantrag Sachsen-Anhalt'
 type: Form
@@ -64,15 +66,12 @@ renderables:
   -
     type: Page
     identifier: company-page
-    label: ''
+    label: 'Allgemeine Unternehmensdaten'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
-      -
-        type: StaticText
-        identifier: company-general-information
-        label: 'Allgemeine Unternehmensdaten'
       -
         type: Text
         identifier: company-name
@@ -195,15 +194,12 @@ renderables:
   -
     type: Page
     identifier: company-director-page
-    label: ''
+    label: 'Geschäftsführung'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
-      -
-        type: StaticText
-        identifier: company-director
-        label: 'Geschäftsführung'
       -
         defaultValue: ''
         properties:
@@ -295,15 +291,15 @@ renderables:
   -
     type: Page
     identifier: company-contact-person-page
-    label: ''
+    label: 'Ansprechperson'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
       -
         type: StaticText
         identifier: company-contact-person
-        label: 'Ansprechperson'
         properties:
           text: 'Bitte tragen Sie hier die Person ein, die sich hauptsächlich im Verein engagieren wird und dauerhaft unsere Ansprechperson ist.'
       -
@@ -420,15 +416,15 @@ renderables:
   -
     type: Page
     identifier: membership-page
-    label: ''
+    label: 'Mitgliedsbeitrag'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
       -
         type: StaticText
         identifier: membership-fee
-        label: 'Mitgliedsbeitrag'
         properties:
           text: 'Der Jahresbeitrag richtet sich entsprechend der <a href="https://www.rkw-sachsenanhalt.de/fileadmin/media_sachsenanhalt/Dateien/20180601_Beitragsstaffel.pdf" target="_blank">RKW-Beitragsstaffel</a> nach Ihrem Bruttoumsatz des Vorjahres.'
       -
@@ -524,10 +520,11 @@ renderables:
   -
     type: Page
     identifier: invoice-address-page
-    label: ''
+    label: 'Angaben zur abweichenden Rechnungsadresse'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     variants:
       -
         identifier: variant-invoice-different-address-0
@@ -540,10 +537,6 @@ renderables:
         renderingOptions:
           enabled: true
     renderables:
-      -
-        type: StaticText
-        identifier: invoice
-        label: 'Angaben zur abweichenden Rechnungsadresse'
       -
         type: Text
         identifier: invoice-address-company-name
@@ -594,15 +587,18 @@ renderables:
   -
     type: Page
     identifier: terms-page
-    label: ''
+    label: 'Rechtliches'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Zur Zusammenfassung'
+      headerTag: h3
     renderables:
       -
         type: StaticText
         identifier: registration-confirm-intro
         label: 'Erklärung zur Aufnahme in den Verein'
+        properties:
+            headerTag: h4
       -
         type: Checkbox
         identifier: registration-confirm
@@ -615,12 +611,12 @@ renderables:
           -
             identifier: NotEmpty
       -
-        properties:
-          text: 'Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.'
-
         type: StaticText
         identifier: contact-confirm-intro
         label: 'Zustimmung zur Kontaktaufnahme'
+        properties:
+          text: 'Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.'
+          headerTag: h4
       -
         type: StaticText
         identifier: contact-confirm-reject
@@ -648,6 +644,8 @@ renderables:
         type: StaticText
         identifier: comment-intro
         label: 'Persönliche Nachricht an uns'
+        properties:
+          headerTag: h4
       -
         type: Textarea
         identifier: comment

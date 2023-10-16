@@ -111,6 +111,9 @@
 			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
 				<source>Topic</source>
 			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.page">
+				<source>Page</source>
+			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
 				<source>I have read and agree to the extended notes in the</source>
 			</trans-unit>
