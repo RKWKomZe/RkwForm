@@ -292,10 +292,19 @@ renderables:
     type: Page
     identifier: company-contact-person-page
     label: 'Ansprechperson'
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
-      headerTag: h3
+    variants:
+      -
+        identifier: hide-company-contact-person-page
+        condition: 'formValues["company-director-to-company-contact-person"] == 1'
+        renderingOptions:
+          enabled: false
+      -
+        identifier: show-company-contact-person-page
+        condition: 'formValues["company-director-to-company-contact-person"] == 0'
+        renderingOptions:
+          previousButtonLabel: Zurück
+          nextButtonLabel: 'Nächster Schritt'
+          headerTag: h3
     renderables:
       -
         type: StaticText
@@ -309,11 +318,6 @@ renderables:
         defaultValue: ''
         properties:
           fieldClass: width50
-        variants:
-          -
-            identifier: company-contact-person-salutation-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-salutation"]'
       -
         type: Text
         identifier: company-contact-person-title
@@ -321,10 +325,6 @@ renderables:
         defaultValue: ''
         properties:
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-title-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-title"]'
       -
         type: Text
         identifier: company-contact-person-first-name
@@ -334,10 +334,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-first-name-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-first-name"]'
         validators:
           -
             identifier: NotEmpty
@@ -350,10 +346,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-name-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-name"]'
         validators:
           -
             identifier: NotEmpty
@@ -366,10 +358,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-phone-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-phone"]'
         validators:
           -
             identifier: NotEmpty
@@ -382,10 +370,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-email-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-email"]'
         validators:
           -
             identifier: NotEmpty
@@ -404,10 +388,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
             placeholder: tt.mm.yyyy
-        variants:
-          - identifier: company-contact-person-birthdate-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-birthdate"]'
         validators:
           -
             identifier: NotEmpty
