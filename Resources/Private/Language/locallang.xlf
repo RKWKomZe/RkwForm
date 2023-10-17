@@ -288,6 +288,9 @@
                 <source>(Required)</source>
             </trans-unit>
 
+            <trans-unit id="tx_rkwform_formframework_form_summary_page.hint">
+                <source>Important hint: Please check your data carefully, before finally sending it.</source>
+            </trans-unit>
 
             <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
                 <source>Hello</source>

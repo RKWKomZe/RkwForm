@@ -373,6 +373,10 @@
                 <target>(Pflichtfeld)</target>
             </trans-unit>
 
+			<trans-unit id="tx_rkwform_formframework_form_summary_page.hint">
+				<source>Important hint: Please check your data carefully, before finally sending it.</source>
+				<target>Wichtiger Hinweis: Bitte prüfen Sie Ihre Angaben sorgfältig und korrigieren Sie diese, sofern nötig. Sind die Angaben in Ordnung? Dann senden Sie sie mit Klick auf "%s" ab.</target>
+			</trans-unit>
 
             <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
                 <source>Hello</source>

@@ -10,6 +10,7 @@ renderingOptions:
   showNull: 'k. A.'
   checkboxFalseLabel: 'Nein'
   groupSummaryByPages: true
+  showSummaryPageHint: true
 finishers:
   -
     identifier: EmailToReceiver
@@ -651,4 +652,5 @@ renderables:
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Mitgliedschaft beantragen
+      headerTag: h3
 
