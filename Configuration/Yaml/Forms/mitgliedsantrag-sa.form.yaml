@@ -1,19 +1,26 @@
-renderingOptions:
-  submitButtonLabel: Mitgliedschaft beantragen
-  width: flex-basis-8
 identifier: mitgliedsantrag-sa
 label: 'Mitgliedsantrag Sachsen-Anhalt'
 type: Form
 prototypeName: standard
+renderingOptions:
+  submitButtonLabel: Mitgliedschaft beantragen
+  width: flex-basis-12
+  showProgress: true
+  progressLabel: 'Schritt'
+  showNull: 'k. A.'
+  checkboxFalseLabel: 'Nein'
+  groupSummaryByPages: true
+  showSummaryPageHint: true
 finishers:
   -
+    identifier: EmailToReceiver
     options:
-      subject: 'Neuer Mitgliedsantrag: {name}'
+      subject: 'Neuer Mitgliedsantrag: {company-name}'
       recipientAddress: 'info@rkw-sachsenanhalt.de'
       recipientName: 'RKW Sachen-Anhalt'
       senderAddress: 'info@rkw-sachsenanhalt.de'
       senderName: 'RKW Sachsen-Anhalt'
-      replyToAddress: '{email}'
+      replyToAddress: '{company-director-email}'
       carbonCopyAddress: ''
       blindCarbonCopyAddress: ''
       format: html
@@ -28,14 +35,12 @@ finishers:
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'ein neuer Mitgliedsantrag wurde eingereicht.'
-    identifier: EmailToReceiver
-    renderingOptions:
-      mailText: 'Test 123'
   -
+    identifier: EmailToSender
     options:
-      subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Sachsen-Anhalt: {name}'
-      recipientAddress: '{email}'
-      recipientName: '{name}'
+      subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Sachsen-Anhalt: {company-name}'
+      recipientAddress: '{company-director-email}'
+      recipientName: '{company-director-first-name} {company-director-name}'
       senderAddress: 'info@rkw-sachsenanhalt.de'
       senderName: 'RKW Sachsen-Anhalt'
       replyToAddress: 'info@rkw-sachsenanhalt.de'
@@ -50,32 +55,25 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailtext: 'Test Text 222'
       mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW Sachsen-Anhalt GmbH. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
-    identifier: EmailToSender
-    renderingOptions:
-      mailtext: Test.456
   -
+    identifier: Redirect
     options:
       pageUid: '11285'
       additionalParameters: ''
-    identifier: Redirect
 renderables:
   -
     type: Page
     identifier: company-page
-    label: ''
+    label: 'Allgemeine Unternehmensdaten'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
       -
-        type: StaticText
-        identifier: company-general-information
-        label: 'Allgemeine Unternehmensdaten'
-      -
         type: Text
-        identifier: name
+        identifier: company-name
         label: 'Name des Unternehmens'
         defaultValue: ''
         properties:
@@ -87,7 +85,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: street
+        identifier: company-street
         label: Straße und Hausnummer / Postfach
         defaultValue: ''
         properties:
@@ -99,7 +97,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: postal
+        identifier: company-postal
         label: Postleitzahl
         defaultValue: ''
         properties:
@@ -111,7 +109,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: city
+        identifier: company-city
         label: Ort
         defaultValue: ''
         properties:
@@ -123,7 +121,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: phone
+        identifier: company-phone
         label: Telefon
         defaultValue: ''
         properties:
@@ -133,7 +131,7 @@ renderables:
             identifier: NotEmpty
       -
         type: Text
-        identifier: email
+        identifier: company-email
         label: 'E-Mail'
         defaultValue: ''
         properties:
@@ -143,31 +141,7 @@ renderables:
             identifier: EmailAddress
       -
         type: Text
-        identifier: registration-entry
-        label: Handelsregisternummer
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        type: Text
-        identifier: registration-place
-        label: Ort der Eintragung
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        type: Text
-        identifier: employees-count
+        identifier: company-employees-count
         label: Anzahl Beschäftigte
         defaultValue: ''
         properties:
@@ -181,7 +155,7 @@ renderables:
             identifier: Integer
       -
         type: SingleSelect
-        identifier: industry
+        identifier: company-industry
         label: 'Branche'
         properties:
           fluidAdditionalAttributes:
@@ -213,23 +187,18 @@ renderables:
           fieldClass: width100
         validators:
           -
-            identifier: NotEmpty
-          -
             identifier: StringLength
             options:
               maximum: 1000
   -
     type: Page
     identifier: company-director-page
-    label: ''
+    label: 'Geschäftsführung'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
-      -
-        type: StaticText
-        identifier: company-director
-        label: 'Geschäftsführung'
       -
         defaultValue: ''
         properties:
@@ -318,18 +287,28 @@ renderables:
         label: Möchten Sie die geschäftsführende Person als Ansprechperson übernehmen?
         properties:
           fieldClass: width100
+          value: Ja
   -
     type: Page
     identifier: company-contact-person-page
-    label: ''
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
+    label: 'Ansprechperson'
+    variants:
+      -
+        identifier: hide-company-contact-person-page
+        condition: 'formValues["company-director-to-company-contact-person"] == "Ja"'
+        renderingOptions:
+          enabled: false
+      -
+        identifier: show-company-contact-person-page
+        condition: 'formValues["company-director-to-company-contact-person"] == 0'
+        renderingOptions:
+          previousButtonLabel: Zurück
+          nextButtonLabel: 'Nächster Schritt'
+          headerTag: h3
     renderables:
       -
         type: StaticText
         identifier: company-contact-person
-        label: 'Ansprechperson'
         properties:
           text: 'Bitte tragen Sie hier die Person ein, die sich hauptsächlich im Verein engagieren wird und dauerhaft unsere Ansprechperson ist.'
       -
@@ -339,11 +318,6 @@ renderables:
         defaultValue: ''
         properties:
           fieldClass: width50
-        variants:
-          -
-            identifier: company-contact-person-salutation-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-salutation"]'
       -
         type: Text
         identifier: company-contact-person-title
@@ -351,10 +325,6 @@ renderables:
         defaultValue: ''
         properties:
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-title-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-title"]'
       -
         type: Text
         identifier: company-contact-person-first-name
@@ -364,10 +334,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-first-name-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-first-name"]'
         validators:
           -
             identifier: NotEmpty
@@ -380,10 +346,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-name-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-name"]'
         validators:
           -
             identifier: NotEmpty
@@ -396,10 +358,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-phone-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-phone"]'
         validators:
           -
             identifier: NotEmpty
@@ -412,10 +370,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        variants:
-          - identifier: company-contact-person-email-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-email"]'
         validators:
           -
             identifier: NotEmpty
@@ -434,10 +388,6 @@ renderables:
           fluidAdditionalAttributes:
             required: required
             placeholder: tt.mm.yyyy
-        variants:
-          - identifier: company-contact-person-birthdate-variant
-            condition: 'formValues["company-director-to-company-contact-person"] == 1'
-            defaultValue: 'formValues["company-director-birthdate"]'
         validators:
           -
             identifier: NotEmpty
@@ -446,17 +396,45 @@ renderables:
   -
     type: Page
     identifier: membership-page
-    label: ''
+    label: 'Mitgliedsbeitrag'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     renderables:
       -
         type: StaticText
         identifier: membership-fee
-        label: 'Mitgliedsbeitrag'
         properties:
           text: 'Der Jahresbeitrag richtet sich entsprechend der <a href="https://www.rkw-sachsenanhalt.de/fileadmin/media_sachsenanhalt/Dateien/20180601_Beitragsstaffel.pdf" target="_blank">RKW-Beitragsstaffel</a> nach Ihrem Bruttoumsatz des Vorjahres.'
+      -
+        type: Number
+        identifier: membership-fee-gross-total
+        label: 'Bruttoumsatz in Euro'
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50 membership-fee-gross-total
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
+      -
+        type: Number
+        identifier: membership-fee-gross-total-year
+        label: 'Kalenderjahr letzter vorliegender Jahresabschluss'
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50 membership-fee-gross-total-year
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
       -
         type: DatePicker
         identifier: membership-founding-date
@@ -476,34 +454,6 @@ renderables:
             identifier: DateTime
       -
         type: Number
-        identifier: membership-fee-gross-total
-        label: 'Bruttoumsatz in Euro'
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50 membership-fee-gross-total
-        validators:
-          -
-            identifier: NotEmpty
-          -
-            identifier: Integer
-      -
-        type: Number
-        identifier: membership-fee-gross-total-year
-        label: 'Kalenderjahr'
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50 membership-fee-gross-total-year
-        validators:
-          -
-            identifier: NotEmpty
-          -
-            identifier: Integer
-      -
-        type: Number
         identifier: membership-fee-yearly
         label: 'Jahresbeitrag in Euro'
         defaultValue: ''
@@ -520,71 +470,55 @@ renderables:
       -
         type: Checkbox
         identifier: invoice-by-email
-        label: Rechnung per E-Mail erhalten?
+        label: Ich möchte die Rechnungen per E-Mail erhalten.
         properties:
           fieldClass: width100
-      -
-        type: Checkbox
-        identifier: invoice-different-address
-        label: Möchten Sie eine abweichende Rechnungsadresse angeben?
-        properties:
-          fieldClass: width100
-  -
-    type: Page
-    identifier: invoice-receiver-page
-    label: 'Angaben zum Erhalt der Rechnung'
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
-    variants:
-      -
-        identifier: variant-4-1
-        condition: 'formValues["invoice-by-email"] == 0'
-        renderingOptions:
-          enabled: false
-      -
-        identifier: variant-4-2
-        condition: 'formValues["invoice-by-email"] == 1'
-        renderingOptions:
-          enabled: true
-    renderables:
+          value: Ja
       -
         type: Text
         identifier: invoice-receiver-email
         label: 'E-Mail für Erhalt der Rechnung'
         defaultValue: ''
+        variants:
+          -
+            identifier: invoice-receiver-email-validate
+            condition: 'formValues["invoice-by-email"] == "Ja"'
+            properties:
+              fluidAdditionalAttributes:
+                required: required
+              fieldClass: width50
+            validators:
+              -
+                identifier: NotEmpty
+              -
+                identifier: EmailAddress
+      -
+        type: Checkbox
+        identifier: invoice-different-address
+        label: Ich möchte eine abweichende Rechnungsadresse angeben.
         properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-          -
-            identifier: EmailAddress
+          fieldClass: width100
+          value: Ja
   -
     type: Page
     identifier: invoice-address-page
-    label: ''
+    label: 'Angaben zur abweichenden Rechnungsadresse'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
+      headerTag: h3
     variants:
       -
-        identifier: variant-invoice-different-address-0
+        identifier: show-invoice-different-address-page
+        condition: 'formValues["invoice-different-address"] == "Ja"'
+        renderingOptions:
+          enabled: true
+      -
+        identifier: hide-invoice-different-address-page
         condition: 'formValues["invoice-different-address"] == 0'
         renderingOptions:
           enabled: false
-      -
-        identifier: variant-invoice-different-address-1
-        condition: 'formValues["invoice-different-address"] == 1'
-        renderingOptions:
-          enabled: true
     renderables:
-      -
-        type: StaticText
-        identifier: invoice
-        label: 'Angaben zur abweichenden Rechnungsadresse'
       -
         type: Text
         identifier: invoice-address-company-name
@@ -634,16 +568,70 @@ renderables:
             identifier: NotEmpty
   -
     type: Page
-    identifier: personal-comment-page
-    label: ''
+    identifier: terms-page
+    label: 'Rechtliches'
     renderingOptions:
       previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
+      nextButtonLabel: 'Zur Zusammenfassung'
+      headerTag: h3
     renderables:
+      -
+        type: StaticText
+        identifier: registration-confirm-intro
+        label: 'Erklärung zur Aufnahme in den Verein'
+        properties:
+            headerTag: h4
+      -
+        type: Checkbox
+        identifier: registration-confirm
+        label: 'Satzung und Beitragsstaffel habe ich zur Kenntnis genommen und erkenne die darin enthaltenen Vorgaben an. Über die Aufnahme als Mitglied entscheidet der Vorstand auf Basis der hier vorgelegten Informationen. Ein Vertragsverhältnis kommt erst nach Annahme des Mitgliedsantrags durch den RKW Sachsen-Anhalt e.V. zustande.'
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+          value: Ja
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: StaticText
+        identifier: contact-confirm-intro
+        label: 'Zustimmung zur Kontaktaufnahme'
+        properties:
+          text: 'Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.'
+          headerTag: h4
+      -
+        type: StaticText
+        identifier: contact-confirm-reject
+        properties:
+          text: 'Ihre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: <a href="#" target="_blank">https://www.rkw-sachsenanhalt.de/datenschutz/</a>'
+      -
+        type: Checkbox
+        identifier: contact-by-email-confirm
+        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt o.g. Informationen per E-Mail übersendet.'
+        properties:
+          fieldClass: width100
+          value: Ja
+      -
+        type: Checkbox
+        identifier: contact-by-phone-confirm
+        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt mich zu den o.g. Informationen telefonisch kontaktieren darf.'
+        properties:
+          fieldClass: width100
+          value: Ja
+      -
+        type: Checkbox
+        identifier: contact-by-mail-confirm
+        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt o.g. Informationen per Post übersendet.'
+        properties:
+          fieldClass: width100
+          value: Ja
       -
         type: StaticText
         identifier: comment-intro
         label: 'Persönliche Nachricht an uns'
+        properties:
+          headerTag: h4
       -
         type: Textarea
         identifier: comment
@@ -658,63 +646,11 @@ renderables:
             options:
               maximum: 1000
   -
-    type: Page
-    identifier: terms-page
-    label: ''
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Zur Zusammenfassung'
-    renderables:
-      -
-        type: StaticText
-        identifier: registration-confirm-intro
-        label: 'Erklärung zur Aufnahme in den Verein'
-      -
-        type: Checkbox
-        identifier: registration-confirm
-        label: 'Satzung und Beitragsstaffel habe ich zur Kenntnis genommen und erkenne die darin enthaltenen Vorgaben an. Über die Aufnahme als Mitglied entscheidet der Vorstand auf Basis der hier vorgelegten Informationen. Ein Vertragsverhältnis kommt erst nach Annahme des Mitgliedsantrags durch den RKW Sachsen-Anhalt e.V. zustande.'
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width100
-        validators:
-          -
-            identifier: NotEmpty
-      -
-        properties:
-          text: 'Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.'
-
-        type: StaticText
-        identifier: contact-confirm-intro
-        label: 'Zustimmung zur Kontaktaufnahme'
-      -
-        type: StaticText
-        identifier: contact-confirm-reject
-        properties:
-          text: 'Ihre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: <a href="#" target="_blank">https://www.rkw-sachsenanhalt.de/datenschutz/</a>'
-      -
-        type: Checkbox
-        identifier: contact-by-email-confirm
-        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt o.g. Informationen per E-Mail übersendet.'
-        properties:
-          fieldClass: width100
-      -
-        type: Checkbox
-        identifier: contact-by-phone-confirm
-        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt mich zu den o.g. Informationen telefonisch kontaktieren darf.'
-        properties:
-          fieldClass: width100
-      -
-        type: Checkbox
-        identifier: contact-by-mail-confirm
-        label: 'Ich willige ein, dass mir das RKW Sachsen-Anhalt o.g. Informationen per Post übersendet.'
-        properties:
-          fieldClass: width100
-  -
     type: SummaryPage
     identifier: summarypage
-    label: Zusammenfassung
+    label: Ihre Angaben
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Mitgliedschaft beantragen
+      headerTag: h3
 

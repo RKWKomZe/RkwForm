@@ -1,13 +1,15 @@
-
-renderingOptions:
-  submitButtonLabel: Absenden
-  width: flex-basis-8
 identifier: aufitgebaut
 label: AufITgebaut
 type: Form
 prototypeName: standard
+renderingOptions:
+  submitButtonLabel: Absenden
+  width: flex-basis-12
+  showNull: 'k. A.'
+  checkboxFalseLabel: 'Nein'
 finishers:
   -
+    identifier: EmailToReceiver
     options:
       subject: 'Anmeldung IT-Wettbewerb: {name}'
       recipientAddress: 'leis@rkw.de'
@@ -29,10 +31,8 @@ finishers:
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'eine neue Anmeldung zum IT-Wettbewerb wurde eingereicht.'
-    identifier: EmailToReceiver
-    renderingOptions:
-      mailText: 'Test 123'
   -
+    identifier: EmailToSender
     options:
       subject: 'Vielen Dank für Ihre Anmeldung!'
       recipientAddress: '{email}'
@@ -51,11 +51,7 @@ finishers:
         20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailtext: 'Test Text 222'
       mailText: 'diese E-Mail wurde automatisch generiert. Sie dient als Kopie für Ihre Unterlagen. Folgende Daten wurden an uns übermittelt:'
-    identifier: EmailToSender
-    renderingOptions:
-      mailtext: Test.456
   -
     options:
       pageUid: '10621'
@@ -63,101 +59,101 @@ finishers:
     identifier: Redirect
 renderables:
   -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: 'Senden'
     identifier: page-1
     label: ''
     type: Page
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Weiter'
     renderables:
       -
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
         identifier: name
         label: 'Name, Vorname'
         type: Text
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         identifier: company
         label: 'Firma'
         type: Text
-        validators:
-          -
-            identifier: NotEmpty
-      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
         identifier: text-1
         label: 'Straße, Hausnummer'
-        validators:
-          -
-            identifier: NotEmpty
-      -
+        type: Text
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: text-2
-        label: 'PLZ, Ort'
         validators:
           -
             identifier: NotEmpty
       -
+        identifier: text-2
+        label: 'PLZ, Ort'
+        type: Text
         defaultValue: ''
         properties:
+          fluidAdditionalAttributes:
+            required: required
           fieldClass: width50
+        validators:
+          -
+            identifier: NotEmpty
+      -
         identifier: email
         label: 'E-Mail'
         type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
           -
             identifier: EmailAddress
       -
+        identifier: text-5
+        label: 'Telefon'
+        type: Text
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        type: Text
-        identifier: text-5
-        label: 'Telefon'
         validators:
           -
             identifier: NotEmpty
       -
+        identifier: text-6
+        label: 'Titel des Beitrags'
+        type: Text
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
-        type: Text
-        identifier: text-6
-        label: 'Titel des Beitrags'
         validators:
           -
             identifier: NotEmpty
       -
         identifier: art
-        type: SingleSelect
         label: 'Art der Arbeit'
+        type: SingleSelect
         properties:
           fluidAdditionalAttributes:
             required: required
@@ -172,8 +168,8 @@ renderables:
             identifier: NotEmpty
       -
         identifier: wettbewerbsbereich
-        type: SingleSelect
         label: 'Wettbewerbsbereich'
+        type: SingleSelect
         properties:
           fluidAdditionalAttributes:
             required: required
@@ -190,22 +186,22 @@ renderables:
           -
             identifier: NotEmpty
       -
+        identifier: textarea-1
+        label: 'Text, Kommentare, Anmerkungen'
+        type: Textarea
         defaultValue: ''
         properties:
           elementDescription: ''
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
-        type: Textarea
-        identifier: textarea-1
-        label: 'Text, Kommentare, Anmerkungen'
         validators:
           -
             identifier: NotEmpty
       -
-        type: Checkbox
         identifier: checkbox-1
         label: Teilnahmebedingungen
+        type: Checkbox
         properties:
           type: aufitgebaut-terms
           additionalAttributes:
@@ -213,13 +209,14 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
+          value: Ja
         validators:
           -
             identifier: NotEmpty
       -
-        type: Checkbox
         identifier: checkbox-2
         label: Datenschutzerklärung
+        type: Checkbox
         properties:
           type: terms
           additionalAttributes:
@@ -229,6 +226,14 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
+          value: Ja
         validators:
           -
             identifier: NotEmpty
+  -
+    type: SummaryPage
+    identifier: summarypage
+    label: Ihre Angaben
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Teilnahme absenden
