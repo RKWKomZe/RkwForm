@@ -1,52 +1,88 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    xmlns:rkwForm="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    data-namespace-typo3-fluid="true">
 <formvh:renderRenderable renderable="{page}">
-		<f:if condition="{page.label}">
-			<h2>{formvh:translateElementProperty(element: page, property: 'label')}</h2>
-		</f:if>
-        <table class="{form.renderingOptions.width} responsive-table responsive-table--background bt" style="font-size: 90%;">
-            <thead>
-            <tr>
-                <th>Frage</th>
-                <th>Antwort</th>
-            </tr>
-            </thead>
-            <tbody>
-                <formvh:renderAllFormValues renderable="{page.rootForm}" as="formValue">
-                    <tr>
-                        <td class="summary-table-first-col">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</td>
-                        <td>
-                            <span class="bt-content">
-                                <f:if condition="{formValue.value}">
-                                    <f:then>
-                                        <f:if condition="{0: formValue.element.type} == {0: 'ImageUpload'}">
-                                            <f:then>
-                                                <f:image image="{formValue.value}" maxWidth="{formValue.element.properties.imageMaxWidth}" maxHeight="{formValue.element.properties.imageMaxHeight}" alt="{formvh:translateElementProperty(element: formValue.element, property: 'altText')}" />
-                                            </f:then>
-                                            <f:else>
-                                                <f:if condition="{formValue.isMultiValue}">
-                                                    <f:then>
-                                                        <ul>
-                                                            <f:for each="{formValue.processedValue}" as="value">
-                                                                <li>{value}</li>
-                                                            </f:for>
-                                                        </ul>
-                                                    </f:then>
-                                                    <f:else>
-                                                        <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
-                                                    </f:else>
-                                                </f:if>
-                                            </f:else>
-                                        </f:if>
-                                    </f:then>
-                                    <f:else>
-                                        -
-                                    </f:else>
-                                </f:if>
-                            </span>
-                        </td>
-                    </tr>
-                </formvh:renderAllFormValues>
-            </tbody>
-        </table>
+    <f:if condition="{page.label}">
+        <h2>{formvh:translateElementProperty(element: page, property: 'label')}</h2>
+    </f:if>
+    <table class="{page.parentRenderable.renderingOptions.width} responsive-table responsive-table--background bt">
+        <thead>
+        <tr>
+            <th>Betreff</th>
+            <th>Ihre Antwort</th>
+        </tr>
+        </thead>
+        <tbody>
+            <f:if condition="{page.rootForm.renderingOptions.groupSummaryByPages}">
+                <f:variable name="pageIndex"></f:variable>
+            </f:if>
+            <formvh:renderAllFormValues renderable="{page.rootForm}" as="formValue">
+                <f:if condition="{page.rootForm.renderingOptions.groupSummaryByPages}">
+                    <f:if condition="{formValue.element.parentRenderable.index} === {pageIndex}">
+                        <f:then>
+                        </f:then>
+                        <f:else>
+                            <f:variable name="currentPage">{formValue.element.parentRenderable}</f:variable>
+                            <f:variable name="pageIndex">{currentPage.index}</f:variable>
+                            <f:if condition="{currentPage.label}">
+                            <tr>
+                                <td colspan="2">
+                                    <h4>{currentPage.label}</h4>
+                                </td>
+                            </tr>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:if>
+                <tr>
+                    <td class="summary-table-first-col">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</td>
+                    <td>
+                        <span class="bt-content">
+                            <f:if condition="{formValue.value}">
+                                <f:then>
+                                    <f:if condition="{0: formValue.element.type} == {0: 'ImageUpload'}">
+                                        <f:then>
+                                            <f:image image="{formValue.value}" maxWidth="{formValue.element.properties.imageMaxWidth}" maxHeight="{formValue.element.properties.imageMaxHeight}" alt="{formvh:translateElementProperty(element: formValue.element, property: 'altText')}" />
+                                        </f:then>
+                                        <f:else>
+                                            <f:if condition="{formValue.isMultiValue}">
+                                                <f:then>
+                                                    <ul>
+                                                        <f:for each="{formValue.processedValue}" as="value">
+                                                            <li>{value}</li>
+                                                        </f:for>
+                                                    </ul>
+                                                </f:then>
+                                                <f:else>                                                    
+                                                    <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                                </f:else>
+                                            </f:if>
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{formValue.element.type} == 'Checkbox'">
+                                        <f:then>
+                                            {page.parentRenderable.renderingOptions.checkboxFalseLabel}
+                                        </f:then>
+                                        <f:else>
+                                            <f:if condition="{page.parentRenderable.renderingOptions.showNull}">
+                                                <f:then>
+                                                    {page.parentRenderable.renderingOptions.showNull}
+                                                </f:then>
+                                                <f:else>
+                                                    <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                                </f:else>
+                                            </f:if>
+                                        </f:else>
+                                    </f:if>
+                                </f:else>
+                            </f:if>
+                        </span>
+                    </td>
+                </tr>
+            </formvh:renderAllFormValues>
+        </tbody>
+    </table>
 </formvh:renderRenderable>
 </html>
