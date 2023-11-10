@@ -111,6 +111,9 @@
 			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
 				<source>Topic</source>
 			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.page">
+				<source>Page</source>
+			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.firstPart">
 				<source>I have read and agree to the extended notes in the</source>
 			</trans-unit>
@@ -285,6 +288,9 @@
                 <source>(Required)</source>
             </trans-unit>
 
+            <trans-unit id="tx_rkwform_formframework_form_summary_page.hint">
+                <source>Important hint: Please check your data carefully, before finally sending it.</source>
+            </trans-unit>
 
             <trans-unit id="tx_rkwform_formframework_form_finisher_email.salutation">
                 <source>Hello</source>
