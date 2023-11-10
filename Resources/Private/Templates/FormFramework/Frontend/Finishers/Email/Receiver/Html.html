@@ -5,7 +5,7 @@
 
 <f:section name="Html">
 <body>
-    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /><f:comment><rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='senderName' /></f:comment>,</p>
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='recipientName' />,</p>
     <p>
         <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />">
             <f:then>
@@ -17,8 +17,28 @@
         </f:if>
     </p>
     <br>
-	<table width="600" cellpadding="0" cellspacing="0" border="0">
+	<table width="600" cellpadding="5" cellspacing="0" border="1">
+        <f:if condition="{form.formDefinition.renderingOptions.groupSummaryByPages}">
+            <f:variable name="pageIndex"></f:variable>
+        </f:if>
 		<formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue">
+            <f:if condition="{form.formDefinition.renderingOptions.groupSummaryByPages}">
+                <f:if condition="{formValue.element.parentRenderable.index} === {pageIndex}">
+                    <f:then>
+                    </f:then>
+                    <f:else>
+                        <f:variable name="currentPage">{formValue.element.parentRenderable}</f:variable>
+                        <f:variable name="pageIndex">{currentPage.index}</f:variable>
+                        <f:if condition="{currentPage.label}">
+                            <tr>
+                                <td width="600" valign="top" align="left" colspan="2">
+                                    <strong>{currentPage.label}</strong>
+                                </td>
+                            </tr>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:if>
 			<tr>
 				<td width="600" valign="top" align="left">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</td>
 				<td width="600" valign="top" align="left">
@@ -26,25 +46,31 @@
 						<f:then>
 							<f:if condition="{formValue.isMultiValue}">
 								<f:then>
-									<table cellspacing="0" border="0">
-										<f:for each="{formValue.processedValue}" as="value">
-											<tr>
-												<td>{value}</td>
-											</tr>
-										</f:for>
-									</table>
+                                    <f:for each="{formValue.processedValue}" as="value">
+                                    {value}
+                                    </f:for>
 								</f:then>
 								<f:else>
-									<table cellspacing="0" border="0">
-										<tr>
-											<td><f:format.nl2br>{formValue.processedValue}</f:format.nl2br></td>
-										</tr>
-									</table>
+                                    <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
 								</f:else>
 							</f:if>
 						</f:then>
 						<f:else>
-							-
+                            <f:if condition="{formValue.element.type} == 'Checkbox'">
+                                <f:then>
+                                    <f:format.nl2br>{form.renderingOptions.checkboxFalseLabel}</f:format.nl2br>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{form.renderingOptions.showNull}">
+                                        <f:then>
+                                            <f:format.nl2br>{form.renderingOptions.showNull}</f:format.nl2br>
+                                        </f:then>
+                                        <f:else>
+                                            <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                        </f:else>
+                                    </f:if>
+                                </f:else>
+                            </f:if>
 						</f:else>
 					</f:if>
 				</td>
