@@ -8,17 +8,17 @@ call_user_func(
         // Register Plugins
         //=================================================================
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwForm',
+            $extKey,
             'StandardForm',
             'RKW Form: Standard Formular'
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwForm',
+            $extKey,
             'BstForm',
             'RKW Form: Bausachverständigentag Digital'
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'RKW.RkwForm',
+            $extKey,
             'GemCommunityForm',
             'RKW Form: Anmeldung zur Gem-Community'
         );
