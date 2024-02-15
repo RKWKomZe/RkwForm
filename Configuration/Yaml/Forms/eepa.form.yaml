@@ -460,7 +460,7 @@ renderables:
             identifier: NotEmpty
       -
         properties:
-          text: "Juliane Kummer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
+          text: "Jennifer Stevermüer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
           headerTag: h5
         type: StaticText
         identifier: statictext-12
