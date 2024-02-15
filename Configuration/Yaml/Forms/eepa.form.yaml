@@ -1,16 +1,16 @@
-identifier: eepa
-label: EEPA
-type: Form
-prototypeName: standard
+
 renderingOptions:
   submitButtonLabel: Absenden
   width: flex-basis-12
   showNull: 'k. A.'
-  checkboxFalseLabel: 'Nein'
+  checkboxFalseLabel: Nein
   groupSummaryByPages: true
+identifier: eepa
+label: EEPA
+type: Form
+prototypeName: standard
 finishers:
   -
-    identifier: EmailToReceiver
     options:
       subject: 'Neue EEPA Teilnahme: {name}'
       recipientAddress: 'enterpriseaward@rkw.de '
@@ -23,7 +23,7 @@ finishers:
       format: html
       attachUploads: true
       translation:
-        language: ''
+        language: default
       templateName: '{@format}.html'
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
@@ -32,8 +32,8 @@ finishers:
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'ein neues EEPA-Anmeldeformular wurde eingereicht.'
+    identifier: EmailToReceiver
   -
-    identifier: EmailToSender
     options:
       subject: 'Ihre EEPA Teilnahme: {name}'
       recipientAddress: '{text-7}'
@@ -53,7 +53,8 @@ finishers:
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
-      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2023! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Anfang Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
+      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2024! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Ende Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
+    identifier: EmailToSender
   -
     options:
       pageUid: '7543'
@@ -61,93 +62,90 @@ finishers:
     identifier: Redirect
 renderables:
   -
-    type: Page
-    identifier: page-1
-    label: '(I) Allgemeine Informationen'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
       headerTag: h3
+    type: Page
+    identifier: page-1
+    label: '(I) Allgemeine Informationen'
     renderables:
       -
-        type: StaticText
-        identifier: statictext-1
         properties:
           text: '1. Allgemeine Informationen zur Bewerbung'
+        type: StaticText
+        identifier: statictext-1
       -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         identifier: name
         label: 'Name des Projekts/der Initiative'
         type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
         identifier: subject
         label: 'Name der teilnehmenden Organisation'
         type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
         type: Text
         identifier: text-1
         label: Postadresse
+        validators:
+          -
+            identifier: NotEmpty
+      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
         type: Text
         identifier: text-2
         label: Land
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
       -
-        identifier: email
-        label: 'E-Mail der Organisation'
-        type: Text
         defaultValue: ''
         properties:
           fieldClass: width50
+        identifier: email
+        label: 'E-Mail der Organisation'
+        type: Text
         validators:
           -
             identifier: EmailAddress
       -
-        type: Text
-        identifier: text-5
-        label: Website
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        type: Text
+        identifier: text-5
+        label: Website
         validators:
           -
             identifier: NotEmpty
       -
-        type: Text
-        identifier: text-3
-        label: Titel
         defaultValue: ''
         properties:
           gridColumnClassAutoConfiguration:
@@ -161,54 +159,54 @@ renderables:
               lg:
                 numbersOfColumnsToUse: ''
           fieldClass: width50
+        type: Text
+        identifier: text-3
+        label: Titel
       -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
         type: Text
         identifier: text-4
         label: Name
+        validators:
+          -
+            identifier: NotEmpty
+      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
-        validators:
-          -
-            identifier: NotEmpty
-      -
         type: Text
         identifier: text-6
         label: 'Telefonnummer der Kontaktperson'
-        defaultValue: ''
-        properties:
-          fluidAdditionalAttributes:
-            required: required
-          fieldClass: width50
         validators:
           -
             identifier: NotEmpty
       -
-        type: Text
-        identifier: text-7
-        label: 'E-Mail der Kontaktperson'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width50
+        type: Text
+        identifier: text-7
+        label: 'E-Mail der Kontaktperson'
         validators:
           -
             identifier: NotEmpty
           -
             identifier: EmailAddress
       -
+        properties:
+          text: '2. Bitte markieren Sie die Wettbewerbskategorie, für die Sie berücksichtigt werden möchten. '
         type: StaticText
         identifier: statictext-3
         label: ''
-        properties:
-          text: '2. Bitte markieren Sie die Wettbewerbskategorie, für die Sie berücksichtigt werden möchten. '
       -
-        type: RadioButton
-        identifier: radiobutton-1
-        label: Wettbewerbskategorie
         properties:
           options:
             'Förderung des Unternehmergeistes': '1. Förderung des Unternehmergeistes'
@@ -221,33 +219,36 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
+        type: RadioButton
+        identifier: radiobutton-1
+        label: Wettbewerbskategorie
         validators:
           -
             identifier: NotEmpty
   -
-    type: Page
-    identifier: page-2
-    label: '(II) Informationen über die Initiative'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: 'Nächster Schritt'
       headerTag: h3
+    type: Page
+    identifier: page-2
+    label: '(II) Informationen über die Initiative'
     renderables:
       -
-        type: StaticText
-        identifier: statictext-4
         properties:
           text: 'Dieser Abschnitt bezieht sich auf den Inhalt der Initiative, ihre Umsetzung und ihren Nutzen. '
-      -
         type: StaticText
-        identifier: statictext-5
+        identifier: statictext-4
+      -
         properties:
           text: '1. Informationen zur Initiative '
-      -
         type: StaticText
-        identifier: statictext-6
+        identifier: statictext-5
+      -
         properties:
           text: 'Dauer der Initiative (Hinweis: Die Initiative muss seit mindestens 15 Monaten bestehen)'
+        type: StaticText
+        identifier: statictext-6
       -
         properties:
           dateFormat: d.m.Y
@@ -409,38 +410,38 @@ renderables:
         identifier: imageupload-1
         label: 'Bitte fügen Sie Ihrer Bewerbung zu Zwecken der Öffentlichkeitsarbeit ein aussagekräftiges Foto Ihrer Initiative bei (vorzugsweise ein freundliches Motiv mit Menschen; mindestens 300 dpi). '
   -
-    type: Page
-    identifier: page-3
-    label: '(III) Teilnahmezustimmung'
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Zusammenfassung
       headerTag: h3
+    type: Page
+    identifier: page-3
+    label: '(III) Teilnahmezustimmung'
     renderables:
       -
+        properties:
+          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2024. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
         type: StaticText
         identifier: statictext-11
-        properties:
-          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2023. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
       -
-        type: Text
-        identifier: text-10
-        label: 'Name des rechtlichen Vertreters'
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
+        type: Text
+        identifier: text-10
+        label: 'Name des rechtlichen Vertreters'
         validators:
           -
             identifier: NotEmpty
       -
-        type: Text
-        identifier: text-11
-        label: Titel/Funktion
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
+        type: Text
+        identifier: text-11
+        label: Titel/Funktion
         validators:
           -
             identifier: NotEmpty
@@ -458,16 +459,30 @@ renderables:
           -
             identifier: NotEmpty
       -
-        type: StaticText
-        identifier: statictext-12
-        label: 'Bei Rückfragen zum Teilnahmeformular und zum Bewerbungsverfahren wenden Sie sich an: '
         properties:
           text: "Juliane Kummer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
           headerTag: h5
+        type: StaticText
+        identifier: statictext-12
+        label: 'Bei Rückfragen zum Teilnahmeformular und zum Bewerbungsverfahren wenden Sie sich an: '
+      -
+        properties:
+          text: 'Gerne möchten wir in Erfahrung bringen wie Sie auf den Wettbewerb aufmerksam geworden sind.'
+          headerTag: h3
+        type: StaticText
+        identifier: statictext-2
+        label: ''
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+        type: Text
+        identifier: text-8
+        label: 'Ich habe von dem Wettbewerb erfahren durch'
   -
-    identifier: summarypage
-    label: Zusammenfassung
-    type: SummaryPage
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Senden
+    identifier: summarypage
+    label: Zusammenfassung
+    type: SummaryPage
