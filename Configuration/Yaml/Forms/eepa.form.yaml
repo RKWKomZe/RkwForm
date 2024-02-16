@@ -460,18 +460,11 @@ renderables:
             identifier: NotEmpty
       -
         properties:
-          text: "Jennifer Stevermüer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
-          headerTag: h5
-        type: StaticText
-        identifier: statictext-12
-        label: 'Bei Rückfragen zum Teilnahmeformular und zum Bewerbungsverfahren wenden Sie sich an: '
-      -
-        properties:
           text: 'Gerne möchten wir in Erfahrung bringen wie Sie auf den Wettbewerb aufmerksam geworden sind.'
           headerTag: h3
         type: StaticText
         identifier: statictext-2
-        label: ''
+        label: '(IV) Feedback'
       -
         defaultValue: ''
         properties:
@@ -479,6 +472,13 @@ renderables:
         type: Text
         identifier: text-8
         label: 'Ich habe von dem Wettbewerb erfahren durch'
+      -
+        properties:
+          text: "Jennifer Stevermüer \nFachbereich Gründung \nRKW Kompetenzzentrum \n\nDüsseldorfer Straße 40 A \n65760 Eschborn \n\nTel. 06196 495-2820 \nE-Mail: EnterpriseAward@rkw.de  \nwww.eepa-deutschland.de \n\n "
+          headerTag: h5
+        type: StaticText
+        identifier: statictext-12
+        label: 'Bei Rückfragen zum Teilnahmeformular und zum Bewerbungsverfahren wenden Sie sich an: '
   -
     renderingOptions:
       previousButtonLabel: Zurück
