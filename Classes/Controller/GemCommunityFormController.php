@@ -39,21 +39,48 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected GemCommunityFormRepository $gemCommunityFormRepository;
+    protected ?GemCommunityFormRepository $gemCommunityFormRepository = null;
 
 
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $objectManager;
+    protected $objectManager = null;
 
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected PersistenceManager $persistenceManager;
+    protected ?PersistenceManager $persistenceManager = null;
+
+
+    /**
+     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
+     */
+    public function injectGemCommunityFormRepository(GemCommunityFormRepository $gemCommunityFormRepository)
+    {
+        $this->gemCommunityFormRepository = $gemCommunityFormRepository;
+    }
+
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    public function injectGemObjectManager(ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
+
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     */
+    public function injectPersistenceManager(PersistenceManager $persistenceManager)
+    {
+        $this->persistenceManager = $persistenceManager;
+    }
 
 
     /**
