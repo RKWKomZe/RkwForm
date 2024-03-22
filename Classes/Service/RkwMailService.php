@@ -101,6 +101,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
     public function verifyMail($backendUser, \Madj2k\FeRegister\Domain\Model\FrontendUser $frontendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
     {
@@ -246,6 +247,7 @@ class RkwMailService implements \TYPO3\CMS\Core\SingletonInterface
      * @throws \TYPO3Fluid\Fluid\View\Exception\InvalidTemplateResourceException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotException
      * @throws \TYPO3\CMS\Extbase\SignalSlot\Exception\InvalidSlotReturnException
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
     public function adminNotificationMail($backendUser, \RKW\RkwForm\Domain\Model\StandardForm $formRequest)
     {

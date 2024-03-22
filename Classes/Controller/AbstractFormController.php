@@ -13,6 +13,7 @@ namespace RKW\RkwForm\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use RKW\RkwFeecalculator\Domain\Repository\CalculatorRepository;
 use RKW\RkwForm\Domain\Repository\BackendUserRepository;
 use RKW\RkwForm\Domain\Repository\FrontendUserRepository;
 use RKW\RkwForm\Domain\Repository\StandardFormRepository;
@@ -53,20 +54,48 @@ class AbstractFormController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected StandardFormRepository $standardFormRepository;
+    protected ?StandardFormRepository $standardFormRepository = null;
+
 
     /**
      * @var \RKW\RkwForm\Domain\Repository\FrontendUserRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected FrontendUserRepository $frontendUserRepository;
+    protected ?FrontendUserRepository $frontendUserRepository = null;
 
 
     /**
      * @var \RKW\RkwForm\Domain\Repository\BackendUserRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected BackendUserRepository $backendUserRepository;
+    protected ?BackendUserRepository $backendUserRepository = null;
+
+
+    /**
+     * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository
+     */
+    public function injectStandardFormRepository(StandardFormRepository $standardFormRepository)
+    {
+        $this->standardFormRepository = $standardFormRepository;
+    }
+
+
+    /**
+     * @var \RKW\RkwForm\Domain\Repository\FrontendUserRepository
+     */
+    public function injectFrontendUserRepository(FrontendUserRepository $frontendUserRepository)
+    {
+        $this->frontendUserRepository = $frontendUserRepository;
+    }
+
+
+    /**
+     * @var \RKW\RkwForm\Domain\Repository\BackendUserRepository
+     */
+    public function injectBackendUserRepository(BackendUserRepository $backendUserRepository)
+    {
+        $this->backendUserRepository = $backendUserRepository;
+    }
 
 
     /**
