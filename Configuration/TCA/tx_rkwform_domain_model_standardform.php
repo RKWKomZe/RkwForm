@@ -12,9 +12,6 @@ return [
         'searchFields' => 'salutation,first_name,last_name,company,email,phone,text',
         'iconfile' => 'EXT:rkw_form/Resources/Public/Icons/tx_rkwform_domain_model_standardform.gif'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'salutation, first_name, last_name, company, email, phone, text',
-    ],
     'types' => [
         '1' => ['showitem' => 'salutation, first_name, last_name, company, email, phone, text, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
