@@ -1,0 +1,44 @@
+<html
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+    xmlns:rkw="http://typo3.org/ns/RKW/RkwForm/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<f:if condition="{text}">
+		<f:for each="{0: 'privacyPolicy', 1: 'termsAndConditions'}" as="config">
+
+			<f:variable
+				name="linkText"
+				value="{formvh:translateElementProperty(element: element, property: '{config}LinkText{type}')}"
+			/>
+
+			<f:variable name="linkPid"
+						value="{element.properties.{config}Pid}"
+			/>
+
+			<f:if condition="{linkPid}">
+				<f:then>
+					<f:variable
+						name="link"
+						value="{linkText -> f:link.page(pageUid: linkPid, target: '_blank')}"
+					/>
+				</f:then>
+				<f:else>
+					<f:variable
+						name="link"
+						value="{linkText}"
+					/>
+				</f:else>
+			</f:if>
+			<f:variable
+				name="text"
+				value="{rkw:replace(search: '#{config}#', replace: link, value: text)}"
+			/>
+		</f:for>
+	</f:if>
+
+	<f:if condition="{text}">
+		{text -> f:format.htmlentitiesDecode()}
+	</f:if>
+
+</html>

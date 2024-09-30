@@ -13,6 +13,7 @@ TYPO3:
         allowDeleteFromExtensionPaths: true
       prototypes:
         ### PROTOTYPE: STANDARD
+
         standard:
           formEditor:
             formEditorPartials:
@@ -20,6 +21,7 @@ TYPO3:
             translationFiles:
               # custom translation file
               20: 'EXT:rkw_form/Resources/Private/Language/form_framework_db.xlf'
+
           formElementsDefinition:
             Form:
               # additional RKW properties start
@@ -437,7 +439,16 @@ TYPO3:
             #  predefinedDefaults:
             #    defaultValue: 'width50'
             # Additional RKW fields end
+
           finishersDefinition:
+            SendToUrl:
+              implementationClassName: 'RKW\RkwForm\Domain\Finishers\SendToUrlFinisher'
+              options:
+                showResult: true
+                templateName: ConfirmationNewsletter
+                templateRootPaths:
+                  10: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Confirmation/'
+
             Confirmation:
               options:
                 templateName: 'Confirmation'
