@@ -73,12 +73,13 @@
                             <label>LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:flexform.standard.admin.beuser</label>
                             <config>
                                 <type>select</type>
+                                <renderType>selectMultipleSideBySide</renderType>
                                 <size>10</size>
                                 <minitems>1</minitems>
                                 <maxitems>99</maxitems>
                                 <multiple>1</multiple>
                                 <foreign_table>be_users</foreign_table>
-                                <foreign_table_where> AND be_users.deleted = 0 AND be_users.email != '' ORDER BY be_users.username</foreign_table_where>
+                                <foreign_table_where> AND be_users.deleted = 0 AND be_users.disable = 0 AND be_users.email != '' ORDER BY be_users.username</foreign_table_where>
                             </config>
                         </TCEforms>
                     </settings.mail.backendUser>
