@@ -1,0 +1,125 @@
+identifier: newsletter-rkw-thueringen
+label: 'Newsletter RKW Thüringen'
+type: Form
+prototypeName: standard
+renderingOptions:
+  submitButtonLabel: 'Jetzt Newsletter abonnieren'
+  width: flex-basis-8
+
+renderables:
+  page-1:
+    identifier: page-1
+    label: ''
+    type: Page
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Weiter'
+    renderables:
+      salutation:
+        identifier: salutation
+        label: 'Anrede'
+        type: SingleSelect
+        defaultValue: ''
+        properties:
+          elementClassAttribute: 'select-field select-field--longer'
+          prependOptionLabel: "Bitte wählen"
+          options:
+            Frau: "Frau"
+            Herr: "Herr"
+            Divers: "Divers"
+          fieldClass: width50
+        validators:
+          - identifier: NotEmpty
+      title:
+        identifier: title
+        label: 'Titel'
+        type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+      first-name:
+        identifier: first-name
+        label: 'Vorname'
+        type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+        validators:
+          - identifier: NotEmpty
+
+      last-name:
+        identifier: last-name
+        label: 'Nachname'
+        type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+        validators:
+          - identifier: NotEmpty
+
+      email:
+        identifier: email
+        label: 'E-Mail'
+        type: Text
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress
+      company:
+        identifier: company
+        label: 'Firma'
+        type: Text
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+      privacy:
+        identifier: privacy
+        type: Checkbox
+        label: Einwilligung zur Datenschutzerklärung
+        properties:
+          type: consent
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+          text: 'Hiermit willige ich in die Verarbeitung meiner personenbezogenen Daten zum Zwecke der Newsletter-Zustellung ein und bestätige, dass ich die #privacyPolicy# zur Kenntnis genommen habe. Meine Einwilligung ist freiwillig und jederzeit mit Wirkung für die Zukunft widerrufen werden, indem ich den Abbestellen-Link in der Fußzeile jeder E-Mail nutze oder das RKW Thüringen unter <a href="mailto:info@rkw-thueringen.de">info@rkw-thueringen.de</a> kontaktiere.'
+          privacyPolicyPid: 3774
+          termsAndConditionsPid: 3774
+          privacyPolicyLinkTextLabel: 'Datenschutz-Hinweise'
+        validators:
+          - identifier: NotEmpty
+
+finishers:
+  sendToUrl:
+    identifier: SendToUrl
+    options:
+      url: 'https://rkw-thueringen.us13.list-manage.com/subscribe/post-json'
+      method: GET
+      showConfirmationMessage: true
+      additionalParams:
+        f_id: 005d8ce8f0
+        c: 0
+        u: 826dc15c91fdf7ebd8d1269f7
+        id: 2c70d81dbc
+        v_id: 5209
+        b_826dc15c91fdf7ebd8d1269f7_2c70d81dbc: ''
+        subscribe: Jetzt+anmelden
+        _: 1727444005551
+      values:
+        TITELAS: '{title}'
+        ANREDE: '{salutation}'
+        FNAME: '{first-name}'
+        LNAME: '{last-name}'
+        street: '{street}'
+        FIRMA: '{company}'
+        EMAIL: '{email}'
+        gdpr[5549]: '{privacy}'
+        gdpr[72312]: '{privacy}'
+      mapping:
+        gdpr[5549]:
+          1: Y
+        gdpr[72312]:
+          1: Y
