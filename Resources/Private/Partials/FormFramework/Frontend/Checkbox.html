@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+
       data-namespace-typo3-fluid="true">
 <formvh:renderRenderable renderable="{element}">
     <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
@@ -15,6 +16,16 @@
             />
             <label class="checkbox-label {element.properties.elementClassAttribute} form-check-label" for="{element.uniqueIdentifier}">
                 <f:switch expression="{element.properties.type}">
+                    <f:case value="consent">
+                        <f:format.raw>
+                            <f:variable name="text" value="{formvh:translateElementProperty(element: element, property: 'text')}" />
+                            <f:render
+                                partial="Text/Consent"
+                                arguments="{element: element,
+											type: 'Label',
+											text: text}" />
+                        </f:format.raw>
+                    </f:case>
                     <f:case value="terms">
                         <f:format.raw>
                             <f:translate key="templates_viewHelpers_consent_privacy.defaultAlternative.partOne" extensionName="feRegister" arguments="{0: '{element.properties.additionalAttributes.companyName}', 1: '{element.properties.additionalAttributes.companyEmail}'}" />

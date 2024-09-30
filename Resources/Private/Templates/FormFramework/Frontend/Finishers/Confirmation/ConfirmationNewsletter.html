@@ -1,0 +1,19 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+    <div class="form">
+
+        <f:variable name="severity" value="2" />
+        <f:if condition="{code} == 'success'">
+            <f:variable name="severity" value="0" />
+        </f:if>
+
+        <div class="system-message system-message--scroll" role="alert">
+            <div class="system-message__item system-message__item--severity{severity}">
+                {message}
+            </div>
+        </div>
+    </div>
+</html>
