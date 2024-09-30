@@ -113,7 +113,6 @@ finishers:
         ANREDE: '{salutation}'
         FNAME: '{first-name}'
         LNAME: '{last-name}'
-        street: '{street}'
         FIRMA: '{company}'
         EMAIL: '{email}'
         gdpr[5549]: '{privacy}'
