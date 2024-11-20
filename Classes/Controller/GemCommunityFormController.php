@@ -15,9 +15,9 @@ namespace RKW\RkwForm\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use RKW\RkwForm\Domain\Model\StandardForm;
-use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use RKW\RkwForm\Domain\Repository\GemCommunityFormRepository;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,50 +35,33 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormController
 {
+
     /**
-     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository|null
      */
     protected ?GemCommunityFormRepository $gemCommunityFormRepository = null;
 
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     * @TYPO3\CMS\Extbase\Annotation\Inject
-     */
-    protected $objectManager = null;
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager|null
      */
     protected ?PersistenceManager $persistenceManager = null;
 
 
     /**
-     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
+     * Constructor for Dependency Injection
+     *
+     * @param GemCommunityFormRepository $gemCommunityFormRepository
+     * @param ObjectManager $objectManager
+     * @param PersistenceManager $persistenceManager
      */
-    public function injectGemCommunityFormRepository(GemCommunityFormRepository $gemCommunityFormRepository)
-    {
+    public function __construct(
+        GemCommunityFormRepository $gemCommunityFormRepository,
+        ObjectManager $objectManager,
+        PersistenceManager $persistenceManager
+    ) {
         $this->gemCommunityFormRepository = $gemCommunityFormRepository;
-    }
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     */
-    public function injectGemObjectManager(ObjectManager $objectManager)
-    {
         $this->objectManager = $objectManager;
-    }
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     */
-    public function injectPersistenceManager(PersistenceManager $persistenceManager)
-    {
         $this->persistenceManager = $persistenceManager;
     }
 
@@ -133,7 +116,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             $this->forward('new', null, null, ['standardForm' => $standardForm]);
         }
 
-        $standardForm->setToken(sha1(rand()));
+        $standardForm->setToken(sha1(mt_rand()));
 
         $uri = $this->uriBuilder->reset()
             ->setTargetPageUid($GLOBALS["TSFE"]->id)
@@ -150,9 +133,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         $this->standardFormRepository->add($standardForm);
 
         $this->addFlashMessage(
-            nl2br($this->settings['confirmtext']),
-            '',
-            AbstractMessage::OK
+            nl2br($this->settings['confirmtext'])
         );
 
     }
@@ -166,14 +147,6 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     public function verifyAction(string $token = ''): void
     {
-        // set objects if they haven't been injected yet
-        if (!$this->objectManager) {
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        }
-        if (!$this->persistenceManager) {
-            $this->persistenceManager = $this->objectManager->get(PersistenceManager::class);
-        }
-
         if ($token) {
             $result = $this->gemCommunityFormRepository->findByToken($token);
 
@@ -214,9 +187,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'gemCommunityFormController.success.verification.confirmed', 'rkw_form'
-                    ),
-                    '',
-                    AbstractMessage::OK
+                    )
                 );
                 $this->forward('confirmed', null, null, ['standardForm' => null]);
 

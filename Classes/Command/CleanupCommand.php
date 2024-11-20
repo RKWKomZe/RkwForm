@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogLevel;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
@@ -41,12 +40,6 @@ class CleanupCommand extends Command
 {
 
     /**
-     * @var \TYPO3\CMS\Core\Log\Logger|null
-     */
-    protected ?Logger $logger = null;
-
-
-    /**
      * @var \RKW\RkwForm\Domain\Repository\StandardFormRepository|null
      */
     protected ?StandardFormRepository $standardFormRepository = null;
@@ -54,9 +47,31 @@ class CleanupCommand extends Command
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
-    protected $persistenceManager;
+    protected ?PersistenceManager $persistenceManager;
+
+
+    /**
+     * @var \TYPO3\CMS\Core\Log\Logger|null
+     */
+    protected ?Logger $logger = null;
+
+
+    /**
+     * @param StandardFormRepository $standardFormRepository,
+     * @param PersistenceManager $persistenceManager
+     */
+    public function __construct(
+        StandardFormRepository $standardFormRepository,
+        PersistenceManager $persistenceManager
+    ) {
+
+        $this->standardFormRepository = $standardFormRepository;
+        $this->persistenceManager = $persistenceManager;
+
+        parent::__construct();
+    }
+
 
     /**
      * Configure the command by defining the name, options and arguments
@@ -64,31 +79,6 @@ class CleanupCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Cleanup database from expired records.');
-    }
-
-
-    /**
-     * Initializes the command after the input has been bound and before the input
-     * is validated.
-     *
-     * This is mainly useful when a lot of commands extends one main command
-     * where some things need to be initialized based on the input arguments and options.
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     * @see \Symfony\Component\Console\Input\InputInterface::bind()
-     * @see \Symfony\Component\Console\Input\InputInterface::validate()
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-        /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager */
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        /** @var \RKW\RkwForm\Domain\Repository\StandardFormRepository standardFormRepository */
-        $this->standardFormRepository = $objectManager->get(StandardFormRepository::class);
-
-        /** @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager persistenceManager */
-        $this->persistenceManager = $objectManager->get(PersistenceManager::class);
     }
 
 
