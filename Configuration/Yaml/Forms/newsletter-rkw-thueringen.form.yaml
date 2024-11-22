@@ -85,7 +85,7 @@ renderables:
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
-          text: 'Hiermit willige ich in die Verarbeitung meiner personenbezogenen Daten zum Zwecke der Newsletter-Zustellung ein und bestätige, dass ich die #privacyPolicy# zur Kenntnis genommen habe. Meine Einwilligung ist freiwillig und jederzeit mit Wirkung für die Zukunft widerrufen werden, indem ich den Abbestellen-Link in der Fußzeile jeder E-Mail nutze oder das RKW Thüringen unter <a href="mailto:info@rkw-thueringen.de">info@rkw-thueringen.de</a> kontaktiere.'
+          text: 'Hiermit willige ich in die Verarbeitung meiner personenbezogenen Daten zum Zwecke der Newsletter-Zustellung ein und bestätige, dass ich die #privacyPolicy# zur Kenntnis genommen habe. Meine Einwilligung ist freiwillig und kann jederzeit mit Wirkung für die Zukunft widerrufen werden, indem ich den Abbestellen-Link in der Fußzeile jeder E-Mail nutze oder das RKW Thüringen unter <a href="mailto:info@rkw-thueringen.de">info@rkw-thueringen.de</a> kontaktiere.'
           privacyPolicyPid: 3774
           termsAndConditionsPid: 3774
           privacyPolicyLinkTextLabel: 'Datenschutz-Hinweise'

@@ -105,7 +105,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      * @param \RKW\RkwForm\Domain\Model\GemCommunityForm $standardForm
      * @param bool $privacy
      * @param bool $terms
-     * @validate $standardForm \RKW\RkwForm\Validation\Validator\GemCommunityFormValidator
+     * @TYPO3\CMS\Extbase\Annotation\Validate("RKW\RkwForm\Validation\Validator\GemCommunityFormValidator", param="standardForm")
      * @return void
      */
     public function createAction(GemCommunityForm $standardForm, bool $privacy = false, bool $terms = false): void
