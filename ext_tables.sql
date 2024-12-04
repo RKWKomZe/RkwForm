@@ -46,5 +46,6 @@ CREATE TABLE tx_rkwform_domain_model_standardform (
   token varchar(255) DEFAULT '' NOT NULL,
 	valid_until int(11) unsigned DEFAULT '0' NOT NULL,
   enabled tinyint(1) DEFAULT '0' NOT NULL,
+  confirmation longtext
 );
 

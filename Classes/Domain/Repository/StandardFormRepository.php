@@ -28,7 +28,7 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
     /**
-     * find expired form entries
+     * find expired form entries by identifier
      *
      * @param string $identifier
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
@@ -43,6 +43,30 @@ class StandardFormRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $constraints = [];
         $constraints[] = $query->equals('identifier', $identifier);
         $constraints[] = $query->lessThanOrEqual('validUntil', time());
+
+        // NOW: construct final query!
+        $query->matching($query->logicalAnd($constraints));
+
+        return $query->execute();
+    }
+
+    /**
+     * find expired and unconfirmed form entries by identifier
+     *
+     * @param string $identifier
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @api used in CLI-command for cleanup
+     */
+    public function findExpiredAndUnconfirmedByFormIdentifier(string $identifier = ''): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+
+        $constraints = [];
+        $constraints[] = $query->equals('identifier', $identifier);
+        $constraints[] = $query->lessThanOrEqual('validUntil', time());
+        $constraints[] = $query->equals('enabled', false);
 
         // NOW: construct final query!
         $query->matching($query->logicalAnd($constraints));

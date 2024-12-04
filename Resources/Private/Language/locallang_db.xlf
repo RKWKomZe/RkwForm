@@ -105,6 +105,9 @@
 			<trans-unit id="tx_rkwform_domain_model_standardform.topic">
 				<source>Topic</source>
 			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.confirmation">
+				<source>Confirmation</source>
+			</trans-unit>
 			<trans-unit id="flexform.standard.verification.validUntil">
 				<source>Valid until</source>
 			</trans-unit>
