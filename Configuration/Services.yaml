@@ -6,3 +6,9 @@ services:
 
   RKW\RkwForm\:
     resource: '../Classes/*'
+
+  RKW\RkwForm\Command\CleanupCommand:
+    tags:
+      - name: 'console.command'
+        command: 'rkw_form:cleanup'
+        schedulable: true

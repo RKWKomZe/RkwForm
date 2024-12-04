@@ -95,6 +95,17 @@ $tempPagesColumns = array(
         ],
     ],
 
+    'confirmation' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:rkw_form/Resources/Private/Language/locallang_db.xlf:tx_rkwform_domain_model_standardform.confirmation',
+        'config' => [
+            'type' => 'text',
+            'cols' => 40,
+            'rows' => 15,
+            'eval' => 'trim'
+        ],
+    ],
+
 );
 // Add TCA
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
