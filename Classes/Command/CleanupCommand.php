@@ -99,7 +99,7 @@ class CleanupCommand extends Command
         $result = 0;
         try {
 
-            $expiredRecords = $this->standardFormRepository->findExpiredByFormIdentifier('gem-community');
+            $expiredRecords = $this->standardFormRepository->findExpiredAndUnconfirmedByFormIdentifier('gem-community');
 
             $cnt = 0;
             foreach ($expiredRecords as $expiredRecord) {
@@ -111,7 +111,7 @@ class CleanupCommand extends Command
 
             // Message with x files were deleted
             $message = sprintf(
-                'Removed %s expired form records from the database.',
+                'Removed %s expired and unconfirmed form records from the database.',
                 $cnt
             );
 
