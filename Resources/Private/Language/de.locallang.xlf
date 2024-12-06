@@ -170,8 +170,8 @@
 				<target>Datenschutzerklärung </target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
-				<source>. This consent can be revoked at any time.</source>
-				<target>habe ich gelesen und bin einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+				<source>.</source>
+				<target>habe ich gelesen und bin einverstanden.</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
 				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
