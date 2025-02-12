@@ -138,6 +138,16 @@
 				<source>.</source>
 			</trans-unit>
 
+            <!-- eepa extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.firstPart">
+                <source>I hereby consent to the personal data provided being stored and processed for the aforementioned purpose.</source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.secondPart">
+                <source>The privacy policy at </source>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.thirdPart">
+                <source> I have read and understood.</source>
+            </trans-unit>
 
             <!-- TEMPLATES -->
             <trans-unit id="templates_standard_new.button">

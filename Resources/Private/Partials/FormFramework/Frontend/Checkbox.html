@@ -40,6 +40,12 @@
                         <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">{element.label}</f:link.page>
                         <f:translate key="tx_rkwform_domain_model_standardform.aufitgebaut.terms.thirdPart" extensionName="rkwForm"/>
                     </f:case>
+                    <f:case value="eepa-terms">
+                        <f:format.raw><f:translate key="tx_rkwform_domain_model_standardform.eepa.terms.firstPart" extensionName="rkwForm" arguments="{0: '{element.properties.additionalAttributes.revokeEmail}'}" /></f:format.raw>
+                        <f:translate key="tx_rkwform_domain_model_standardform.eepa.terms.secondPart" extensionName="rkwForm"/>
+                        <f:link.page pageUid="{element.properties.additionalAttributes.linkPageUid}" target="_blank">{element.label}</f:link.page>
+                        <f:translate key="tx_rkwform_domain_model_standardform.eepa.terms.thirdPart" extensionName="rkwForm"/>
+                    </f:case>
                     <f:defaultCase>
                         <span>{formvh:translateElementProperty(element: element, property: 'label')}</span>
                     </f:defaultCase>
