@@ -170,12 +170,12 @@
 				<target>Datenschutzerklärung </target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.privacy.thirdPart">
-				<source>. This consent can be revoked at any time.</source>
-				<target>habe ich gelesen und bin einverstanden. Diese Einwilligung kann jederzeit widerrufen werden.</target>
+				<source>.</source>
+				<target>habe ich gelesen und verstanden.</target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.firstPart">
 				<source>Hereby I confirm that my contact data may be used. I can withdraw this confirmation by sending an email to </source>
-				<target>Hiermit willige ich ein, dass im Rahmen und für die Dauer des GEM-Projekts meine personenbezogenen Daten wie Anrede, Vorname, Nachname, Titel, Geschlecht, E-Mail-Adresse, Institution/Firma/Gründung, Telefonnummer, Postanschrift (Adresse, PLZ, Ort), Gründungsthemengebiet, ggf. Jahr der freiwilligen Umfrageteilnahme vom RKW Kompetenzzentrum in eine Liste aufgenommen und gespeichert werden und zum Zwecke der Kontaktaufnahme für Einladungen zu Umfragen, GEM-Veranstaltungen sowie Zusendung des GEM-Berichts per Post verwendet werden. Die Daten werden nicht an Dritte weitergegeben. Diese Einwilligung ist freiwillig und die Nichterteilung hat keine negativen Auswirkungen. Diese Einwilligung kann ich jederzeit per Mail an </target>
+				<target>Hiermit willige ich ein, dass im Rahmen und für die Dauer des GEM-Projekts meine personenbezogenen Daten wie Anrede, Vorname, Nachname, Titel, E-Mail-Adresse, Institution/Firma/Gründung, Telefonnummer, Postanschrift (Adresse, Postleitzahl, Ort), Gründungsthemengebiet, ggf. Jahr der freiwilligen Umfrageteilnahme vom RKW Kompetenzzentrum in eine Liste aufgenommen und gespeichert werden und zum Zwecke der Kontaktaufnahme für Einladungen zu Umfragen, GEM-Veranstaltungen sowie Zusendung des GEM-Berichts verwendet werden. Die Daten werden nicht an Dritte weitergegeben. Diese Einwilligung ist freiwillig und die Nichterteilung hat keine negativen Auswirkungen. Diese Einwilligung kann ich jederzeit per Mail an </target>
 			</trans-unit>
 			<trans-unit id="tx_rkwform_domain_model_standardform.gem.terms.thirdPart">
 				<source>.</source>
@@ -191,6 +191,20 @@
 				<source>.</source>
 				<target>.</target>
 			</trans-unit>
+
+			<!-- eepa extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.firstPart">
+                <source>I hereby consent to the personal data provided being stored and processed for the aforementioned purpose.</source>
+                <target><![CDATA[Hiermit willige ich ein, dass die angegebenen personenbezogenen Daten gespeichert und zum vorgenannten Zweck verarbeitet werden. Diese Einwilligung ist freiwillig und kann jederzeit per E-Mail an <a href="mailto:widerruf.gruendung@rkw.de">widerruf.gruendung@rkw.de</a> mit Wirkung für die Zukunft widerrufen werden.]]></target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.secondPart">
+                <source>The privacy policy at </source>
+                <target>Die Datenschutzerklärung unter </target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.thirdPart">
+                <source> I have read and understood.</source>
+                <target> habe ich gelesen und verstanden.</target>
+            </trans-unit>
 
 
             <!-- PARTIALS -->

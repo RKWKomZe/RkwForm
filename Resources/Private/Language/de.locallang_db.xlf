@@ -164,6 +164,11 @@
 				<source>Topic</source>
 				<target>Thema</target>
 			</trans-unit>
+			<trans-unit id="tx_rkwform_domain_model_standardform.confirmation">
+				<source>Confirmation</source>
+				<target>Bestätigung</target>
+			</trans-unit>
+
 
 
 		</body>

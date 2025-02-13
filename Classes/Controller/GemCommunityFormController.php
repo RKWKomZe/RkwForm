@@ -15,9 +15,10 @@ namespace RKW\RkwForm\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Madj2k\CoreExtended\Utility\ClientUtility;
+use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use RKW\RkwForm\Domain\Model\GemCommunityForm;
 use RKW\RkwForm\Domain\Model\StandardForm;
-use Madj2k\FeRegister\Domain\Model\FrontendUser;
 use RKW\RkwForm\Domain\Repository\GemCommunityFormRepository;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,50 +36,33 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormController
 {
+
     /**
-     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository|null
      */
     protected ?GemCommunityFormRepository $gemCommunityFormRepository = null;
 
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     * @TYPO3\CMS\Extbase\Annotation\Inject
-     */
-    protected $objectManager = null;
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager|null
      */
     protected ?PersistenceManager $persistenceManager = null;
 
 
     /**
-     * @var \RKW\RkwForm\Domain\Repository\GemCommunityFormRepository
+     * Constructor for Dependency Injection
+     *
+     * @param GemCommunityFormRepository $gemCommunityFormRepository
+     * @param ObjectManager $objectManager
+     * @param PersistenceManager $persistenceManager
      */
-    public function injectGemCommunityFormRepository(GemCommunityFormRepository $gemCommunityFormRepository)
-    {
+    public function __construct(
+        GemCommunityFormRepository $gemCommunityFormRepository,
+        ObjectManager $objectManager,
+        PersistenceManager $persistenceManager
+    ) {
         $this->gemCommunityFormRepository = $gemCommunityFormRepository;
-    }
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     */
-    public function injectGemObjectManager(ObjectManager $objectManager)
-    {
         $this->objectManager = $objectManager;
-    }
-
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     */
-    public function injectPersistenceManager(PersistenceManager $persistenceManager)
-    {
         $this->persistenceManager = $persistenceManager;
     }
 
@@ -133,7 +117,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
             $this->forward('new', null, null, ['standardForm' => $standardForm]);
         }
 
-        $standardForm->setToken(sha1(rand()));
+        $standardForm->setToken(sha1(mt_rand()));
 
         $uri = $this->uriBuilder->reset()
             ->setTargetPageUid($GLOBALS["TSFE"]->id)
@@ -150,9 +134,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         $this->standardFormRepository->add($standardForm);
 
         $this->addFlashMessage(
-            nl2br($this->settings['confirmtext']),
-            '',
-            AbstractMessage::OK
+            nl2br($this->settings['confirmtext'])
         );
 
     }
@@ -166,14 +148,6 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
      */
     public function verifyAction(string $token = ''): void
     {
-        // set objects if they haven't been injected yet
-        if (!$this->objectManager) {
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        }
-        if (!$this->persistenceManager) {
-            $this->persistenceManager = $this->objectManager->get(PersistenceManager::class);
-        }
-
         if ($token) {
             $result = $this->gemCommunityFormRepository->findByToken($token);
 
@@ -206,6 +180,8 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
 
                 $standardForm->setEnabled(true);
 
+                $standardForm->setConfirmation(serialize($this->getConfirmationData()));
+
                 $this->gemCommunityFormRepository->update($standardForm);
                 $this->persistenceManager->persistAll();
 
@@ -214,9 +190,7 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
                 $this->addFlashMessage(
                     \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
                         'gemCommunityFormController.success.verification.confirmed', 'rkw_form'
-                    ),
-                    '',
-                    AbstractMessage::OK
+                    )
                 );
                 $this->forward('confirmed', null, null, ['standardForm' => null]);
 
@@ -326,6 +300,28 @@ class GemCommunityFormController extends \RKW\RkwForm\Controller\AbstractFormCon
         }
 
         return $backendUsers;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfirmationData(): array
+    {
+        $request = $this->request;
+
+        $confirmation = [];
+        $confirmation['tstamp'] = time();
+        $confirmation['ip'] = ClientUtility::getIp();
+        $confirmation['server_host'] = filter_var($_SERVER['HTTP_HOST'], FILTER_SANITIZE_URL);
+        $confirmation['server_uri'] = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
+        $confirmation['server_referer_url'] = filter_var($_SERVER['HTTP_REFERER'], FILTER_SANITIZE_URL);
+        $confirmation['user_agent'] = (string)$_SERVER['HTTP_USER_AGENT'];
+        $confirmation['extension_name'] = (string)$request->getControllerExtensionName();
+        $confirmation['plugin_name'] = (string)$request->getPluginName();
+        $confirmation['controller_name'] = (string)$request->getControllerName();
+        $confirmation['action_name'] = (string)$request->getControllerActionName();
+
+        return $confirmation;
     }
 
 }

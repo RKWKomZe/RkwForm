@@ -81,6 +81,12 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
 
 
     /**
+     * @var string
+     */
+    protected $confirmation = '';
+
+
+    /**
      * Returns the type
      *
      * @return string $type
@@ -302,6 +308,29 @@ class GemCommunityForm extends \RKW\RkwForm\Domain\Model\StandardForm
     public function setEnabled(bool $enabled): void
     {
         $this->enabled = $enabled;
+    }
+
+
+    /**
+     * Returns the confirmation
+     *
+     * @return string $confirmation
+     */
+    public function getConfirmation(): string
+    {
+        return $this->confirmation;
+    }
+
+
+    /**
+     * Sets the confirmation
+     *
+     * @param string $confirmation
+     * @return void
+     */
+    public function setConfirmation(string $confirmation): void
+    {
+        $this->confirmation = $confirmation;
     }
 
 }
