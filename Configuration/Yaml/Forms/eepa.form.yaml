@@ -53,7 +53,7 @@ finishers:
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailtext: 'Test Text 222'
-      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2024! Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Ende Juni durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
+      mailText: 'vielen herzlichen Dank für Ihre Teilnahme am deutschen Vorentscheid der Europäischen Unternehmensförderpreise 2025! Ihre Bewerbung wurde versendet. Die Auswahl der beiden deutschen Gewinnerprojekte erfolgt Ende Juni 2025 durch eine Jury aus Expertinnen und Experten. Über die Ergebnisse der Jurysitzung werden wir Sie unverzüglich informieren. Untenstehend finden Sie eine Übersicht Ihrer Angaben zur Bewerbung.'
     identifier: EmailToSender
   -
     options:
@@ -209,10 +209,10 @@ renderables:
       -
         properties:
           options:
-            'Förderung des Unternehmergeistes': '1. Förderung des Unternehmergeistes'
+            'Verbesserung des Unternehmensumfelds und Förderung des Unternehmergeistes': '1. Verbesserung des Unternehmensumfelds und Förderung des Unternehmergeistes'
             'Investition in Unternehmenskompetenzen': '2. Investition in Unternehmenskompetenzen'
             'Unterstützung des digitalen Wandels': '3. Unterstützung des digitalen Wandels'
-            'Verbesserung des Geschäftsumfelds und Unterstützung der Internationalisierung von Unternehmen': '4. Verbesserung des Geschäftsumfelds und Unterstützung der Internationalisierung von Unternehmen'
+            'Unterstützung der Internationalisierung von Unternehmen': '4. Unterstützung der Internationalisierung von Unternehmen'
             'Förderung des nachhaltigen Wandels': '5. Förderung des nachhaltigen Wandels'
             'Verantwortungsvolles und integrationsfreundliches Unternehmertum': '6. Verantwortungsvolles und integrationsfreundliches Unternehmertum'
           elementDescription: '(Hinweis: Sie können sich nur für eine Kategorie bewerben; die Jury behält sich das Recht vor, die Kategorie zu ändern, wenn dies als notwendig erachtet wird) '
@@ -420,7 +420,7 @@ renderables:
     renderables:
       -
         properties:
-          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2024. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
+          text: 'Als rechtliche Vertretung/ mit Zustimmung der rechtlichen Vertretung der als Bewerberin angegebenen Organisation erkläre ich hiermit die Zustimmung zur Teilnahme der Initiative am deutschen Vorentscheid zu den Europäischen Unternehmensförderpreisen 2025. Ich versichere, dass das eingereichte Material die Initiative tatsachengerecht darstellt. '
         type: StaticText
         identifier: statictext-11
       -
@@ -445,19 +445,33 @@ renderables:
         validators:
           -
             identifier: NotEmpty
-      -
+#      -
+#        type: Checkbox
+#        identifier: checkbox-1
+#        label: Datenschutzerklärung
+#        properties:
+#          type: terms
+#          fluidAdditionalAttributes:
+#            required: required
+#          fieldClass: width100
+#          value: Ja
+#        validators:
+#          -
+#            identifier: NotEmpty
+      - identifier: checkbox-2
+        label: Teilnahmebedingungen
         type: Checkbox
-        identifier: checkbox-1
-        label: Datenschutzerklärung
         properties:
-          type: terms
+          type: eepa-terms
+          additionalAttributes:
+            linkPageUid: 5996
+            revokeEmail: widerruf.gruendung@rkw.de
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
           value: Ja
         validators:
-          -
-            identifier: NotEmpty
+          - identifier: NotEmpty
       -
         properties:
           text: 'Gerne möchten wir in Erfahrung bringen wie Sie auf den Wettbewerb aufmerksam geworden sind.'

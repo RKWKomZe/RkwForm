@@ -192,6 +192,20 @@
 				<target>.</target>
 			</trans-unit>
 
+			<!-- eepa extend -->
+			<trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.firstPart">
+                <source>I hereby consent to the personal data provided being stored and processed for the aforementioned purpose.</source>
+                <target><![CDATA[Hiermit willige ich ein, dass die angegebenen personenbezogenen Daten gespeichert und zum vorgenannten Zweck verarbeitet werden. Diese Einwilligung ist freiwillig und kann jederzeit per E-Mail an <a href="mailto:widerruf.gruendung@rkw.de">widerruf.gruendung@rkw.de</a> mit Wirkung für die Zukunft widerrufen werden.]]></target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.secondPart">
+                <source>The privacy policy at </source>
+                <target>Die Datenschutzerklärung unter </target>
+            </trans-unit>
+            <trans-unit id="tx_rkwform_domain_model_standardform.eepa.terms.thirdPart">
+                <source> I have read and understood.</source>
+                <target> habe ich gelesen und verstanden.</target>
+            </trans-unit>
+
 
             <!-- PARTIALS -->
             <trans-unit id="tx_rkwform_domain_model_standardform.labelOptional">
