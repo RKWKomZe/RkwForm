@@ -179,7 +179,7 @@ renderables:
           options:
             'Handwerk und Technik': 'Handwerk und Technik'
             'Bauingenieurwesen': 'Bauingenieurwesen'
-            'Betriebswirtschaft': 'Betriebswirtschaft'
+            'Bauprozessmanagement': 'Bauprozessmanagement'
             'Architektur': 'Architektur'
             'Sonderpreis Start-up': 'Sonderpreis Start-up'
         validators:
