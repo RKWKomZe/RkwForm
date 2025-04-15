@@ -27,7 +27,7 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: "\nein neuer Hinweis über das Hinweisgeber-Formular ist eingegangen."
+      mailText: "\n es wurde ein neuer Hinweis Über das Hinweisgeber-Formular Übermittelt. \n\n Bitte prüfen und weitere Schritte einleiten. \n\n Viele Grüße \n Hinweisgebersystem RKW Thüringen"
       recipients:
         schieke@rkw-thueringen.de: 'Heike Schieke'
     identifier: EmailToReceiver
@@ -39,26 +39,31 @@ finishers:
       senderAddress: info@rkw-thueringen.de
       senderName: 'RKW Hinweisgeber'
       addHtmlPart: true
-      attachUploads: true
+      attachUploads: false
       title: Hinweisgeber
       renderingOptions:
         enabled: '{email}'
-      templateName: '{@format}.html'
+      templateName: 'WithoutTable.html'
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: "\nvielen Dank für Ihren Hinweis. Wir gehen der Sache nach und melden uns wieder bei Ihnen."
+      mailText: "\nvielen Dank für Ihren Hinweis. Wir bestätigen hiermit den Eingang Ihrer Meldung im Hinweisgebersystem des RKW Thüringen."
+      mailText2: "\n\nWir nehmen die von Ihnen geschilderten Informationen sehr ernst und werden den Sachverhalt nun sorgfältig prüfen. Falls Rückfragen entstehen oder weitere Informationen erforderlich sind, kommen wir auf Sie zu."
+      mailText3: "\n\nBitte haben Sie Verständnis dafür, dass die Bearbeitung und Aufklärung je nach Komplexität des Falls einige Zeit in Anspruch nehmen kann. Ãœber den Fortgang informieren wir Sie zu gegebener Zeit."
+      mailText4: "\n\nBei Fragen können Sie sich jederzeit per E-Mail an uns wenden:\n schieke@rkw-thueringen.de"
+      mailText5: "\n\nMit freundlichen Grüßen"
+      mailText6: "\nIhr Team vom RKW Thüringen"
       replyToRecipients:
-        schieke@rkw-thueringen.de: ''
+        schieke@rkw-thueringen.de: 'Heike Schiecke'
     identifier: EmailToSender
   -
     identifier: DeleteUploads
   -
     options:
-      message: 'Vielen Dank für Ihre Nachricht.'
+      message: 'Vielen Dank für Ihren Hinweis. Wir nehmen die von Ihnen geschilderten Informationen sehr ernst und werden den Sachverhalt nun sorgfältig prüfen.'
       contentElementUid: ''
     identifier: Confirmation
 renderables:

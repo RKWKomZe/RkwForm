@@ -1,0 +1,52 @@
+{namespace formvh=TYPO3\CMS\Form\ViewHelpers}
+{namespace rkwForm=RKW\RkwForm\ViewHelpers}
+
+<f:layout name="Email/Html" />
+
+<f:section name="Html">
+<body>
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='recipientName' />" />,</p>
+    <p>
+        <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText' />">
+            <f:then>
+                <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText' />
+            </f:then>
+            <f:else>
+                <f:translate key="tx_rkwform_formframework_form_finisher_email_sender.new" extensionName="RkwForm" />
+            </f:else>
+        </f:if>
+    </p>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText2' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText2' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText3' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText3' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText4' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText4' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText5' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText5' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText6' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToSender' getOption='mailText6' />
+        </p>
+    </f:if>
+
+</body>
+
+</f:section>
