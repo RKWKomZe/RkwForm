@@ -13,35 +13,46 @@ finishers:
   -
     options:
       subject: 'Hinweisggeber: Neue Nachricht'
-      senderAddress: 'info@rkw-thueringen.de'
+      senderAddress: info@rkw-thueringen.de
       senderName: 'RKW Hinweisgeber'
-      recipientAddress: 'schieke@rkw-thueringen.de'
-      recipientName: 'Heike Schieke'
       attachUploads: true
       translation:
         language: default
-      useFluidEmail: true
       title: Hinweisgeber
       addHtmlPart: true
-      replyToRecipients:
-        '{email}': ''
-      mailText: "Hallo,\n\nein neuer Hinweis über das Hinweisgeber-Formular ist eingegangen."
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
+      partialRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailText: "\nein neuer Hinweis über das Hinweisgeber-Formular ist eingegangen."
+      recipients:
+        schieke@rkw-thueringen.de: 'Heike Schieke'
     identifier: EmailToReceiver
   -
     options:
       subject: 'Ihr Hinweis an das RKW'
       recipients:
         '{email}': ''
-      senderAddress: 'info@rkw-thueringen.de'
+      senderAddress: info@rkw-thueringen.de
       senderName: 'RKW Hinweisgeber'
-      replyToAddress: 'schieke@rkw-thueringen.de'
       addHtmlPart: true
       attachUploads: true
-      useFluidEmail: true
       title: Hinweisgeber
       renderingOptions:
         enabled: '{email}'
-      mailText: "Hallo,\n\vielen Dank für Ihren Hinweis. Wir gehen der Sache nach und melden uns wieder bei Ihnen."
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
+      partialRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailText: "\nvielen Dank für Ihren Hinweis. Wir gehen der Sache nach und melden uns wieder bei Ihnen."
+      replyToRecipients:
+        schieke@rkw-thueringen.de: ''
     identifier: EmailToSender
   -
     identifier: DeleteUploads
@@ -126,6 +137,19 @@ renderables:
         identifier: message
         label: 'Beschreibung des Vorfalls'
         type: Textarea
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        type: Checkbox
+        identifier: checkbox-1
+        label: Datenschutzerklärung
+        properties:
+          type: terms
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+          value: Akzeptiert
         validators:
           -
             identifier: NotEmpty
