@@ -1,0 +1,180 @@
+
+renderingOptions:
+  submitButtonLabel: Absenden
+identifier: hinweisgeber
+label: Hinweisgeber
+type: Form
+prototypeName: standard
+finishers:
+  -
+    identifier: AddCaseNumberFinisher
+    options:
+      caseNumber: '{caseNumberValue}'
+  -
+    options:
+      subject: 'Hinweisggeber: Neue Nachricht'
+      senderAddress: 'info@rkw-thueringen.de'
+      senderName: 'RKW Hinweisgeber'
+      recipientAddress: 'schieke@rkw-thueringen.de'
+      recipientName: 'Heike Schieke'
+      attachUploads: true
+      translation:
+        language: default
+      useFluidEmail: true
+      title: Hinweisgeber
+      addHtmlPart: true
+      replyToRecipients:
+        '{email}': ''
+      mailText: "Hallo,\n\nein neuer Hinweis über das Hinweisgeber-Formular ist eingegangen."
+    identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Ihr Hinweis an das RKW'
+      recipients:
+        '{email}': ''
+      senderAddress: 'info@rkw-thueringen.de'
+      senderName: 'RKW Hinweisgeber'
+      replyToAddress: 'schieke@rkw-thueringen.de'
+      addHtmlPart: true
+      attachUploads: true
+      useFluidEmail: true
+      title: Hinweisgeber
+      renderingOptions:
+        enabled: '{email}'
+      mailText: "Hallo,\n\vielen Dank für Ihren Hinweis. Wir gehen der Sache nach und melden uns wieder bei Ihnen."
+    identifier: EmailToSender
+  -
+    identifier: DeleteUploads
+  -
+    options:
+      message: 'Vielen Dank für Ihre Nachricht.'
+      contentElementUid: ''
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Vorherige Seite'
+      nextButtonLabel: 'Nächster Schritt'
+    identifier: page-1
+    label: Hinweisgebersystem
+    type: Page
+    renderables:
+      -
+        identifier: caseNumber
+        label: Fallnummer
+        type: hidden
+        variants:
+          -
+            identifier: caseNumber-1
+            renderingOptions:
+              enabled: false
+            condition: 'stepType == "SummaryPage" || finisherIdentifier in ["EmailToSender"]'
+      -
+        properties:
+          fieldClass: width50
+          options:
+            Korruption: Korruption
+            Betrug: Betrug
+            Diskriminierung: Diskriminierung
+            Datenschutzverstoß: Datenschutzverstoß
+            Sonstiges: Sonstiges
+          fluidAdditionalAttributes:
+            required: required
+        identifier: singleselect-1
+        type: SingleSelect
+        label: 'Kategorie des Hinweises'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          saveToFileMount: '2:/user_upload/tx_rkwform/'
+          allowedMimeTypes:
+            - image/jpeg
+            - image/png
+          fieldClass: width100
+        identifier: imageupload-1
+        type: ImageUpload
+        label: 'Bild hochladen (JPG; PNG)'
+      -
+        properties:
+          saveToFileMount: '2:/user_upload/tx_rkwform/'
+          allowedMimeTypes:
+            - application/pdf
+          fieldClass: width100
+        identifier: fileupload-1
+        type: FileUpload
+        label: 'Datei hochladen (PDF)'
+      -
+        properties:
+          options:
+            Ja: Ja
+            Nein: Nein
+        type: SingleSelect
+        identifier: select-anonym
+        label: 'Möchten Sie anonym bleiben?'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: ''
+            required: required
+          fieldClass: width100
+        identifier: message
+        label: 'Beschreibung des Vorfalls'
+        type: Textarea
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Nächster Schritt'
+    variants:
+      -
+        identifier: variant-email
+        condition: 'traverse(formValues, "select-anonym") == "Ja"'
+        renderingOptions:
+          enabled: false
+    type: Page
+    identifier: page-2
+    label: Kontakt
+    renderables:
+      -
+        properties:
+          text: 'Teilen Sie uns hier bitte Ihre E-Mail Adresse mit, damit wir sie in Bezug auf Ihre Meldung kontaktieren können.'
+          headerTag: h3
+        type: StaticText
+        identifier: statictext-1
+        label: ''
+      -
+        properties:
+          text: 'Sollten Sie es sich anders überlegt haben und Ihre E-Mail Adresse nicht mit uns teilen wollen, gehen Sie bitte im Formular einen Schritt zurück und wählen Sie bei der Frage "Wollen Sie anonym bleiben?" die Antwortoption "Ja" aus.'
+          headerTag: h3
+        type: StaticText
+        identifier: statictext-2
+        label: ''
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'Email address'
+            required: required
+        identifier: email
+        label: Email
+        type: Text
+        validators:
+          -
+            identifier: EmailAddress
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: 'Vorherige Seite'
+      nextButtonLabel: 'Nächster Schritt'
+    identifier: summarypage
+    label: Zusammenfassung
+    type: SummaryPage
