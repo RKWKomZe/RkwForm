@@ -8,9 +8,9 @@ prototypeName: standard
 finishers:
   -
     options:
-      subject: 'Hinweisggeber: Neue Nachricht'
+      subject: 'Hinweisgeberformular: Neuer Hinweis'
       senderAddress: service@mein.rkw.de
-      senderName: 'RKW Hinweisgeber'
+      senderName: 'RKW Hinweisgeberformular'
       attachUploads: true
       translation:
         language: default
@@ -23,21 +23,21 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: "\n es wurde ein neuer Hinweis Über das Hinweisgeber-Formular Übermittelt."
-      mailText2: "\n\n Bitte prüfen und weitere Schritte einleiten."
+      mailText: "\n es wurde ein neuer Hinweis über das Hinweisgeber-Formular übermittelt."
+      mailText2: "\n\n Bitte prüfen Sie die Angaben und leiten Sie entsprechend weitere Schritte ein."
       mailTextAfterTable1: "\n\n Viele Grüße"
-      mailTextAfterTable2: "\n Hinweisgebersystem RKW Thüringen"
+      mailTextAfterTable2: "\n RKW Thüringen - Hinweisgebersystem"
       recipients:
         schieke@rkw-thueringen.de: 'Heike Schieke'
       useFluidEmail: false
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Ihr Hinweis an das RKW'
+      subject: 'Ihr Hinweis an das RKW Thüringen'
       recipients:
         '{email}': ''
       senderAddress: service@mein.rkw.de
-      senderName: 'RKW Hinweisgeber'
+      senderName: 'RKW Thüringen - Hinweisgebersystem'
       addHtmlPart: true
       attachUploads: false
       title: Hinweisgeber
@@ -53,11 +53,11 @@ finishers:
       mailText: "\nvielen Dank für Ihren Hinweis. Wir bestätigen hiermit den Eingang Ihrer Meldung im Hinweisgebersystem des RKW Thüringen."
       mailText2: "\n\nWir nehmen die von Ihnen geschilderten Informationen sehr ernst und werden den Sachverhalt nun sorgfältig prüfen. Falls Rückfragen entstehen oder weitere Informationen erforderlich sind, kommen wir auf Sie zu."
       mailText3: "\n\nBitte haben Sie Verständnis dafür, dass die Bearbeitung und Aufklärung je nach Komplexität des Falls einige Zeit in Anspruch nehmen kann. Über den Fortgang informieren wir Sie zu gegebener Zeit."
-      mailText4: "\n\nBei Fragen können Sie sich jederzeit per E-Mail an uns wenden:\n schieke@rkw-thueringen.de"
+      mailText4: "\n\nBei Fragen können Sie sich jederzeit per E-Mail an uns wenden:\n <a href=\"mailto:schieke@rkw-thueringen.de\">schieke@rkw-thueringen.de</a>."
       mailText5: "\n\nMit freundlichen Grüßen"
       mailText6: "\nIhr Team vom RKW Thüringen"
       replyToRecipients:
-        schieke@rkw-thueringen.de: 'Heike Schiecke'
+        schieke@rkw-thueringen.de: 'Heike Schieke'
       useFluidEmail: false
     identifier: EmailToSender
   -
@@ -74,8 +74,8 @@ finishers:
 renderables:
   -
     renderingOptions:
-      previousButtonLabel: 'Vorherige Seite'
-      nextButtonLabel: 'Nächster Schritt'
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
     identifier: page-1
     label: Hinweisgebersystem
     type: Page
@@ -99,6 +99,7 @@ renderables:
             Diskriminierung: Diskriminierung
             Datenschutzverstoß: Datenschutzverstoß
             Sonstiges: Sonstiges
+          elementClassAttribute: 'select-field'
           fluidAdditionalAttributes:
             required: required
         identifier: singleselect-1
@@ -116,7 +117,7 @@ renderables:
           fieldClass: width100
         identifier: imageupload-1
         type: ImageUpload
-        label: 'Bild hochladen (JPG; PNG)'
+        label: 'Bild hochladen (jpg, png)'
       -
         properties:
           saveToFileMount: '2:/user_upload/tx_rkwform/'
@@ -125,18 +126,13 @@ renderables:
           fieldClass: width100
         identifier: fileupload-1
         type: FileUpload
-        label: 'Datei hochladen (PDF)'
+        label: 'Datei hochladen (pdf)'
       -
         properties:
-          options:
-            Ja: Ja
-            Nein: Nein
-        type: SingleSelect
+          value: Ja
+        type: Checkbox
         identifier: select-anonym
         label: 'Möchten Sie anonym bleiben?'
-        validators:
-          -
-            identifier: NotEmpty
       -
         defaultValue: ''
         properties:
@@ -166,7 +162,7 @@ renderables:
   -
     renderingOptions:
       previousButtonLabel: Zurück
-      nextButtonLabel: 'Nächster Schritt'
+      nextButtonLabel: Weiter
     variants:
       -
         identifier: variant-email
@@ -195,10 +191,10 @@ renderables:
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'Email address'
+            placeholder: 'E-Mail-Adresse'
             required: required
         identifier: email
-        label: Email
+        label: 'E-Mail-Adresse'
         type: Text
         validators:
           -
@@ -207,8 +203,8 @@ renderables:
             identifier: NotEmpty
   -
     renderingOptions:
-      previousButtonLabel: 'Vorherige Seite'
-      nextButtonLabel: 'Nächster Schritt'
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
     identifier: summarypage
     label: Zusammenfassung
     type: SummaryPage
