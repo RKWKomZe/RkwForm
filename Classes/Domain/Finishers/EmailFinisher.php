@@ -14,10 +14,14 @@ namespace RKW\RkwForm\Domain\Finishers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Symfony\Component\Mime\Address;
 use TYPO3\CMS\Core\Configuration\Loader\YamlFileLoader;
 use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Mail\FluidEmail;
+use TYPO3\CMS\Core\Mail\Mailer;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Form\Domain\Model\FormElements\Page;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use TYPO3\CMS\Form\Domain\Model\FormElements\FileUpload;
@@ -74,99 +78,137 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
      */
     protected function executeInternal(): void
     {
-        $formRuntime = $this->finisherContext->getFormRuntime();
-        $standaloneView = $this->initializeStandaloneView($formRuntime);
 
-        $translationService = TranslationService::getInstance();
-        if (isset($this->options['translation']['language']) && !empty($this->options['translation']['language'])) {
-            $languageBackup = $translationService->getLanguage();
-            $translationService->setLanguage($this->options['translation']['language']);
-        }
-
-        // this line is replaced through following lines
-        //$message = $standaloneView->render();
-
-
-        // ######### new RKW content START #########
-        $settingsPostmaster = $this->getSettings('Postmaster');
-
-        // replace baseURLs in final email  - replacement with assign only works in template-files, not on layout-files
-        $message = preg_replace('/###baseUrl###/', rtrim($settingsPostmaster['baseUrl'], '/'), $standaloneView->render());
-        $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathImages'], '/')), $message);
-        $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathLogo'], '/')), $message);
-
-        /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
-        $replacePaths = [
-            GeneralUtility::getIndpEnv('TYPO3_SITE_PATH'),
-            $_SERVER['TYPO3_PATH_ROOT'] .'/'
-        ];
-
-        foreach ($replacePaths as $replacePath) {
-            $message = preg_replace(
-                '/(src|href)="' . str_replace('/', '\/', $replacePath) . '([^"]+)"/',
-                '$1="' . '/$2"',
-                $message
-            );
-        }
-
-        $message = preg_replace('/(src|href)="\/([^"]+)"/',
-            '$1="' . rtrim($settingsPostmaster['baseUrl'], '/') . '/$2"',
-            $message
-        );
-
-        // ######### new RKW content END #########
-
-        if (!empty($languageBackup)) {
-            $translationService->setLanguage($languageBackup);
+        $languageBackup = null;
+        // Flexform overrides write strings instead of integers so
+        // we need to cast the string '0' to false.
+        if (
+            isset($this->options['addHtmlPart'])
+            && $this->options['addHtmlPart'] === '0'
+        ) {
+            $this->options['addHtmlPart'] = false;
         }
 
         $subject = $this->parseOption('subject');
-        $recipientAddress = $this->parseOption('recipientAddress');
-        $recipientName = $this->parseOption('recipientName');
+        $recipients = $this->getRecipients('recipients', 'recipientAddress', 'recipientName');
         $senderAddress = $this->parseOption('senderAddress');
+        $senderAddress = is_string($senderAddress) ? $senderAddress : '';
         $senderName = $this->parseOption('senderName');
-        $replyToAddress = $this->parseOption('replyToAddress');
-        $carbonCopyAddress = $this->parseOption('carbonCopyAddress');
-        $blindCarbonCopyAddress = $this->parseOption('blindCarbonCopyAddress');
-        $format = $this->parseOption('format');
+        $senderName = is_string($senderName) ? $senderName : '';
+        $replyToRecipients = $this->getRecipients('replyToRecipients', 'replyToAddress');
+        $carbonCopyRecipients = $this->getRecipients('carbonCopyRecipients', 'carbonCopyAddress');
+        $blindCarbonCopyRecipients = $this->getRecipients('blindCarbonCopyRecipients', 'blindCarbonCopyAddress');
+        $addHtmlPart = $this->isHtmlPartAdded();
         $attachUploads = $this->parseOption('attachUploads');
+        $useFluidEmail = $this->parseOption('useFluidEmail');
+        $title = $this->parseOption('title');
+        $title = is_string($title) && $title !== '' ? $title : $subject;
 
         if (empty($subject)) {
             throw new FinisherException('The option "subject" must be set for the EmailFinisher.', 1327060320);
         }
-        if (empty($recipientAddress)) {
-            throw new FinisherException('The option "recipientAddress" must be set for the EmailFinisher.', 1327060200);
+        if (empty($recipients)) {
+            throw new FinisherException('The option "recipients" must be set for the EmailFinisher.', 1327060200);
         }
         if (empty($senderAddress)) {
             throw new FinisherException('The option "senderAddress" must be set for the EmailFinisher.', 1327060210);
         }
 
-        /** @var \TYPO3\CMS\Core\Mail\MailMessage $mail */
-        $mail = $this->objectManager->get(MailMessage::class);
+        $formRuntime = $this->finisherContext->getFormRuntime();
 
-        $mail->setFrom([$senderAddress => $senderName])
-            ->setTo([$recipientAddress => $recipientName])
-            ->setSubject($subject);
-
-        if (!empty($replyToAddress)) {
-            $mail->setReplyTo($replyToAddress);
+        $translationService = TranslationService::getInstance();
+        if (is_string($this->options['translation']['language'] ?? null) && $this->options['translation']['language'] !== '') {
+            $languageBackup = $translationService->getLanguage();
+            $translationService->setLanguage($this->options['translation']['language']);
         }
 
-        if (!empty($carbonCopyAddress)) {
-            $mail->setCc($carbonCopyAddress);
+        $mail = $useFluidEmail
+            ? $this
+                ->initializeFluidEmail($formRuntime)
+                ->format($addHtmlPart ? FluidEmail::FORMAT_BOTH : FluidEmail::FORMAT_PLAIN)
+                ->assign('title', $title)
+            : \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(MailMessage::class);
+
+        $mail
+            ->from(new Address($senderAddress, $senderName))
+            ->to(...$recipients)
+            ->subject($subject);
+
+        if (!empty($replyToRecipients)) {
+            $mail->replyTo(...$replyToRecipients);
         }
 
-        if (!empty($blindCarbonCopyAddress)) {
-            $mail->setBcc($blindCarbonCopyAddress);
+        if (!empty($carbonCopyRecipients)) {
+            $mail->cc(...$carbonCopyRecipients);
         }
 
-        if ($format === self::FORMAT_PLAINTEXT) {
-            $mail->setBody($message, 'text/plain');
-        } else {
-            $mail->setBody($message, 'text/html');
+        if (!empty($blindCarbonCopyRecipients)) {
+            $mail->bcc(...$blindCarbonCopyRecipients);
+        }
+
+        if (!$useFluidEmail) {
+            $parts = [
+                [
+                    'format' => 'Plaintext',
+                    'contentType' => 'text/plain',
+                ],
+            ];
+
+            if ($addHtmlPart) {
+                $parts[] = [
+                    'format' => 'Html',
+                    'contentType' => 'text/html',
+                ];
+            }
+
+            foreach ($parts as $i => $part) {
+                $standaloneView = $this->initializeStandaloneView($formRuntime, $part['format']);
+
+                //$message = $standaloneView->render();
+
+                // ######### new RKW content START #########
+                $settingsPostmaster = $this->getSettings('Postmaster');
+
+                // replace baseURLs in final email  - replacement with assign only works in template-files, not on layout-files
+                $message = preg_replace('/###baseUrl###/', rtrim($settingsPostmaster['baseUrl'], '/'), $standaloneView->render());
+                $message = preg_replace('/###baseUrlImages###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathImages'], '/')), $message);
+                $message = preg_replace('/###baseUrlLogo###/', $this->getRelativePath(rtrim($settingsPostmaster['basePathLogo'], '/')), $message);
+
+                /* @todo Check if Environment-variables are still valid in TYPO3 8.7 and upwards! */
+                $replacePaths = [
+                    GeneralUtility::getIndpEnv('TYPO3_SITE_PATH'),
+                    $_SERVER['TYPO3_PATH_ROOT'] .'/'
+                ];
+
+                foreach ($replacePaths as $replacePath) {
+                    $message = preg_replace(
+                        '/(src|href)="' . str_replace('/', '\/', $replacePath) . '([^"]+)"/',
+                        '$1="' . '/$2"',
+                        $message
+                    );
+                }
+
+                $message = preg_replace('/(src|href)="\/([^"]+)"/',
+                    '$1="' . rtrim($settingsPostmaster['baseUrl'], '/') . '/$2"',
+                    $message
+                );
+
+                // ######### new RKW content END #########
+
+                if ($part['contentType'] === 'text/plain') {
+                    $mail->text($message);
+                } else {
+                    $mail->html($message);
+                }
+            }
+        }
+
+        if (!empty($languageBackup)) {
+            $translationService->setLanguage($languageBackup);
         }
 
         $elements = $formRuntime->getFormDefinition()->getRenderablesRecursively();
+
         if ($attachUploads) {
             foreach ($elements as $element) {
                 if (!$element instanceof FileUpload) {
@@ -178,12 +220,12 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
                         $file = $file->getOriginalResource();
                     }
 
-                    $mail->attach(\Swift_Attachment::newInstance($file->getContents(), $file->getName(), $file->getMimeType()));
+                    $mail->attach($file->getContents(), $file->getName(), $file->getMimeType());
                 }
             }
         }
 
-        $mail->send();
+        $useFluidEmail ? GeneralUtility::makeInstance(Mailer::class)->send($mail) : $mail->send();
     }
 
 
