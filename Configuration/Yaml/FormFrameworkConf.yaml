@@ -454,3 +454,6 @@ TYPO3:
                 templateName: 'Confirmation'
                 templateRootPaths:
                   10: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Confirmation/'
+
+            AddCaseNumberFinisher:
+              implementationClassName: 'RKW\RkwForm\Domain\Finishers\AddCaseNumberFinisher'

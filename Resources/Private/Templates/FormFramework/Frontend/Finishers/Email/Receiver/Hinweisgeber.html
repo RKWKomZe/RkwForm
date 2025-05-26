@@ -1,0 +1,92 @@
+{namespace formvh=TYPO3\CMS\Form\ViewHelpers}
+{namespace rkwForm=RKW\RkwForm\ViewHelpers}
+
+<f:layout name="Email/Html" />
+
+<f:section name="Html">
+
+    <p><f:translate key="tx_rkwform_formframework_form_finisher_email.salutation" extensionName="RkwForm" /> <rkwForm:getValueFromArray array='{form.formState.formValues}' value="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='recipientName' />" />,</p>
+    <p>
+        <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />">
+            <f:then>
+                <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText' />
+            </f:then>
+            <f:else>
+                <f:translate key="tx_rkwform_formframework_form_finisher_email_sender.new" extensionName="RkwForm" />
+            </f:else>
+        </f:if>
+    </p>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText2' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText2' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText3' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailText3' />
+        </p>
+    </f:if>
+
+    <table>
+        <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue">
+            <tr>
+                <f:if condition="{formValue.isSection}">
+                    <f:then>
+                        <td colspan="2"><b>{formvh:translateElementProperty(element: formValue.element, property: 'label')}</b></td>
+                    </f:then>
+                    <f:else>
+                        <td valign="top" align="left">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</td>
+                        <td valign="top" align="left">
+                            <f:if condition="{formValue.value}">
+                                <f:then>
+                                    <f:if condition="{formValue.isMultiValue}">
+                                        <f:then>
+                                            <table cellspacing="0" border="0">
+                                                <f:for each="{formValue.processedValue}" as="value">
+                                                    <tr>
+                                                        <td>{value}</td>
+                                                    </tr>
+                                                </f:for>
+                                            </table>
+                                        </f:then>
+                                        <f:else>
+                                            <table cellspacing="0" border="0">
+                                                <tr>
+                                                    <td><f:format.nl2br>{formValue.processedValue}</f:format.nl2br></td>
+                                                </tr>
+                                            </table>
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
+                                <f:else>
+                                    -
+                                </f:else>
+                            </f:if>
+                        </td>
+                    </f:else>
+                </f:if>
+            </tr>
+        </formvh:renderAllFormValues>
+    </table>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable1' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable1' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable2' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable2' />
+        </p>
+    </f:if>
+
+    <f:if condition="<rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable3' />">
+        <p>
+            <rkwForm:getFinisherOption formIdentifier='{form.formDefinition.identifier}' finisherIdentifier='EmailToReceiver' getOption='mailTextAfterTable3' />
+        </p>
+    </f:if>
+
+</f:section>

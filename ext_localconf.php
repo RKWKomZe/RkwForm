@@ -114,6 +114,12 @@ call_user_func(
         // ATTENTION: deactivated due to faulty mapping in TYPO3 9.5
         // Add XClasses for extending existing classes
         //=================================================================
+
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][TYPO3\CMS\Form\Domain\Finishers\EmailFinisher::class] = [
+            'className' => RKW\RkwForm\Domain\Finishers\EmailFinisher::class
+        ];
+
+
 //        // for TYPO3 12+
 //        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\Madj2k\FeRegister\Domain\Model\FrontendUser::class] = [
 //            'className' => \RKW\RkwForm\Domain\Model\FrontendUser::class
