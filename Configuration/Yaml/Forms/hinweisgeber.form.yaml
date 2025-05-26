@@ -6,6 +6,9 @@ label: Hinweisgeber
 type: Form
 prototypeName: standard
 finishers:
+  - identifier: AddCaseNumberFinisher
+    options:
+      caseNumber: '{caseNumberValue}'
   -
     options:
       subject: 'Hinweisgeberformular: Neuer Hinweis'
@@ -67,10 +70,6 @@ finishers:
       message: 'Vielen Dank für Ihren Hinweis. Wir nehmen die von Ihnen geschilderten Informationen sehr ernst und werden den Sachverhalt nun sorgfältig prüfen.'
       contentElementUid: ''
     identifier: Confirmation
-  -
-    identifier: AddCaseNumberFinisher
-    options:
-      caseNumber: '{caseNumberValue}'
 renderables:
   -
     renderingOptions:
