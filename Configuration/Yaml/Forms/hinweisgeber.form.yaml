@@ -56,7 +56,7 @@ finishers:
       mailText: "\nvielen Dank für Ihren Hinweis. Wir bestätigen hiermit den Eingang Ihrer Meldung im Hinweisgebersystem des RKW Thüringen."
       mailText2: "\n\nWir nehmen die von Ihnen geschilderten Informationen sehr ernst und werden den Sachverhalt nun sorgfältig prüfen. Falls Rückfragen entstehen oder weitere Informationen erforderlich sind, kommen wir auf Sie zu."
       mailText3: "\n\nBitte haben Sie Verständnis dafür, dass die Bearbeitung und Aufklärung je nach Komplexität des Falls einige Zeit in Anspruch nehmen kann. Über den Fortgang informieren wir Sie zu gegebener Zeit."
-      mailText4: "\n\nBei Fragen können Sie sich jederzeit per E-Mail an uns wenden:\n <a href=\"mailto:schieke@rkw-thueringen.de\">schieke@rkw-thueringen.de</a>."
+      mailText4: "\n\nBei Fragen können Sie sich jederzeit per E-Mail an uns wenden:\n schieke@rkw-thueringen.de"
       mailText5: "\n\nMit freundlichen Grüßen"
       mailText6: "\nIhr Team vom RKW Thüringen"
       replyToRecipients:
