@@ -129,10 +129,15 @@ renderables:
         label: 'Datei hochladen (pdf)'
       -
         properties:
-          value: Ja
-        type: Checkbox
+          options:
+            Ja: Ja
+            Nein: Nein
+          elementClassAttribute: 'select-field'
+        type: SingleSelect
         identifier: select-anonym
         label: 'Möchten Sie anonym bleiben?'
+        validators:
+          - identifier: NotEmpty
       -
         defaultValue: ''
         properties:
