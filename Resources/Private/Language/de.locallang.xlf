@@ -227,6 +227,10 @@
                 <source>Something's missing. Please fill in the field "%s".</source>
                 <target>Da fehlt noch was. Bitte füllen Sie das Feld "%s" aus.</target>
             </trans-unit>
+			<trans-unit id="form.error.invalidEmail">
+				<source>"%s" is not a valid e-mail address.</source>
+				<target>"%s" ist keine gültige E-Mail-Adresse.</target>
+			</trans-unit>
 
 
             <trans-unit id="form.error.newFormRequest.salutation">

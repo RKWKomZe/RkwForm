@@ -33,11 +33,11 @@ class GemCommunityFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
     /**
      * validation
      *
-     * @var \TYPO3\CMS\Extbase\DomainObject\AbstractEntity $standardForm
+     * @param  \RKW\RkwForm\Domain\Model\GemCommunityForm $gemCommunityForm
      * @return boolean
      * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
      */
-    public function isValid($standardForm): bool
+    public function isValid($gemCommunityForm): bool
     {
         // initialize typoscript settings
         $settings = $this->getSettings();
@@ -47,24 +47,41 @@ class GemCommunityFormValidator extends \TYPO3\CMS\Extbase\Validation\Validator\
 
         $isValid = true;
 
-        // 1. Check mandatory fields main person
+        // 1. Check on valid email
+        if (method_exists($gemCommunityForm, 'getEmail')) {
+            $value = trim($gemCommunityForm->getEmail());
+            if ($value && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                $this->result->forProperty('email')->addError(
+                    new \TYPO3\CMS\Extbase\Error\Error(
+                        \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate(
+                            'form.error.invalidEmail',
+                            'rkw_form',
+                            [$value]
+                        ), 1566822699
+                    )
+                );
+                $isValid = false;
+            }
+        }
+
+        // 2. Check mandatory fields
         if ($mandatoryFieldsStandard) {
 
             foreach ($mandatoryFieldsStandard as $field) {
 
                 $getter = 'get' . ucfirst($field);
 
-                if (method_exists($standardForm, $getter)) {
+                if (method_exists($gemCommunityForm, $getter)) {
 
                     if (
                         (
                             ($field == 'salutation')
-                            && (trim($standardForm->$getter()) == 99)
+                            && (trim($gemCommunityForm->$getter()) == 99)
                         )
                         ||
                         (
                             ($field != 'salutation')
-                            && (!trim($standardForm->$getter()))
+                            && (!trim($gemCommunityForm->$getter()))
                         )
                     ) {
 

@@ -186,6 +186,9 @@
             <trans-unit id="form.error.notFilled">
                 <source>Something's missing. Please fill in the field "%s".</source>
             </trans-unit>
+			<trans-unit id="form.error.invalidEmail">
+				<source>"%s" is not a valid e-mail address.</source>
+			</trans-unit>
 
 
             <trans-unit id="form.error.newFormRequest.salutation">
