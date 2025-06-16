@@ -156,6 +156,10 @@ renderables:
         label: Datenschutzerklärung
         properties:
           type: terms
+          additionalAttributes:
+            linkPageUid: 3774
+            companyName: 'RKW Thüringen GmbH'
+            companyEmail: 'info@rkw-thueringen.de'
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
