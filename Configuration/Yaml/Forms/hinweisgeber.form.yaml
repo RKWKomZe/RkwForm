@@ -109,7 +109,7 @@ renderables:
             identifier: NotEmpty
       -
         properties:
-          saveToFileMount: '2:/user_upload/tx_rkwform/'
+          saveToFileMount: '1:/user_upload/tx_rkwform/'
           allowedMimeTypes:
             - image/jpeg
             - image/png
@@ -119,7 +119,7 @@ renderables:
         label: 'Bild hochladen (jpg, png)'
       -
         properties:
-          saveToFileMount: '2:/user_upload/tx_rkwform/'
+          saveToFileMount: '1:/user_upload/tx_rkwform/'
           allowedMimeTypes:
             - application/pdf
           fieldClass: width100
