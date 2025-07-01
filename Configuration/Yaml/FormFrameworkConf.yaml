@@ -251,6 +251,9 @@ TYPO3:
                         label: formEditor.elements.Checkbox.editor.type.terms.label
                     predefinedDefaults:
                       defaultValue: 'default'
+            SingleSelect:
+              properties:
+                elementErrorClassAttribute: 'f3-form-error'
             DatePicker:
               properties:
                 dateFormat: d.m.Y
