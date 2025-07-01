@@ -6,7 +6,8 @@ label: Hinweisgeber
 type: Form
 prototypeName: standard
 finishers:
-  - identifier: AddCaseNumberFinisher
+  -
+    identifier: AddCaseNumberFinisher
     options:
       caseNumber: '{caseNumberValue}'
   -
@@ -98,9 +99,10 @@ renderables:
             Diskriminierung: Diskriminierung
             Datenschutzverstoß: Datenschutzverstoß
             Sonstiges: Sonstiges
-          elementClassAttribute: 'select-field'
+          elementClassAttribute: select-field
           fluidAdditionalAttributes:
             required: required
+          prependOptionLabel: 'Bitte wählen'
         identifier: singleselect-1
         type: SingleSelect
         label: 'Kategorie des Hinweises'
@@ -131,12 +133,16 @@ renderables:
           options:
             Ja: Ja
             Nein: Nein
-          elementClassAttribute: 'select-field'
+          elementClassAttribute: select-field
+          fluidAdditionalAttributes:
+            required: required
+          prependOptionLabel: 'Bitte wählen'
         type: SingleSelect
         identifier: select-anonym
         label: 'Möchten Sie anonym bleiben?'
         validators:
-          - identifier: NotEmpty
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
         properties:
@@ -159,7 +165,7 @@ renderables:
           additionalAttributes:
             linkPageUid: 3774
             companyName: 'RKW Thüringen GmbH'
-            companyEmail: 'info@rkw-thueringen.de'
+            companyEmail: info@rkw-thueringen.de
           fluidAdditionalAttributes:
             required: required
           fieldClass: width100
@@ -199,10 +205,10 @@ renderables:
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
-            placeholder: 'E-Mail-Adresse'
+            placeholder: E-Mail-Adresse
             required: required
         identifier: email
-        label: 'E-Mail-Adresse'
+        label: E-Mail-Adresse
         type: Text
         validators:
           -
