@@ -460,3 +460,6 @@ TYPO3:
 
             AddCaseNumberFinisher:
               implementationClassName: 'RKW\RkwForm\Domain\Finishers\AddCaseNumberFinisher'
+
+            DynamicEmailFinisher:
+              implementationClassName: 'RKW\RkwForm\Domain\Finishers\DynamicEmailFinisher'
