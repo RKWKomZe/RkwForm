@@ -461,5 +461,8 @@ TYPO3:
             AddCaseNumberFinisher:
               implementationClassName: 'RKW\RkwForm\Domain\Finishers\AddCaseNumberFinisher'
 
+            AddRegistrationDateFinisher:
+              implementationClassName: 'RKW\RkwForm\Domain\Finishers\AddRegistrationDateFinisher'
+
             DynamicEmailFinisher:
               implementationClassName: 'RKW\RkwForm\Domain\Finishers\DynamicEmailFinisher'

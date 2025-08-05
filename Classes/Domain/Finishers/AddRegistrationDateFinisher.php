@@ -17,13 +17,13 @@ namespace RKW\RkwForm\Domain\Finishers;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
- * Class AddCaseNumberFinisher
+ * Class AddRegistrationDateFinisher
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @package RKW_RkwForm
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class AddCaseNumberFinisher extends AbstractFinisher
+class AddRegistrationDateFinisher extends AbstractFinisher
 {
 
     /**
@@ -33,7 +33,7 @@ class AddCaseNumberFinisher extends AbstractFinisher
     protected function executeInternal(): string
     {
 
-        $this->finisherContext->getFormRuntime()->offsetSet('caseNumber', '#' . strtoupper(uniqid()));
+        $this->finisherContext->getFormRuntime()->offsetSet('registrationDate', date('d.m.Y'));
 
         return '';
     }

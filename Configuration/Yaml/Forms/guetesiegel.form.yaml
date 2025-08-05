@@ -7,10 +7,14 @@ type: Form
 prototypeName: standard
 finishers:
   -
+    identifier: AddRegistrationDateFinisher
+    options:
+      registrationDate: '{registrationDateValue}'
+  -
     identifier: DynamicEmailFinisher
   -
     options:
-      subject: 'Neue Anfrage: Gütesiegel'
+      subject: 'Neue Anfrage: RKW-Gütesiegel Arbeitsgeberattraktivität'
       senderAddress: service@mein.rkw.de
       senderName: 'RKW Service'
       attachUploads: true
@@ -20,10 +24,11 @@ finishers:
       templateRootPaths:
         20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
       partialRootPaths:
-        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
+        20: 'EXT:rkw_template/Themes/_Websites/RkwBundesverein/Resources/Private/Extensions/Postmaster/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: "\n nachfolgend finden Sie die Informationen zur Gütesiegel-Anmeldung."
+      mailTextSalutation: 'Liebe RKW-Kollegin, lieber RKW-Kollege und Ansprechperson für das RKW-Gütesiegel,'
+      mailText: 'ein Unternehmen hat sich über die Website online zum RKW-Gütesiegel Arbeitgeberattraktivität angemeldet. Nachfolgend finden Sie zusammengefasst alle eingetragenen Informationen zur Anmeldung. Bitte setzen Sie sich zeitnah mit der genannten Ansprechperson in Verbindung.'
       recipients:
         '{dynamicEmailAddress}': '{dynamicEmailName}'
       useFluidEmail: false
@@ -31,7 +36,7 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Ihre Anfrage: Gütesiegel'
+      subject: 'Ihre Anmeldung: RKW-Gütesiegel Arbeitsgeberattraktivität'
       recipients:
         '{email}': ''
       senderAddress: service@mein.rkw.de
@@ -41,16 +46,23 @@ finishers:
         language: default
       templateName: '{@format}.html'
       templateRootPaths:
-        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
       partialRootPaths:
-        20: 'EXT:rkw_template/Themes/Kompetenzzentrum2020/Resources/Private/Extensions/Postmaster/Partials/'
+        20: 'EXT:rkw_template/Themes/_Websites/RkwBundesverein/Resources/Private/Extensions/Postmaster/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailTextSalutation: 'Sehr geehrte Interessentin, sehr geehrter Interessent am RKW-Gütesiegel Arbeitgeberattraktivität,'
+      mailText: 'vielen Dank für Ihre Anmeldung zum RKW-Gütesiegel Arbeitgeberattraktivität. Nachfolgend finden Sie die Zusammenfassung Ihrer Einträge. Eine Ansprechperson in der für Sie zuständigen RKW-Landesorganisation wird sich zeitnah mit Ihnen in Verbindung setzen und das weitere Vorgehen besprechen.'
       replyToRecipients:
         service@mein.rkw.de: 'RKW Service'
       useFluidEmail: false
       addHtmlPart: true
     identifier: EmailToSender
+  -
+    options:
+      message: "Vielen Dank für Ihr Interesse am RKW-Gütesiegel Arbeitgeberattraktivität.\nWir prüfen Ihre Anmeldung, und eine Ansprechperson in der für Sie zuständigen RKW-Landesorganisation wird sich zeitnah mit Ihnen in Verbindung setzen.\n\nMit freundlichen Grüßen\n\nIhr bundesweites RKW-Netzwerk\n"
+      contentElementUid: ''
+    identifier: Confirmation
 renderables:
   -
     renderingOptions:
@@ -61,11 +73,21 @@ renderables:
     type: Page
     renderables:
       -
+        identifier: registrationDate
+        label: Anmeldedatum
+        type: hidden
+        variants:
+          -
+            identifier: registrationDate-1
+            renderingOptions:
+              enabled: false
+            condition: 'stepType == "SummaryPage"'
+      -
         defaultValue: ''
         properties:
           fluidAdditionalAttributes:
             required: required
-            placeholder: 'Name des Unternehmens'
+            placeholder: 'Name des Unternehmens inkl. Rechtsform'
           fieldClass: width100
         identifier: name
         label: 'Name des Unternehmens'
@@ -92,6 +114,7 @@ renderables:
             bw: Baden-Württemberg
             by: Bayern
             be: Berlin
+            bb: Brandenburg
             hb: Bremen
             hh: Hamburg
             he: Hessen
@@ -101,7 +124,6 @@ renderables:
             rp: Rheinland-Pfalz
             sl: Saarland
             sn: Sachsen
-            st: Sachsen-Anhalt
             sh: Schleswig-Holstein
             th: Thüringen
           prependOptionLabel: '--- Bitte wählen ---'
@@ -216,12 +238,15 @@ renderables:
           fluidAdditionalAttributes:
             step: 1
             placeholder: 'Anzahl Mitarbeitende'
+            required: required
         type: Number
         identifier: number-1
         label: 'Anzahl Mitarbeitende'
         validators:
           -
             identifier: Number
+          -
+            identifier: NotEmpty
       -
         defaultValue: ''
         properties:
@@ -299,20 +324,19 @@ renderables:
       -
         defaultValue: ''
         properties:
-          placeholder: 'Prozentzahl angeben'
           fluidAdditionalAttributes:
-            placeholder: 'In Prozent (%)'
-            required: required
-        type: Text
-        identifier: azubi_quote
-        label: '...in den letzten drei Jahren in %'
+            step: 1
+            placeholder: 'Bitte nur die Zahl eingeben (z. B. 75 für 75 %)'
+        type: Number
+        identifier: number-2
+        label: '...in den letzten drei Jahren in Prozent'
         validators:
           -
-            identifier: NotEmpty
+            identifier: Number
   -
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Weiter
     identifier: summarypage
-    label: 'Summary page'
+    label: Zusammenfassung
     type: SummaryPage

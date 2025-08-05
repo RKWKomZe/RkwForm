@@ -34,6 +34,10 @@ class DynamicEmailFinisher extends AbstractFinisher
                     $email = 'ebochenek@rkw-sachsen.de';
                     $name = 'E. Bochenek';
                     break;
+                case 'bb':
+                    $email = 'ebochenek@rkw-sachsen.de';
+                    $name = 'E. Bochenek';
+                    break;
                 case 'hb':
                     $email = 'j.ferber@rkw-bremen.de';
                     $name = 'J. Ferber';
@@ -70,17 +74,17 @@ class DynamicEmailFinisher extends AbstractFinisher
                     $email = 'ebochenek@rkw-sachsen.de';
                     $name = 'E. Bochenek';
                     break;
-                case 'st':
-                    $email = 'TODO@rkw-sachsen-anhalt.de';
-                    $name = 'RKW Sachsen-Anhalt';
-                    break;
+                #case 'st':
+                #    $email = 'TODO@rkw-sachsen-anhalt.de';
+                #    $name = 'RKW Sachsen-Anhalt';
+                #    break;
                 case 'sh':
                     $email = 'grund@rkw-nord.de';
                     $name = 'RKW Nord Schleswig-Holstein';
                     break;
                 case 'th':
                     $email = 'kluge@rkw-thueringen.de';
-                    $name = 'Kluge Thüringen';
+                    $name = 'Kluge - RKW Thüringen';
                     break;
             }
         }
