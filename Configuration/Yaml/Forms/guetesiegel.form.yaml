@@ -14,7 +14,7 @@ finishers:
     identifier: DynamicEmailFinisher
   -
     options:
-      subject: 'Neue Anfrage: RKW-Gütesiegel Arbeitsgeberattraktivität'
+      subject: 'Neue Anfrage: RKW-Gütesiegel Arbeitgeberattraktivität'
       senderAddress: service@mein.rkw.de
       senderName: 'RKW Service'
       attachUploads: true
@@ -36,7 +36,7 @@ finishers:
     identifier: EmailToReceiver
   -
     options:
-      subject: 'Ihre Anmeldung: RKW-Gütesiegel Arbeitsgeberattraktivität'
+      subject: 'Ihre Anmeldung: RKW-Gütesiegel Arbeitgeberattraktivität'
       recipients:
         '{email}': ''
       senderAddress: service@mein.rkw.de
@@ -54,7 +54,7 @@ finishers:
       mailTextSalutation: 'Sehr geehrte Interessentin, sehr geehrter Interessent am RKW-Gütesiegel Arbeitgeberattraktivität,'
       mailText: 'vielen Dank für Ihre Anmeldung zum RKW-Gütesiegel Arbeitgeberattraktivität. Nachfolgend finden Sie die Zusammenfassung Ihrer Einträge. Eine Ansprechperson in der für Sie zuständigen RKW-Landesorganisation wird sich zeitnah mit Ihnen in Verbindung setzen und das weitere Vorgehen besprechen.'
       replyToRecipients:
-        service@mein.rkw.de: 'RKW Service'
+        '{dynamicEmailAddress}': '{dynamicEmailName}'
       useFluidEmail: false
       addHtmlPart: true
     identifier: EmailToSender
@@ -327,12 +327,15 @@ renderables:
           fluidAdditionalAttributes:
             step: 1
             placeholder: 'Bitte nur die Zahl eingeben (z. B. 75 für 75 %)'
+            required: required
         type: Number
         identifier: number-2
         label: '...in den letzten drei Jahren in Prozent'
         validators:
           -
             identifier: Number
+          -
+            identifier: NotEmpty
   -
     renderingOptions:
       previousButtonLabel: Zurück

@@ -24,55 +24,55 @@ class DynamicEmailFinisher extends AbstractFinisher
             switch ($formValues['bundesland']) {
                 case 'bw':
                     $email = 'maralushaj@rkw-bw.de';
-                    $name = 'Mara Lushaj';
+                    $name = 'Altida Maralushaj';
                     break;
                 case 'by':
                     $email = 'wissinger@rkwbayern.de';
-                    $name = 'Herr/Frau Wissinger';
+                    $name = 'Josef Wissinger';
                     break;
                 case 'be':
                     $email = 'ebochenek@rkw-sachsen.de';
-                    $name = 'E. Bochenek';
+                    $name = 'Eva-Maria Bochenek';
                     break;
                 case 'bb':
                     $email = 'ebochenek@rkw-sachsen.de';
-                    $name = 'E. Bochenek';
+                    $name = 'Eva-Maria Bochenek';
                     break;
                 case 'hb':
                     $email = 'j.ferber@rkw-bremen.de';
-                    $name = 'J. Ferber';
+                    $name = 'Jennifer Ferber';
                     break;
                 case 'hh':
                     $email = 'grund@rkw-nord.de';
-                    $name = 'RKW Nord Hamburg';
+                    $name = 'Ernst Grund';
                     break;
                 case 'he':
                     $email = 't.fabich@rkw-hessen.de';
-                    $name = 'T. Fabich';
+                    $name = 'Thomas Fabich';
                     break;
                 case 'mv':
                     $email = 'grund@rkw-nord.de';
-                    $name = 'RKW Nord Mecklenburg-Vorpommern';
+                    $name = 'Ernst Grund';
                     break;
                 case 'ni':
                     $email = 'grund@rkw-nord.de';
-                    $name = 'RKW Nord Niedersachsen';
+                    $name = 'Ernst Grund';
                     break;
                 case 'nw':
                     $email = 'nrw-verein@rkw.de';
-                    $name = 'RKW NRW Verein';
+                    $name = 'Dr. Andreas Blaeser-Benfer';
                     break;
                 case 'rp':
                     $email = 'geschaeftsstelle@rkw-rlp.de';
-                    $name = 'RKW Rheinland-Pfalz';
+                    $name = 'Jürgen Behrens';
                     break;
                 case 'sl':
                     $email = 'christoph.esser@saaris.saarland';
-                    $name = 'Christoph Esser';
+                    $name = 'Dr. Christoph Esser';
                     break;
                 case 'sn':
                     $email = 'ebochenek@rkw-sachsen.de';
-                    $name = 'E. Bochenek';
+                    $name = 'Eva-Marie Bochenek';
                     break;
                 #case 'st':
                 #    $email = 'TODO@rkw-sachsen-anhalt.de';
@@ -80,11 +80,11 @@ class DynamicEmailFinisher extends AbstractFinisher
                 #    break;
                 case 'sh':
                     $email = 'grund@rkw-nord.de';
-                    $name = 'RKW Nord Schleswig-Holstein';
+                    $name = 'Ernst Grund';
                     break;
                 case 'th':
                     $email = 'kluge@rkw-thueringen.de';
-                    $name = 'Kluge - RKW Thüringen';
+                    $name = 'Annika Kluge';
                     break;
             }
         }
