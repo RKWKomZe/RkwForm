@@ -1,0 +1,345 @@
+
+renderingOptions:
+  submitButtonLabel: Absenden
+identifier: guetesiegel
+label: Gütesiegel
+type: Form
+prototypeName: standard
+finishers:
+  -
+    identifier: AddRegistrationDateFinisher
+    options:
+      registrationDate: '{registrationDateValue}'
+  -
+    identifier: DynamicEmailFinisher
+  -
+    options:
+      subject: 'Neue Anfrage: RKW-Gütesiegel Arbeitgeberattraktivität'
+      senderAddress: service@mein.rkw.de
+      senderName: 'RKW Service'
+      attachUploads: true
+      translation:
+        language: default
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
+      partialRootPaths:
+        20: 'EXT:rkw_template/Themes/_Websites/RkwBundesverein/Resources/Private/Extensions/Postmaster/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailTextSalutation: 'Liebe RKW-Kollegin, lieber RKW-Kollege und Ansprechperson für das RKW-Gütesiegel,'
+      mailText: 'ein Unternehmen hat sich über die Website online zum RKW-Gütesiegel Arbeitgeberattraktivität angemeldet. Nachfolgend finden Sie zusammengefasst alle eingetragenen Informationen zur Anmeldung. Bitte setzen Sie sich zeitnah mit der genannten Ansprechperson in Verbindung.'
+      recipients:
+        '{dynamicEmailAddress}': '{dynamicEmailName}'
+      useFluidEmail: false
+      addHtmlPart: true
+    identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Ihre Anmeldung: RKW-Gütesiegel Arbeitgeberattraktivität'
+      recipients:
+        '{email}': ''
+      senderAddress: service@mein.rkw.de
+      senderName: 'RKW Service'
+      attachUploads: true
+      translation:
+        language: default
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
+      partialRootPaths:
+        20: 'EXT:rkw_template/Themes/_Websites/RkwBundesverein/Resources/Private/Extensions/Postmaster/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailTextSalutation: 'Sehr geehrte Interessentin, sehr geehrter Interessent am RKW-Gütesiegel Arbeitgeberattraktivität,'
+      mailText: 'vielen Dank für Ihre Anmeldung zum RKW-Gütesiegel Arbeitgeberattraktivität. Nachfolgend finden Sie die Zusammenfassung Ihrer Einträge. Eine Ansprechperson in der für Sie zuständigen RKW-Landesorganisation wird sich zeitnah mit Ihnen in Verbindung setzen und das weitere Vorgehen besprechen.'
+      replyToRecipients:
+        '{dynamicEmailAddress}': '{dynamicEmailName}'
+      useFluidEmail: false
+      addHtmlPart: true
+    identifier: EmailToSender
+  -
+    options:
+      message: "Vielen Dank für Ihr Interesse am RKW-Gütesiegel Arbeitgeberattraktivität.\nWir prüfen Ihre Anmeldung, und eine Ansprechperson in der für Sie zuständigen RKW-Landesorganisation wird sich zeitnah mit Ihnen in Verbindung setzen.\n\nMit freundlichen Grüßen\n\nIhr bundesweites RKW-Netzwerk\n"
+      contentElementUid: ''
+    identifier: Confirmation
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: registrationDate
+        label: Anmeldedatum
+        type: hidden
+        variants:
+          -
+            identifier: registrationDate-1
+            renderingOptions:
+              enabled: false
+            condition: 'stepType == "SummaryPage"'
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+            placeholder: 'Name des Unternehmens inkl. Rechtsform'
+          fieldClass: width100
+        identifier: name
+        label: 'Name des Unternehmens'
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+            placeholder: 'Straße und Hausnummer'
+        type: Text
+        identifier: text-1
+        label: Adresse
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          options:
+            bw: Baden-Württemberg
+            by: Bayern
+            be: Berlin
+            bb: Brandenburg
+            hb: Bremen
+            hh: Hamburg
+            he: Hessen
+            mv: Mecklenburg-Vorpommern
+            ni: Niedersachsen
+            nw: Nordrhein-Westfalen
+            rp: Rheinland-Pfalz
+            sl: Saarland
+            sn: Sachsen
+            sh: Schleswig-Holstein
+            th: Thüringen
+          prependOptionLabel: '--- Bitte wählen ---'
+          elementClassAttribute: select-field
+          fluidAdditionalAttributes:
+            required: required
+        type: SingleSelect
+        identifier: bundesland
+        label: Bundesland
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: Postleitzahl
+            required: required
+            minlength: '5'
+            maxlength: '5'
+          validationErrorMessages:
+            -
+              code: 1238110957
+              message: 'Bitte geben Sie eine gültige Postleitzahl an'
+            -
+              code: 1269883975
+              message: 'Bitte geben Sie eine gültige Postleitzahl an'
+            -
+              code: 1428504122
+              message: 'Bitte geben Sie eine gültige Postleitzahl an'
+            -
+              code: 1238108068
+              message: 'Bitte geben Sie eine gültige Postleitzahl an'
+            -
+              code: 1238108069
+              message: 'Bitte geben Sie eine gültige Postleitzahl an'
+        type: Text
+        identifier: text-5
+        label: PLZ
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: Integer
+          -
+            options:
+              minimum: '5'
+              maximum: '5'
+            identifier: StringLength
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: 'Name des Ortes'
+            required: required
+        type: Text
+        identifier: text-6
+        label: Ort
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+            placeholder: 'Name der Ansprechperson'
+        type: Text
+        identifier: text-2
+        label: Name
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: 'Funktion im Unternehmen'
+        type: Text
+        identifier: text-3
+        label: 'Funktion im Unternehmen'
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            placeholder: 'E-Mail Adresse'
+            required: required
+        identifier: email
+        label: E-Mail
+        type: Text
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            identifier: EmailAddress
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: Telefonnummer
+        type: Text
+        identifier: text-4
+        label: Telefon
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            placeholder: 'Anzahl Mitarbeitende'
+            required: required
+        type: Number
+        identifier: number-1
+        label: 'Anzahl Mitarbeitende'
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+          fluidAdditionalAttributes:
+            placeholder: 'z.B. RKW-Mitgliedschaft'
+        type: Textarea
+        identifier: textarea-1
+        label: 'Bemerkung und Fragen'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-2
+    label: Unternehmensangaben
+    renderables:
+      -
+        properties:
+          options:
+            tarifgebunden: 'Ja, wir sind tarifgebunden (z.B. Flächen- oder Firmentarifvertrag).'
+            nicht_tarifgebunden: 'Nein, wir sind nicht tarifgebunden, orientieren uns aber am einschlägigen Flächentarifvertrag.'
+            mindestlohn: 'In unserem Unternehmen halten wir den Mindestlohn bzw. die geltenden tarifvertraglichen Regelungen ein.'
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: RadioButton
+        identifier: tarifbindung
+        label: Tarifbindung
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          options:
+            betriebsrat_vorhanden: 'Ja, wir haben einen Betriebsrat und arbeiten nach BetrVG (z.B. Arbeitsschutz, Personal, Wirtschaft) zusammen.'
+            kein_betriebsrat: 'Nein, wir haben keinen Betriebsrat.'
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: RadioButton
+        identifier: betriebsrat
+        label: Betriebsrat
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        properties:
+          options:
+            mit_azubis: 'Ja, wir haben Auszubildende.'
+            keine_azubis: 'Nein, wir haben keine Auszubildenden.'
+          fieldClass: width100
+          fluidAdditionalAttributes:
+            required: required
+        type: RadioButton
+        identifier: ausbildung
+        label: Ausbildung
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    variants:
+      -
+        identifier: variant-email
+        condition: 'traverse(formValues, "ausbildung") == "keine_azubis"'
+        renderingOptions:
+          enabled: false
+    type: Page
+    identifier: page-3
+    label: 'Durchschnittliche Azubi-Quote'
+    renderables:
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            placeholder: 'Bitte nur die Zahl eingeben (z. B. 75 für 75 %)'
+            required: required
+        type: Number
+        identifier: number-2
+        label: '...in den letzten drei Jahren in Prozent'
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    identifier: summarypage
+    label: Zusammenfassung
+    type: SummaryPage
