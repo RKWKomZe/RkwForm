@@ -168,12 +168,9 @@ renderables:
           -
             identifier: NotEmpty
           -
-            identifier: Integer
-          -
+            identifier: RegularExpression
             options:
-              minimum: '5'
-              maximum: '5'
-            identifier: StringLength
+              regularExpression: '/^\d{5}$/'
       -
         defaultValue: ''
         properties:

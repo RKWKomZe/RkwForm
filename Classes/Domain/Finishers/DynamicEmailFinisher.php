@@ -67,7 +67,7 @@ class DynamicEmailFinisher extends AbstractFinisher
                     $name = 'Jürgen Behrens';
                     break;
                 case 'sl':
-                    $email = 'christoph.esser@saaris.saarland';
+                    $email = 'rkw-guetesiegel@saaris.saarland';
                     $name = 'Dr. Christoph Esser';
                     break;
                 case 'sn':
