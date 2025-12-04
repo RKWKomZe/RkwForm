@@ -1,0 +1,403 @@
+
+renderingOptions:
+  submitButtonLabel: 'Mitgliedschaft beantragen'
+  width: flex-basis-12
+  showProgress: true
+  progressLabel: Schritt
+  showNull: 'k. A.'
+  checkboxFalseLabel: Nein
+  groupSummaryByPages: true
+  showSummaryPageHint: true
+identifier: mitgliedsantrag-bw
+label: 'Mitgliedsantrag Baden-Württtemberg'
+type: Form
+prototypeName: standard
+finishers:
+  -
+    options:
+      subject: 'Neuer Mitgliedsantrag: {company-name}'
+      senderAddress: info@rkw-bw.de
+      senderName: 'RKW Baden-Württemberg'
+      attachUploads: true
+      translation:
+        language: default
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Receiver'
+      partialRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailText: 'ein neuer Mitgliedsantrag wurde eingereicht.'
+      recipients:
+        info@rkw-bw.de: 'RKW Baden-Württemberg'
+      replyToRecipients:
+        '{company-email}': ''
+      addHtmlPart: true
+    identifier: EmailToReceiver
+  -
+    options:
+      subject: 'Ihr Antrag auf Mitgliedschaft beim RKW Baden-Württemberg: {company-name}'
+      senderAddress: info@rkw-bw.de
+      senderName: 'RKW Baden-Württemberg'
+      attachUploads: true
+      templateName: '{@format}.html'
+      templateRootPaths:
+        20: 'EXT:rkw_form/Resources/Private/Templates/FormFramework/Frontend/Finishers/Email/Sender'
+      partialRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Partials/'
+      layoutRootPaths:
+        20: 'EXT:postmaster/Resources/Private/Layouts/'
+      mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW Baden-Württemberg – Rationalisierungs- und Innovationszentrum der Deutschen Wirtschaft e.V.. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
+      recipients:
+        '{company-email}': '{company-name}'
+      replyToRecipients:
+        info@rkw-sachsenanhalt.de: ''
+      addHtmlPart: true
+    identifier: EmailToSender
+  -
+    options:
+      pageUid: '11285'
+      additionalParameters: ''
+    identifier: Redirect
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+      headerTag: h3
+    type: Page
+    identifier: membership-page
+    label: Mitgliedschaft
+    renderables:
+      -
+        properties:
+          text: "Ich/wir beantrage(n) die Mitgliedschaft im RKW Baden-Württemberg – Rationalisierungs- und\nInnovationszentrum der Deutschen Wirtschaft e.V.\nMit der Unterzeichnung erkenne(n) ich/wir die Satzung des RKW BW als Grundlage der\nMitgliedschaft an.\nJahresbeitrag gemäß Beitragsstaffel auf Seite 2 (abhängig vom Vorjahres-Bruttoumsatz): EUR"
+          headerTag: h4
+        type: StaticText
+        identifier: membership-fee
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            required: required
+        type: Number
+        identifier: number-5
+        label: 'Jahresbeitrag in Euro'
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-1
+    label: 'Erstkontakt / Onboarding'
+    renderables:
+      -
+        properties:
+          containerClassAttribute: ''
+          options:
+            'Besuch eines RKW-Mitarbeitenden': 'Besuch eines RKW-Mitarbeitenden'
+            'Video-Meeting mit einem Mitarbeitenden des RKW BW': 'Video-Meeting mit einem Mitarbeitenden des RKW BW'
+            'Zusendung der aktuellen Mitgliederangebote': 'Zusendung der aktuellen Mitgliederangebote'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-1
+        label: 'Wählen Sie die zutreffenden Optionen'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-2
+    label: 'Themen, die uns aktuell beschäftigen'
+    renderables:
+      -
+        properties:
+          options:
+            'Digitalisierung / KI': 'Digitalisierung / KI'
+            Nachhaltigkeit: Nachhaltigkeit
+            'Unternehmensnachfolge & Verkauf': 'Unternehmensnachfolge & Verkauf'
+            'Betriebliches Gesundheitsmanagement (BGM)': 'Betriebliches Gesundheitsmanagement (BGM)'
+            'HR / Personal': 'HR / Personal'
+            'Vertrieb / Marketing': 'Vertrieb / Marketing'
+            Produktion: Produktion
+            Gründung: Gründung
+            'Kooperation mit dem RKW BW': 'Kooperation mit dem RKW BW'
+            'Austausch mit anderen Mitgliedsunternehmen': 'Austausch mit anderen Mitgliedsunternehmen'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-2
+        label: 'Wählen Sie die zutreffenden Optionen'
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+        type: Text
+        identifier: text-4
+        label: Sonstige
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-3
+    label: 'Angaben zum Unternehmen / zur Organisation'
+    renderables:
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: Text
+        identifier: company-name
+        label: 'Name / Firma'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width100
+        type: Text
+        identifier: company-street
+        label: 'Straße und Hausnummer / Postfach'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            required: required
+            min: '00001'
+            max: '99999'
+        type: Number
+        identifier: number-2
+        label: Postleitzahl
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+          -
+            options:
+              minimum: '00001'
+              maximum: '99999'
+            identifier: NumberRange
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+        type: Text
+        identifier: company-city
+        label: 'Ort (Sitz)'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+        type: Text
+        identifier: company-phone
+        label: Telefon
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+          elementDescription: 'Die Bestätigung des Antragsformulars erfolgt an diese Adresse.'
+        type: Text
+        identifier: company-email
+        label: E-Mail
+        validators:
+          -
+            identifier: EmailAddress
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        type: Url
+        identifier: url-1
+        label: Webseite
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
+          -
+            options:
+              regularExpression: '/^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$/i'
+            identifier: RegularExpression
+      -
+        properties:
+          fluidAdditionalAttributes:
+            required: required
+          fieldClass: width50
+          elementClassAttribute: select-field
+          prependOptionLabel: 'Bitte wählen Sie'
+          options:
+            'Landwirtschaft & Ernährung': 'Landwirtschaft & Ernährung'
+            Unternehmensdienstleistungen: Unternehmensdienstleistungen
+            Baugewerbe: Baugewerbe
+            'Digitale Wirtschaft': 'Digitale Wirtschaft'
+            'Energie & Umwelt': 'Energie & Umwelt'
+            Gesundheitswesen: Gesundheitswesen
+            'Industrielle Produktion': 'Industrielle Produktion'
+            'Metall & Elektronik': 'Metall & Elektronik'
+            'Mobilität & Transport': 'Mobilität & Transport'
+            Sonstiges: Sonstiges
+        type: SingleSelect
+        identifier: company-industry
+        label: Branche
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+        type: Text
+        identifier: text-2
+        label: Rechtsform
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            required: required
+            min: '1900'
+            max: '2100'
+        type: Number
+        identifier: number-1
+        label: Gründungsjahr
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+          -
+            options:
+              minimum: '1900'
+              maximum: '2100'
+            identifier: NumberRange
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            required: required
+        type: Number
+        identifier: number-4
+        label: 'Anzahl Beschäftigte'
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fluidAdditionalAttributes:
+            step: 1
+            required: required
+        type: Number
+        identifier: number-3
+        label: 'Vorjahres-Bruttoumsatz (EUR)'
+        validators:
+          -
+            identifier: Number
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+        type: Text
+        identifier: text-1
+        label: Geschäftsführer/in
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            required: required
+        type: Text
+        identifier: text-3
+        label: 'Ansprechpartner/in für das RKW Baden-Württemberg'
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-4
+    label: Zustimmung
+    renderables:
+      -
+        properties:
+          text: "Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.\n\nIhre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: https://www.rkw-bw.de/datenschutz/."
+          headerTag: h4
+        type: StaticText
+        identifier: contact-confirm-intro
+        label: 'Zustimmung zur Kontaktaufnahme'
+      -
+        type: Checkbox
+        identifier: contact-by-email-confirm
+        label: 'Ich willige ein, dass mir das RKW Baden-Württemberg o.g. Informationen per E-Mail übersendet.'
+        properties:
+          fieldClass: width100
+          value: Ja
+      -
+        type: Checkbox
+        identifier: contact-by-phone-confirm
+        label: 'Ich willige ein, dass das RKW Baden-Württemberg mich zu den o.g. Informationen telefonisch kontaktieren darf.'
+        properties:
+          fieldClass: width100
+          value: Ja
+      -
+        type: Checkbox
+        identifier: contact-by-mail-confirm
+        label: 'Ich willige ein, dass mir das RKW Baden-Württemberg o.g. Informationen per Post übersendet.'
+        properties:
+          fieldClass: width100
+          value: Ja
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: 'Mitgliedschaft beantragen'
+      headerTag: h3
+    type: SummaryPage
+    identifier: summarypage
+    label: 'Ihre Angaben'
