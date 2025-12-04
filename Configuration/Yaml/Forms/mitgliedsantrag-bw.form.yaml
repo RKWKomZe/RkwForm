@@ -64,7 +64,7 @@ renderables:
   -
     renderingOptions:
       previousButtonLabel: Zurück
-      nextButtonLabel: 'Zur Zusammenfassung'
+      nextButtonLabel: Weiter
       headerTag: h3
     type: Page
     identifier: membership-page
@@ -90,13 +90,14 @@ renderables:
             identifier: Number
           -
             identifier: NotEmpty
-      -
-        properties:
-          text: ''
-          headerTag: h4
-        type: StaticText
-        identifier: statictext-2
-        label: 'Erstkontakt / Onboarding (optional)'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-1
+    label: 'Erstkontakt / Onboarding'
+    renderables:
       -
         properties:
           containerClassAttribute: ''
@@ -108,13 +109,14 @@ renderables:
         type: MultiCheckbox
         identifier: multicheckbox-1
         label: 'Wählen Sie die zutreffenden Optionen'
-      -
-        properties:
-          text: ''
-          headerTag: h4
-        type: StaticText
-        identifier: statictext-3
-        label: 'Wählen Sie die zutreffenden Optionen'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-2
+    label: 'Themen, die uns aktuell beschäftigen'
+    renderables:
       -
         properties:
           options:
@@ -131,7 +133,7 @@ renderables:
           fieldClass: width100
         type: MultiCheckbox
         identifier: multicheckbox-2
-        label: 'Checkbox zur Mehrfachauswahl'
+        label: 'Wählen Sie die zutreffenden Optionen'
       -
         defaultValue: ''
         properties:
@@ -139,13 +141,14 @@ renderables:
         type: Text
         identifier: text-4
         label: Sonstige
-      -
-        properties:
-          text: ''
-          headerTag: h4
-        type: StaticText
-        identifier: statictext-1
-        label: 'Angaben zum Unternehmen / zur Organisation'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-3
+    label: 'Angaben zum Unternehmen / zur Organisation'
+    renderables:
       -
         defaultValue: ''
         properties:
@@ -354,6 +357,14 @@ renderables:
         validators:
           -
             identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-4
+    label: Zustimmung
+    renderables:
       -
         properties:
           text: "Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.\n\nIhre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: https://www.rkw-bw.de/datenschutz/."
