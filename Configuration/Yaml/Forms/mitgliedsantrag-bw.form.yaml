@@ -48,7 +48,7 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW Baden-Württemberg – Rationalisierungs- und Innovationszentrum der Deutschen Wirtschaft e.V.. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
+      mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW BW e.V.. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
       recipients:
         '{company-email}': '{company-name}'
       replyToRecipients:
