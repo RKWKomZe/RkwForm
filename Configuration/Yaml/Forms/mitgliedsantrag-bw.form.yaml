@@ -241,6 +241,7 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             required: required
+            placeholder: 'https://beispiel.de'
         validators:
           -
             identifier: NotEmpty
