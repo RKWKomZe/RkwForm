@@ -48,7 +48,7 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Partials/'
       layoutRootPaths:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
-      mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW Baden-Württemberg – Rationalisierungs- und Innovationszentrum der Deutschen Wirtschaft e.V.. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
+      mailText: 'vielen herzlichen Dank für Ihren Antrag auf Mitgliedschaft bei der RKW BW e.V.. Wir werden Ihren Antrag prüfen und uns umgehend mit Ihnen in Verbindung setzen. Untenstehend finden Sie eine Übersicht Ihrer Angaben zum Mitgliedsantrag.'
       recipients:
         '{company-email}': '{company-name}'
       replyToRecipients:
@@ -72,22 +72,26 @@ renderables:
     renderables:
       -
         properties:
-          text: "Ich/wir beantrage(n) die Mitgliedschaft im RKW Baden-Württemberg – Rationalisierungs- und\nInnovationszentrum der Deutschen Wirtschaft e.V.\nMit der Unterzeichnung erkenne(n) ich/wir die Satzung des RKW BW als Grundlage der\nMitgliedschaft an.\nJahresbeitrag gemäß Beitragsstaffel auf Seite 2 (abhängig vom Vorjahres-Bruttoumsatz): EUR"
+          text: "Ich/wir beantrage(n) die Mitgliedschaft im RKW Baden-Württemberg – Rationalisierungs- und\nInnovationszentrum der Deutschen Wirtschaft e.V.\nMit der Unterzeichnung erkenne(n) ich/wir die Satzung des RKW BW als Grundlage der\nMitgliedschaft an."
           headerTag: h4
         type: StaticText
         identifier: membership-fee
       -
-        defaultValue: ''
         properties:
+          options:
+            'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €': 'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €'
+            'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €': 'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €'
+            'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €': 'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €'
+            'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €': 'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €'
+            'Existenzgründer 2 Jahre kostenfrei': 'Existenzgründer 2 Jahre kostenfrei'
+          prependOptionLabel: 'Biite auswählen'
+          elementClassAttribute: select-field
           fluidAdditionalAttributes:
-            step: 1
             required: required
-        type: Number
-        identifier: number-5
-        label: 'Jahresbeitrag in Euro'
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Jahresbeitrag
         validators:
-          -
-            identifier: Number
           -
             identifier: NotEmpty
   -
@@ -241,6 +245,7 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             required: required
+            placeholder: 'https://beispiel.de'
         validators:
           -
             identifier: NotEmpty
@@ -365,6 +370,24 @@ renderables:
     identifier: page-4
     label: Zustimmung
     renderables:
+      -
+        properties:
+          headerTag: h4
+        type: StaticText
+        identifier: processing-data-confirm-intro
+        label: 'Zustimmung zur Weiterverarbeitung der Daten'
+      -
+        type: Checkbox
+        identifier: processing-data-confirm
+        label: 'Ich bestätige, dass meine Angaben zum Zweck der Mitgliederverwaltung und Beitragszuordnung verarbeitet werden dürfen. Weitere Informationen zur Datenverarbeitung finde ich in der Datenschutzerklärung unter https://www.rkw-bw.de/datenschutz/.'
+        properties:
+          fieldClass: width100
+          value: Ja
+          fluidAdditionalAttributes:
+            required: required
+        validators:
+          -
+            identifier: NotEmpty
       -
         properties:
           text: "Sie möchten über Veranstaltungen, interessante Angebote sowie aktuelle Aktionen informiert werden? Bestimmen Sie, auf welchem Weg wir Sie kontaktieren dürfen.\n\nIhre Einwilligung ist selbstverständlich freiwillig, und Sie können sie jederzeit beim Verantwortlichen mit Wirkung für die Zukunft ganz oder teilweise widerrufen. Wenn Sie die Einwilligung nicht erteilen möchten, wird dies keinerlei Konsequenzen im Zusammenhang mit Ihrer Mitgliedschaft haben. Informationen zu Auskunft, Berichtigung, Löschung und Sperrung, Widerspruchsrecht finden Sie auf unserer Webseite: https://www.rkw-bw.de/datenschutz/."
