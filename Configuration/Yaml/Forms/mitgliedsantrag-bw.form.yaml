@@ -9,7 +9,7 @@ renderingOptions:
   groupSummaryByPages: true
   showSummaryPageHint: true
 identifier: mitgliedsantrag-bw
-label: 'Mitgliedsantrag Baden-Württtemberg'
+label: 'Mitgliedsantrag Baden-Württemberg'
 type: Form
 prototypeName: standard
 finishers:
@@ -65,10 +65,9 @@ renderables:
     renderingOptions:
       previousButtonLabel: Zurück
       nextButtonLabel: Weiter
-      headerTag: h3
     type: Page
-    identifier: membership-page
-    label: Mitgliedschaft
+    identifier: page-3
+    label: 'Angaben zum Unternehmen / zur Organisation'
     renderables:
       -
         properties:
@@ -76,83 +75,6 @@ renderables:
           headerTag: h4
         type: StaticText
         identifier: membership-fee
-      -
-        properties:
-          options:
-            'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €': 'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €'
-            'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €': 'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €'
-            'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €': 'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €'
-            'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €': 'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €'
-            'Existenzgründer 2 Jahre kostenfrei': 'Existenzgründer 2 Jahre kostenfrei'
-          prependOptionLabel: 'Biite auswählen'
-          elementClassAttribute: select-field
-          fluidAdditionalAttributes:
-            required: required
-        type: SingleSelect
-        identifier: singleselect-1
-        label: Jahresbeitrag
-        validators:
-          -
-            identifier: NotEmpty
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-    type: Page
-    identifier: page-1
-    label: 'Erstkontakt / Onboarding'
-    renderables:
-      -
-        properties:
-          containerClassAttribute: ''
-          options:
-            'Besuch eines RKW-Mitarbeitenden': 'Besuch eines RKW-Mitarbeitenden'
-            'Video-Meeting mit einem Mitarbeitenden des RKW BW': 'Video-Meeting mit einem Mitarbeitenden des RKW BW'
-            'Zusendung der aktuellen Mitgliederangebote': 'Zusendung der aktuellen Mitgliederangebote'
-          fieldClass: width100
-        type: MultiCheckbox
-        identifier: multicheckbox-1
-        label: 'Wählen Sie die zutreffenden Optionen'
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-    type: Page
-    identifier: page-2
-    label: 'Themen, die uns aktuell beschäftigen'
-    renderables:
-      -
-        properties:
-          options:
-            'Digitalisierung / KI': 'Digitalisierung / KI'
-            Nachhaltigkeit: Nachhaltigkeit
-            'Unternehmensnachfolge & Verkauf': 'Unternehmensnachfolge & Verkauf'
-            'Betriebliches Gesundheitsmanagement (BGM)': 'Betriebliches Gesundheitsmanagement (BGM)'
-            'HR / Personal': 'HR / Personal'
-            'Vertrieb / Marketing': 'Vertrieb / Marketing'
-            Produktion: Produktion
-            Gründung: Gründung
-            'Kooperation mit dem RKW BW': 'Kooperation mit dem RKW BW'
-            'Austausch mit anderen Mitgliedsunternehmen': 'Austausch mit anderen Mitgliedsunternehmen'
-          fieldClass: width100
-        type: MultiCheckbox
-        identifier: multicheckbox-2
-        label: 'Wählen Sie die zutreffenden Optionen'
-      -
-        defaultValue: ''
-        properties:
-          fieldClass: width100
-        type: Text
-        identifier: text-4
-        label: Sonstige
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-    type: Page
-    identifier: page-3
-    label: 'Angaben zum Unternehmen / zur Organisation'
-    renderables:
       -
         defaultValue: ''
         properties:
@@ -245,7 +167,7 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             required: required
-            placeholder: 'beispiel.de'
+            placeholder: beispiel.de
         validators:
           -
             identifier: NotEmpty
@@ -355,6 +277,84 @@ renderables:
         type: Text
         identifier: text-3
         label: 'Ansprechpartner/in für das RKW Baden-Württemberg'
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-2
+    label: 'Themen, die uns aktuell beschäftigen'
+    renderables:
+      -
+        properties:
+          options:
+            'Digitalisierung / KI': 'Digitalisierung / KI'
+            Nachhaltigkeit: Nachhaltigkeit
+            'Unternehmensnachfolge & Verkauf': 'Unternehmensnachfolge & Verkauf'
+            'Betriebliches Gesundheitsmanagement (BGM)': 'Betriebliches Gesundheitsmanagement (BGM)'
+            'HR / Personal': 'HR / Personal'
+            'Vertrieb / Marketing': 'Vertrieb / Marketing'
+            Produktion: Produktion
+            Gründung: Gründung
+            'Kooperation mit dem RKW BW': 'Kooperation mit dem RKW BW'
+            'Austausch mit anderen Mitgliedsunternehmen': 'Austausch mit anderen Mitgliedsunternehmen'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-2
+        label: 'Wählen Sie die zutreffenden Optionen'
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+        type: Text
+        identifier: text-4
+        label: Sonstige
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-1
+    label: 'Erstkontakt / Onboarding'
+    renderables:
+      -
+        properties:
+          containerClassAttribute: ''
+          options:
+            'Besuch eines RKW-Mitarbeitenden': 'Besuch eines RKW-Mitarbeitenden'
+            'Video-Meeting mit einem Mitarbeitenden des RKW BW': 'Video-Meeting mit einem Mitarbeitenden des RKW BW'
+            'Zusendung der aktuellen Mitgliederangebote': 'Zusendung der aktuellen Mitgliederangebote'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-1
+        label: 'Wählen Sie die zutreffenden Optionen'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+      headerTag: h3
+    type: Page
+    identifier: membership-page
+    label: Mitgliedschaft
+    renderables:
+      -
+        properties:
+          options:
+            'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €': 'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €'
+            'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €': 'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €'
+            'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €': 'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €'
+            'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €': 'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €'
+            'Existenzgründer 2 Jahre kostenfrei': 'Existenzgründer 2 Jahre kostenfrei'
+          prependOptionLabel: 'Biite auswählen'
+          elementClassAttribute: select-field
+          fluidAdditionalAttributes:
+            required: required
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Jahresbeitrag
         validators:
           -
             identifier: NotEmpty
