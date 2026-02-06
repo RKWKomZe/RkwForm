@@ -30,7 +30,7 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'ein neuer Mitgliedsantrag wurde eingereicht.'
       recipients:
-        info@rkw-bw.de: 'RKW Baden-Württemberg'
+        goehring@rkw-bw.de: 'Tamara Göhring'
       replyToRecipients:
         '{company-email}': ''
       addHtmlPart: true
