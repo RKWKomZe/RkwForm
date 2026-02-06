@@ -245,14 +245,10 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             required: required
-            placeholder: 'https://beispiel.de'
+            placeholder: 'beispiel.de'
         validators:
           -
             identifier: NotEmpty
-          -
-            options:
-              regularExpression: '/^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$/i'
-            identifier: RegularExpression
       -
         properties:
           fluidAdditionalAttributes:
