@@ -9,7 +9,7 @@ renderingOptions:
   groupSummaryByPages: true
   showSummaryPageHint: true
 identifier: mitgliedsantrag-bw
-label: 'Mitgliedsantrag Baden-Württtemberg'
+label: 'Mitgliedsantrag Baden-Württemberg'
 type: Form
 prototypeName: standard
 finishers:
@@ -30,9 +30,9 @@ finishers:
         20: 'EXT:postmaster/Resources/Private/Layouts/'
       mailText: 'ein neuer Mitgliedsantrag wurde eingereicht.'
       recipients:
-        info@rkw-bw.de: 'RKW Baden-Württemberg'
+        goehring@rkw-bw.de: 'Tamara Göhring'
       replyToRecipients:
-        '{company-email}': ''
+        '{company-email}': '{company-name}'
       addHtmlPart: true
     identifier: EmailToReceiver
   -
@@ -52,99 +52,15 @@ finishers:
       recipients:
         '{company-email}': '{company-name}'
       replyToRecipients:
-        info@rkw-sachsenanhalt.de: ''
+        info@rkw-bw.de: ''
       addHtmlPart: true
     identifier: EmailToSender
   -
     options:
-      pageUid: '11285'
+      pageUid: '13466'
       additionalParameters: ''
     identifier: Redirect
 renderables:
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-      headerTag: h3
-    type: Page
-    identifier: membership-page
-    label: Mitgliedschaft
-    renderables:
-      -
-        properties:
-          text: "Ich/wir beantrage(n) die Mitgliedschaft im RKW Baden-Württemberg – Rationalisierungs- und\nInnovationszentrum der Deutschen Wirtschaft e.V.\nMit der Unterzeichnung erkenne(n) ich/wir die Satzung des RKW BW als Grundlage der\nMitgliedschaft an."
-          headerTag: h4
-        type: StaticText
-        identifier: membership-fee
-      -
-        properties:
-          options:
-            'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €': 'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €'
-            'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €': 'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €'
-            'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €': 'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €'
-            'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €': 'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €'
-            'Existenzgründer 2 Jahre kostenfrei': 'Existenzgründer 2 Jahre kostenfrei'
-          prependOptionLabel: 'Biite auswählen'
-          elementClassAttribute: select-field
-          fluidAdditionalAttributes:
-            required: required
-        type: SingleSelect
-        identifier: singleselect-1
-        label: Jahresbeitrag
-        validators:
-          -
-            identifier: NotEmpty
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-    type: Page
-    identifier: page-1
-    label: 'Erstkontakt / Onboarding'
-    renderables:
-      -
-        properties:
-          containerClassAttribute: ''
-          options:
-            'Besuch eines RKW-Mitarbeitenden': 'Besuch eines RKW-Mitarbeitenden'
-            'Video-Meeting mit einem Mitarbeitenden des RKW BW': 'Video-Meeting mit einem Mitarbeitenden des RKW BW'
-            'Zusendung der aktuellen Mitgliederangebote': 'Zusendung der aktuellen Mitgliederangebote'
-          fieldClass: width100
-        type: MultiCheckbox
-        identifier: multicheckbox-1
-        label: 'Wählen Sie die zutreffenden Optionen'
-  -
-    renderingOptions:
-      previousButtonLabel: Zurück
-      nextButtonLabel: Weiter
-    type: Page
-    identifier: page-2
-    label: 'Themen, die uns aktuell beschäftigen'
-    renderables:
-      -
-        properties:
-          options:
-            'Digitalisierung / KI': 'Digitalisierung / KI'
-            Nachhaltigkeit: Nachhaltigkeit
-            'Unternehmensnachfolge & Verkauf': 'Unternehmensnachfolge & Verkauf'
-            'Betriebliches Gesundheitsmanagement (BGM)': 'Betriebliches Gesundheitsmanagement (BGM)'
-            'HR / Personal': 'HR / Personal'
-            'Vertrieb / Marketing': 'Vertrieb / Marketing'
-            Produktion: Produktion
-            Gründung: Gründung
-            'Kooperation mit dem RKW BW': 'Kooperation mit dem RKW BW'
-            'Austausch mit anderen Mitgliedsunternehmen': 'Austausch mit anderen Mitgliedsunternehmen'
-          fieldClass: width100
-        type: MultiCheckbox
-        identifier: multicheckbox-2
-        label: 'Wählen Sie die zutreffenden Optionen'
-      -
-        defaultValue: ''
-        properties:
-          fieldClass: width100
-        type: Text
-        identifier: text-4
-        label: Sonstige
   -
     renderingOptions:
       previousButtonLabel: Zurück
@@ -153,6 +69,12 @@ renderables:
     identifier: page-3
     label: 'Angaben zum Unternehmen / zur Organisation'
     renderables:
+      -
+        properties:
+          text: "Ich/wir beantrage(n) die Mitgliedschaft im RKW Baden-Württemberg – Rationalisierungs- und\nInnovationszentrum der Deutschen Wirtschaft e.V.\nMit der Unterzeichnung erkenne(n) ich/wir die Satzung des RKW BW als Grundlage der\nMitgliedschaft an."
+          headerTag: h4
+        type: StaticText
+        identifier: membership-fee
       -
         defaultValue: ''
         properties:
@@ -245,14 +167,10 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             required: required
-            placeholder: 'https://beispiel.de'
+            placeholder: beispiel.de
         validators:
           -
             identifier: NotEmpty
-          -
-            options:
-              regularExpression: '/^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$/i'
-            identifier: RegularExpression
       -
         properties:
           fluidAdditionalAttributes:
@@ -367,6 +285,84 @@ renderables:
       previousButtonLabel: Zurück
       nextButtonLabel: Weiter
     type: Page
+    identifier: page-2
+    label: 'Themen, die uns aktuell beschäftigen'
+    renderables:
+      -
+        properties:
+          options:
+            'Digitalisierung / KI': 'Digitalisierung / KI'
+            Nachhaltigkeit: Nachhaltigkeit
+            'Unternehmensnachfolge & Verkauf': 'Unternehmensnachfolge & Verkauf'
+            'Betriebliches Gesundheitsmanagement (BGM)': 'Betriebliches Gesundheitsmanagement (BGM)'
+            'HR / Personal': 'HR / Personal'
+            'Vertrieb / Marketing': 'Vertrieb / Marketing'
+            Produktion: Produktion
+            Gründung: Gründung
+            'Kooperation mit dem RKW BW': 'Kooperation mit dem RKW BW'
+            'Austausch mit anderen Mitgliedsunternehmen': 'Austausch mit anderen Mitgliedsunternehmen'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-2
+        label: 'Wählen Sie die zutreffenden Optionen'
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width100
+        type: Text
+        identifier: text-4
+        label: Sonstige
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
+    identifier: page-1
+    label: 'Erstkontakt / Onboarding'
+    renderables:
+      -
+        properties:
+          containerClassAttribute: ''
+          options:
+            'Besuch eines RKW-Mitarbeitenden': 'Besuch eines RKW-Mitarbeitenden'
+            'Video-Meeting mit einem Mitarbeitenden des RKW BW': 'Video-Meeting mit einem Mitarbeitenden des RKW BW'
+            'Zusendung der aktuellen Mitgliederangebote': 'Zusendung der aktuellen Mitgliederangebote'
+          fieldClass: width100
+        type: MultiCheckbox
+        identifier: multicheckbox-1
+        label: 'Wählen Sie die zutreffenden Optionen'
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+      headerTag: h3
+    type: Page
+    identifier: membership-page
+    label: Mitgliedschaft
+    renderables:
+      -
+        properties:
+          options:
+            'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €': 'Einzelpersonen & Kleinstunternehmen bis 2 Mio. Umsatz - 200 €'
+            'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €': 'Kleinunternehmen kleiner 20 Mio. Umsatz - 900 €'
+            'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €': 'Mittlere Unternehmen kleiner 80. Mio. Umsatz - 1.500 €'
+            'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €': 'Großunternehmen kleiner 1.000 Mio. Umsatz - 3.000 €'
+            'Existenzgründer 2 Jahre kostenfrei': 'Existenzgründer 2 Jahre kostenfrei'
+          prependOptionLabel: 'Biite auswählen'
+          elementClassAttribute: select-field
+          fluidAdditionalAttributes:
+            required: required
+        type: SingleSelect
+        identifier: singleselect-1
+        label: Jahresbeitrag
+        validators:
+          -
+            identifier: NotEmpty
+  -
+    renderingOptions:
+      previousButtonLabel: Zurück
+      nextButtonLabel: Weiter
+    type: Page
     identifier: page-4
     label: Zustimmung
     renderables:
@@ -424,3 +420,4 @@ renderables:
     type: SummaryPage
     identifier: summarypage
     label: 'Ihre Angaben'
+
