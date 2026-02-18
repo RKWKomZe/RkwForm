@@ -32,7 +32,7 @@ finishers:
       recipients:
         goehring@rkw-bw.de: 'Tamara Göhring'
       replyToRecipients:
-        '{company-email}': ''
+        '{company-email}': '{company-name}'
       addHtmlPart: true
     identifier: EmailToReceiver
   -
@@ -52,12 +52,12 @@ finishers:
       recipients:
         '{company-email}': '{company-name}'
       replyToRecipients:
-        info@rkw-sachsenanhalt.de: ''
+        info@rkw-bw.de: ''
       addHtmlPart: true
     identifier: EmailToSender
   -
     options:
-      pageUid: '11285'
+      pageUid: '13466'
       additionalParameters: ''
     identifier: Redirect
 renderables:
@@ -420,3 +420,4 @@ renderables:
     type: SummaryPage
     identifier: summarypage
     label: 'Ihre Angaben'
+
