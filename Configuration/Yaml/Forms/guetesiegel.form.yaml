@@ -232,6 +232,28 @@ renderables:
       -
         defaultValue: ''
         properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: 'Umsatzsteuer-ID oder Steuernummer'
+            required: required
+        type: Text
+        identifier: vatId
+        label: 'Umsatzsteuer-ID oder Steuernummer'
+        validators:
+          -
+            identifier: NotEmpty
+      -
+        defaultValue: ''
+        properties:
+          fieldClass: width50
+          fluidAdditionalAttributes:
+            placeholder: 'Leitweg-ID (falls vorhanden)'
+        type: Text
+        identifier: leitwegId
+        label: 'Leitweg-ID (falls vorhanden)'
+      -
+        defaultValue: ''
+        properties:
           fluidAdditionalAttributes:
             step: 1
             placeholder: 'Anzahl Mitarbeitende'
